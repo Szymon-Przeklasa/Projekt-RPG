@@ -1,10 +1,15 @@
 [gd_scene format=3 uid="uid://c8vcyry7gqspx"]
 
 [ext_resource type="Script" uid="uid://dbed3q2s3rkve" path="res://Player.cs" id="1_7jktm"]
-[ext_resource type="Texture2D" uid="uid://c4exnyqmtn61j" path="res://icon.svg" id="2_ryrav"]
-[ext_resource type="Texture2D" uid="uid://dhivhqachxmco" path="res://Textures/grass.tres" id="3_eow3j"]
 [ext_resource type="Script" uid="uid://c3u7kyrqwc387" path="res://Enemy.cs" id="4_j5wjh"]
 [ext_resource type="Texture2D" uid="uid://ca6yi5kwffw17" path="res://icon3.png" id="5_vef74"]
+
+[sub_resource type="Gradient" id="Gradient_feb5d"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_fc0e3"]
+gradient = SubResource("Gradient_feb5d")
+fill_from = Vector2(0.44871795, 0.517094)
+fill_to = Vector2(0.99572647, 0.991453)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uv5y8"]
 size = Vector2(128, 128)
@@ -19,123 +24,23 @@ size = Vector2(128, 128)
 
 [node name="Player" type="CharacterBody2D" parent="." unique_id=1693425559]
 z_index = 2
-position = Vector2(488, 304)
+position = Vector2(576, 320)
+scale = Vector2(0.39977813, 0.39977813)
 motion_mode = 1
 script = ExtResource("1_7jktm")
 
 [node name="Sprite2D" type="Sprite2D" parent="Player" unique_id=1819058884]
 position = Vector2(68, 69)
-texture = ExtResource("2_ryrav")
+scale = Vector2(1.9687911, 1.9687911)
+texture = SubResource("GradientTexture2D_fc0e3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=132721683]
 position = Vector2(68, 69)
 shape = SubResource("RectangleShape2D_uv5y8")
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=1706821113]
-z_index = -1
-offset_right = 256.0
-offset_bottom = 256.0
-texture = ExtResource("3_eow3j")
-
-[node name="TextureRect" type="TextureRect" parent="TextureRect" unique_id=295210396]
-layout_mode = 0
-offset_left = 256.0
-offset_right = 512.0
-offset_bottom = 256.0
-texture = ExtResource("3_eow3j")
-
-[node name="TextureRect2" type="TextureRect" parent="." unique_id=1582511503]
-z_index = -1
-offset_left = 512.0
-offset_right = 768.0
-offset_bottom = 256.0
-texture = ExtResource("3_eow3j")
-
-[node name="TextureRect" type="TextureRect" parent="TextureRect2" unique_id=764002873]
-layout_mode = 0
-offset_left = 256.0
-offset_right = 512.0
-offset_bottom = 256.0
-texture = ExtResource("3_eow3j")
-
-[node name="TextureRect2" type="TextureRect" parent="TextureRect2" unique_id=1007760127]
-layout_mode = 0
-offset_left = 512.0
-offset_right = 768.0
-offset_bottom = 256.0
-texture = ExtResource("3_eow3j")
-
-[node name="TextureRect3" type="TextureRect" parent="." unique_id=990039802]
-z_index = -1
-offset_top = 256.0
-offset_right = 256.0
-offset_bottom = 512.0
-texture = ExtResource("3_eow3j")
-
-[node name="TextureRect" type="TextureRect" parent="TextureRect3" unique_id=1778726749]
-layout_mode = 0
-offset_left = 256.0
-offset_right = 512.0
-offset_bottom = 256.0
-texture = ExtResource("3_eow3j")
-
-[node name="TextureRect4" type="TextureRect" parent="." unique_id=218308048]
-z_index = -1
-offset_left = 512.0
-offset_top = 256.0
-offset_right = 768.0
-offset_bottom = 512.0
-texture = ExtResource("3_eow3j")
-
-[node name="TextureRect" type="TextureRect" parent="TextureRect4" unique_id=1104253189]
-layout_mode = 0
-offset_left = 256.0
-offset_right = 512.0
-offset_bottom = 256.0
-texture = ExtResource("3_eow3j")
-
-[node name="TextureRect2" type="TextureRect" parent="TextureRect4" unique_id=1306273233]
-layout_mode = 0
-offset_left = 512.0
-offset_right = 768.0
-offset_bottom = 256.0
-texture = ExtResource("3_eow3j")
-
-[node name="TextureRect5" type="TextureRect" parent="." unique_id=1092079323]
-z_index = -1
-offset_top = 512.0
-offset_right = 256.0
-offset_bottom = 768.0
-texture = ExtResource("3_eow3j")
-
-[node name="TextureRect" type="TextureRect" parent="TextureRect5" unique_id=928253975]
-layout_mode = 0
-offset_left = 256.0
-offset_right = 512.0
-offset_bottom = 256.0
-texture = ExtResource("3_eow3j")
-
-[node name="TextureRect6" type="TextureRect" parent="." unique_id=944332455]
-z_index = -1
-offset_left = 512.0
-offset_top = 512.0
-offset_right = 768.0
-offset_bottom = 768.0
-texture = ExtResource("3_eow3j")
-
-[node name="TextureRect" type="TextureRect" parent="TextureRect6" unique_id=1557976227]
-layout_mode = 0
-offset_left = 256.0
-offset_right = 512.0
-offset_bottom = 256.0
-texture = ExtResource("3_eow3j")
-
-[node name="TextureRect2" type="TextureRect" parent="TextureRect6" unique_id=1246362928]
-layout_mode = 0
-offset_left = 512.0
-offset_right = 768.0
-offset_bottom = 256.0
-texture = ExtResource("3_eow3j")
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=2041371594]
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1311186912]
 
@@ -159,6 +64,7 @@ shape = SubResource("SegmentShape2D_556m2")
 
 [node name="Enemy" type="CharacterBody2D" parent="." unique_id=1653092919]
 position = Vector2(160, 160)
+scale = Vector2(0.3902205, 0.3902205)
 script = ExtResource("4_j5wjh")
 
 [node name="Sprite2D" type="Sprite2D" parent="Enemy" unique_id=1946682174]

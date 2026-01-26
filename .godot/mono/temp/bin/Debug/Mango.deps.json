@@ -8,7 +8,6 @@
     ".NETCoreApp,Version=v8.0": {
       "Mango/1.0.0": {
         "dependencies": {
-          "Godot.SourceGenerators": "4.6.0",
           "GodotSharp": "4.6.0",
           "GodotSharpEditor": "4.6.0"
         },
@@ -16,7 +15,6 @@
           "Mango.dll": {}
         }
       },
-      "Godot.SourceGenerators/4.6.0": {},
       "GodotSharp/4.6.0": {
         "runtime": {
           "lib/net8.0/GodotSharp.dll": {
@@ -43,13 +41,6 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
-    },
-    "Godot.SourceGenerators/4.6.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-zPXb65IjRK6NRAq44Rz5AfI9uZc0RkhOMOVzsYuauaWwbsiKsrM0Dtl1t2A90JGbVV4Tk02qVPa3JrR8haFqIw==",
-      "path": "godot.sourcegenerators/4.6.0",
-      "hashPath": "godot.sourcegenerators.4.6.0.nupkg.sha512"
     },
     "GodotSharp/4.6.0": {
       "type": "package",
