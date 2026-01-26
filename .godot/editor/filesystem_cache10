@@ -1,11 +1,12 @@
 63f7b34db8d8cdea90c76aacccf841ec
-::res://::1769456531
-CharacterBody2d.cs::CSharpScript::2923944383720804445::1769456417::0::1::::<>CharacterBody2D<><>0<>0<><>::
+::res://::1769457157
+CharacterBody2d.cs::CSharpScript::2923944383720804445::1769456675::0::1::::<>CharacterBody2D<><>0<>0<><>::
+checker.png::CompressedTexture2D::5478214335860940784::1769457157::1769457158::1::::<><><>0<>0<>5978c893a27ddf2ff6636ba2c75b185d<>res://.godot/imported/checker.png-6bb199bedbd039461e4248c1d0b9691d.ctex::
 Enemy.cs::CSharpScript::6781378633618437026::1769456396::0::1::::<>CharacterBody2D<><>0<>0<><>::
 icon2.svg::CompressedTexture2D::1346627975332718962::1769456194::1769456289::1::::<><><>0<>0<>7eb7011f608590e9212b31ca6b4842ca<>res://.godot/imported/icon2.svg-72130b1822965a82303075846d8629f5.ctex::
 icon3.png::CompressedTexture2D::4838310164094721828::1769456194::1769456289::1::::<><><>0<>0<>70529ffb88600b32d0d972a9f76a7dd6<>res://.godot/imported/icon3.png-43d2171f508ea7fdbd835324de92f715.ctex::
 icon.svg::CompressedTexture2D::6817996335908209937::1769456194::1769456289::1::::<><><>0<>0<>d464d3b26b360f1dc5dc99af2466c79e<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
-scene_2d.tscn::PackedScene::7132590364750636733::1769456305::0::1::::<><><>0<>0<><>::uid://bhwm637h6wydx::::res://CharacterBody2d.cs<>uid://c4exnyqmtn61j::::res://icon.svg<>uid://dhivhqachxmco::::res://Textures/grass.tres<>uid://c3u7kyrqwc387::::res://Enemy.cs<>uid://ca6yi5kwffw17::::res://icon3.png
+scene_2d.tscn::PackedScene::7132590364750636733::1769457054::0::1::::<><><>0<>0<><>::uid://bhwm637h6wydx::::res://CharacterBody2d.cs<>uid://c4exnyqmtn61j::::res://icon.svg<>uid://c3u7kyrqwc387::::res://Enemy.cs<>uid://ca6yi5kwffw17::::res://icon3.png
 textures2.png::CompressedTexture2D::6314068747705276921::1769456194::1769456289::1::::<><><>0<>0<>1582bd9e43875465a16411e3af11e638<>res://.godot/imported/textures2.png-9f9b674f1e8760f658593dd3eca4f2bb.ctex::
 textures.png::CompressedTexture2D::5184152264780287561::1769456194::1769456289::1::::<><><>0<>0<>ca06716398650897dbf8840d13abbd5a<>res://.godot/imported/textures.png-7de323d84b704158a1297173214775ac.ctex::
 ::res://Textures/::1769456194
