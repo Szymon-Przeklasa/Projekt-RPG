@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://c8vcyry7gqspx"]
+[gd_scene load_steps=6 format=3 uid="uid://c8vcyry7gqspx"]
 
 [ext_resource type="Script" uid="uid://bhwm637h6wydx" path="res://CharacterBody2d.cs" id="1_haudk"]
 [ext_resource type="Texture2D" uid="uid://c4exnyqmtn61j" path="res://icon.svg" id="2_556m2"]
@@ -7,9 +7,13 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uv5y8"]
 size = Vector2(128, 128)
 
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_556m2"]
+b = Vector2(0, 648)
+
 [node name="Scene2D" type="Node2D"]
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+z_index = 2
 position = Vector2(488, 304)
 motion_mode = 1
 script = ExtResource("1_haudk")
@@ -127,3 +131,23 @@ offset_left = 512.0
 offset_right = 768.0
 offset_bottom = 256.0
 texture = ExtResource("3_556m2")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("SegmentShape2D_556m2")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1152, 0)
+shape = SubResource("SegmentShape2D_556m2")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+rotation = -1.5707964
+scale = Vector2(1.8207848, 1.7794636)
+shape = SubResource("SegmentShape2D_556m2")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-9.536743e-07, 648)
+rotation = -1.5707964
+scale = Vector2(1.8207848, 1.7794636)
+shape = SubResource("SegmentShape2D_556m2")
