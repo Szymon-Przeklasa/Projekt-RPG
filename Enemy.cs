@@ -10,7 +10,7 @@ public partial class Enemy : CharacterBody2D
 	
 	public override void _Ready()
 	{
-		player = GetNode<CharacterBody2D>("/root/Scene2D/Player");
+		player = GetNode<CharacterBody2D>("/root/Game/Player");
 	}
 	
 	public override void _PhysicsProcess(double delta)

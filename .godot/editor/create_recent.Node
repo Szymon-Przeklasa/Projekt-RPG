@@ -1,5 +1,10 @@
+HBoxContainer
+TextureButton
 TextureRect
-Camera2D
+ColorRect
+Control
+Node2D
+Container
 CollisionShape2D
 Sprite2D
 CharacterBody2D

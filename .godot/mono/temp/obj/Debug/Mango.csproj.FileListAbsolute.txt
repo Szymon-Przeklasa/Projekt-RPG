@@ -16,21 +16,20 @@ C:\Users\Student.Administrator\Documents\mango\Projekt-RPG\.godot\mono\temp\obj\
 C:\Users\Student.Administrator\Documents\mango\Projekt-RPG\.godot\mono\temp\obj\Debug\Mango.pdb
 C:\Users\Student.Administrator\Documents\mango\Projekt-RPG\.godot\mono\temp\obj\Debug\Mango.genruntimeconfig.cache
 C:\Users\Student.Administrator\Documents\mango\Projekt-RPG\.godot\mono\temp\obj\Debug\ref\Mango.dll
-C:\Users\Filip\source\repos\Projekt-RPG\.godot\mono\temp\bin\Debug\Mango.deps.json
-C:\Users\Filip\source\repos\Projekt-RPG\.godot\mono\temp\bin\Debug\Mango.runtimeconfig.json
-C:\Users\Filip\source\repos\Projekt-RPG\.godot\mono\temp\bin\Debug\Mango.dll
-C:\Users\Filip\source\repos\Projekt-RPG\.godot\mono\temp\bin\Debug\Mango.pdb
-C:\Users\Filip\source\repos\Projekt-RPG\.godot\mono\temp\bin\Debug\GodotSharp.dll
-C:\Users\Filip\source\repos\Projekt-RPG\.godot\mono\temp\bin\Debug\GodotSharpEditor.dll
-C:\Users\Filip\source\repos\Projekt-RPG\.godot\mono\temp\obj\Debug\Mango.csproj.AssemblyReference.cache
-C:\Users\Filip\source\repos\Projekt-RPG\.godot\mono\temp\obj\Debug\Mango.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Filip\source\repos\Projekt-RPG\.godot\mono\temp\obj\Debug\Mango.AssemblyInfoInputs.cache
-C:\Users\Filip\source\repos\Projekt-RPG\.godot\mono\temp\obj\Debug\Mango.AssemblyInfo.cs
-C:\Users\Filip\source\repos\Projekt-RPG\.godot\mono\temp\obj\Debug\Mango.csproj.CoreCompileInputs.cache
-C:\Users\Filip\source\repos\Projekt-RPG\.godot\mono\temp\obj\Debug\Mango.sourcelink.json
-C:\Users\Filip\source\repos\Projekt-RPG\.godot\mono\temp\obj\Debug\Mango.csproj.Up2Date
-C:\Users\Filip\source\repos\Projekt-RPG\.godot\mono\temp\obj\Debug\Mango.dll
-C:\Users\Filip\source\repos\Projekt-RPG\.godot\mono\temp\obj\Debug\refint\Mango.dll
-C:\Users\Filip\source\repos\Projekt-RPG\.godot\mono\temp\obj\Debug\Mango.pdb
-C:\Users\Filip\source\repos\Projekt-RPG\.godot\mono\temp\obj\Debug\Mango.genruntimeconfig.cache
-C:\Users\Filip\source\repos\Projekt-RPG\.godot\mono\temp\obj\Debug\ref\Mango.dll
+C:\Users\szymo\Desktop\Programowanie\GitHub\Szymon-Przeklasa\Projekt RPG\.godot\mono\temp\bin\Debug\Mango.deps.json
+C:\Users\szymo\Desktop\Programowanie\GitHub\Szymon-Przeklasa\Projekt RPG\.godot\mono\temp\bin\Debug\Mango.runtimeconfig.json
+C:\Users\szymo\Desktop\Programowanie\GitHub\Szymon-Przeklasa\Projekt RPG\.godot\mono\temp\bin\Debug\Mango.dll
+C:\Users\szymo\Desktop\Programowanie\GitHub\Szymon-Przeklasa\Projekt RPG\.godot\mono\temp\bin\Debug\Mango.pdb
+C:\Users\szymo\Desktop\Programowanie\GitHub\Szymon-Przeklasa\Projekt RPG\.godot\mono\temp\bin\Debug\GodotSharp.dll
+C:\Users\szymo\Desktop\Programowanie\GitHub\Szymon-Przeklasa\Projekt RPG\.godot\mono\temp\bin\Debug\GodotSharpEditor.dll
+C:\Users\szymo\Desktop\Programowanie\GitHub\Szymon-Przeklasa\Projekt RPG\.godot\mono\temp\obj\Debug\Mango.csproj.AssemblyReference.cache
+C:\Users\szymo\Desktop\Programowanie\GitHub\Szymon-Przeklasa\Projekt RPG\.godot\mono\temp\obj\Debug\Mango.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\szymo\Desktop\Programowanie\GitHub\Szymon-Przeklasa\Projekt RPG\.godot\mono\temp\obj\Debug\Mango.AssemblyInfoInputs.cache
+C:\Users\szymo\Desktop\Programowanie\GitHub\Szymon-Przeklasa\Projekt RPG\.godot\mono\temp\obj\Debug\Mango.AssemblyInfo.cs
+C:\Users\szymo\Desktop\Programowanie\GitHub\Szymon-Przeklasa\Projekt RPG\.godot\mono\temp\obj\Debug\Mango.csproj.CoreCompileInputs.cache
+C:\Users\szymo\Desktop\Programowanie\GitHub\Szymon-Przeklasa\Projekt RPG\.godot\mono\temp\obj\Debug\Mango.csproj.Up2Date
+C:\Users\szymo\Desktop\Programowanie\GitHub\Szymon-Przeklasa\Projekt RPG\.godot\mono\temp\obj\Debug\Mango.dll
+C:\Users\szymo\Desktop\Programowanie\GitHub\Szymon-Przeklasa\Projekt RPG\.godot\mono\temp\obj\Debug\refint\Mango.dll
+C:\Users\szymo\Desktop\Programowanie\GitHub\Szymon-Przeklasa\Projekt RPG\.godot\mono\temp\obj\Debug\Mango.pdb
+C:\Users\szymo\Desktop\Programowanie\GitHub\Szymon-Przeklasa\Projekt RPG\.godot\mono\temp\obj\Debug\Mango.genruntimeconfig.cache
+C:\Users\szymo\Desktop\Programowanie\GitHub\Szymon-Przeklasa\Projekt RPG\.godot\mono\temp\obj\Debug\ref\Mango.dll

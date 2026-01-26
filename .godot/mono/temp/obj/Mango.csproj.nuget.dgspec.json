@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Filip\\source\\repos\\Projekt-RPG\\Mango.csproj": {}
+    "C:\\Users\\szymo\\Desktop\\Programowanie\\GitHub\\Szymon-Przeklasa\\Projekt RPG\\Mango.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Filip\\source\\repos\\Projekt-RPG\\Mango.csproj": {
+    "C:\\Users\\szymo\\Desktop\\Programowanie\\GitHub\\Szymon-Przeklasa\\Projekt RPG\\Mango.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Filip\\source\\repos\\Projekt-RPG\\Mango.csproj",
+        "projectUniqueName": "C:\\Users\\szymo\\Desktop\\Programowanie\\GitHub\\Szymon-Przeklasa\\Projekt RPG\\Mango.csproj",
         "projectName": "Mango",
-        "projectPath": "C:\\Users\\Filip\\source\\repos\\Projekt-RPG\\Mango.csproj",
-        "packagesPath": "C:\\Users\\Filip\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Filip\\source\\repos\\Projekt-RPG\\.godot\\mono\\temp\\obj\\",
+        "projectPath": "C:\\Users\\szymo\\Desktop\\Programowanie\\GitHub\\Szymon-Przeklasa\\Projekt RPG\\Mango.csproj",
+        "packagesPath": "C:\\Users\\szymo\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\szymo\\Desktop\\Programowanie\\GitHub\\Szymon-Przeklasa\\Projekt RPG\\.godot\\mono\\temp\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Filip\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\szymo\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -45,7 +45,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "10.0.100"
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net8.0": {
@@ -83,7 +83,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.102/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
