@@ -1,14 +1,3 @@
-Świetnie, to lecimy **konkretnie jak pod prawdziwy sprint** 🧛⚔️
-Poniżej masz **PRODUCT BACKLOG (SCRUM)** dla gry **w stylu Vampire Survivors**, z **3 ekranami**:
-
-* **Main Menu**
-* **Gameplay**
-* **Death Screen**
-
-Zakładam: **PC / Steam**, pixel art, single-player, auto-attack.
-
----
-
 # 📦 PRODUCT BACKLOG – *Relentless*
 
 ## 🔝 EPIC 1: CORE GAME LOOP
@@ -198,12 +187,6 @@ Na pierwszy milestone:
 * 5 upgrade’ów
 * 3 ekrany
 * Game Over
-
----
-
-Jeśli chcesz:
-
-* 🗂️ rozbiję to na **Sprint 1 / 2 / 3**
 * 📋 przerobię backlog pod **Jirę / Notion**
 * 🎯 zrobię **roadmapę Early Access**
 
