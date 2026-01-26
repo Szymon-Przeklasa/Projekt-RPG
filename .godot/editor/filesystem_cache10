@@ -1,3 +1,7 @@
 63f7b34db8d8cdea90c76aacccf841ec
-::res://::1769414218
+::res://::1769415935
 icon.svg::CompressedTexture2D::6817996335908209937::1769414213::1769414219::1::::<><><>0<>0<>d464d3b26b360f1dc5dc99af2466c79e<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
+CharacterBody2d.cs::CSharpScript::2923944383720804445::1769415109::0::1::::<>CharacterBody2D<><>0<>0<><>::
+scene_2d.tscn::PackedScene::7132590364750636733::1769415109::0::1::::<><><>0<>0<><>::uid://bhwm637h6wydx::::res://CharacterBody2d.cs<>uid://c4exnyqmtn61j::::res://icon.svg
+textures2.png::CompressedTexture2D::6314068747705276921::1769415925::1769415938::1::::<><><>0<>0<>1582bd9e43875465a16411e3af11e638<>res://.godot/imported/textures2.png-9f9b674f1e8760f658593dd3eca4f2bb.ctex::
+textures.png::CompressedTexture2D::5184152264780287561::1769415718::1769415779::1::::<><><>0<>0<>ca06716398650897dbf8840d13abbd5a<>res://.godot/imported/textures.png-7de323d84b704158a1297173214775ac.ctex::
