@@ -187,7 +187,3 @@ Na pierwszy milestone:
 * 5 upgrade’ów
 * 3 ekrany
 * Game Over
-* 📋 przerobię backlog pod **Jirę / Notion**
-* 🎯 zrobię **roadmapę Early Access**
-
-Powiedz, na jakim etapie jesteś i w jakim silniku robisz grę 👀🔥
