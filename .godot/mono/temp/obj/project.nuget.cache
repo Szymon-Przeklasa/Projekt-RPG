@@ -1,12 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "yhRI8tjQFDI=",
+  "dgSpecHash": "S0tCeBLL5SI=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Student.Administrator\\Documents\\mango\\Projekt-RPG\\Mango.csproj",
+  "projectFilePath": "C:\\Users\\Filip\\source\\repos\\Projekt-RPG\\Mango.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Student.Administrator\\.nuget\\packages\\godot.sourcegenerators\\4.5.1\\godot.sourcegenerators.4.5.1.nupkg.sha512",
-    "C:\\Users\\Student.Administrator\\.nuget\\packages\\godotsharp\\4.5.1\\godotsharp.4.5.1.nupkg.sha512",
-    "C:\\Users\\Student.Administrator\\.nuget\\packages\\godotsharpeditor\\4.5.1\\godotsharpeditor.4.5.1.nupkg.sha512"
+    "C:\\Users\\Filip\\.nuget\\packages\\godot.sourcegenerators\\4.6.0\\godot.sourcegenerators.4.6.0.nupkg.sha512",
+    "C:\\Users\\Filip\\.nuget\\packages\\godotsharp\\4.6.0\\godotsharp.4.6.0.nupkg.sha512",
+    "C:\\Users\\Filip\\.nuget\\packages\\godotsharpeditor\\4.6.0\\godotsharpeditor.4.6.0.nupkg.sha512"
   ],
   "logs": []
 }

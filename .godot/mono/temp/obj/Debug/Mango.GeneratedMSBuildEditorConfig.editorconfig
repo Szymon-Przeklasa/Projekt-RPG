@@ -1,6 +1,6 @@
 is_global = true
 build_property.GodotDisabledSourceGenerators = 
-build_property.GodotProjectDir = C:\Users\Student.Administrator\Documents\mango\Projekt-RPG\
+build_property.GodotProjectDir = C:\Users\Filip\source\repos\Projekt-RPG\
 build_property.GodotProjectDirBase64 = 
 build_property.GodotSourceGenerators = 
 build_property.IsGodotToolsProject = 
@@ -13,7 +13,7 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Mango
-build_property.ProjectDir = C:\Users\Student.Administrator\Documents\mango\Projekt-RPG\
+build_property.ProjectDir = C:\Users\Filip\source\repos\Projekt-RPG\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.EffectiveAnalysisLevelStyle = 8.0

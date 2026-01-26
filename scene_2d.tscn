@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c8vcyry7gqspx"]
+[gd_scene format=3 uid="uid://c8vcyry7gqspx"]
 
 [ext_resource type="Script" uid="uid://bhwm637h6wydx" path="res://CharacterBody2d.cs" id="1_haudk"]
 [ext_resource type="Texture2D" uid="uid://c4exnyqmtn61j" path="res://icon.svg" id="2_556m2"]
@@ -15,71 +15,71 @@ b = Vector2(0, 648)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0ha08"]
 size = Vector2(128, 128)
 
-[node name="Scene2D" type="Node2D"]
+[node name="Scene2D" type="Node2D" unique_id=995214262]
 
-[node name="Player" type="CharacterBody2D" parent="."]
+[node name="Player" type="CharacterBody2D" parent="." unique_id=745057352]
 z_index = 2
 position = Vector2(488, 304)
 motion_mode = 1
 script = ExtResource("1_haudk")
 
-[node name="Sprite2D" type="Sprite2D" parent="Player"]
+[node name="Sprite2D" type="Sprite2D" parent="Player" unique_id=2012289165]
 position = Vector2(68, 69)
 texture = ExtResource("2_556m2")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=806729842]
 position = Vector2(68, 69)
 shape = SubResource("RectangleShape2D_uv5y8")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1130778429]
 z_index = -1
 offset_right = 256.0
 offset_bottom = 256.0
 texture = ExtResource("3_556m2")
 
-[node name="TextureRect" type="TextureRect" parent="TextureRect"]
+[node name="TextureRect" type="TextureRect" parent="TextureRect" unique_id=1298545648]
 layout_mode = 0
 offset_left = 256.0
 offset_right = 512.0
 offset_bottom = 256.0
 texture = ExtResource("3_556m2")
 
-[node name="TextureRect2" type="TextureRect" parent="."]
+[node name="TextureRect2" type="TextureRect" parent="." unique_id=554148425]
 z_index = -1
 offset_left = 512.0
 offset_right = 768.0
 offset_bottom = 256.0
 texture = ExtResource("3_556m2")
 
-[node name="TextureRect" type="TextureRect" parent="TextureRect2"]
+[node name="TextureRect" type="TextureRect" parent="TextureRect2" unique_id=1070202768]
 layout_mode = 0
 offset_left = 256.0
 offset_right = 512.0
 offset_bottom = 256.0
 texture = ExtResource("3_556m2")
 
-[node name="TextureRect2" type="TextureRect" parent="TextureRect2"]
+[node name="TextureRect2" type="TextureRect" parent="TextureRect2" unique_id=519750353]
 layout_mode = 0
 offset_left = 512.0
 offset_right = 768.0
 offset_bottom = 256.0
 texture = ExtResource("3_556m2")
 
-[node name="TextureRect3" type="TextureRect" parent="."]
+[node name="TextureRect3" type="TextureRect" parent="." unique_id=604590937]
 z_index = -1
 offset_top = 256.0
 offset_right = 256.0
 offset_bottom = 512.0
 texture = ExtResource("3_556m2")
 
-[node name="TextureRect" type="TextureRect" parent="TextureRect3"]
+[node name="TextureRect" type="TextureRect" parent="TextureRect3" unique_id=1924320882]
 layout_mode = 0
 offset_left = 256.0
 offset_right = 512.0
 offset_bottom = 256.0
 texture = ExtResource("3_556m2")
 
-[node name="TextureRect4" type="TextureRect" parent="."]
+[node name="TextureRect4" type="TextureRect" parent="." unique_id=877396719]
 z_index = -1
 offset_left = 512.0
 offset_top = 256.0
@@ -87,35 +87,35 @@ offset_right = 768.0
 offset_bottom = 512.0
 texture = ExtResource("3_556m2")
 
-[node name="TextureRect" type="TextureRect" parent="TextureRect4"]
+[node name="TextureRect" type="TextureRect" parent="TextureRect4" unique_id=1465232781]
 layout_mode = 0
 offset_left = 256.0
 offset_right = 512.0
 offset_bottom = 256.0
 texture = ExtResource("3_556m2")
 
-[node name="TextureRect2" type="TextureRect" parent="TextureRect4"]
+[node name="TextureRect2" type="TextureRect" parent="TextureRect4" unique_id=597873151]
 layout_mode = 0
 offset_left = 512.0
 offset_right = 768.0
 offset_bottom = 256.0
 texture = ExtResource("3_556m2")
 
-[node name="TextureRect5" type="TextureRect" parent="."]
+[node name="TextureRect5" type="TextureRect" parent="." unique_id=1350062114]
 z_index = -1
 offset_top = 512.0
 offset_right = 256.0
 offset_bottom = 768.0
 texture = ExtResource("3_556m2")
 
-[node name="TextureRect" type="TextureRect" parent="TextureRect5"]
+[node name="TextureRect" type="TextureRect" parent="TextureRect5" unique_id=2074310145]
 layout_mode = 0
 offset_left = 256.0
 offset_right = 512.0
 offset_bottom = 256.0
 texture = ExtResource("3_556m2")
 
-[node name="TextureRect6" type="TextureRect" parent="."]
+[node name="TextureRect6" type="TextureRect" parent="." unique_id=459943148]
 z_index = -1
 offset_left = 512.0
 offset_top = 512.0
@@ -123,46 +123,46 @@ offset_right = 768.0
 offset_bottom = 768.0
 texture = ExtResource("3_556m2")
 
-[node name="TextureRect" type="TextureRect" parent="TextureRect6"]
+[node name="TextureRect" type="TextureRect" parent="TextureRect6" unique_id=683355464]
 layout_mode = 0
 offset_left = 256.0
 offset_right = 512.0
 offset_bottom = 256.0
 texture = ExtResource("3_556m2")
 
-[node name="TextureRect2" type="TextureRect" parent="TextureRect6"]
+[node name="TextureRect2" type="TextureRect" parent="TextureRect6" unique_id=1083077039]
 layout_mode = 0
 offset_left = 512.0
 offset_right = 768.0
 offset_bottom = 256.0
 texture = ExtResource("3_556m2")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=888115875]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1937820476]
 shape = SubResource("SegmentShape2D_556m2")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" unique_id=1893332987]
 position = Vector2(1152, 0)
 shape = SubResource("SegmentShape2D_556m2")
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D" unique_id=1112592300]
 rotation = -1.5707964
 scale = Vector2(1.8207848, 1.7794636)
 shape = SubResource("SegmentShape2D_556m2")
 
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D" unique_id=1745876509]
 position = Vector2(4.5474735e-13, 647.99994)
 rotation = -1.5707964
 scale = Vector2(1.8207848, 1.7794636)
 shape = SubResource("SegmentShape2D_556m2")
 
-[node name="Enemy" type="CharacterBody2D" parent="."]
+[node name="Enemy" type="CharacterBody2D" parent="." unique_id=731106173]
 position = Vector2(160, 160)
 script = ExtResource("4_1b6wp")
 
-[node name="Sprite2D" type="Sprite2D" parent="Enemy"]
+[node name="Sprite2D" type="Sprite2D" parent="Enemy" unique_id=366482140]
 texture = ExtResource("5_wei22")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy" unique_id=1441370647]
 shape = SubResource("RectangleShape2D_0ha08")
