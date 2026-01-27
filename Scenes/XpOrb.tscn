@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://bvw20tawyx4hh"]
+
+[ext_resource type="Script" uid="uid://cfsbtkuuvk7u2" path="res://Scenes/XpOrb.cs" id="1_25g4u"]
+
+[node name="Area2D" type="Area2D" unique_id=571562567 groups=["xp"]]
+collision_layer = 8
+script = ExtResource("1_25g4u")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=528424974]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=214434663]
