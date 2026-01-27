@@ -62,3 +62,10 @@ scale = Vector2(0.4, 0.4)
 texture_normal = ExtResource("4_qe12f")
 metadata/_edit_use_anchors_ = true
 metadata/_edit_group_ = true
+
+[connection signal="mouse_entered" from="Start Button" to="Start Button" method="MouseOn"]
+[connection signal="mouse_exited" from="Start Button" to="Start Button" method="MouseOff"]
+[connection signal="pressed" from="Start Button" to="Start Button" method="StartGame"]
+[connection signal="mouse_entered" from="Kills Button" to="Start Button" method="MouseOn"]
+[connection signal="mouse_exited" from="Kills Button" to="Start Button" method="MouseOff"]
+[connection signal="pressed" from="Kills Button" to="Start Button" method="StartGame"]
