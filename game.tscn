@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://b87cphdi20ihd" path="res://Game.cs" id="1_80nbo"]
 [ext_resource type="PackedScene" uid="uid://dfb0pmuqalve3" path="res://player.tscn" id="2_feb5d"]
 [ext_resource type="PackedScene" uid="uid://dc8qyayuiqhib" path="res://enemy.tscn" id="3_fc0e3"]
+[ext_resource type="Texture2D" uid="uid://ckbxniseigmaq" path="res://checker.png" id="4_fc0e3"]
 
 [node name="Game" type="Node2D" unique_id=581274643]
 script = ExtResource("1_80nbo")
@@ -26,3 +27,9 @@ position = Vector2(456, 368)
 
 [node name="Enemies" type="Node2D" parent="." unique_id=302284075]
 position = Vector2(664, 536)
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1959056226]
+z_index = -10
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("4_fc0e3")
