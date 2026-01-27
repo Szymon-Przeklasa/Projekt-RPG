@@ -38,7 +38,7 @@ position_smoothing_speed = 10.0
 position = Vector2(67.53746, 70.03885)
 
 [node name="AutoShootTimer" type="Timer" parent="." unique_id=912475612]
-wait_time = 0.5
+wait_time = 0.1
 autostart = true
 
 [node name="PlayerScene" type="Node2D" parent="." unique_id=974612588]

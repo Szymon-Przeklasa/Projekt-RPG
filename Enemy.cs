@@ -4,7 +4,7 @@ using System;
 public partial class Enemy : CharacterBody2D
 {
 	[Export] public float Speed = 150f;
-    [Export] public int MaxHealth = 30;
+    [Export] public int MaxHealth = 70;
     private int _health;
 
     private CharacterBody2D player;
