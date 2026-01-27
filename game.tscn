@@ -1,32 +1,13 @@
 [gd_scene format=3 uid="uid://c8vcyry7gqspx"]
 
 [ext_resource type="Script" uid="uid://b87cphdi20ihd" path="res://Game.cs" id="1_80nbo"]
-
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_556m2"]
-b = Vector2(0, 648)
+[ext_resource type="PackedScene" uid="uid://dfb0pmuqalve3" path="res://player.tscn" id="2_feb5d"]
+[ext_resource type="PackedScene" uid="uid://dc8qyayuiqhib" path="res://enemy.tscn" id="3_fc0e3"]
 
 [node name="Game" type="Node2D" unique_id=581274643]
 script = ExtResource("1_80nbo")
-
-[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1311186912]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1901352392]
-shape = SubResource("SegmentShape2D_556m2")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" unique_id=1155968416]
-position = Vector2(1152, 0)
-shape = SubResource("SegmentShape2D_556m2")
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D" unique_id=9033835]
-rotation = -1.5707964
-scale = Vector2(1.8207848, 1.7794636)
-shape = SubResource("SegmentShape2D_556m2")
-
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D" unique_id=313156495]
-position = Vector2(4.5474735e-13, 647.99994)
-rotation = -1.5707964
-scale = Vector2(1.8207848, 1.7794636)
-shape = SubResource("SegmentShape2D_556m2")
+PlayerScene = ExtResource("2_feb5d")
+EnemyScene = ExtResource("3_fc0e3")
 
 [node name="PlayerSpawn" type="Marker2D" parent="." unique_id=352547274]
 position = Vector2(208, 168)

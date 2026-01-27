@@ -20,7 +20,7 @@ public partial class Game : Node2D
 
 	private void SpawnPlayer()
 	{
-		var player = PlayerScene.Instantiate<CharacterBody2D>();
+		var player = PlayerScene.Instantiate<Player>();
 		player.GlobalPosition = _playerSpawn.GlobalPosition;
 		AddChild(player);
 	}

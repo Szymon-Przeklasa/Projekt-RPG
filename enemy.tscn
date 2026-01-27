@@ -6,16 +6,16 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iifgy"]
 size = Vector2(128, 128)
 
-[node name="EnemyScene" type="Node2D" unique_id=945760768]
-
-[node name="Enemy" type="CharacterBody2D" parent="." unique_id=1707419740 groups=["enemies"]]
+[node name="Enemy" type="CharacterBody2D" unique_id=1707419740 groups=["enemies"]]
 position = Vector2(25.000002, 25.000002)
 scale = Vector2(0.3902205, 0.3902205)
 script = ExtResource("1_4gyqm")
 metadata/grkh = false
 
-[node name="Sprite2D" type="Sprite2D" parent="Enemy" unique_id=744124537]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=744124537]
 texture = ExtResource("2_qi2p4")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy" unique_id=16526739]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=16526739]
 shape = SubResource("RectangleShape2D_iifgy")
+
+[node name="EnemyScene" type="Node2D" parent="." unique_id=945760768]
