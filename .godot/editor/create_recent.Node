@@ -1,3 +1,4 @@
+TextureRect
 Node2D
 Marker2D
 Timer
@@ -7,7 +8,6 @@ Sprite2D
 Camera2D
 HBoxContainer
 TextureButton
-TextureRect
 ColorRect
 Control
 Container
