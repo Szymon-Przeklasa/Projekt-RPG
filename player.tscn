@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://dfb0pmuqalve3"]
+
+[ext_resource type="Script" uid="uid://dbed3q2s3rkve" path="res://Player.cs" id="1_4flbx"]
+
+[sub_resource type="Gradient" id="Gradient_feb5d"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_onrkg"]
+gradient = SubResource("Gradient_feb5d")
+fill_from = Vector2(0.44871795, 0.517094)
+fill_to = Vector2(0.99572647, 0.991453)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i3pqv"]
+size = Vector2(128, 128)
+
+[node name="PlayerScene" type="Node2D" unique_id=974612588]
+
+[node name="Player" type="CharacterBody2D" parent="." unique_id=960175255]
+z_index = 2
+position = Vector2(-1, -2)
+scale = Vector2(0.39977813, 0.39977813)
+motion_mode = 1
+script = ExtResource("1_4flbx")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player" unique_id=751756645]
+position = Vector2(68, 69)
+scale = Vector2(1.9687911, 1.9687911)
+texture = SubResource("GradientTexture2D_onrkg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=1527608151]
+position = Vector2(68, 69)
+shape = SubResource("RectangleShape2D_i3pqv")
+
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=49971150]
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+
+[node name="ShootPoint" type="Marker2D" parent="Player" unique_id=1547768162]
+position = Vector2(67.53746, 70.03885)
+
+[node name="AutoShootTimer" type="Timer" parent="Player" unique_id=912475612]
+wait_time = 0.5
+autostart = true
