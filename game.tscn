@@ -1,46 +1,12 @@
 [gd_scene format=3 uid="uid://c8vcyry7gqspx"]
 
-[ext_resource type="Script" uid="uid://dbed3q2s3rkve" path="res://Player.cs" id="1_7jktm"]
-[ext_resource type="Script" uid="uid://c3u7kyrqwc387" path="res://Enemy.cs" id="4_j5wjh"]
-[ext_resource type="Texture2D" uid="uid://ca6yi5kwffw17" path="res://icon3.png" id="5_vef74"]
-
-[sub_resource type="Gradient" id="Gradient_feb5d"]
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_fc0e3"]
-gradient = SubResource("Gradient_feb5d")
-fill_from = Vector2(0.44871795, 0.517094)
-fill_to = Vector2(0.99572647, 0.991453)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_uv5y8"]
-size = Vector2(128, 128)
+[ext_resource type="Script" uid="uid://b87cphdi20ihd" path="res://Game.cs" id="1_80nbo"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_556m2"]
 b = Vector2(0, 648)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0ha08"]
-size = Vector2(128, 128)
-
 [node name="Game" type="Node2D" unique_id=581274643]
-
-[node name="Player" type="CharacterBody2D" parent="." unique_id=1693425559]
-z_index = 2
-position = Vector2(576, 320)
-scale = Vector2(0.39977813, 0.39977813)
-motion_mode = 1
-script = ExtResource("1_7jktm")
-
-[node name="Sprite2D" type="Sprite2D" parent="Player" unique_id=1819058884]
-position = Vector2(68, 69)
-scale = Vector2(1.9687911, 1.9687911)
-texture = SubResource("GradientTexture2D_fc0e3")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=132721683]
-position = Vector2(68, 69)
-shape = SubResource("RectangleShape2D_uv5y8")
-
-[node name="Camera2D" type="Camera2D" parent="Player" unique_id=2041371594]
-position_smoothing_enabled = true
-position_smoothing_speed = 10.0
+script = ExtResource("1_80nbo")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1311186912]
 
@@ -62,13 +28,20 @@ rotation = -1.5707964
 scale = Vector2(1.8207848, 1.7794636)
 shape = SubResource("SegmentShape2D_556m2")
 
-[node name="Enemy" type="CharacterBody2D" parent="." unique_id=1653092919]
-position = Vector2(160, 160)
-scale = Vector2(0.3902205, 0.3902205)
-script = ExtResource("4_j5wjh")
+[node name="PlayerSpawn" type="Marker2D" parent="." unique_id=352547274]
+position = Vector2(208, 168)
 
-[node name="Sprite2D" type="Sprite2D" parent="Enemy" unique_id=1946682174]
-texture = ExtResource("5_vef74")
+[node name="EnemySpawns" type="Node2D" parent="." unique_id=1452459571]
+position = Vector2(208, 168)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy" unique_id=1345830204]
-shape = SubResource("RectangleShape2D_0ha08")
+[node name="Spawn1" type="Marker2D" parent="EnemySpawns" unique_id=1590644798]
+position = Vector2(784, 0)
+
+[node name="Spawn2" type="Marker2D" parent="EnemySpawns" unique_id=833189059]
+position = Vector2(736, 232)
+
+[node name="Spawn3" type="Marker2D" parent="EnemySpawns" unique_id=2030481918]
+position = Vector2(456, 368)
+
+[node name="Enemies" type="Node2D" parent="." unique_id=302284075]
+position = Vector2(664, 536)
