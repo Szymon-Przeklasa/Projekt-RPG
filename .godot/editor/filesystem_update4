@@ -15,3 +15,4 @@ res://Scripts/Player.cs
 res://Scripts/StartButton.cs
 res://Scenes/enemy_spawner.tscn
 res://Scenes/enemy.tscn
+res://Scenes/XpOrb.tscn
