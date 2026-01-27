@@ -1,21 +1,23 @@
 63f7b34db8d8cdea90c76aacccf841ec
-::res://::1769458479
-banner.png::CompressedTexture2D::2139702404960596589::1769458461::1769458480::1::::<><><>0<>0<>996f72233f8c60a6ecb3e411d3af443d<>res://.godot/imported/banner.png-8ee27b3b5af0c6e04c667908bd5698ae.ctex::
-CharacterBody2d.cs::CSharpScript::2923944383720804445::1769458461::0::1::::<>CharacterBody2D<><>0<>0<><>::
-checker.png::CompressedTexture2D::5478214335860940784::1769458461::1769458461::1::::<><><>0<>0<>985562b16f053e969907909ae3cdda95<>res://.godot/imported/checker.png-6bb199bedbd039461e4248c1d0b9691d.ctex::
-Enemy.cs::CSharpScript::6781378633618437026::1769458461::0::1::::<>CharacterBody2D<><>0<>0<><>::
-game.tscn::PackedScene::7132590364750636733::1769458461::0::1::::<><><>0<>0<><>::uid://dbed3q2s3rkve::::res://Player.cs<>uid://c4exnyqmtn61j::::res://icon.svg<>uid://dhivhqachxmco::::res://Textures/grass.tres<>uid://c3u7kyrqwc387::::res://Enemy.cs<>uid://ca6yi5kwffw17::::res://icon3.png
-icon2.svg::CompressedTexture2D::1346627975332718962::1769458461::1769458480::1::::<><><>0<>0<>7eb7011f608590e9212b31ca6b4842ca<>res://.godot/imported/icon2.svg-72130b1822965a82303075846d8629f5.ctex::
-icon3.png::CompressedTexture2D::4838310164094721828::1769458461::1769458480::1::::<><><>0<>0<>70529ffb88600b32d0d972a9f76a7dd6<>res://.godot/imported/icon3.png-43d2171f508ea7fdbd835324de92f715.ctex::
-icon.svg::CompressedTexture2D::6817996335908209937::1769458461::1769458480::1::::<><><>0<>0<>d464d3b26b360f1dc5dc99af2466c79e<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
-main_menu.tscn::PackedScene::3092158903809161591::1769458461::0::1::::<><><>0<>0<><>::uid://5qqt6n7towun::::res://banner.png<>uid://ddg32ke0itwuo::::res://Buttons/start button.png<>uid://dbr7xirci48vy::::res://Buttons/kills button.png<>uid://blar7odv4mgxd::::res://Buttons/powerup button.png
-Player.cs::CSharpScript::7237941441880468158::1769458461::0::1::::<>CharacterBody2D<><>0<>0<><>::
-scene_2d.tscn::PackedScene::7132590364750636733::1769458461::0::1::::<><><>0<>0<><>::uid://bhwm637h6wydx::::res://CharacterBody2d.cs<>uid://c4exnyqmtn61j::::res://icon.svg<>uid://c3u7kyrqwc387::::res://Enemy.cs<>uid://ckbxniseigmaq::::res://checker.png<>uid://ca6yi5kwffw17::::res://icon3.png
-textures2.png::CompressedTexture2D::6314068747705276921::1769458461::1769458480::1::::<><><>0<>0<>1582bd9e43875465a16411e3af11e638<>res://.godot/imported/textures2.png-9f9b674f1e8760f658593dd3eca4f2bb.ctex::
-textures.png::CompressedTexture2D::5184152264780287561::1769458461::1769458480::1::::<><><>0<>0<>ca06716398650897dbf8840d13abbd5a<>res://.godot/imported/textures.png-7de323d84b704158a1297173214775ac.ctex::
-::res://Buttons/::1769458461
-kills button.png::CompressedTexture2D::7266529780115907662::1769458461::1769458480::1::::<><><>0<>0<>5b995fde0bde27789caed89337e9ae94<>res://.godot/imported/kills button.png-20197d07ae8d079cb36db46bdd0f8271.ctex::
-powerup button.png::CompressedTexture2D::3159588038948136121::1769458461::1769458480::1::::<><><>0<>0<>965cd4c7edcd4e684f8b58036af13ffa<>res://.godot/imported/powerup button.png-dcb742f3f608a6c23bd7d74c445fbf09.ctex::
-start button.png::CompressedTexture2D::7383963673310720454::1769458461::1769458480::1::::<><><>0<>0<>24df70ddb5dd1ca66cd5caed820663b6<>res://.godot/imported/start button.png-351903ad576a1b80e78991c5b3b29be2.ctex::
-::res://Textures/::1769458461
-grass.tres::AtlasTexture::7668387376458183530::1769458461::0::1::::<><><>0<>0<><>::uid://cf4ih3legh6wj::::res://textures.png
+::res://::1769501148
+banner.png::CompressedTexture2D::2139702404960596589::1769501093::1769501149::1::::<><><>0<>0<>996f72233f8c60a6ecb3e411d3af443d<>res://.godot/imported/banner.png-8ee27b3b5af0c6e04c667908bd5698ae.ctex::
+CharacterBody2d.cs::CSharpScript::2923944383720804445::1769501093::0::1::::<>CharacterBody2D<><>0<>0<><>::
+checker.png::CompressedTexture2D::5478214335860940784::1769501093::1769501093::1::::<><><>0<>0<>985562b16f053e969907909ae3cdda95<>res://.godot/imported/checker.png-6bb199bedbd039461e4248c1d0b9691d.ctex::
+Enemy.cs::CSharpScript::6781378633618437026::1769501093::0::1::::<>CharacterBody2D<><>0<>0<><>::
+game.tscn::PackedScene::7132590364750636733::1769501093::0::1::::<><><>0<>0<><>::uid://dbed3q2s3rkve::::res://Player.cs<>uid://c3u7kyrqwc387::::res://Enemy.cs<>uid://ca6yi5kwffw17::::res://icon3.png
+icon2.svg::CompressedTexture2D::1346627975332718962::1769501093::1769501149::1::::<><><>0<>0<>7eb7011f608590e9212b31ca6b4842ca<>res://.godot/imported/icon2.svg-72130b1822965a82303075846d8629f5.ctex::
+icon3.png::CompressedTexture2D::4838310164094721828::1769501093::1769501149::1::::<><><>0<>0<>70529ffb88600b32d0d972a9f76a7dd6<>res://.godot/imported/icon3.png-43d2171f508ea7fdbd835324de92f715.ctex::
+icon.svg::CompressedTexture2D::6817996335908209937::1769501093::1769501149::1::::<><><>0<>0<>d464d3b26b360f1dc5dc99af2466c79e<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
+main_menu.tscn::PackedScene::3092158903809161591::1769501093::0::1::::<><><>0<>0<><>::uid://5qqt6n7towun::::res://banner.png<>uid://ddg32ke0itwuo::::res://Buttons/start button.png<>uid://clyhxj0sh8xnm::::res://StartButton.cs<>uid://dbr7xirci48vy::::res://Buttons/kills button.png<>uid://blar7odv4mgxd::::res://Buttons/powerup button.png
+Player.cs::CSharpScript::7237941441880468158::1769501093::0::1::::<>CharacterBody2D<><>0<>0<><>::
+README.md::TextFile::-1::1769501093::0::1::::<><><>0<>0<><>::
+scene_2d.tscn::PackedScene::7132590364750636733::1769501093::0::1::::<><><>0<>0<><>::uid://bhwm637h6wydx::::res://CharacterBody2d.cs<>uid://c4exnyqmtn61j::::res://icon.svg<>uid://c3u7kyrqwc387::::res://Enemy.cs<>uid://ckbxniseigmaq::::res://checker.png<>uid://ca6yi5kwffw17::::res://icon3.png
+StartButton.cs::CSharpScript::5594930317869948570::1769501093::0::1::::<><><>0<>0<><>::
+textures2.png::CompressedTexture2D::6314068747705276921::1769501093::1769501149::1::::<><><>0<>0<>1582bd9e43875465a16411e3af11e638<>res://.godot/imported/textures2.png-9f9b674f1e8760f658593dd3eca4f2bb.ctex::
+textures.png::CompressedTexture2D::5184152264780287561::1769501093::1769501149::1::::<><><>0<>0<>ca06716398650897dbf8840d13abbd5a<>res://.godot/imported/textures.png-7de323d84b704158a1297173214775ac.ctex::
+::res://Buttons/::1769501093
+kills button.png::CompressedTexture2D::7266529780115907662::1769501093::1769501149::1::::<><><>0<>0<>5b995fde0bde27789caed89337e9ae94<>res://.godot/imported/kills button.png-20197d07ae8d079cb36db46bdd0f8271.ctex::
+powerup button.png::CompressedTexture2D::3159588038948136121::1769501093::1769501149::1::::<><><>0<>0<>965cd4c7edcd4e684f8b58036af13ffa<>res://.godot/imported/powerup button.png-dcb742f3f608a6c23bd7d74c445fbf09.ctex::
+start button.png::CompressedTexture2D::7383963673310720454::1769501093::1769501149::1::::<><><>0<>0<>24df70ddb5dd1ca66cd5caed820663b6<>res://.godot/imported/start button.png-351903ad576a1b80e78991c5b3b29be2.ctex::
+::res://Textures/::1769501093
+grass.tres::AtlasTexture::7668387376458183530::1769501093::0::1::::<><><>0<>0<><>::uid://cf4ih3legh6wj::::res://textures.png
