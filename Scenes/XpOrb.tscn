@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://bvw20tawyx4hh"]
+
+[ext_resource type="Script" uid="uid://cfsbtkuuvk7u2" path="res://Scenes/XpOrb.cs" id="1_25g4u"]
+[ext_resource type="Texture2D" uid="uid://bel82gute18gk" path="res://Textures/Sprite-Experience_Gem.webp" id="2_88b67"]
+
+[node name="Area2D" type="Area2D" unique_id=571562567 groups=["xp"]]
+collision_layer = 8
+script = ExtResource("1_25g4u")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=528424974]
+position = Vector2(4.7683716e-07, 4.7683716e-07)
+scale = Vector2(0.24999999, 0.24999999)
+texture = ExtResource("2_88b67")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=214434663]

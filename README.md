@@ -149,14 +149,18 @@
 
 ---
 
-# 🔊 EPIC 9: SFX
+# 🔊 EPIC 9: AUDIO
 
 ### Tasks
+
+* Muzyka menu
+* Muzyka gameplay (loop)
 * SFX:
 
   * Hit
   * Level up
   * Death
+  * Button click
 
 ---
 
@@ -168,6 +172,8 @@
 * Save best run
 * Options (volume)
 * Pause
+* FPS cap
+* Build PC
 
 ---
 

@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://djtc02vuy3ydt"]
+
+[ext_resource type="Script" uid="uid://dgd3neagj6ols" path="res://Scenes/EnemySpawner.cs" id="1_4l55s"]
+[ext_resource type="PackedScene" uid="uid://dc8qyayuiqhib" path="res://Scenes/enemy.tscn" id="2_8h7h8"]
+
+[node name="EnemySpawner" type="Node2D" unique_id=1673989320]
+script = ExtResource("1_4l55s")
+EnemyScene = ExtResource("2_8h7h8")
+SpawnInterval = 0.4
+
+[node name="SpawnTimer" type="Timer" parent="." unique_id=2087901699]

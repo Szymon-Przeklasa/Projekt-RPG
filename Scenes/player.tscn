@@ -1,0 +1,101 @@
+[gd_scene format=3 uid="uid://dfb0pmuqalve3"]
+
+[ext_resource type="Script" uid="uid://dbed3q2s3rkve" path="res://Scripts/Player.cs" id="1_4flbx"]
+[ext_resource type="PackedScene" uid="uid://7gc16jyb4wwm" path="res://Scenes/projectile.tscn" id="2_onrkg"]
+[ext_resource type="Script" uid="uid://cxw0japnps6gj" path="res://Scenes/FireWand.cs" id="3_vgqql"]
+[ext_resource type="Script" uid="uid://dbo4rnc0ylwwr" path="res://Weapons/WeaponStats.cs" id="4_3smsa"]
+[ext_resource type="Script" uid="uid://b5gyq3cwvf1fv" path="res://Scenes/Garlic.cs" id="4_fkybt"]
+[ext_resource type="Script" uid="uid://38jsvpaqn2i3" path="res://Scenes/Lightning.cs" id="5_fkybt"]
+[ext_resource type="Script" uid="uid://cm7tkql28sr1a" path="res://Scenes/Magnet.cs" id="7_3smsa"]
+
+[sub_resource type="Gradient" id="Gradient_feb5d"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_onrkg"]
+gradient = SubResource("Gradient_feb5d")
+fill_from = Vector2(0.44871795, 0.517094)
+fill_to = Vector2(0.99572647, 0.991453)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i3pqv"]
+size = Vector2(128, 128)
+
+[sub_resource type="Resource" id="Resource_8erm5"]
+script = ExtResource("4_3smsa")
+Cooldown = 0.6
+Damage = 10
+Speed = 700.0
+Knockback = 250.0
+SpreadAngle = 10.0
+Range = 600.0
+metadata/_custom_type_script = "uid://dbo4rnc0ylwwr"
+
+[sub_resource type="Resource" id="Resource_3smsa"]
+script = ExtResource("4_3smsa")
+metadata/_custom_type_script = "uid://dbo4rnc0ylwwr"
+
+[sub_resource type="Resource" id="Resource_f1ek2"]
+script = ExtResource("4_3smsa")
+metadata/_custom_type_script = "uid://dbo4rnc0ylwwr"
+
+[sub_resource type="Resource" id="Resource_tx1dd"]
+script = ExtResource("4_3smsa")
+metadata/_custom_type_script = "uid://dbo4rnc0ylwwr"
+
+[node name="Player" type="CharacterBody2D" unique_id=960175255 groups=["player"]]
+z_index = 2
+position = Vector2(-1, -2)
+scale = Vector2(0.39977813, 0.39977813)
+collision_mask = 2
+motion_mode = 1
+script = ExtResource("1_4flbx")
+ProjectileScene = ExtResource("2_onrkg")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=751756645]
+position = Vector2(68, 69)
+scale = Vector2(1.9687911, 1.9687911)
+texture = SubResource("GradientTexture2D_onrkg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1527608151]
+position = Vector2(68, 69)
+shape = SubResource("RectangleShape2D_i3pqv")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=49971150]
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+
+[node name="ShootPoint" type="Marker2D" parent="." unique_id=1547768162]
+position = Vector2(67.53746, 70.03885)
+
+[node name="AutoShootTimer" type="Timer" parent="." unique_id=912475612]
+wait_time = 0.129
+autostart = true
+
+[node name="PlayerScene" type="Node2D" parent="." unique_id=974612588]
+
+[node name="Weapons" type="Node" parent="." unique_id=861545881]
+
+[node name="FireWand" type="Node" parent="Weapons" unique_id=2097038383]
+script = ExtResource("3_vgqql")
+ProjectileScene = ExtResource("2_onrkg")
+Stats = SubResource("Resource_8erm5")
+
+[node name="Timer" type="Timer" parent="Weapons/FireWand" unique_id=942252994]
+
+[node name="Disabledweapons" type="Node" parent="." unique_id=1563730953]
+
+[node name="Garlic" type="Node" parent="Disabledweapons" unique_id=532956032]
+script = ExtResource("4_fkybt")
+Stats = SubResource("Resource_3smsa")
+
+[node name="Timer" type="Timer" parent="Disabledweapons/Garlic" unique_id=340890847]
+
+[node name="Lightning" type="Node" parent="Disabledweapons" unique_id=2118778675]
+script = ExtResource("5_fkybt")
+Stats = SubResource("Resource_f1ek2")
+
+[node name="Timer" type="Timer" parent="Disabledweapons/Lightning" unique_id=1517764784]
+
+[node name="Magnet" type="Node" parent="Disabledweapons" unique_id=1576486700]
+script = ExtResource("7_3smsa")
+Stats = SubResource("Resource_tx1dd")
+
+[node name="Timer" type="Timer" parent="Disabledweapons/Magnet" unique_id=306906676]
