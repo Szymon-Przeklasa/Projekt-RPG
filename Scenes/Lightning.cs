@@ -15,7 +15,6 @@ public partial class Lightning : Weapon
 	{
 		((Enemy)current).TakeDamage(Stats.Damage, Vector2.Zero);
 
-		// ⚡ visual chain
 		var fx = ProjectileScene.Instantiate<LightningChain>();
 		fx.Setup(from.GlobalPosition, current.GlobalPosition);
 		GetTree().CurrentScene.AddChild(fx);

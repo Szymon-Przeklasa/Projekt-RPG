@@ -14,12 +14,12 @@ particle_flag_disable_z = true
 spread = 0.0
 gravity = Vector3(0, 0, 0)
 scale_min = 0.5
-scale_max = 0.5
+scale_max = 1.5
 color_ramp = SubResource("GradientTexture1D_gndac")
 
 [node name="LightningChain" type="GPUParticles2D" unique_id=618480989]
 emitting = false
-amount = 40
+amount = 200
 lifetime = 0.15000000000000002
 one_shot = true
 explosiveness = 1.0

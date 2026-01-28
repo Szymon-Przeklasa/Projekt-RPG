@@ -3,56 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\Filip\\source\\repos\\Projekt-RPG\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{1FAFC25E-EB38-4230-93FC-5F8D1EAAA670}|Mango.csproj|c:\\users\\filip\\source\\repos\\projekt-rpg\\scripts\\game.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1FAFC25E-EB38-4230-93FC-5F8D1EAAA670}|Mango.csproj|solutionrelative:scripts\\game.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1FAFC25E-EB38-4230-93FC-5F8D1EAAA670}|Mango.csproj|c:\\users\\filip\\source\\repos\\projekt-rpg\\scenes\\enemyspawner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1FAFC25E-EB38-4230-93FC-5F8D1EAAA670}|Mango.csproj|solutionrelative:scenes\\enemyspawner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{1FAFC25E-EB38-4230-93FC-5F8D1EAAA670}|Mango.csproj|c:\\users\\filip\\source\\repos\\projekt-rpg\\scripts\\enemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1FAFC25E-EB38-4230-93FC-5F8D1EAAA670}|Mango.csproj|solutionrelative:scripts\\enemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1FAFC25E-EB38-4230-93FC-5F8D1EAAA670}|Mango.csproj|c:\\users\\filip\\source\\repos\\projekt-rpg\\weapons\\weaponstats.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1FAFC25E-EB38-4230-93FC-5F8D1EAAA670}|Mango.csproj|solutionrelative:weapons\\weaponstats.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1FAFC25E-EB38-4230-93FC-5F8D1EAAA670}|Mango.csproj|c:\\users\\filip\\source\\repos\\projekt-rpg\\enemybleed.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1FAFC25E-EB38-4230-93FC-5F8D1EAAA670}|Mango.csproj|solutionrelative:enemybleed.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1FAFC25E-EB38-4230-93FC-5F8D1EAAA670}|Mango.csproj|c:\\users\\filip\\source\\repos\\projekt-rpg\\scenes\\firewand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1FAFC25E-EB38-4230-93FC-5F8D1EAAA670}|Mango.csproj|solutionrelative:scenes\\firewand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1FAFC25E-EB38-4230-93FC-5F8D1EAAA670}|Mango.csproj|c:\\users\\filip\\source\\repos\\projekt-rpg\\weapons\\weapon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1FAFC25E-EB38-4230-93FC-5F8D1EAAA670}|Mango.csproj|solutionrelative:weapons\\weapon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1FAFC25E-EB38-4230-93FC-5F8D1EAAA670}|Mango.csproj|c:\\users\\filip\\source\\repos\\projekt-rpg\\scripts\\startbutton.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1FAFC25E-EB38-4230-93FC-5F8D1EAAA670}|Mango.csproj|solutionrelative:scripts\\startbutton.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1FAFC25E-EB38-4230-93FC-5F8D1EAAA670}|Mango.csproj|c:\\users\\filip\\source\\repos\\projekt-rpg\\scripts\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1FAFC25E-EB38-4230-93FC-5F8D1EAAA670}|Mango.csproj|solutionrelative:scripts\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1FAFC25E-EB38-4230-93FC-5F8D1EAAA670}|Mango.csproj|c:\\users\\filip\\source\\repos\\projekt-rpg\\scenes\\magnet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1FAFC25E-EB38-4230-93FC-5F8D1EAAA670}|Mango.csproj|solutionrelative:scenes\\magnet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1FAFC25E-EB38-4230-93FC-5F8D1EAAA670}|Mango.csproj|c:\\users\\filip\\source\\repos\\projekt-rpg\\scenes\\axe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1FAFC25E-EB38-4230-93FC-5F8D1EAAA670}|Mango.csproj|solutionrelative:scenes\\axe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1FAFC25E-EB38-4230-93FC-5F8D1EAAA670}|Mango.csproj|c:\\users\\filip\\source\\repos\\projekt-rpg\\scenes\\lightning.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1FAFC25E-EB38-4230-93FC-5F8D1EAAA670}|Mango.csproj|solutionrelative:scenes\\lightning.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1FAFC25E-EB38-4230-93FC-5F8D1EAAA670}|Mango.csproj|c:\\users\\filip\\source\\repos\\projekt-rpg\\lightningchain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1FAFC25E-EB38-4230-93FC-5F8D1EAAA670}|Mango.csproj|solutionrelative:lightningchain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1FAFC25E-EB38-4230-93FC-5F8D1EAAA670}|Mango.csproj|c:\\users\\filip\\source\\repos\\projekt-rpg\\scenes\\garlic.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1FAFC25E-EB38-4230-93FC-5F8D1EAAA670}|Mango.csproj|solutionrelative:scenes\\garlic.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1FAFC25E-EB38-4230-93FC-5F8D1EAAA670}|Mango.csproj|c:\\users\\filip\\source\\repos\\projekt-rpg\\scripts\\projectile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1FAFC25E-EB38-4230-93FC-5F8D1EAAA670}|Mango.csproj|solutionrelative:scripts\\projectile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1FAFC25E-EB38-4230-93FC-5F8D1EAAA670}|Mango.csproj|c:\\users\\filip\\source\\repos\\projekt-rpg\\scenes\\lightning.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1FAFC25E-EB38-4230-93FC-5F8D1EAAA670}|Mango.csproj|solutionrelative:scenes\\lightning.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -62,175 +30,71 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Game.cs",
-              "DocumentMoniker": "C:\\Users\\Filip\\source\\repos\\Projekt-RPG\\Scripts\\Game.cs",
-              "RelativeDocumentMoniker": "Scripts\\Game.cs",
-              "ToolTip": "C:\\Users\\Filip\\source\\repos\\Projekt-RPG\\Scripts\\Game.cs",
-              "RelativeToolTip": "Scripts\\Game.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-27T21:47:30.487Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "StartButton.cs",
-              "DocumentMoniker": "C:\\Users\\Filip\\source\\repos\\Projekt-RPG\\Scripts\\StartButton.cs",
-              "RelativeDocumentMoniker": "Scripts\\StartButton.cs",
-              "ToolTip": "C:\\Users\\Filip\\source\\repos\\Projekt-RPG\\Scripts\\StartButton.cs",
-              "RelativeToolTip": "Scripts\\StartButton.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAsAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-27T21:15:48.493Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "EnemySpawner.cs",
-              "DocumentMoniker": "C:\\Users\\Filip\\source\\repos\\Projekt-RPG\\Scenes\\EnemySpawner.cs",
-              "RelativeDocumentMoniker": "Scenes\\EnemySpawner.cs",
-              "ToolTip": "C:\\Users\\Filip\\source\\repos\\Projekt-RPG\\Scenes\\EnemySpawner.cs",
-              "RelativeToolTip": "Scenes\\EnemySpawner.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAAUAAAAAAAAAA==",
+              "Title": "Enemybleed.cs",
+              "DocumentMoniker": "C:\\Users\\Filip\\source\\repos\\Projekt-RPG\\Enemybleed.cs",
+              "RelativeDocumentMoniker": "Enemybleed.cs",
+              "ToolTip": "C:\\Users\\Filip\\source\\repos\\Projekt-RPG\\Enemybleed.cs",
+              "RelativeToolTip": "Enemybleed.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAACAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-27T21:13:01.786Z",
+              "WhenOpened": "2026-01-28T20:15:34.933Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "Enemy.cs",
               "DocumentMoniker": "C:\\Users\\Filip\\source\\repos\\Projekt-RPG\\Scripts\\Enemy.cs",
               "RelativeDocumentMoniker": "Scripts\\Enemy.cs",
               "ToolTip": "C:\\Users\\Filip\\source\\repos\\Projekt-RPG\\Scripts\\Enemy.cs",
               "RelativeToolTip": "Scripts\\Enemy.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAQwBAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAgwB8AAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-27T21:06:24.961Z",
+              "WhenOpened": "2026-01-28T20:14:25.638Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Player.cs",
-              "DocumentMoniker": "C:\\Users\\Filip\\source\\repos\\Projekt-RPG\\Scripts\\Player.cs",
-              "RelativeDocumentMoniker": "Scripts\\Player.cs",
-              "ToolTip": "C:\\Users\\Filip\\source\\repos\\Projekt-RPG\\Scripts\\Player.cs",
-              "RelativeToolTip": "Scripts\\Player.cs",
-              "ViewState": "AgIAAB4AAAAAAAAAAAAowD0AAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-27T21:03:15.049Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Magnet.cs",
-              "DocumentMoniker": "C:\\Users\\Filip\\source\\repos\\Projekt-RPG\\Scenes\\Magnet.cs",
-              "RelativeDocumentMoniker": "Scenes\\Magnet.cs",
-              "ToolTip": "C:\\Users\\Filip\\source\\repos\\Projekt-RPG\\Scenes\\Magnet.cs",
-              "RelativeToolTip": "Scenes\\Magnet.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAA1AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-27T21:02:24.569Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Axe.cs",
-              "DocumentMoniker": "C:\\Users\\Filip\\source\\repos\\Projekt-RPG\\Scenes\\Axe.cs",
-              "RelativeDocumentMoniker": "Scenes\\Axe.cs",
-              "ToolTip": "C:\\Users\\Filip\\source\\repos\\Projekt-RPG\\Scenes\\Axe.cs",
-              "RelativeToolTip": "Scenes\\Axe.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-27T21:01:56.065Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "Lightning.cs",
-              "DocumentMoniker": "C:\\Users\\Filip\\source\\repos\\Projekt-RPG\\Scenes\\Lightning.cs",
-              "RelativeDocumentMoniker": "Scenes\\Lightning.cs",
-              "ToolTip": "C:\\Users\\Filip\\source\\repos\\Projekt-RPG\\Scenes\\Lightning.cs",
-              "RelativeToolTip": "Scenes\\Lightning.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-27T21:01:37.058Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 3,
               "Title": "Garlic.cs",
               "DocumentMoniker": "C:\\Users\\Filip\\source\\repos\\Projekt-RPG\\Scenes\\Garlic.cs",
               "RelativeDocumentMoniker": "Scenes\\Garlic.cs",
               "ToolTip": "C:\\Users\\Filip\\source\\repos\\Projekt-RPG\\Scenes\\Garlic.cs",
               "RelativeToolTip": "Scenes\\Garlic.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAADAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-01-27T21:01:18.787Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "LightningChain.cs",
+              "DocumentMoniker": "C:\\Users\\Filip\\source\\repos\\Projekt-RPG\\LightningChain.cs",
+              "RelativeDocumentMoniker": "LightningChain.cs",
+              "ToolTip": "C:\\Users\\Filip\\source\\repos\\Projekt-RPG\\LightningChain.cs",
+              "RelativeToolTip": "LightningChain.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-28T19:40:33.061Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "FireWand.cs",
-              "DocumentMoniker": "C:\\Users\\Filip\\source\\repos\\Projekt-RPG\\Scenes\\FireWand.cs",
-              "RelativeDocumentMoniker": "Scenes\\FireWand.cs",
-              "ToolTip": "C:\\Users\\Filip\\source\\repos\\Projekt-RPG\\Scenes\\FireWand.cs",
-              "RelativeToolTip": "Scenes\\FireWand.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAADAAAAAAAAAA==",
+              "Title": "Lightning.cs",
+              "DocumentMoniker": "C:\\Users\\Filip\\source\\repos\\Projekt-RPG\\Scenes\\Lightning.cs",
+              "RelativeDocumentMoniker": "Scenes\\Lightning.cs",
+              "ToolTip": "C:\\Users\\Filip\\source\\repos\\Projekt-RPG\\Scenes\\Lightning.cs",
+              "RelativeToolTip": "Scenes\\Lightning.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAxwBQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-27T21:00:22.297Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "Projectile.cs",
-              "DocumentMoniker": "C:\\Users\\Filip\\source\\repos\\Projekt-RPG\\Scripts\\Projectile.cs",
-              "RelativeDocumentMoniker": "Scripts\\Projectile.cs",
-              "ToolTip": "C:\\Users\\Filip\\source\\repos\\Projekt-RPG\\Scripts\\Projectile.cs",
-              "RelativeToolTip": "Scripts\\Projectile.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACUAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-27T20:59:43.236Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Weapon.cs",
-              "DocumentMoniker": "C:\\Users\\Filip\\source\\repos\\Projekt-RPG\\Weapons\\Weapon.cs",
-              "RelativeDocumentMoniker": "Weapons\\Weapon.cs",
-              "ToolTip": "C:\\Users\\Filip\\source\\repos\\Projekt-RPG\\Weapons\\Weapon.cs",
-              "RelativeToolTip": "Weapons\\Weapon.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAgAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-27T20:59:00.373Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "WeaponStats.cs",
-              "DocumentMoniker": "C:\\Users\\Filip\\source\\repos\\Projekt-RPG\\Weapons\\WeaponStats.cs",
-              "RelativeDocumentMoniker": "Weapons\\WeaponStats.cs",
-              "ToolTip": "C:\\Users\\Filip\\source\\repos\\Projekt-RPG\\Weapons\\WeaponStats.cs",
-              "RelativeToolTip": "Weapons\\WeaponStats.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAoAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-27T20:58:41.678Z",
+              "WhenOpened": "2026-01-27T21:01:37.058Z",
               "EditorCaption": ""
             }
           ]

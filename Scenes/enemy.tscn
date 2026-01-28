@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://c3u7kyrqwc387" path="res://Scripts/Enemy.cs" id="1_4gyqm"]
 [ext_resource type="PackedScene" uid="uid://bvw20tawyx4hh" path="res://Scenes/XpOrb.tscn" id="2_afpow"]
 [ext_resource type="Texture2D" uid="uid://ca6yi5kwffw17" path="res://Textures/icon3.png" id="2_qi2p4"]
+[ext_resource type="PackedScene" uid="uid://c21xa0f8nmxaa" path="res://enemybleed.tscn" id="3_287tu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iifgy"]
 size = Vector2(128, 128)
@@ -13,6 +14,7 @@ scale = Vector2(0.3902205, 0.3902205)
 collision_layer = 2
 script = ExtResource("1_4gyqm")
 XpOrbScene = ExtResource("2_afpow")
+DeathParticle = ExtResource("3_287tu")
 metadata/grkh = false
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=744124537]

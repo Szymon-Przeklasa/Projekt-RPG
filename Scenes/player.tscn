@@ -6,7 +6,9 @@
 [ext_resource type="Script" uid="uid://dbo4rnc0ylwwr" path="res://Weapons/WeaponStats.cs" id="4_3smsa"]
 [ext_resource type="Script" uid="uid://b5gyq3cwvf1fv" path="res://Scenes/Garlic.cs" id="4_fkybt"]
 [ext_resource type="Script" uid="uid://38jsvpaqn2i3" path="res://Scenes/Lightning.cs" id="5_fkybt"]
+[ext_resource type="PackedScene" uid="uid://c7ffqdudq42wi" path="res://Scenes/LightningChainParticles.tscn" id="6_f1ek2"]
 [ext_resource type="Script" uid="uid://cm7tkql28sr1a" path="res://Scenes/Magnet.cs" id="7_3smsa"]
+[ext_resource type="PackedScene" uid="uid://lklfguw38lmy" path="res://Scenes/garlic_aura_particles.tscn" id="8_tx1dd"]
 
 [sub_resource type="Gradient" id="Gradient_feb5d"]
 
@@ -52,7 +54,7 @@ metadata/_custom_type_script = "uid://dbo4rnc0ylwwr"
 
 [node name="Player" type="CharacterBody2D" unique_id=960175255 groups=["player"]]
 z_index = 2
-position = Vector2(-1, -2)
+position = Vector2(-2, -3)
 scale = Vector2(0.39977813, 0.39977813)
 collision_mask = 2
 motion_mode = 1
@@ -80,6 +82,7 @@ wait_time = 0.129
 autostart = true
 
 [node name="PlayerScene" type="Node2D" parent="." unique_id=974612588]
+position = Vector2(67.53746, 72.54024)
 
 [node name="Weapons" type="Node" parent="." unique_id=861545881]
 
@@ -92,14 +95,14 @@ Stats = SubResource("Resource_8erm5")
 
 [node name="Lightning" type="Node" parent="Weapons" unique_id=2118778675]
 script = ExtResource("5_fkybt")
-ProjectileScene = ExtResource("2_onrkg")
+ProjectileScene = ExtResource("6_f1ek2")
 Stats = SubResource("Resource_f1ek2")
 
 [node name="Timer" type="Timer" parent="Weapons/Lightning" unique_id=1517764784]
 
 [node name="Garlic" type="Node" parent="Weapons" unique_id=532956032]
 script = ExtResource("4_fkybt")
-ProjectileScene = ExtResource("2_onrkg")
+ProjectileScene = ExtResource("8_tx1dd")
 Stats = SubResource("Resource_3smsa")
 
 [node name="Timer" type="Timer" parent="Weapons/Garlic" unique_id=340890847]

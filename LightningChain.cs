@@ -1,6 +1,6 @@
 using Godot;
 
-public partial class LightningChain : GPUParticles2D
+public partial class LightningChain : GpuParticles2D
 {
 	public void Setup(Vector2 from, Vector2 to)
 	{

@@ -2,15 +2,24 @@
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_uxjuh"]
 particle_flag_disable_z = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 0.0
+emission_ring_radius = 500.0
+emission_ring_inner_radius = 203.85
+emission_ring_cone_angle = 90.0
 spread = 180.0
-initial_velocity_min = 10.0
-initial_velocity_max = 10.0
+initial_velocity_min = 50.0
+initial_velocity_max = 100.0
+angular_velocity_min = -1.6093254e-05
+angular_velocity_max = -1.6093254e-05
 gravity = Vector3(0, 0, 0)
-scale_min = 0.0
-scale_max = 0.0
+scale_min = 2.0
+scale_max = 2.0
+color = Color(0.3894074, 0.69279844, 0.40061423, 1)
 
 [node name="GarlicAuraParticles" type="GPUParticles2D" unique_id=1449197408]
-amount = 200
+amount = 1500
 lifetime = 1.2
 preprocess = 1.0
 process_material = SubResource("ParticleProcessMaterial_uxjuh")
