@@ -2,6 +2,8 @@ using Godot;
 
 public partial class Magnet : Weapon
 {
+	[Export] PackedScene ProjectileScene;
+	
 	protected override void Fire()
 	{
 		foreach (Node node in GetTree().GetNodesInGroup("xp"))

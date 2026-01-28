@@ -1,40 +1,32 @@
 63f7b34db8d8cdea90c76aacccf841ec
-::res://::1769593896
-Enemy.cs::CSharpScript::3284834164135778233::1769593882::0::1::::<>CharacterBody2D<><>0<>0<><>::
-enemy.tscn::PackedScene::7368778573172663853::1769593882::0::1::::<><><>0<>0<><>::uid://c3u7kyrqwc387::::res://Enemy.cs<>uid://ca6yi5kwffw17::::res://icon3.png
-Game.cs::CSharpScript::5913928728007982827::1769593881::0::1::::<>Node2D<><>0<>0<><>::
-game.tscn::PackedScene::7132590364750636733::1769593881::0::1::::<><><>0<>0<><>::uid://b87cphdi20ihd::::res://Game.cs<>uid://dfb0pmuqalve3::::res://player.tscn<>uid://dc8qyayuiqhib::::res://enemy.tscn<>uid://ckbxniseigmaq::::res://checker.png
-Player.cs::CSharpScript::1236381485929084821::1769593881::0::1::::<>CharacterBody2D<><>0<>0<><>::
-player.tscn::PackedScene::7513816020654973520::1769593881::0::1::::<><><>0<>0<><>::uid://dbed3q2s3rkve::::res://Player.cs<>uid://7gc16jyb4wwm::::res://projectile.tscn
-Projectile.cs::CSharpScript::2630314775734766560::1769593881::0::1::::<>Area2D<><>0<>0<><>::
-projectile.tscn::PackedScene::2258598770788501896::1769593881::0::1::::<><><>0<>0<><>::uid://bdqe5uqb80hns::::res://Projectile.cs<>uid://cm6s1qrlpd240::::res://Circle.png
+::res://::1769594181
 README.md::TextFile::-1::1769593747::0::1::::<><><>0<>0<><>::
 ::res://Buttons/::1769501149
 kills button.png::CompressedTexture2D::7266529780115907662::1769501093::1769501149::1::::<><><>0<>0<>5b995fde0bde27789caed89337e9ae94<>res://.godot/imported/kills button.png-20197d07ae8d079cb36db46bdd0f8271.ctex::
 powerup button.png::CompressedTexture2D::3159588038948136121::1769501093::1769501149::1::::<><><>0<>0<>965cd4c7edcd4e684f8b58036af13ffa<>res://.godot/imported/powerup button.png-dcb742f3f608a6c23bd7d74c445fbf09.ctex::
 start button.png::CompressedTexture2D::7383963673310720454::1769501093::1769501149::1::::<><><>0<>0<>24df70ddb5dd1ca66cd5caed820663b6<>res://.godot/imported/start button.png-351903ad576a1b80e78991c5b3b29be2.ctex::
-::res://Scenes/::1769593747
+::res://Scenes/::1769594022
 Axe.cs::CSharpScript::8624590884821641604::1769593747::0::1::::<><><>0<>0<><>::
 enemy.tscn::PackedScene::7368778573172663853::1769593747::0::1::::<><><>0<>0<><>::uid://c3u7kyrqwc387::::res://Scripts/Enemy.cs<>uid://bvw20tawyx4hh::::res://Scenes/XpOrb.tscn<>uid://ca6yi5kwffw17::::res://Textures/icon3.png
-EnemySpawner.cs::CSharpScript::7588311747667176584::1769593747::0::1::::<><><>0<>0<><>::
+EnemySpawner.cs::CSharpScript::7588311747667176584::1769593747::0::1::::<>Node2D<><>0<>0<><>::
 enemy_spawner.tscn::PackedScene::7830352351495141241::1769593747::0::1::::<><><>0<>0<><>::uid://dgd3neagj6ols::::res://Scenes/EnemySpawner.cs<>uid://dc8qyayuiqhib::::res://Scenes/enemy.tscn
-FireWand.cs::CSharpScript::6434135102398082993::1769593747::0::1::::<><><>0<>0<><>::
-game.tscn::PackedScene::7132590364750636733::1769593747::0::1::::<><><>0<>0<><>::uid://b87cphdi20ihd::::res://Scripts/Game.cs<>uid://dfb0pmuqalve3::::res://Scenes/player.tscn<>uid://ckbxniseigmaq::::res://Textures/checker.png<>uid://djtc02vuy3ydt::::res://Scenes/enemy_spawner.tscn
-Garlic.cs::CSharpScript::4505959514658586719::1769593747::0::1::::<><><>0<>0<><>::
-Lightning.cs::CSharpScript::2033991811158408768::1769593747::0::1::::<><><>0<>0<><>::
-Magnet.cs::CSharpScript::5682339918612149752::1769593747::0::1::::<><><>0<>0<><>::
+FireWand.cs::CSharpScript::6434135102398082993::1769593747::0::1::::<>Node<><>0<>0<><>::
+game.tscn::PackedScene::7132590364750636733::1769594022::0::1::::<><><>0<>0<><>::uid://b87cphdi20ihd::::res://Scripts/Game.cs<>uid://dfb0pmuqalve3::::res://Scenes/player.tscn<>uid://ckbxniseigmaq::::res://Textures/checker.png<>uid://djtc02vuy3ydt::::res://Scenes/enemy_spawner.tscn
+Garlic.cs::CSharpScript::4505959514658586719::1769593747::0::1::::<>Node<><>0<>0<><>::
+Lightning.cs::CSharpScript::2033991811158408768::1769593747::0::1::::<>Node<><>0<>0<><>::
+Magnet.cs::CSharpScript::5682339918612149752::1769593747::0::1::::<>Node<><>0<>0<><>::
 main_menu.tscn::PackedScene::3092158903809161591::1769593747::0::1::::<><><>0<>0<><>::uid://5qqt6n7towun::::res://Textures/banner.png<>uid://ddg32ke0itwuo::::res://Buttons/start button.png<>uid://clyhxj0sh8xnm::::res://Scripts/StartButton.cs<>uid://dbr7xirci48vy::::res://Buttons/kills button.png<>uid://blar7odv4mgxd::::res://Buttons/powerup button.png
 player.tscn::PackedScene::7513816020654973520::1769593747::0::1::::<><><>0<>0<><>::uid://dbed3q2s3rkve::::res://Scripts/Player.cs<>uid://7gc16jyb4wwm::::res://Scenes/projectile.tscn<>uid://cxw0japnps6gj::::res://Scenes/FireWand.cs<>uid://dbo4rnc0ylwwr::::res://Weapons/WeaponStats.cs<>uid://b5gyq3cwvf1fv::::res://Scenes/Garlic.cs<>uid://38jsvpaqn2i3::::res://Scenes/Lightning.cs<>uid://cm7tkql28sr1a::::res://Scenes/Magnet.cs
 projectile.tscn::PackedScene::2258598770788501896::1769593747::0::1::::<><><>0<>0<><>::uid://d1mua7f3u2t3h::::res://Scripts/Projectile.cs<>uid://cm6s1qrlpd240::::res://Textures/Circle.png
-XpOrb.cs::CSharpScript::5161039589293191523::1769593747::0::1::::<><><>0<>0<><>::
+XpOrb.cs::CSharpScript::5161039589293191523::1769593747::0::1::::<>Area2D<><>0<>0<><>::
 XpOrb.tscn::PackedScene::3907487713309655009::1769593747::0::1::::<><><>0<>0<><>::uid://cfsbtkuuvk7u2::::res://Scenes/XpOrb.cs<>uid://bel82gute18gk::::res://Textures/Sprite-Experience_Gem.webp
 ::res://Scripts/::1769593747
-Enemy.cs::CSharpScript::6781378633618437026::1769593747::0::1::::<><><>0<>0<><>::
-Game.cs::CSharpScript::4768861205470609737::1769593747::0::1::::<><><>0<>0<><>::
-Player.cs::CSharpScript::7237941441880468158::1769593747::0::1::::<><><>0<>0<><>::
-Projectile.cs::CSharpScript::9010160548343421155::1769593747::0::1::::<><><>0<>0<><>::
-StartButton.cs::CSharpScript::5594930317869948570::1769593747::0::1::::<><><>0<>0<><>::
-::res://Textures/::1769593747
+Enemy.cs::CSharpScript::6781378633618437026::1769593747::0::1::::<>CharacterBody2D<><>0<>0<><>::
+Game.cs::CSharpScript::4768861205470609737::1769593747::0::1::::<>Node2D<><>0<>0<><>::
+Player.cs::CSharpScript::7237941441880468158::1769593747::0::1::::<>CharacterBody2D<><>0<>0<><>::
+Projectile.cs::CSharpScript::9010160548343421155::1769593747::0::1::::<>Area2D<><>0<>0<><>::
+StartButton.cs::CSharpScript::5594930317869948570::1769593747::0::1::::<>TextureButton<><>0<>0<><>::
+::res://Textures/::1769593897
 banner.png::CompressedTexture2D::2139702404960596589::1769593747::1769593897::1::::<><><>0<>0<>0a33d01adfa680a0f5bd12e6973b5556<>res://.godot/imported/banner.png-e2098712d542f666016e1f505e646f83.ctex::
 checker.png::CompressedTexture2D::5478214335860940784::1769593747::1769593897::1::::<><><>0<>0<>8b60d19d81fca9747d5f88830b32c3d4<>res://.godot/imported/checker.png-ed62f229760b07ff77fefa09975c7b2b.ctex::
 Circle.png::CompressedTexture2D::5680243405085029639::1769593747::1769593897::1::::<><><>0<>0<>d73d5d730249ad58393f226da80827d3<>res://.godot/imported/Circle.png-e58d9db949465649f1088a925b440c6f.ctex::
@@ -47,5 +39,5 @@ Sprite-Experience_Gem.webp::CompressedTexture2D::2691936437642481482::1769593747
 textures2.png::CompressedTexture2D::6314068747705276921::1769593747::1769593897::1::::<><><>0<>0<>c7f0121211bb2b9cf22c7f3474159501<>res://.godot/imported/textures2.png-535ac0db3979c86fca07643959244c3e.ctex::
 textures.png::CompressedTexture2D::5184152264780287561::1769593747::1769593897::1::::<><><>0<>0<>b27fbdca49f13f7346393abb80d1c584<>res://.godot/imported/textures.png-3b027f2d9ffeff4d15554999e76b11ce.ctex::
 ::res://Weapons/::1769593747
-Weapon.cs::CSharpScript::3223473661499764736::1769593747::0::1::::<><><>0<>0<><>::
-WeaponStats.cs::CSharpScript::7260144021622360013::1769593747::0::1::::<><><>0<>0<><>::
+Weapon.cs::CSharpScript::3223473661499764736::1769593747::0::1::::<>Node<><>1<>0<><>::
+WeaponStats.cs::CSharpScript::7260144021622360013::1769593747::0::1::::WeaponStats<>Resource<><>0<>0<><>::
