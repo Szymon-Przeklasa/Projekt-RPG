@@ -1,7 +1,4 @@
-/.godot
-/.vs
-/.godot
-/.godot/editor
-/.godot/editor
-.vs/
-.godot/
+/.godot/ -f
+/.vs/ -f 
+.vs/ -f
+.godot/ -f
