@@ -1,1 +1,12 @@
 res://Scenes/game.tscn
+res://Scenes/XpOrb.cs
+res://Scenes/EnemySpawner.cs
+res://Scenes/Magnet.cs
+res://Scenes/Lightning.cs
+res://Scenes/Garlic.cs
+res://Weapons/WeaponStats.cs
+res://Scenes/FireWand.cs
+res://Scripts/Projectile.cs
+res://Scripts/Enemy.cs
+res://Scripts/Player.cs
+res://Scripts/Game.cs
