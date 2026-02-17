@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://c7ffqdudq42wi"]
+
+[ext_resource type="Script" uid="uid://bwm33gnr4m04l" path="res://LightningChain.cs" id="1_elrs6"]
+
+[sub_resource type="Gradient" id="Gradient_k8jb2"]
+offsets = PackedFloat32Array(0.30645162, 0.66129035, 1)
+colors = PackedColorArray(1, 1, 1, 1, 2.695322e-06, 0.92959815, 0.8517839, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_gndac"]
+gradient = SubResource("Gradient_k8jb2")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vplka"]
+particle_flag_disable_z = true
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_max = 1.5
+color_ramp = SubResource("GradientTexture1D_gndac")
+
+[node name="LightningChain" type="GPUParticles2D" unique_id=618480989]
+emitting = false
+amount = 200
+lifetime = 0.15000000000000002
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_vplka")
+script = ExtResource("1_elrs6")

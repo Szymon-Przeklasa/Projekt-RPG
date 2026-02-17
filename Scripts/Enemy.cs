@@ -4,9 +4,10 @@ using System;
 public partial class Enemy : CharacterBody2D
 {
 	[Export] public float Speed = 140f;
-	[Export] public int MaxHealth = 20;
+	[Export] public int MaxHealth = 100;
 	[Export] public PackedScene XpOrbScene;
 	[Export] public int XpDrop = 1;
+	[Export] public PackedScene DeathParticle;
 	private int _health;
 
 	Player player;
@@ -20,6 +21,13 @@ public partial class Enemy : CharacterBody2D
 	{
 		_health -= damage;
 		Velocity += knockback;
+
+		if (DeathParticle != null)
+		{
+			var fx = DeathParticle.Instantiate<Enemybleed>();
+			fx.Setup(GlobalPosition);
+			GetTree().CurrentScene.AddChild(fx);
+		}
 
 		if (_health <= 0)
 		{

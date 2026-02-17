@@ -6,7 +6,9 @@
 [ext_resource type="Script" uid="uid://dbo4rnc0ylwwr" path="res://Weapons/WeaponStats.cs" id="4_3smsa"]
 [ext_resource type="Script" uid="uid://b5gyq3cwvf1fv" path="res://Scenes/Garlic.cs" id="4_fkybt"]
 [ext_resource type="Script" uid="uid://38jsvpaqn2i3" path="res://Scenes/Lightning.cs" id="5_fkybt"]
+[ext_resource type="PackedScene" uid="uid://c7ffqdudq42wi" path="res://Scenes/LightningChainParticles.tscn" id="6_f1ek2"]
 [ext_resource type="Script" uid="uid://cm7tkql28sr1a" path="res://Scenes/Magnet.cs" id="7_3smsa"]
+[ext_resource type="PackedScene" uid="uid://lklfguw38lmy" path="res://Scenes/garlic_aura_particles.tscn" id="8_tx1dd"]
 
 [sub_resource type="Gradient" id="Gradient_feb5d"]
 
@@ -28,21 +30,31 @@ SpreadAngle = 10.0
 Range = 600.0
 metadata/_custom_type_script = "uid://dbo4rnc0ylwwr"
 
-[sub_resource type="Resource" id="Resource_3smsa"]
-script = ExtResource("4_3smsa")
-metadata/_custom_type_script = "uid://dbo4rnc0ylwwr"
-
 [sub_resource type="Resource" id="Resource_f1ek2"]
 script = ExtResource("4_3smsa")
+Cooldown = 1.2
+Damage = 25
+Knockback = 150.0
+SpreadAngle = 0.0
+metadata/_custom_type_script = "uid://dbo4rnc0ylwwr"
+
+[sub_resource type="Resource" id="Resource_3smsa"]
+script = ExtResource("4_3smsa")
+Cooldown = 0.4
+Damage = 4
+Knockback = 40.0
+SpreadAngle = 0.0
 metadata/_custom_type_script = "uid://dbo4rnc0ylwwr"
 
 [sub_resource type="Resource" id="Resource_tx1dd"]
 script = ExtResource("4_3smsa")
+Cooldown = 0.01
+Range = 150.0
 metadata/_custom_type_script = "uid://dbo4rnc0ylwwr"
 
 [node name="Player" type="CharacterBody2D" unique_id=960175255 groups=["player"]]
 z_index = 2
-position = Vector2(-1, -2)
+position = Vector2(-2, -3)
 scale = Vector2(0.39977813, 0.39977813)
 collision_mask = 2
 motion_mode = 1
@@ -70,6 +82,7 @@ wait_time = 0.129
 autostart = true
 
 [node name="PlayerScene" type="Node2D" parent="." unique_id=974612588]
+position = Vector2(67.53746, 72.54024)
 
 [node name="Weapons" type="Node" parent="." unique_id=861545881]
 
@@ -80,22 +93,25 @@ Stats = SubResource("Resource_8erm5")
 
 [node name="Timer" type="Timer" parent="Weapons/FireWand" unique_id=942252994]
 
-[node name="Disabledweapons" type="Node" parent="." unique_id=1563730953]
-
-[node name="Garlic" type="Node" parent="Disabledweapons" unique_id=532956032]
-script = ExtResource("4_fkybt")
-Stats = SubResource("Resource_3smsa")
-
-[node name="Timer" type="Timer" parent="Disabledweapons/Garlic" unique_id=340890847]
-
-[node name="Lightning" type="Node" parent="Disabledweapons" unique_id=2118778675]
+[node name="Lightning" type="Node" parent="Weapons" unique_id=2118778675]
 script = ExtResource("5_fkybt")
+ProjectileScene = ExtResource("6_f1ek2")
 Stats = SubResource("Resource_f1ek2")
 
-[node name="Timer" type="Timer" parent="Disabledweapons/Lightning" unique_id=1517764784]
+[node name="Timer" type="Timer" parent="Weapons/Lightning" unique_id=1517764784]
 
-[node name="Magnet" type="Node" parent="Disabledweapons" unique_id=1576486700]
+[node name="Garlic" type="Node" parent="Weapons" unique_id=532956032]
+script = ExtResource("4_fkybt")
+ProjectileScene = ExtResource("8_tx1dd")
+Stats = SubResource("Resource_3smsa")
+
+[node name="Timer" type="Timer" parent="Weapons/Garlic" unique_id=340890847]
+
+[node name="Magnet" type="Node" parent="Weapons" unique_id=1576486700]
 script = ExtResource("7_3smsa")
+ProjectileScene = ExtResource("2_onrkg")
 Stats = SubResource("Resource_tx1dd")
 
-[node name="Timer" type="Timer" parent="Disabledweapons/Magnet" unique_id=306906676]
+[node name="Timer" type="Timer" parent="Weapons/Magnet" unique_id=306906676]
+
+[node name="Disabledweapons" type="Node" parent="." unique_id=1563730953]

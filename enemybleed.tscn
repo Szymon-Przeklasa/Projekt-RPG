@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://c21xa0f8nmxaa"]
+
+[ext_resource type="Script" uid="uid://bokgcftcqm8vf" path="res://Enemybleed.cs" id="1_n0dl5"]
+
+[sub_resource type="Gradient" id="Gradient_6avdc"]
+colors = PackedColorArray(0.78069407, 5.7997554e-06, 0, 1, 0.24107525, 0, 0.016122032, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_n0dl5"]
+gradient = SubResource("Gradient_6avdc")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2vij5"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(30, 30, 1)
+spread = 180.0
+initial_velocity_max = 50.0
+gravity = Vector3(0, 0, 0)
+scale_max = 3.0
+color_ramp = SubResource("GradientTexture1D_n0dl5")
+
+[node name="enemybleed" type="GPUParticles2D" unique_id=2127708293]
+emitting = false
+amount = 200
+lifetime = 0.2
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_2vij5")
+script = ExtResource("1_n0dl5")

@@ -1,12 +1,37 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Filip\\source\\repos\\Projekt-RPG\\",
-  "Documents": [],
+  "WorkspaceRootPath": "C:\\Users\\Student.Administrator\\Documents\\GitHub\\Projekt-RPG\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{1FAFC25E-EB38-4230-93FC-5F8D1EAAA670}|Mango.csproj|c:\\users\\student.administrator\\documents\\github\\projekt-rpg\\lightningchain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1FAFC25E-EB38-4230-93FC-5F8D1EAAA670}|Mango.csproj|solutionrelative:lightningchain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "LightningChain.cs",
+              "DocumentMoniker": "C:\\Users\\Student.Administrator\\Documents\\GitHub\\Projekt-RPG\\LightningChain.cs",
+              "RelativeDocumentMoniker": "LightningChain.cs",
+              "ToolTip": "C:\\Users\\Student.Administrator\\Documents\\GitHub\\Projekt-RPG\\LightningChain.cs",
+              "RelativeToolTip": "LightningChain.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-28T10:22:49.805Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }
