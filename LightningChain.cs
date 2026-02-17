@@ -4,7 +4,7 @@ public partial class LightningChain : GpuParticles2D
 {
 	public void Setup(Vector2 from, Vector2 to)
 	{
-		GlobalPosition = from;
+		GlobalPosition = from + (to - from);
 
 		Vector2 dir = to - from;
 		Rotation = dir.Angle();

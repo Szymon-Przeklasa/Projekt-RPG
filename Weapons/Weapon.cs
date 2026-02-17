@@ -2,19 +2,27 @@ using Godot;
 
 public abstract partial class Weapon : Node
 {
-	[Export] public WeaponStats Stats;
-	protected Player Player;
+    [Export] public WeaponStats Stats;
+    protected Player Player;
+    protected Timer timer;
 
-	public virtual void Init(Player player)
-	{
-		Player = player;
+    public virtual void Init(Player player)
+    {
+        Player = player;
 
-		Timer timer = new Timer();
-		timer.WaitTime = Stats.Cooldown;
-		timer.Timeout += Fire;
-		AddChild(timer);
-		timer.Start();
-	}
+        timer = new Timer();
+        timer.WaitTime = Stats.Cooldown;
+        timer.OneShot = false;
+        timer.Timeout += Fire;
+        AddChild(timer);
+        timer.Start();
+    }
 
-	protected abstract void Fire();
+    public void RefreshStats()
+    {
+        if (timer != null)
+            timer.WaitTime = Stats.Cooldown;
+    }
+
+    protected abstract void Fire();
 }

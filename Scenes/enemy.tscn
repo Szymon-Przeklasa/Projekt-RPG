@@ -14,7 +14,7 @@ scale = Vector2(0.3902205, 0.3902205)
 collision_layer = 2
 script = ExtResource("1_4gyqm")
 XpOrbScene = ExtResource("2_afpow")
-DeathParticle = ExtResource("3_287tu")
+HitParticle = ExtResource("3_287tu")
 metadata/grkh = false
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=744124537]
