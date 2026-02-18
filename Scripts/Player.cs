@@ -9,7 +9,7 @@ public partial class Player : CharacterBody2D
 	[Export] public WeaponStats Weapon;
 	[Export] public int Speed = 600;
 	[Export] public int Xp = 0;
-	[Export] public int XpToLevel = 10;
+	[Export] public int XpToLevel = 2;
 	[Export] public int Level = 1;
 
 	public List<UpgradeData> AvailableUpgrades = new();
@@ -22,6 +22,7 @@ public partial class Player : CharacterBody2D
 	public override void _Ready()
 	{
 		SetupUpgrades();
+		GD.Print("Upgrades count: ", AvailableUpgrades.Count);
 
 		ShootPoint = GetNode<Marker2D>("ShootPoint");
 
@@ -32,8 +33,8 @@ public partial class Player : CharacterBody2D
 
 	private void SetupUpgrades()
 	{
-		var lightning = GetNodeOrNull<Lightning>("Lightning");
-		var garlic = GetNodeOrNull<Garlic>("Garlic");
+		var lightning = GetNodeOrNull<Lightning>("Weapons/Lightning");
+		var garlic = GetNodeOrNull<Garlic>("Weapons/Garlic");
 
 		if (lightning != null)
 		{
@@ -144,6 +145,11 @@ public partial class Player : CharacterBody2D
 
 	public override void _PhysicsProcess(double delta)
 	{
+		if (Input.IsActionJustPressed("pause"))
+		{
+
+		}
+
 		GetInput();
 		MoveAndSlide();
 	}

@@ -107,11 +107,11 @@ Stats = SubResource("Resource_tx1dd")
 
 [node name="Timer" type="Timer" parent="Weapons/Magnet" unique_id=306906676]
 
-[node name="Disabledweapons" type="Node" parent="." unique_id=1563730953]
-
-[node name="Garlic" type="Node" parent="Disabledweapons" unique_id=532956032]
+[node name="Garlic" type="Node" parent="Weapons" unique_id=532956032]
 script = ExtResource("4_fkybt")
 ProjectileScene = ExtResource("8_tx1dd")
 Stats = SubResource("Resource_3smsa")
 
-[node name="Timer" type="Timer" parent="Disabledweapons/Garlic" unique_id=340890847]
+[node name="Timer" type="Timer" parent="Weapons/Garlic" unique_id=340890847]
+
+[node name="Disabledweapons" type="Node" parent="." unique_id=1563730953]

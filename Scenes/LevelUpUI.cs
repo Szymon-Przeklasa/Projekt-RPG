@@ -27,13 +27,28 @@ public partial class LevelUpUI : CanvasLayer
 			.Take(3)
 			.ToList();
 
+		if (choices.Count == 0)
+		{
+			GD.PrintErr("No upgrades available!");
+			return;
+		}
+
 		SetupButton(b1, choices[0]);
-		SetupButton(b2, choices[1]);
-		SetupButton(b3, choices[2]);
+
+		if (choices.Count > 1)
+			SetupButton(b2, choices[1]);
+		else
+			b2.Visible = false;
+
+		if (choices.Count > 2)
+			SetupButton(b3, choices[2]);
+		else
+			b3.Visible = false;
 
 		GetTree().Paused = true;
 		Visible = true;
 	}
+
 
 	private void SetupButton(Button button, UpgradeData data)
 	{

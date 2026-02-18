@@ -1,14 +1,14 @@
 63f7b34db8d8cdea90c76aacccf841ec
-::res://::1771318031
+::res://::1771409346
 Enemybleed.cs::CSharpScript::3390076437791358131::1771315701::0::1::::<>GPUParticles2D<><>0<>0<><>::
 enemybleed.tscn::PackedScene::6723011780377274604::1771317220::0::1::::<><><>0<>0<><>::uid://bokgcftcqm8vf::::res://Enemybleed.cs
 LightningChain.cs::CSharpScript::3957098190839544665::1771318031::0::1::::<>GPUParticles2D<><>0<>0<><>::
-README.md::TextFile::-1::1769593747::0::1::::<><><>0<>0<><>::
+README.md::TextFile::-1::1771320109::0::1::::<><><>0<>0<><>::
 ::res://Buttons/::1769501149
 kills button.png::CompressedTexture2D::7266529780115907662::1769501093::1769501149::1::::<><><>0<>0<>5b995fde0bde27789caed89337e9ae94<>res://.godot/imported/kills button.png-20197d07ae8d079cb36db46bdd0f8271.ctex::
 powerup button.png::CompressedTexture2D::3159588038948136121::1769501093::1769501149::1::::<><><>0<>0<>965cd4c7edcd4e684f8b58036af13ffa<>res://.godot/imported/powerup button.png-dcb742f3f608a6c23bd7d74c445fbf09.ctex::
 start button.png::CompressedTexture2D::7383963673310720454::1769501093::1769501149::1::::<><><>0<>0<>24df70ddb5dd1ca66cd5caed820663b6<>res://.godot/imported/start button.png-351903ad576a1b80e78991c5b3b29be2.ctex::
-::res://Scenes/::1771319895
+::res://Scenes/::1771409279
 Axe.cs::CSharpScript::8624590884821641604::1769593747::0::1::::<><><>0<>0<><>::
 enemy.tscn::PackedScene::7368778573172663853::1771315739::0::1::::<><><>0<>0<><>::uid://c3u7kyrqwc387::::res://Scripts/Enemy.cs<>uid://bvw20tawyx4hh::::res://Scenes/XpOrb.tscn<>uid://ca6yi5kwffw17::::res://Textures/icon3.png<>uid://c21xa0f8nmxaa::::res://enemybleed.tscn
 EnemySpawner.cs::CSharpScript::7588311747667176584::1769593747::0::1::::<>Node2D<><>0<>0<><>::
@@ -16,21 +16,21 @@ enemy_spawner.tscn::PackedScene::7830352351495141241::1769593747::0::1::::<><><>
 FireWand.cs::CSharpScript::6434135102398082993::1769593747::0::1::::<>Node<><>0<>0<><>::
 game.tscn::PackedScene::7132590364750636733::1771319728::0::1::::<><><>0<>0<><>::uid://b87cphdi20ihd::::res://Scripts/Game.cs<>uid://dfb0pmuqalve3::::res://Scenes/player.tscn<>uid://ckbxniseigmaq::::res://Textures/checker.png<>uid://dth1qcqxp2edf::::res://Scenes/LevelUpUI.tscn<>uid://djtc02vuy3ydt::::res://Scenes/enemy_spawner.tscn
 Garlic.cs::CSharpScript::4505959514658586719::1771314994::0::1::::<>Node<><>0<>0<><>::
-garlic_aura_particles.tscn::PackedScene::793398220523405668::1771314995::0::1::::<><><>0<>0<><>::
+garlic_aura_particles.tscn::PackedScene::793398220523405668::1771320026::0::1::::<><><>0<>0<><>::
+LevelUpUI.cs::CSharpScript::836659206043024886::1771408414::0::1::::<>CanvasLayer<><>0<>0<><>::
+LevelUpUI.tscn::PackedScene::8508908069824439971::1771409279::0::1::::<><><>0<>0<><>::uid://l6jwjbv4d8i1::::res://Scenes/LevelUpUI.cs
 Lightning.cs::CSharpScript::2033991811158408768::1771314994::0::1::::<>Node<><>0<>0<><>::
 LightningChainParticles.tscn::PackedScene::7029538598864846120::1771318023::0::1::::<><><>0<>0<><>::uid://bwm33gnr4m04l::::res://LightningChain.cs
 Magnet.cs::CSharpScript::5682339918612149752::1769594650::0::1::::<>Node<><>0<>0<><>::
 main_menu.tscn::PackedScene::3092158903809161591::1769593747::0::1::::<><><>0<>0<><>::uid://5qqt6n7towun::::res://Textures/banner.png<>uid://ddg32ke0itwuo::::res://Buttons/start button.png<>uid://clyhxj0sh8xnm::::res://Scripts/StartButton.cs<>uid://dbr7xirci48vy::::res://Buttons/kills button.png<>uid://blar7odv4mgxd::::res://Buttons/powerup button.png
-player.tscn::PackedScene::7513816020654973520::1771318112::0::1::::<><><>0<>0<><>::uid://dbed3q2s3rkve::::res://Scripts/Player.cs<>uid://7gc16jyb4wwm::::res://Scenes/projectile.tscn<>uid://cxw0japnps6gj::::res://Scenes/FireWand.cs<>uid://dbo4rnc0ylwwr::::res://Weapons/WeaponStats.cs<>uid://b5gyq3cwvf1fv::::res://Scenes/Garlic.cs<>uid://38jsvpaqn2i3::::res://Scenes/Lightning.cs<>uid://c7ffqdudq42wi::::res://Scenes/LightningChainParticles.tscn<>uid://cm7tkql28sr1a::::res://Scenes/Magnet.cs<>uid://lklfguw38lmy::::res://Scenes/garlic_aura_particles.tscn
+player.tscn::PackedScene::7513816020654973520::1771408414::0::1::::<><><>0<>0<><>::uid://dbed3q2s3rkve::::res://Scripts/Player.cs<>uid://7gc16jyb4wwm::::res://Scenes/projectile.tscn<>uid://cxw0japnps6gj::::res://Scenes/FireWand.cs<>uid://dbo4rnc0ylwwr::::res://Weapons/WeaponStats.cs<>uid://b5gyq3cwvf1fv::::res://Scenes/Garlic.cs<>uid://38jsvpaqn2i3::::res://Scenes/Lightning.cs<>uid://c7ffqdudq42wi::::res://Scenes/LightningChainParticles.tscn<>uid://cm7tkql28sr1a::::res://Scenes/Magnet.cs<>uid://lklfguw38lmy::::res://Scenes/garlic_aura_particles.tscn
 projectile.tscn::PackedScene::2258598770788501896::1769593747::0::1::::<><><>0<>0<><>::uid://d1mua7f3u2t3h::::res://Scripts/Projectile.cs<>uid://cm6s1qrlpd240::::res://Textures/Circle.png
-LevelUpUI.tscn::PackedScene::8508908069824439971::1771320024::0::1::::<><><>0<>0<><>::uid://l6jwjbv4d8i1::::res://Scenes/LevelUpUi.cs
-LevelUpUi.cs::CSharpScript::836659206043024886::1771319895::0::1::::<><><>0<>0<><>::
 XpOrb.cs::CSharpScript::5161039589293191523::1769594578::0::1::::<>Area2D<><>0<>0<><>::
 XpOrb.tscn::PackedScene::3907487713309655009::1769594509::0::1::::<><><>0<>0<><>::uid://cfsbtkuuvk7u2::::res://Scenes/XpOrb.cs<>uid://bel82gute18gk::::res://Textures/Sprite-Experience_Gem.webp
-::res://Scripts/::1771319968
+::res://Scripts/::1771408989
 Enemy.cs::CSharpScript::6781378633618437026::1771319968::0::1::::<>CharacterBody2D<><>0<>0<><>::
 Game.cs::CSharpScript::4768861205470609737::1769593747::0::1::::<>Node2D<><>0<>0<><>::
-Player.cs::CSharpScript::7237941441880468158::1771319968::0::1::::<>CharacterBody2D<><>0<>0<><>::
+Player.cs::CSharpScript::7237941441880468158::1771408989::0::1::::<>CharacterBody2D<><>0<>0<><>::
 Projectile.cs::CSharpScript::9010160548343421155::1769593747::0::1::::<>Area2D<><>0<>0<><>::
 StartButton.cs::CSharpScript::5594930317869948570::1769593747::0::1::::<>TextureButton<><>0<>0<><>::
 UpgradeData.cs::CSharpScript::703705047876036349::1771318870::0::1::::<><><>0<>0<><>::
