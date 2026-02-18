@@ -1,15 +1,15 @@
 using Godot;
 using System;
 
-public partial class StartButton : TextureButton
+public partial class KillsButton : TextureButton
 {
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 	}
-	private void StartGame()
+	private void ShowKills()
 	{
-		GetTree().ChangeSceneToFile("res://Scenes/game.tscn");
+		//
 	}
 	private void MouseOn()
 	{

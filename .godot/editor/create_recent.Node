@@ -1,3 +1,6 @@
+Container
+CollisionPolygon2D
+Polygon2D
 GPUParticles2D
 TextureRect
 Node2D
@@ -10,5 +13,3 @@ Camera2D
 HBoxContainer
 TextureButton
 ColorRect
-Control
-Container

@@ -1,15 +1,11 @@
 using Godot;
 using System;
 
-public partial class StartButton : TextureButton
+public partial class StartButtonHover : CollisionPolygon2D
 {
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-	}
-	private void StartGame()
-	{
-		GetTree().ChangeSceneToFile("res://Scenes/game.tscn");
 	}
 	private void MouseOn()
 	{

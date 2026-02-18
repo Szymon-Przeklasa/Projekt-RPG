@@ -5,6 +5,8 @@
 [ext_resource type="Script" uid="uid://clyhxj0sh8xnm" path="res://Scripts/StartButton.cs" id="3_cp0ys"]
 [ext_resource type="Texture2D" uid="uid://dbr7xirci48vy" path="res://Buttons/kills button.png" id="4_yhxw7"]
 [ext_resource type="Texture2D" uid="uid://blar7odv4mgxd" path="res://Buttons/powerup button.png" id="5_trj04"]
+[ext_resource type="Script" uid="uid://dojufuy8ti1kv" path="res://Scripts/KillsButton.cs" id="6_yhxw7"]
+[ext_resource type="Script" uid="uid://dj5nv6m2e7lcs" path="res://Scripts/PowerUpButton.cs" id="8_trj04"]
 
 [node name="Main Menu" type="Control" unique_id=1056142175]
 layout_mode = 3
@@ -49,6 +51,7 @@ offset_right = 2168.0
 offset_bottom = 1229.0
 scale = Vector2(0.4, 0.4)
 texture_normal = ExtResource("4_yhxw7")
+script = ExtResource("6_yhxw7")
 metadata/_edit_use_anchors_ = true
 metadata/_edit_group_ = true
 
@@ -60,12 +63,16 @@ offset_right = 1632.0
 offset_bottom = 1229.0
 scale = Vector2(0.4, 0.4)
 texture_normal = ExtResource("5_trj04")
+script = ExtResource("8_trj04")
 metadata/_edit_use_anchors_ = true
 metadata/_edit_group_ = true
 
 [connection signal="mouse_entered" from="Start Button" to="Start Button" method="MouseOn"]
 [connection signal="mouse_exited" from="Start Button" to="Start Button" method="MouseOff"]
 [connection signal="pressed" from="Start Button" to="Start Button" method="StartGame"]
-[connection signal="mouse_entered" from="Kills Button" to="Start Button" method="MouseOn"]
-[connection signal="mouse_exited" from="Kills Button" to="Start Button" method="MouseOff"]
-[connection signal="pressed" from="Kills Button" to="Start Button" method="StartGame"]
+[connection signal="mouse_entered" from="Kills Button" to="Kills Button" method="MouseOn"]
+[connection signal="mouse_exited" from="Kills Button" to="Kills Button" method="MouseOff"]
+[connection signal="pressed" from="Kills Button" to="Kills Button" method="ShowKills"]
+[connection signal="mouse_entered" from="PowerUp Button" to="PowerUp Button" method="MouseOn"]
+[connection signal="mouse_exited" from="PowerUp Button" to="PowerUp Button" method="MouseOff"]
+[connection signal="pressed" from="PowerUp Button" to="PowerUp Button" method="ShowPowerups"]
