@@ -7,7 +7,7 @@ public partial class Enemy : CharacterBody2D
 	[Export] public int MaxHealth = 100;
 	[Export] public PackedScene XpOrbScene;
 	[Export] public int XpDrop = 1;
-	[Export] public PackedScene DeathParticle;
+	[Export] public PackedScene HitParticle;
 	private int _health;
 
 	Player player;
@@ -22,11 +22,12 @@ public partial class Enemy : CharacterBody2D
 		_health -= damage;
 		Velocity += knockback;
 
-		if (DeathParticle != null)
+		if (HitParticle != null)
 		{
-			var fx = DeathParticle.Instantiate<Enemybleed>();
-			fx.Setup(GlobalPosition);
-			GetTree().CurrentScene.AddChild(fx);
+			var fx = HitParticle.Instantiate<Enemybleed>();
+			AddChild(fx);               // attach to enemy
+			fx.Position = Vector2.Zero; // local position
+			fx.Emitting = true;
 		}
 
 		if (_health <= 0)

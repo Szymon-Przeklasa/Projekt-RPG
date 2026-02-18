@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://b87cphdi20ihd" path="res://Scripts/Game.cs" id="1_80nbo"]
 [ext_resource type="PackedScene" uid="uid://dfb0pmuqalve3" path="res://Scenes/player.tscn" id="2_feb5d"]
 [ext_resource type="Texture2D" uid="uid://ckbxniseigmaq" path="res://Textures/checker.png" id="4_fc0e3"]
+[ext_resource type="PackedScene" uid="uid://dth1qcqxp2edf" path="res://Scenes/LevelUpUI.tscn" id="5_i6g32"]
 [ext_resource type="PackedScene" uid="uid://djtc02vuy3ydt" path="res://Scenes/enemy_spawner.tscn" id="5_wowpa"]
 
 [node name="Game" type="Node2D" unique_id=581274643]
@@ -21,3 +22,6 @@ texture = ExtResource("4_fc0e3")
 
 [node name="EnemySpawner" parent="." unique_id=1673989320 instance=ExtResource("5_wowpa")]
 SpawnRadius = 1000.0
+SpawnInterval = 0.1
+
+[node name="LevelUpUI" parent="." unique_id=1585551123 instance=ExtResource("5_i6g32")]

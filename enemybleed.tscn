@@ -11,17 +11,18 @@ gradient = SubResource("Gradient_6avdc")
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2vij5"]
 particle_flag_disable_z = true
 emission_shape = 3
-emission_box_extents = Vector3(30, 30, 1)
+emission_box_extents = Vector3(50, 50, 1)
 spread = 180.0
 initial_velocity_max = 50.0
 gravity = Vector3(0, 0, 0)
-scale_max = 3.0
+scale_min = 3.0
+scale_max = 5.0
 color_ramp = SubResource("GradientTexture1D_n0dl5")
 
 [node name="enemybleed" type="GPUParticles2D" unique_id=2127708293]
 emitting = false
-amount = 200
-lifetime = 0.2
+amount = 50
+lifetime = 0.15000000000000002
 one_shot = true
 process_material = SubResource("ParticleProcessMaterial_2vij5")
 script = ExtResource("1_n0dl5")

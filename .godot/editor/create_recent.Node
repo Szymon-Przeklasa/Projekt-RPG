@@ -1,6 +1,8 @@
-Container
-CollisionPolygon2D
-Polygon2D
+Button
+Label
+VBoxContainer
+Panel
+CanvasLayer
 GPUParticles2D
 TextureRect
 Node2D
@@ -11,5 +13,3 @@ CollisionShape2D
 Sprite2D
 Camera2D
 HBoxContainer
-TextureButton
-ColorRect
