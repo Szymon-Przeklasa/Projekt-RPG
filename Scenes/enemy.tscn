@@ -24,3 +24,5 @@ texture = ExtResource("2_qi2p4")
 shape = SubResource("RectangleShape2D_iifgy")
 
 [node name="EnemyScene" type="Node2D" parent="." unique_id=945760768]
+
+[node name="Center" type="Marker2D" parent="." unique_id=1383007067]

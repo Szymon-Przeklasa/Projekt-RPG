@@ -9,7 +9,7 @@ public partial class Player : CharacterBody2D
 	[Export] public WeaponStats Weapon;
 	[Export] public int Speed = 600;
 	[Export] public int Xp = 0;
-	[Export] public int XpToLevel = 2;
+	[Export] public int XpToLevel = 10;
 	[Export] public int Level = 1;
 
 	public List<UpgradeData> AvailableUpgrades = new();
@@ -50,7 +50,6 @@ public partial class Player : CharacterBody2D
 				() => {
 					lightning.Stats.Cooldown = Mathf.Max(0.2f, lightning.Stats.Cooldown - 0.5f);
 					lightning.RefreshStats();
-					GD.Print("upgraded");
 				}
 			));
 

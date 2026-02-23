@@ -12,7 +12,7 @@ public partial class Magnet : Weapon
 				Player.GlobalPosition.DistanceTo(orb.GlobalPosition) <= Stats.Range)
 			{
 				orb.GlobalPosition =
-					orb.GlobalPosition.Lerp(Player.GlobalPosition, 0.15f);
+					orb.GlobalPosition.Lerp(Player.GetNode<Marker2D>("ShootPoint").GlobalPosition, 0.15f);
 			}
 		}
 	}

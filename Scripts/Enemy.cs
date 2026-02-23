@@ -33,6 +33,7 @@ public partial class Enemy : CharacterBody2D
 		if (_health <= 0)
 		{
 			// death
+			
 			DropXp();
 			QueueFree();
 		}
@@ -47,7 +48,7 @@ public partial class Enemy : CharacterBody2D
 		orb.GlobalPosition = GlobalPosition;
 		orb.Value = XpDrop;
 
-		GetTree().CurrentScene.AddChild(orb);
+		GetTree().CurrentScene.CallDeferred(Node.MethodName.AddChild, orb);
 	}
 
 
