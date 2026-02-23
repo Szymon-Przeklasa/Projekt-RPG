@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dbed3q2s3rkve" path="res://Scripts/Player.cs" id="1_4flbx"]
 [ext_resource type="PackedScene" uid="uid://7gc16jyb4wwm" path="res://Scenes/projectile.tscn" id="2_onrkg"]
+[ext_resource type="Texture2D" uid="uid://tgk1brhkc72m" path="res://Textures/icon2.svg" id="3_tx1dd"]
 [ext_resource type="Script" uid="uid://cxw0japnps6gj" path="res://Scenes/FireWand.cs" id="3_vgqql"]
 [ext_resource type="Script" uid="uid://dbo4rnc0ylwwr" path="res://Weapons/WeaponStats.cs" id="4_3smsa"]
 [ext_resource type="Script" uid="uid://b5gyq3cwvf1fv" path="res://Scenes/Garlic.cs" id="4_fkybt"]
@@ -9,13 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://c7ffqdudq42wi" path="res://Scenes/LightningChainParticles.tscn" id="6_f1ek2"]
 [ext_resource type="Script" uid="uid://cm7tkql28sr1a" path="res://Scenes/Magnet.cs" id="7_3smsa"]
 [ext_resource type="PackedScene" uid="uid://lklfguw38lmy" path="res://Scenes/garlic_aura_particles.tscn" id="8_tx1dd"]
-
-[sub_resource type="Gradient" id="Gradient_feb5d"]
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_onrkg"]
-gradient = SubResource("Gradient_feb5d")
-fill_from = Vector2(0.44871795, 0.517094)
-fill_to = Vector2(0.99572647, 0.991453)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i3pqv"]
 size = Vector2(128, 128)
@@ -63,8 +57,8 @@ ProjectileScene = ExtResource("2_onrkg")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=751756645]
 position = Vector2(68, 69)
-scale = Vector2(1.9687911, 1.9687911)
-texture = SubResource("GradientTexture2D_onrkg")
+scale = Vector2(0.96418923, 0.96418923)
+texture = ExtResource("3_tx1dd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1527608151]
 position = Vector2(68, 69)

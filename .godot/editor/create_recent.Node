@@ -1,3 +1,4 @@
+Marker2D
 Button
 Label
 VBoxContainer
@@ -6,10 +7,8 @@ CanvasLayer
 GPUParticles2D
 TextureRect
 Node2D
-Marker2D
 Timer
 Area2D
 CollisionShape2D
 Sprite2D
 Camera2D
-HBoxContainer
