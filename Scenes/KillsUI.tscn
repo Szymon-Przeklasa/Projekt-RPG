@@ -1,0 +1,136 @@
+[gd_scene format=3 uid="uid://vhlkfdx6q1w0"]
+
+[ext_resource type="Script" uid="uid://hl46d2klf4sg" path="res://Scenes/KillsUI.cs" id="1_pyre1"]
+[ext_resource type="Texture2D" uid="uid://thqr61un1xts" path="res://Textures/kills.png" id="1_uyied"]
+[ext_resource type="Script" uid="uid://bpt8oip43tkj6" path="res://Scripts/KillsLoad.cs" id="2_vk107"]
+[ext_resource type="FontFile" uid="uid://bbv5li714o8fv" path="res://Textures/BreatheFire-65pg.ttf" id="3_vk107"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_pyre1"]
+font = ExtResource("3_vk107")
+
+[sub_resource type="LabelSettings" id="LabelSettings_fdaex"]
+font = ExtResource("3_vk107")
+font_size = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_vk107"]
+font = ExtResource("3_vk107")
+font_size = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_2opd7"]
+font = ExtResource("3_vk107")
+font_size = 8
+
+[node name="KillsUI" type="CanvasLayer" unique_id=1000854830]
+process_mode = 3
+script = ExtResource("1_pyre1")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1018133426]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Panel" type="Panel" parent="." unique_id=37105339]
+z_index = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel" unique_id=942637241]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -304.00003
+offset_top = -188.00002
+offset_right = 1232.0
+offset_bottom = 836.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("1_uyied")
+
+[node name="VScrollBar" type="VScrollBar" parent="Panel" unique_id=929536097]
+layout_mode = 0
+offset_left = 220.0
+offset_top = -80.0
+offset_right = 228.0
+offset_bottom = 120.0
+size_flags_horizontal = 8
+size_flags_vertical = 3
+rounded = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel" unique_id=1899610680]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -216.0
+offset_top = -100.0
+offset_right = 200.0
+offset_bottom = 116.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_vk107")
+
+[node name="MobGroup" type="VBoxContainer" parent="Panel/VBoxContainer" unique_id=678103059]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Header" type="HBoxContainer" parent="Panel/VBoxContainer/MobGroup" unique_id=1841093264]
+layout_mode = 2
+
+[node name="MobIcon" type="TextureRect" parent="Panel/VBoxContainer/MobGroup/Header" unique_id=1090199110]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer/MobGroup/Header" unique_id=196680168]
+layout_mode = 2
+
+[node name="MobName" type="Label" parent="Panel/VBoxContainer/MobGroup/Header/VBoxContainer" unique_id=1963910428]
+layout_mode = 2
+size_flags_vertical = 0
+text = "testowy"
+label_settings = SubResource("LabelSettings_pyre1")
+
+[node name="MobDescription" type="Label" parent="Panel/VBoxContainer/MobGroup/Header/VBoxContainer" unique_id=273942057]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+label_settings = SubResource("LabelSettings_fdaex")
+autowrap_mode = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="Panel/VBoxContainer/MobGroup/Header/VBoxContainer" unique_id=1478553955]
+layout_mode = 2
+value = 10.0
+show_percentage = false
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer/MobGroup/Header/VBoxContainer" unique_id=848828719]
+layout_mode = 2
+
+[node name="CurrentKills" type="Label" parent="Panel/VBoxContainer/MobGroup/Header/VBoxContainer/HBoxContainer" unique_id=1536220662]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_vk107")
+
+[node name="NextTierKills" type="Label" parent="Panel/VBoxContainer/MobGroup/Header/VBoxContainer/HBoxContainer" unique_id=1124899220]
+layout_mode = 2
+text = "100"
+label_settings = SubResource("LabelSettings_2opd7")
+horizontal_alignment = 2
+
+[connection signal="gui_input" from="ColorRect" to="." method="OnBackgroundClicked"]

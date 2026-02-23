@@ -7,9 +7,10 @@ public partial class KillsButton : TextureButton
 	public override void _Ready()
 	{
 	}
-	private void ShowKills()
+	private void KillsClicked()
 	{
-		//
+		var ui = GetTree().CurrentScene.GetNode<KillsUI>("KillsUI");
+		ui.ShowKills();
 	}
 	private void MouseOn()
 	{

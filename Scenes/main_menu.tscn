@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://blar7odv4mgxd" path="res://Buttons/powerup button.png" id="5_trj04"]
 [ext_resource type="Script" uid="uid://dojufuy8ti1kv" path="res://Scripts/KillsButton.cs" id="6_yhxw7"]
 [ext_resource type="Script" uid="uid://dj5nv6m2e7lcs" path="res://Scripts/PowerUpButton.cs" id="8_trj04"]
+[ext_resource type="PackedScene" uid="uid://vhlkfdx6q1w0" path="res://Scenes/KillsUI.tscn" id="8_yhxw7"]
 
 [node name="Main Menu" type="Control" unique_id=1056142175]
 layout_mode = 3
@@ -67,12 +68,14 @@ script = ExtResource("8_trj04")
 metadata/_edit_use_anchors_ = true
 metadata/_edit_group_ = true
 
+[node name="KillsUI" parent="." unique_id=1000854830 instance=ExtResource("8_yhxw7")]
+
 [connection signal="mouse_entered" from="Start Button" to="Start Button" method="MouseOn"]
 [connection signal="mouse_exited" from="Start Button" to="Start Button" method="MouseOff"]
 [connection signal="pressed" from="Start Button" to="Start Button" method="StartGame"]
 [connection signal="mouse_entered" from="Kills Button" to="Kills Button" method="MouseOn"]
 [connection signal="mouse_exited" from="Kills Button" to="Kills Button" method="MouseOff"]
-[connection signal="pressed" from="Kills Button" to="Kills Button" method="ShowKills"]
+[connection signal="pressed" from="Kills Button" to="Kills Button" method="KillsClicked"]
 [connection signal="mouse_entered" from="PowerUp Button" to="PowerUp Button" method="MouseOn"]
 [connection signal="mouse_exited" from="PowerUp Button" to="PowerUp Button" method="MouseOff"]
 [connection signal="pressed" from="PowerUp Button" to="PowerUp Button" method="ShowPowerups"]
