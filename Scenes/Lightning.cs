@@ -1,4 +1,5 @@
 using Godot;
+using System.Collections.Generic;
 
 public partial class Lightning : Weapon
 {
@@ -6,44 +7,71 @@ public partial class Lightning : Weapon
 
 	protected override void Fire()
 	{
+		var enemies = GetTree().GetNodesInGroup("enemies");
+
+		if (enemies.Count == 0)
+			return;
+
+		int chainsLeft = Stats.ProjectileCount;
 		Node2D current = Player.GetClosestEnemy(Stats.Range);
-		int chains = Stats.ProjectileCount;
 
-		Node2D from = Player.ShootPoint;
+		if (current == null)
+			return;
 
-		while (current != null && chains-- > 0)
+		var hitEnemies = new HashSet<Node2D>();
+
+		Vector2 fromPosition = Player.ShootPoint.GlobalPosition;
+
+		while (current != null && chainsLeft-- > 0)
 		{
-			var targetCenter = current.GetNode<Marker2D>("Center");
+			if (hitEnemies.Contains(current))
+				break;
 
+			hitEnemies.Add(current);
+
+			var center = current.GetNode<Marker2D>("Center");
+			Vector2 toPosition = center.GlobalPosition;
+
+			// Damage
 			((Enemy)current).TakeDamage(Stats.Damage, Vector2.Zero);
 
-			var fx = ProjectileScene.Instantiate<LightningChain>();
-			fx.Setup(from.GlobalPosition, targetCenter.GlobalPosition);
-			GetTree().CurrentScene.AddChild(fx);
+			// Visual FX
+			SpawnLightningFX(fromPosition, toPosition);
 
-			GD.Print($"Lightning: {from.GlobalPosition} to: {targetCenter.GlobalPosition}");
+			fromPosition = toPosition;
 
-			from = targetCenter;
-			current = GetNext(current);
+			current = GetClosestUnhitEnemy(toPosition, hitEnemies);
 		}
 	}
 
 
-	Node2D GetNext(Node2D fromEnemy)
+	Node2D GetClosestUnhitEnemy(Vector2 fromPos, HashSet<Node2D> hitEnemies)
 	{
-		var fromCenter = fromEnemy.GetNode<Marker2D>("Center").GlobalPosition;
+		Node2D closest = null;
+		float closestDist = float.MaxValue;
 
 		foreach (Node node in GetTree().GetNodesInGroup("enemies"))
 		{
-			if (node is Node2D enemy && enemy != fromEnemy)
+			if (node is Node2D enemy && !hitEnemies.Contains(enemy))
 			{
-				var enemyCenter = enemy.GetNode<Marker2D>("Center").GlobalPosition;
+				var center = enemy.GetNode<Marker2D>("Center");
+				float dist = fromPos.DistanceTo(center.GlobalPosition);
 
-				if (fromCenter.DistanceTo(enemyCenter) < 200)
-					return enemy;
+				if (dist < closestDist && dist <= Stats.Range)
+				{
+					closestDist = dist;
+					closest = enemy;
+				}
 			}
 		}
 
-		return null;
+		return closest;
+	}
+
+	void SpawnLightningFX(Vector2 from, Vector2 to)
+	{
+		var beam = ProjectileScene.Instantiate<LightningBeam>();
+		GetTree().CurrentScene.AddChild(beam);
+		beam.Setup(from, to);
 	}
 }
