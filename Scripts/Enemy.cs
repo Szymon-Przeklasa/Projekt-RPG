@@ -33,7 +33,7 @@ public partial class Enemy : CharacterBody2D
 		if (_health <= 0)
 		{
 			// death
-			
+			player.KillCount(this);
 			DropXp();
 			QueueFree();
 		}

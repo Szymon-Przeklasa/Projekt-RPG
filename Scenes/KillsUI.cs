@@ -15,6 +15,7 @@ public partial class KillsUI : CanvasLayer
 		
 		var bg = GetNode<ColorRect>("ColorRect");
 		bg.Color = new Color(0f,0f,0f,0.7f);
+
 	}
 	private void OnBackgroundClicked(InputEvent @event)
 	{

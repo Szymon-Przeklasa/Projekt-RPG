@@ -12,6 +12,8 @@ public partial class Player : CharacterBody2D
 	[Export] public int XpToLevel = 10;
 	[Export] public int Level = 1;
 
+
+	public Dictionary<Enemy, int> KillCounter;
 	public List<UpgradeData> AvailableUpgrades = new();
 
 
@@ -28,6 +30,11 @@ public partial class Player : CharacterBody2D
 
 		foreach (Weapon weapon in GetNode("Weapons").GetChildren())
 			weapon.Init(this);
+	}
+
+	public void KillCount(Enemy enemy)
+	{
+		KillCounter[enemy] += 1;
 	}
 
 
