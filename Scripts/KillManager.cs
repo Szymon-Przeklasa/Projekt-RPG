@@ -7,12 +7,15 @@ public partial class KillManager : Node
 
     private Dictionary<string, int> kills = new();
 
+    private const string SavePath = "user://kills.json";
+
     [Signal]
     public delegate void KillUpdatedEventHandler(string mobID, int kills);
 
     public override void _Ready()
     {
         Instance = this;
+        LoadKills(); // load saved kills when game starts
     }
 
     public void RegisterKill(string mobID)
@@ -23,6 +26,8 @@ public partial class KillManager : Node
         kills[mobID]++;
 
         EmitSignal(SignalName.KillUpdated, mobID, kills[mobID]);
+
+        SaveKills(); // save every time a kill happens
     }
 
     public int GetKills(string mobID)
@@ -36,5 +41,43 @@ public partial class KillManager : Node
     public Dictionary<string, int> GetAllKills()
     {
         return kills;
+    }
+
+    private void SaveKills()
+    {
+        var godotDict = new Godot.Collections.Dictionary();
+
+        foreach (var pair in kills)
+        {
+            godotDict[pair.Key] = pair.Value;
+        }
+
+        var json = Json.Stringify(godotDict);
+
+        using var file = FileAccess.Open(SavePath, FileAccess.ModeFlags.Write);
+        file.StoreString(json);
+    }
+
+    private void LoadKills()
+    {
+        if (!FileAccess.FileExists(SavePath))
+            return;
+
+        using var file = FileAccess.Open(SavePath, FileAccess.ModeFlags.Read);
+        var json = file.GetAsText();
+
+        var parsed = Json.ParseString(json);
+
+        if (parsed.VariantType == Variant.Type.Dictionary)
+        {
+            var dict = parsed.AsGodotDictionary();
+
+            kills.Clear();
+
+            foreach (var key in dict.Keys)
+            {
+                kills[key.ToString()] = (int)dict[key];
+            }
+        }
     }
 }

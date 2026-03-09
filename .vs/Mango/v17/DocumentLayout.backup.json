@@ -3,8 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\Student.Administrator\\Documents\\GitHub\\Projekt-RPG\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{1FAFC25E-EB38-4230-93FC-5F8D1EAAA670}|Mango.csproj|c:\\users\\student.administrator\\documents\\github\\projekt-rpg\\scripts\\killmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1FAFC25E-EB38-4230-93FC-5F8D1EAAA670}|Mango.csproj|solutionrelative:scripts\\killmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{1FAFC25E-EB38-4230-93FC-5F8D1EAAA670}|Mango.csproj|c:\\users\\student.administrator\\documents\\github\\projekt-rpg\\scenes\\killsui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1FAFC25E-EB38-4230-93FC-5F8D1EAAA670}|Mango.csproj|solutionrelative:scenes\\killsui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1FAFC25E-EB38-4230-93FC-5F8D1EAAA670}|Mango.csproj|c:\\users\\student.administrator\\documents\\github\\projekt-rpg\\scripts\\enemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1FAFC25E-EB38-4230-93FC-5F8D1EAAA670}|Mango.csproj|solutionrelative:scripts\\enemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1FAFC25E-EB38-4230-93FC-5F8D1EAAA670}|Mango.csproj|c:\\users\\student.administrator\\documents\\github\\projekt-rpg\\scripts\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1FAFC25E-EB38-4230-93FC-5F8D1EAAA670}|Mango.csproj|solutionrelative:scripts\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1FAFC25E-EB38-4230-93FC-5F8D1EAAA670}|Mango.csproj|c:\\users\\student.administrator\\documents\\github\\projekt-rpg\\scripts\\killsbutton.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -15,16 +27,8 @@
       "RelativeMoniker": "D:0:0:{1FAFC25E-EB38-4230-93FC-5F8D1EAAA670}|Mango.csproj|solutionrelative:scripts\\killsload.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1FAFC25E-EB38-4230-93FC-5F8D1EAAA670}|Mango.csproj|c:\\users\\student.administrator\\documents\\github\\projekt-rpg\\scripts\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1FAFC25E-EB38-4230-93FC-5F8D1EAAA670}|Mango.csproj|solutionrelative:scripts\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{1FAFC25E-EB38-4230-93FC-5F8D1EAAA670}|Mango.csproj|c:\\users\\student.administrator\\documents\\github\\projekt-rpg\\scenes\\enemyspawner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1FAFC25E-EB38-4230-93FC-5F8D1EAAA670}|Mango.csproj|solutionrelative:scenes\\enemyspawner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1FAFC25E-EB38-4230-93FC-5F8D1EAAA670}|Mango.csproj|c:\\users\\student.administrator\\documents\\github\\projekt-rpg\\scripts\\enemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1FAFC25E-EB38-4230-93FC-5F8D1EAAA670}|Mango.csproj|solutionrelative:scripts\\enemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1FAFC25E-EB38-4230-93FC-5F8D1EAAA670}|Mango.csproj|c:\\users\\student.administrator\\documents\\github\\projekt-rpg\\scenes\\lightning.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -59,19 +63,32 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "KillManager.cs",
+              "DocumentMoniker": "C:\\Users\\Student.Administrator\\Documents\\GitHub\\Projekt-RPG\\Scripts\\KillManager.cs",
+              "RelativeDocumentMoniker": "Scripts\\KillManager.cs",
+              "ToolTip": "C:\\Users\\Student.Administrator\\Documents\\GitHub\\Projekt-RPG\\Scripts\\KillManager.cs",
+              "RelativeToolTip": "Scripts\\KillManager.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAAowBEAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-09T08:07:52.685Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "KillsUI.cs",
               "DocumentMoniker": "C:\\Users\\Student.Administrator\\Documents\\GitHub\\Projekt-RPG\\Scenes\\KillsUI.cs",
               "RelativeDocumentMoniker": "Scenes\\KillsUI.cs",
               "ToolTip": "C:\\Users\\Student.Administrator\\Documents\\GitHub\\Projekt-RPG\\Scenes\\KillsUI.cs",
               "RelativeToolTip": "Scenes\\KillsUI.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAoAAAAAAAAAAAA1wCgAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-03T09:01:00.659Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "KillsButton.cs",
               "DocumentMoniker": "C:\\Users\\Student.Administrator\\Documents\\GitHub\\Projekt-RPG\\Scripts\\KillsButton.cs",
               "RelativeDocumentMoniker": "Scripts\\KillsButton.cs",
@@ -79,12 +96,11 @@
               "RelativeToolTip": "Scripts\\KillsButton.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAA+AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-03T09:00:55.778Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-03T09:00:55.778Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "KillsLoad.cs",
               "DocumentMoniker": "C:\\Users\\Student.Administrator\\Documents\\GitHub\\Projekt-RPG\\Scripts\\KillsLoad.cs",
               "RelativeDocumentMoniker": "Scripts\\KillsLoad.cs",
@@ -92,25 +108,24 @@
               "RelativeToolTip": "Scripts\\KillsLoad.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-03T09:00:50.981Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-03T09:00:50.981Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 2,
               "Title": "Enemy.cs",
               "DocumentMoniker": "C:\\Users\\Student.Administrator\\Documents\\GitHub\\Projekt-RPG\\Scripts\\Enemy.cs",
               "RelativeDocumentMoniker": "Scripts\\Enemy.cs",
               "ToolTip": "C:\\Users\\Student.Administrator\\Documents\\GitHub\\Projekt-RPG\\Scripts\\Enemy.cs",
               "RelativeToolTip": "Scripts\\Enemy.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACMAAAAaAAAAAAAAAA==",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAQwCIAAAADAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-03T08:12:48.036Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "LightningBeam.cs",
               "DocumentMoniker": "C:\\Users\\Student.Administrator\\Documents\\GitHub\\Projekt-RPG\\LightningBeam.cs",
               "RelativeDocumentMoniker": "LightningBeam.cs",
@@ -118,12 +133,11 @@
               "RelativeToolTip": "LightningBeam.cs",
               "ViewState": "AgIAAA8AAAAAAAAAAAAowAoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-25T10:05:19.945Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-25T10:05:19.945Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "EnemySpawner.cs",
               "DocumentMoniker": "C:\\Users\\Student.Administrator\\Documents\\GitHub\\Projekt-RPG\\Scenes\\EnemySpawner.cs",
               "RelativeDocumentMoniker": "Scenes\\EnemySpawner.cs",
@@ -131,8 +145,7 @@
               "RelativeToolTip": "Scenes\\EnemySpawner.cs",
               "ViewState": "AgIAAAwAAAAAAAAAAAAAwAcAAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-23T09:17:59.989Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-23T09:17:59.989Z"
             },
             {
               "$type": "Document",
@@ -142,14 +155,14 @@
               "RelativeDocumentMoniker": "Scripts\\Player.cs",
               "ToolTip": "C:\\Users\\Student.Administrator\\Documents\\GitHub\\Projekt-RPG\\Scripts\\Player.cs",
               "RelativeToolTip": "Scripts\\Player.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAABgAAAACAAAAAAAAAA==",
+              "ViewState": "AgIAAGgAAAAAAAAAAAAwwB8AAAACAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-02-17T08:57:52.232Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "Lightning.cs",
               "DocumentMoniker": "C:\\Users\\Student.Administrator\\Documents\\GitHub\\Projekt-RPG\\Scenes\\Lightning.cs",
               "RelativeDocumentMoniker": "Scenes\\Lightning.cs",
@@ -157,12 +170,11 @@
               "RelativeToolTip": "Scenes\\Lightning.cs",
               "ViewState": "AgIAADkAAAAAAAAAAAAowE0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-23T08:01:25.881Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-23T08:01:25.881Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "LightningChain.cs",
               "DocumentMoniker": "C:\\Users\\Student.Administrator\\Documents\\GitHub\\Projekt-RPG\\LightningChain.cs",
               "RelativeDocumentMoniker": "LightningChain.cs",
@@ -174,7 +186,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "Magnet.cs",
               "DocumentMoniker": "C:\\Users\\Student.Administrator\\Documents\\GitHub\\Projekt-RPG\\Scenes\\Magnet.cs",
               "RelativeDocumentMoniker": "Scenes\\Magnet.cs",

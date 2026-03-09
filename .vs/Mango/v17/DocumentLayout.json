@@ -68,7 +68,7 @@
               "RelativeDocumentMoniker": "Scripts\\KillManager.cs",
               "ToolTip": "C:\\Users\\Student.Administrator\\Documents\\GitHub\\Projekt-RPG\\Scripts\\KillManager.cs",
               "RelativeToolTip": "Scripts\\KillManager.cs",
-              "ViewState": "AgIAABgAAAAAAAAAAAAowBEAAAAqAAAAAAAAAA==",
+              "ViewState": "AgIAACgAAAAAAAAAAAA6wEkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-09T08:07:52.685Z",
               "EditorCaption": ""
@@ -83,8 +83,7 @@
               "RelativeToolTip": "Scenes\\KillsUI.cs",
               "ViewState": "AgIAAAoAAAAAAAAAAAA1wCgAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-03T09:01:00.659Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-03T09:01:00.659Z"
             },
             {
               "$type": "Document",
@@ -120,8 +119,7 @@
               "RelativeToolTip": "Scripts\\Enemy.cs",
               "ViewState": "AgIAAAsAAAAAAAAAAAAQwCIAAAADAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-03T08:12:48.036Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-03T08:12:48.036Z"
             },
             {
               "$type": "Document",
@@ -157,8 +155,7 @@
               "RelativeToolTip": "Scripts\\Player.cs",
               "ViewState": "AgIAAGgAAAAAAAAAAAAwwB8AAAACAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-17T08:57:52.232Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-17T08:57:52.232Z"
             },
             {
               "$type": "Document",

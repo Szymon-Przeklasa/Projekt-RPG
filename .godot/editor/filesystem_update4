@@ -19,3 +19,4 @@ res://Scripts/Player.cs
 res://Scripts/Game.cs
 res://Scenes/KillsUI.tscn
 res://Scripts/KillManager.cs
+res://Scenes/mob_entry.tscn
