@@ -20,3 +20,5 @@ res://Scripts/Game.cs
 res://Scenes/KillsUI.tscn
 res://Scripts/KillManager.cs
 res://Scenes/mob_entry.tscn
+res://Scenes/garlic_aura_particles.tscn
+res://Scenes/player.tscn

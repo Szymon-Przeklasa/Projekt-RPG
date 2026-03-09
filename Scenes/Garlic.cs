@@ -1,8 +1,9 @@
 using Godot;
+using System;
 
 public partial class Garlic : Weapon
 {
-	private GpuParticles2D aura;
+	private Node2D aura;
 
 	[Export] PackedScene ProjectileScene;
 	protected override void Fire()
@@ -11,13 +12,17 @@ public partial class Garlic : Weapon
 		{
 			aura = ProjectileScene.Instantiate<GpuParticles2D>();
 			Player.AddChild(aura);
+			aura.Scale = Vector2.One * (Stats.Range / 500f);
 			aura.Position = Vector2.Zero;
 		}
 
 		foreach (Node node in GetTree().GetNodesInGroup("enemies"))
 		{
+			float radius = Stats.Range;
+
+		 
 			if (node is Enemy enemy &&
-				Player.GlobalPosition.DistanceTo(enemy.GlobalPosition) <= Stats.Range / 2)
+				Player.GlobalPosition.DistanceTo(enemy.GlobalPosition) <= radius / 2)
 			{
 				enemy.TakeDamage(Stats.Damage, Vector2.Zero);
 			}
