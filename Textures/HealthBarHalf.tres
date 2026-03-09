@@ -1,0 +1,19 @@
+[gd_resource type="Theme" format=3 uid="uid://dwf78ycyk1aye"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wowpa"]
+bg_color = Color(0, 0.20896336, 9.62615e-08, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i6g32"]
+bg_color = Color(0.89471775, 0.8472311, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[resource]
+ProgressBar/styles/background = SubResource("StyleBoxFlat_wowpa")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_i6g32")

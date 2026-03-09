@@ -22,3 +22,7 @@ res://Scripts/KillManager.cs
 res://Scenes/mob_entry.tscn
 res://Scenes/garlic_aura_particles.tscn
 res://Scenes/player.tscn
+res://Scenes/game.tscn
+res://Textures/HealthBarFull.tres
+res://Textures/HealthBarHalf.tres
+res://Textures/HealthBarLow.tres

@@ -2,7 +2,10 @@
 
 [ext_resource type="Script" uid="uid://b87cphdi20ihd" path="res://Scripts/Game.cs" id="1_80nbo"]
 [ext_resource type="PackedScene" uid="uid://dfb0pmuqalve3" path="res://Scenes/player.tscn" id="2_feb5d"]
+[ext_resource type="Theme" uid="uid://thwjcpody7ke" path="res://Textures/HealthBarFull.tres" id="3_i6g32"]
 [ext_resource type="Texture2D" uid="uid://ckbxniseigmaq" path="res://Textures/checker.png" id="4_fc0e3"]
+[ext_resource type="Theme" uid="uid://dwf78ycyk1aye" path="res://Textures/HealthBarHalf.tres" id="4_v158k"]
+[ext_resource type="Theme" uid="uid://cwwatn375l1m0" path="res://Textures/HealthBarLow.tres" id="5_h4fw4"]
 [ext_resource type="PackedScene" uid="uid://dth1qcqxp2edf" path="res://Scenes/LevelUpUI.tscn" id="5_i6g32"]
 [ext_resource type="PackedScene" uid="uid://djtc02vuy3ydt" path="res://Scenes/enemy_spawner.tscn" id="5_wowpa"]
 
@@ -10,6 +13,20 @@
 script = ExtResource("1_80nbo")
 
 [node name="Player" parent="." unique_id=960175255 instance=ExtResource("2_feb5d")]
+HealthBarFull = ExtResource("3_i6g32")
+HealthBarHalf = ExtResource("4_v158k")
+HealthBarLow = ExtResource("5_h4fw4")
+
+[node name="HealthBar" type="ProgressBar" parent="Player" unique_id=1772653588]
+z_index = 2
+offset_left = -2.5013876
+offset_top = -30.016647
+offset_right = 137.57632
+offset_bottom = -5.0027695
+theme = ExtResource("3_i6g32")
+value = 100.0
+rounded = true
+show_percentage = false
 
 [node name="EnemySpawns" type="Node2D" parent="." unique_id=302284075]
 position = Vector2(664, 536)
