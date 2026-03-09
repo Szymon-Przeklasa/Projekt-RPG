@@ -3,7 +3,6 @@ using System;
 
 public partial class KillsUI : CanvasLayer
 {
-	// Called when the node enters the scene tree for the first time.
 
 	[Export]
 	public PackedScene MobEntryScene;
@@ -12,7 +11,7 @@ public partial class KillsUI : CanvasLayer
 	{
 		Visible = false;
 
-		var killManager = GetNode<KillManager>("/root/Scripts/KillManager");
+		var killManager = GetNode<KillManager>("/root/KillManager");
 
 		killManager.KillUpdated += OnKillUpdated;
 	}
@@ -50,7 +49,6 @@ public partial class KillsUI : CanvasLayer
 			Close();
 		}
 	}
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
 	}
