@@ -1,3 +1,4 @@
+HBoxContainer
 Line2D
 Marker2D
 Button
@@ -12,4 +13,3 @@ Timer
 Area2D
 CollisionShape2D
 Sprite2D
-Camera2D

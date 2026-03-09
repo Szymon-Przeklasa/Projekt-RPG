@@ -19,6 +19,10 @@ run/main_scene="uid://bkb4n1u5dk0cp"
 config/features=PackedStringArray("4.6", "C#", "GL Compatibility")
 config/icon="res://Textures/icon.svg"
 
+[autoload]
+
+KillManager="*uid://bw3gag17rww4w"
+
 [display]
 
 window/stretch/mode="viewport"

@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://bpd6lbnme3cik"]
+
+[ext_resource type="Script" uid="uid://cu73p4dm6615w" path="res://Scenes/MobEntry.cs" id="1_2ocha"]
+[ext_resource type="FontFile" uid="uid://bbv5li714o8fv" path="res://Textures/BreatheFire-65pg.ttf" id="1_35cl5"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_2ocha"]
+font = ExtResource("1_35cl5")
+
+[sub_resource type="LabelSettings" id="LabelSettings_o0kpc"]
+font = ExtResource("1_35cl5")
+font_size = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_61au0"]
+font = ExtResource("1_35cl5")
+font_size = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_knibv"]
+font = ExtResource("1_35cl5")
+font_size = 8
+
+[node name="MobEntry" type="HBoxContainer" unique_id=606187065]
+offset_right = 254.0
+offset_bottom = 64.0
+script = ExtResource("1_2ocha")
+
+[node name="MobIcon" type="TextureRect" parent="." unique_id=823257292]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="MobInfo" type="VBoxContainer" parent="." unique_id=120102422]
+layout_mode = 2
+
+[node name="MobName" type="Label" parent="MobInfo" unique_id=1449023423]
+layout_mode = 2
+size_flags_vertical = 0
+text = "testowy"
+label_settings = SubResource("LabelSettings_2ocha")
+
+[node name="MobDescription" type="Label" parent="MobInfo" unique_id=845311701]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+label_settings = SubResource("LabelSettings_o0kpc")
+autowrap_mode = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="MobInfo" unique_id=330965564]
+layout_mode = 2
+value = 10.0
+show_percentage = false
+
+[node name="KillCounter" type="HBoxContainer" parent="MobInfo" unique_id=1561293531]
+layout_mode = 2
+
+[node name="CurrentKills" type="Label" parent="MobInfo/KillCounter" unique_id=1876812079]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_61au0")
+
+[node name="NextTierKills" type="Label" parent="MobInfo/KillCounter" unique_id=320991767]
+layout_mode = 2
+text = "100"
+label_settings = SubResource("LabelSettings_knibv")
+horizontal_alignment = 2

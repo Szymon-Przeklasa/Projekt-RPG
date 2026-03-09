@@ -8,6 +8,7 @@ public partial class Enemy : CharacterBody2D
 	[Export] public PackedScene XpOrbScene;
 	[Export] public int XpDrop = 1;
 	[Export] public PackedScene HitParticle;
+	[Export] public string MobID = "Red slime";
 	private int _health;
 
 	Player player;
@@ -33,7 +34,7 @@ public partial class Enemy : CharacterBody2D
 		if (_health <= 0)
 		{
 			// death
-			player.KillCount(this);
+			GetNode<KillManager>("/root/KillManager").RegisterKill(MobID);
 			DropXp();
 			QueueFree();
 		}
