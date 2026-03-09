@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cvbewtyx8tg0k"]
 
-[ext_resource type="Script" uid="uid://bgcoxre81pt4o" path="res://LightningBeam.cs" id="1_ligu7"]
+[ext_resource type="Script" uid="uid://bgcoxre81pt4o" path="res://Scripts/PlayerWeapons/LightningBeam.cs" id="1_ligu7"]
+
 
 [node name="LightningBeam" type="Node2D" unique_id=397927101]
 script = ExtResource("1_ligu7")

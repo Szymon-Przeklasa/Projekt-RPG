@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c7ffqdudq42wi"]
 
-[ext_resource type="Script" uid="uid://bwm33gnr4m04l" path="res://LightningChain.cs" id="1_elrs6"]
+[ext_resource type="Script" uid="uid://bwm33gnr4m04l" path="res://Scripts/PlayerWeapons/LightningChain.cs" id="1_elrs6"]
 
 [sub_resource type="Gradient" id="Gradient_k8jb2"]
 offsets = PackedFloat32Array(0, 0.20326678, 0.62250453, 1)

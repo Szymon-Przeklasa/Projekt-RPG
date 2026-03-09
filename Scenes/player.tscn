@@ -1,15 +1,15 @@
 [gd_scene format=3 uid="uid://dfb0pmuqalve3"]
 
 [ext_resource type="Script" uid="uid://dbed3q2s3rkve" path="res://Scripts/Player.cs" id="1_4flbx"]
-[ext_resource type="PackedScene" uid="uid://7gc16jyb4wwm" path="res://Scenes/projectile.tscn" id="2_onrkg"]
+[ext_resource type="PackedScene" uid="uid://7gc16jyb4wwm" path="res://Scenes/PlayerWeapons/projectile.tscn" id="2_onrkg"]
 [ext_resource type="Texture2D" uid="uid://tgk1brhkc72m" path="res://Textures/icon2.svg" id="3_tx1dd"]
-[ext_resource type="Script" uid="uid://cxw0japnps6gj" path="res://Scenes/FireWand.cs" id="3_vgqql"]
+[ext_resource type="Script" uid="uid://cxw0japnps6gj" path="res://Scripts/PlayerWeapons/FireWand.cs" id="3_vgqql"]
 [ext_resource type="Script" uid="uid://dbo4rnc0ylwwr" path="res://Weapons/WeaponStats.cs" id="4_3smsa"]
-[ext_resource type="Script" uid="uid://b5gyq3cwvf1fv" path="res://Scenes/Garlic.cs" id="4_fkybt"]
-[ext_resource type="Script" uid="uid://38jsvpaqn2i3" path="res://Scenes/Lightning.cs" id="5_fkybt"]
-[ext_resource type="Script" uid="uid://cm7tkql28sr1a" path="res://Scenes/Magnet.cs" id="7_3smsa"]
-[ext_resource type="PackedScene" uid="uid://cvbewtyx8tg0k" path="res://Scenes/lightning_beam.tscn" id="7_tx1dd"]
-[ext_resource type="PackedScene" uid="uid://lklfguw38lmy" path="res://Scenes/garlic_aura_particles.tscn" id="8_tx1dd"]
+[ext_resource type="Script" uid="uid://b5gyq3cwvf1fv" path="res://Scripts/PlayerWeapons/Garlic.cs" id="4_fkybt"]
+[ext_resource type="Script" uid="uid://38jsvpaqn2i3" path="res://Scripts/PlayerWeapons/Lightning.cs" id="5_fkybt"]
+[ext_resource type="Script" uid="uid://cm7tkql28sr1a" path="res://Scripts/PlayerWeapons/Magnet.cs" id="7_3smsa"]
+[ext_resource type="PackedScene" uid="uid://cvbewtyx8tg0k" path="res://Scenes/PlayerWeapons/lightning_beam.tscn" id="7_tx1dd"]
+[ext_resource type="PackedScene" uid="uid://lklfguw38lmy" path="res://Scenes/PlayerWeapons/garlic_aura_particles.tscn" id="8_tx1dd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i3pqv"]
 size = Vector2(128, 128)

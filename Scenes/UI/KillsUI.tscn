@@ -1,14 +1,14 @@
 [gd_scene format=3 uid="uid://vhlkfdx6q1w0"]
 
-[ext_resource type="Script" uid="uid://hl46d2klf4sg" path="res://Scenes/KillsUI.cs" id="1_pyre1"]
-[ext_resource type="Texture2D" uid="uid://thqr61un1xts" path="res://Textures/kills.png" id="1_uyied"]
-[ext_resource type="PackedScene" uid="uid://bpd6lbnme3cik" path="res://Scenes/mob_entry.tscn" id="2_pyre1"]
-[ext_resource type="Script" uid="uid://bpt8oip43tkj6" path="res://Scripts/KillsLoad.cs" id="2_vk107"]
+[ext_resource type="Script" uid="uid://hl46d2klf4sg" path="res://Scripts/UI/KillsUI.cs" id="1_pkr3m"]
+[ext_resource type="PackedScene" uid="uid://bpd6lbnme3cik" path="res://Scenes/UI/mob_entry.tscn" id="2_bquwa"]
+[ext_resource type="Texture2D" uid="uid://thqr61un1xts" path="res://Textures/kills.png" id="3_4hbei"]
+[ext_resource type="Script" uid="uid://bpt8oip43tkj6" path="res://Scripts/UI/KillsLoad.cs" id="4_asfuq"]
 
 [node name="KillsUI" type="CanvasLayer" unique_id=1000854830]
 process_mode = 3
-script = ExtResource("1_pyre1")
-MobEntryScene = ExtResource("2_pyre1")
+script = ExtResource("1_pkr3m")
+MobEntryScene = ExtResource("2_bquwa")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1018133426]
 anchors_preset = 15
@@ -46,7 +46,7 @@ offset_bottom = 836.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.4, 0.4)
-texture = ExtResource("1_uyied")
+texture = ExtResource("3_4hbei")
 
 [node name="VScrollBar" type="VScrollBar" parent="Panel" unique_id=929536097]
 layout_mode = 0
@@ -71,7 +71,7 @@ offset_right = 200.0
 offset_bottom = 116.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("2_vk107")
+script = ExtResource("4_asfuq")
 
 [node name="MobGroup" type="VBoxContainer" parent="Panel/VBoxContainer" unique_id=678103059]
 layout_mode = 2

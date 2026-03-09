@@ -2,12 +2,13 @@
 
 [ext_resource type="Texture2D" uid="uid://5qqt6n7towun" path="res://Textures/banner.png" id="1_n45e2"]
 [ext_resource type="Texture2D" uid="uid://ddg32ke0itwuo" path="res://Buttons/start button.png" id="2_opfnp"]
-[ext_resource type="Script" uid="uid://clyhxj0sh8xnm" path="res://Scripts/StartButton.cs" id="3_cp0ys"]
+[ext_resource type="Script" uid="uid://clyhxj0sh8xnm" path="res://Scripts/UI/StartButton.cs" id="3_cp0ys"]
 [ext_resource type="Texture2D" uid="uid://dbr7xirci48vy" path="res://Buttons/kills button.png" id="4_yhxw7"]
 [ext_resource type="Texture2D" uid="uid://blar7odv4mgxd" path="res://Buttons/powerup button.png" id="5_trj04"]
-[ext_resource type="Script" uid="uid://dojufuy8ti1kv" path="res://Scripts/KillsButton.cs" id="6_yhxw7"]
-[ext_resource type="Script" uid="uid://dj5nv6m2e7lcs" path="res://Scripts/PowerUpButton.cs" id="8_trj04"]
-[ext_resource type="PackedScene" uid="uid://vhlkfdx6q1w0" path="res://Scenes/KillsUI.tscn" id="8_yhxw7"]
+[ext_resource type="Script" uid="uid://dojufuy8ti1kv" path="res://Scripts/UI/KillsButton.cs" id="6_yhxw7"]
+[ext_resource type="Script" uid="uid://dj5nv6m2e7lcs" path="res://Scripts/UI/PowerUpButton.cs" id="8_trj04"]
+[ext_resource type="PackedScene" uid="uid://vhlkfdx6q1w0" path="res://Scenes/UI/KillsUI.tscn" id="8_yhxw7"]
+
 
 [node name="Main Menu" type="Control" unique_id=1056142175]
 layout_mode = 3

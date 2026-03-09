@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bpd6lbnme3cik"]
 
-[ext_resource type="Script" uid="uid://cu73p4dm6615w" path="res://Scenes/MobEntry.cs" id="1_2ocha"]
+[ext_resource type="Script" uid="uid://cu73p4dm6615w" path="res://Scripts/UI/MobEntry.cs" id="1_2ocha"]
 [ext_resource type="FontFile" uid="uid://bbv5li714o8fv" path="res://Textures/BreatheFire-65pg.ttf" id="1_35cl5"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_2ocha"]

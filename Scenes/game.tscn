@@ -4,8 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://dfb0pmuqalve3" path="res://Scenes/player.tscn" id="2_feb5d"]
 [ext_resource type="Theme" uid="uid://disof3rnrc5mc" path="res://Textures/HealthBarFull.tres" id="3_i6g32"]
 [ext_resource type="Texture2D" uid="uid://ckbxniseigmaq" path="res://Textures/checker.png" id="4_fc0e3"]
-[ext_resource type="PackedScene" uid="uid://dth1qcqxp2edf" path="res://Scenes/LevelUpUI.tscn" id="5_i6g32"]
-[ext_resource type="PackedScene" uid="uid://djtc02vuy3ydt" path="res://Scenes/enemy_spawner.tscn" id="5_wowpa"]
+[ext_resource type="PackedScene" uid="uid://dth1qcqxp2edf" path="res://Scenes/UI/LevelUpUI.tscn" id="5_i6g32"]
+[ext_resource type="PackedScene" uid="uid://djtc02vuy3ydt" path="res://Scenes/Environment/enemy_spawner.tscn" id="5_wowpa"]
 
 [node name="Game" type="Node2D" unique_id=581274643]
 script = ExtResource("1_80nbo")

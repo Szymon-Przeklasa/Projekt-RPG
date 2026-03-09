@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c21xa0f8nmxaa"]
 
-[ext_resource type="Script" uid="uid://bokgcftcqm8vf" path="res://Enemybleed.cs" id="1_n0dl5"]
+[ext_resource type="Script" uid="uid://bokgcftcqm8vf" path="res://Scripts/Enemies/Enemybleed.cs" id="1_n0dl5"]
+
 
 [sub_resource type="Gradient" id="Gradient_6avdc"]
 colors = PackedColorArray(0.78069407, 5.7997554e-06, 0, 1, 0.24107525, 0, 0.016122032, 1)
