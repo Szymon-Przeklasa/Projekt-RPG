@@ -8,35 +8,57 @@ public partial class Player : CharacterBody2D
 	[Export] public PackedScene ProjectileScene;
 	[Export] public WeaponStats Weapon;
 	[Export] public int Speed = 600;
+	[Export] public int CurrentHP = 100;
+	[Export] public int MaxHP = 100;
 	[Export] public int Xp = 0;
 	[Export] public int XpToLevel = 10;
 	[Export] public int Level = 1;
 
-
 	public Dictionary<Enemy, int> KillCounter;
 	public List<UpgradeData> AvailableUpgrades = new();
 
-
+	public ProgressBar HealthBar;
+	[Export] public Theme HealthBarFull;
+	[Export] public Theme HealthBarHalf;
+	[Export] public Theme HealthBarLow;
 
 	public Marker2D ShootPoint;
-
 
 	public override void _Ready()
 	{
 		SetupUpgrades();
 		GD.Print("Upgrades count: ", AvailableUpgrades.Count);
-
+		
+		HealthBar = GetNode<ProgressBar>("HealthBar");
+		
 		ShootPoint = GetNode<Marker2D>("ShootPoint");
 
 		foreach (Weapon weapon in GetNode("Weapons").GetChildren())
 			weapon.Init(this);
+			
+		UpdateHealthBar(100, 100);
 	}
-
+	
+	public void UpdateHealthBar(int currentValue, int maxValue)
+	{
+		CurrentHP = currentValue;
+		MaxHP = maxValue;
+		if(CurrentHP <= MaxHP * 0.15) {
+			HealthBar.Theme = HealthBarLow;
+		} else if(CurrentHP > MaxHP * 0.15 && CurrentHP <= MaxHP * 0.5) {
+			HealthBar.Theme = HealthBarHalf;
+		} else { 
+			HealthBar.Theme = HealthBarFull;
+		} 
+		HealthBar.MinValue = 0;
+		HealthBar.MaxValue = maxValue;
+		HealthBar.Value = currentValue;
+	}
+	
 	public void KillCount(Enemy enemy)
 	{
 		KillCounter[enemy] += 1;
 	}
-
 
 	private void SetupUpgrades()
 	{
