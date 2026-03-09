@@ -12,7 +12,7 @@ public partial class KillsUI : CanvasLayer
 	{
 		Visible = false;
 
-		var killManager = GetNode<KillManager>("/root/KillManager");
+		var killManager = GetNode<KillManager>("/root/Scripts/KillManager");
 
 		killManager.KillUpdated += OnKillUpdated;
 	}
