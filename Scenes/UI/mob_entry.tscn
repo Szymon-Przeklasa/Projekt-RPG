@@ -5,18 +5,19 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_2ocha"]
 font = ExtResource("1_35cl5")
+font_size = 22
 
 [sub_resource type="LabelSettings" id="LabelSettings_o0kpc"]
 font = ExtResource("1_35cl5")
-font_size = 8
+font_size = 12
 
 [sub_resource type="LabelSettings" id="LabelSettings_61au0"]
 font = ExtResource("1_35cl5")
-font_size = 8
+font_size = 12
 
 [sub_resource type="LabelSettings" id="LabelSettings_knibv"]
 font = ExtResource("1_35cl5")
-font_size = 8
+font_size = 12
 
 [node name="MobEntry" type="HBoxContainer" unique_id=606187065]
 offset_right = 254.0
@@ -29,6 +30,7 @@ layout_mode = 2
 
 [node name="MobInfo" type="VBoxContainer" parent="." unique_id=120102422]
 layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="MobName" type="Label" parent="MobInfo" unique_id=1449023423]
 layout_mode = 2
@@ -58,6 +60,7 @@ label_settings = SubResource("LabelSettings_61au0")
 
 [node name="NextTierKills" type="Label" parent="MobInfo/KillCounter" unique_id=320991767]
 layout_mode = 2
+size_flags_horizontal = 10
 text = "100"
 label_settings = SubResource("LabelSettings_knibv")
 horizontal_alignment = 2
