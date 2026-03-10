@@ -14,10 +14,17 @@ script = ExtResource("1_80nbo")
 
 [node name="HealthBar" type="ProgressBar" parent="Player" unique_id=1772653588]
 z_index = 2
-offset_left = -2.5013876
-offset_top = -30.016647
-offset_right = 137.57632
-offset_bottom = -5.0027695
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -70.03885
+offset_top = -95.052734
+offset_right = 70.038864
+offset_bottom = -70.03886
+grow_horizontal = 2
+grow_vertical = 2
 theme = ExtResource("3_i6g32")
 value = 100.0
 rounded = true

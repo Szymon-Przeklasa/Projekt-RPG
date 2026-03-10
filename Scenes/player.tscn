@@ -48,7 +48,6 @@ metadata/_custom_type_script = "uid://dbo4rnc0ylwwr"
 
 [node name="Player" type="CharacterBody2D" unique_id=960175255 groups=["player"]]
 z_index = 2
-position = Vector2(-2, -3)
 scale = Vector2(0.39977813, 0.39977813)
 collision_mask = 2
 motion_mode = 1
@@ -56,12 +55,9 @@ script = ExtResource("1_4flbx")
 ProjectileScene = ExtResource("2_onrkg")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=751756645]
-position = Vector2(68, 69)
-scale = Vector2(0.96418923, 0.96418923)
 texture = ExtResource("3_tx1dd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1527608151]
-position = Vector2(68, 69)
 shape = SubResource("RectangleShape2D_i3pqv")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=49971150]
@@ -69,14 +65,10 @@ position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 
 [node name="ShootPoint" type="Marker2D" parent="." unique_id=1547768162]
-position = Vector2(67.53746, 70.03885)
 
 [node name="AutoShootTimer" type="Timer" parent="." unique_id=912475612]
 wait_time = 0.129
 autostart = true
-
-[node name="PlayerScene" type="Node2D" parent="." unique_id=974612588]
-position = Vector2(67.53746, 72.54024)
 
 [node name="Weapons" type="Node" parent="." unique_id=861545881]
 

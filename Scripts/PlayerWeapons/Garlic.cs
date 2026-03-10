@@ -12,7 +12,6 @@ public partial class Garlic : Weapon
 		{
 			aura = ProjectileScene.Instantiate<GpuParticles2D>();
 			Player.AddChild(aura);
-			aura.Scale = Vector2.One * (Stats.Range / 500f);
 			aura.Position = Vector2.Zero;
 		}
 

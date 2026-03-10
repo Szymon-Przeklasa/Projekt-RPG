@@ -31,13 +31,16 @@ public partial class Player : CharacterBody2D
 			weapon.Init(this);
 	}
 
-
 	private void SetupUpgrades()
 	{
-		var lightning = GetNodeOrNull<Lightning>("Weapons/Lightning");
-		var garlic = GetNodeOrNull<Garlic>("Weapons/Garlic");
+		
+		
 
-		if (lightning != null)
+
+        // lightning
+        var lightning = GetNodeOrNull<Lightning>("Weapons/Lightning");
+
+        if (lightning != null)
 		{
 			AvailableUpgrades.Add(new UpgradeData(
 				"Lightning Damage +5",
@@ -47,9 +50,9 @@ public partial class Player : CharacterBody2D
 			));
 
 			AvailableUpgrades.Add(new UpgradeData(
-				"Lightning Cooldown -0.5",
+				"Lightning Cooldown -0.1",
 				() => {
-					lightning.Stats.Cooldown = Mathf.Max(0.2f, lightning.Stats.Cooldown - 0.5f);
+					lightning.Stats.Cooldown = Mathf.Max(0.2f, lightning.Stats.Cooldown - 0.1f);
 					lightning.RefreshStats();
 				}
 			));
@@ -62,7 +65,11 @@ public partial class Player : CharacterBody2D
 			));
 		}
 
-		if (garlic != null)
+
+        // garlic
+        var garlic = GetNodeOrNull<Garlic>("Weapons/Garlic");
+
+        if (garlic != null)
 		{
 			AvailableUpgrades.Add(new UpgradeData(
 				"Garlic Damage +2",
@@ -78,6 +85,9 @@ public partial class Player : CharacterBody2D
 				}
 			));
 		}
+
+
+
 
 		// Global stat upgrade example
 		AvailableUpgrades.Add(new UpgradeData(
@@ -143,11 +153,19 @@ public partial class Player : CharacterBody2D
 		Velocity = inputDirection * Speed;
 	}
 
+
 	public override void _PhysicsProcess(double delta)
 	{
 		if (Input.IsActionJustPressed("pause"))
 		{
-
+			if (GetTree().Paused)
+			{
+                GetTree().Paused = false;
+            }
+			else
+			{
+                GetTree().Paused = true;
+            }
 		}
 
 		GetInput();
