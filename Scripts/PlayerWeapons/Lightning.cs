@@ -32,8 +32,10 @@ public partial class Lightning : Weapon
 			var center = current.GetNode<Marker2D>("Center");
 			Vector2 toPosition = center.GlobalPosition;
 
-			// Damage
-			((Enemy)current).TakeDamage(Stats.Damage, Vector2.Zero);
+            // Damage
+            int damage = Mathf.RoundToInt(Stats.Damage * Player.DamageMultiplier);
+
+            ((Enemy)current).TakeDamage(damage, Vector2.Zero);
 
 			// Visual FX
 			SpawnLightningFX(fromPosition, toPosition);

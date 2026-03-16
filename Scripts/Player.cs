@@ -12,12 +12,24 @@ public partial class Player : CharacterBody2D
 	[Export] public int XpToLevel = 10;
 	[Export] public int Level = 1;
 
+    public List<UpgradeData> AvailableUpgrades = new();
 
-	public List<UpgradeData> AvailableUpgrades = new();
+    // Global multipliers (used by weapons)
+    public float DamageMultiplier = 1f;
+    public float CooldownMultiplier = 1f;
+    public float AreaMultiplier = 1f;
+    public float SpeedMultiplier = 1f;
+
+    // Weapon + passive limits
+    public const int MAX_WEAPONS = 5;
+    public const int MAX_PASSIVES = 5;
+
+    public List<Weapon> Weapons = new();
+    public List<UpgradeData> PassiveUpgrades = new();
 
 
 
-	public Marker2D ShootPoint;
+    public Marker2D ShootPoint;
 
 
 	public override void _Ready()
@@ -27,86 +39,150 @@ public partial class Player : CharacterBody2D
 
 		ShootPoint = GetNode<Marker2D>("ShootPoint");
 
-		foreach (Weapon weapon in GetNode("Weapons").GetChildren())
-			weapon.Init(this);
-	}
+        foreach (Weapon weapon in GetNode("Weapons").GetChildren())
+        {
+            weapon.Init(this);
+            Weapons.Add(weapon);
+        }
+    }
 
-	private void SetupUpgrades()
-	{
-		
-		
+    public bool AddWeapon(PackedScene weaponScene)
+    {
+        if (Weapons.Count >= MAX_WEAPONS)
+            return false;
 
+        var weapon = weaponScene.Instantiate<Weapon>();
 
+        GetNode("Weapons").AddChild(weapon);
+
+        weapon.Init(this);
+
+        Weapons.Add(weapon);
+
+        return true;
+    }
+
+    public bool AddPassive(UpgradeData upgrade)
+    {
+        if (PassiveUpgrades.Count >= MAX_PASSIVES)
+            return false;
+
+        PassiveUpgrades.Add(upgrade);
+
+        upgrade.Apply(this);
+
+        return true;
+    }
+
+    public List<UpgradeData> GetUpgradeChoices(int count = 3)
+    {
+        List<UpgradeData> valid = new();
+
+        foreach (var upgrade in AvailableUpgrades)
+        {
+            if (upgrade.CanUpgrade)
+                valid.Add(upgrade);
+        }
+
+        Shuffle(valid);
+
+        if (valid.Count > count)
+            valid.RemoveRange(count, valid.Count - count);
+
+        return valid;
+    }
+
+    public void Shuffle<T>(IList<T> list)
+    {
+        RandomNumberGenerator rng = new RandomNumberGenerator();
+
+        for (int i = list.Count - 1; i > 0; i--)
+        {
+            int j = rng.RandiRange(0, i);
+            (list[i], list[j]) = (list[j], list[i]);
+        }
+    }
+
+    private void SetupUpgrades()
+    {
         // lightning
         var lightning = GetNodeOrNull<Lightning>("Weapons/Lightning");
 
         if (lightning != null)
-		{
-			AvailableUpgrades.Add(new UpgradeData(
-				"Lightning Damage +5",
-				() => {
-					lightning.Stats.Damage += 5;
-				}
-			));
+        {
+            AvailableUpgrades.Add(new UpgradeData(
+                "Lightning Damage +5",
+                UpgradeType.Weapon,
+                (p) => {
+                    lightning.Stats.Damage += 5;
+                },
+                8
+            ));
 
-			AvailableUpgrades.Add(new UpgradeData(
-				"Lightning Cooldown -0.1",
-				() => {
-					lightning.Stats.Cooldown = Mathf.Max(0.2f, lightning.Stats.Cooldown - 0.1f);
-					lightning.RefreshStats();
-				}
-			));
+            AvailableUpgrades.Add(new UpgradeData(
+                "Lightning Cooldown -0.1",
+                UpgradeType.Weapon,
+                (p) => {
+                    lightning.Stats.Cooldown =
+                        Mathf.Max(0.2f, lightning.Stats.Cooldown - 0.1f);
 
-			AvailableUpgrades.Add(new UpgradeData(
-				"Lightning +1 Projectile",
-				() => {
-					lightning.Stats.ProjectileCount += 1;
-				}
-			));
-		}
+                    lightning.RefreshStats();
+                },
+                8
+            ));
+
+            AvailableUpgrades.Add(new UpgradeData(
+                "Lightning +1 Projectile",
+                UpgradeType.Weapon,
+                (p) => {
+                    lightning.Stats.ProjectileCount += 1;
+                },
+                8
+            ));
+        }
 
 
         // garlic
         var garlic = GetNodeOrNull<Garlic>("Weapons/Garlic");
 
         if (garlic != null)
-		{
-			AvailableUpgrades.Add(new UpgradeData(
-				"Garlic Damage +2",
-				() => {
-					garlic.Stats.Damage += 2;
-				}
-			));
+        {
+            AvailableUpgrades.Add(new UpgradeData(
+                "Garlic Damage +2",
+                UpgradeType.Weapon,
+                (p) => {
+                    garlic.Stats.Damage += 2;
+                },
+                8
+            ));
 
-			AvailableUpgrades.Add(new UpgradeData(
-				"Garlic Range +20",
-				() => {
-					garlic.Stats.Range += 20;
-				}
-			));
-		}
-
-
-
-
-		// Global stat upgrade example
-		AvailableUpgrades.Add(new UpgradeData(
-			"Global Knockback +50",
-			() => {
-				foreach (var weapon in GetChildren())
-				{
-					if (weapon is Weapon w)
-						w.Stats.Knockback += 50;
-				}
-			}
-		));
-	}
+            AvailableUpgrades.Add(new UpgradeData(
+                "Garlic Range +20",
+                UpgradeType.Weapon,
+                (p) => {
+                    garlic.Stats.Range += 20;
+                },
+                8
+            ));
+        }
 
 
+        // global stat upgrade
+        AvailableUpgrades.Add(new UpgradeData(
+            "Damage +10%",
+            UpgradeType.Stat,
+            (p) => {
+                p.DamageMultiplier += 0.1f;
+            },
+            5
+        ));
+    }
 
 
 
-	public Node2D GetClosestEnemy(float range)
+
+
+    public Node2D GetClosestEnemy(float range)
 	{
 		Node2D closest = null;
 		float best = range;
@@ -144,8 +220,10 @@ public partial class Player : CharacterBody2D
 
 		var ui = GetTree().CurrentScene.GetNode<LevelUpUI>("LevelUpUI");
 		GD.Print(ui.GetType());
-		ui.ShowUpgrades(this);
-	}
+        var upgrades = GetUpgradeChoices(3);
+
+        ui.ShowUpgrades(this);
+    }
 
 	public void GetInput()
 	{
@@ -155,12 +233,12 @@ public partial class Player : CharacterBody2D
 
 
 	public override void _PhysicsProcess(double delta)
-	{
+	{ 
 		if (Input.IsActionJustPressed("pause"))
 		{
 			if (GetTree().Paused)
 			{
-                GetTree().Paused = false;
+                GetTree().Paused = false; // doesnt unpause somehow
             }
 			else
 			{
