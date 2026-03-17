@@ -1,0 +1,116 @@
+\doxysection{Player Class Reference}
+\hypertarget{class_player}{}\label{class_player}\index{Player@{Player}}
+
+
+Klasa reprezentująca gracza. Odpowiada za ruch, doświadczenie, poziomy oraz zarządzanie broniami i ulepszeniami.  
+
+
+Inheritance diagram for Player:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_player}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_player_ae192a478a80f0e93e01339d62cdd6f6d}\label{class_player_ae192a478a80f0e93e01339d62cdd6f6d} 
+override void {\bfseries \+\_\+\+Ready} ()
+\begin{DoxyCompactList}\small\item\em Metoda wywoływana po inicjalizacji węzła. Inicjalizuje ulepszenia, pobiera punkt strzału oraz inicjalizuje bronie. \end{DoxyCompactList}\item 
+Node2D \doxymbox{\hyperlink{class_player_af4a774413c768fe7d78ac549a8d408e0}{Get\+Closest\+Enemy}} (float range)
+\begin{DoxyCompactList}\small\item\em Znajduje najbliższego przeciwnika w określonym zasięgu. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_player_af88c73f8d02da8953738ff84d1547cbd}{Gain\+Xp}} (int amount)
+\begin{DoxyCompactList}\small\item\em Dodaje doświadczenie graczowi i sprawdza, czy powinien awansować na kolejny poziom. \end{DoxyCompactList}\item 
+\Hypertarget{class_player_aaa08a71c33eb3d12ec47507697ae8bff}\label{class_player_aaa08a71c33eb3d12ec47507697ae8bff} 
+void {\bfseries Get\+Input} ()
+\begin{DoxyCompactList}\small\item\em Odczytuje wejście gracza i ustawia kierunek ruchu. \end{DoxyCompactList}\item 
+override void \doxymbox{\hyperlink{class_player_a58bb8488c42d336b1ba8b3f796ba67f0}{\+\_\+\+Physics\+Process}} (double delta)
+\begin{DoxyCompactList}\small\item\em Metoda fizyczna wywoływana co klatkę. Obsługuje ruch gracza oraz inne zdarzenia fizyczne. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_player_a7150fb6b28e2e78f5b4f07d5e777827e}\label{class_player_a7150fb6b28e2e78f5b4f07d5e777827e} 
+Packed\+Scene {\bfseries Projectile\+Scene}
+\begin{DoxyCompactList}\small\item\em Scena pocisku używana przez broń gracza. \end{DoxyCompactList}\item 
+\Hypertarget{class_player_a2cdea0bd6e046dbda1dd221d4d033992}\label{class_player_a2cdea0bd6e046dbda1dd221d4d033992} 
+\doxymbox{\hyperlink{class_weapon_stats}{Weapon\+Stats}} {\bfseries Weapon}
+\begin{DoxyCompactList}\small\item\em Podstawowe statystyki broni przypisanej do gracza. \end{DoxyCompactList}\item 
+\Hypertarget{class_player_aac3a86fcdf79b227f213afbcf88494d1}\label{class_player_aac3a86fcdf79b227f213afbcf88494d1} 
+int {\bfseries Speed} = 600
+\begin{DoxyCompactList}\small\item\em Prędkość poruszania się gracza. \end{DoxyCompactList}\item 
+\Hypertarget{class_player_a67cf69da2bb1c6e1243b130c49d4fc23}\label{class_player_a67cf69da2bb1c6e1243b130c49d4fc23} 
+int {\bfseries Xp} = 0
+\begin{DoxyCompactList}\small\item\em Aktualna ilość doświadczenia gracza. \end{DoxyCompactList}\item 
+\Hypertarget{class_player_a246df04ece36765ef096d281c2062f4a}\label{class_player_a246df04ece36765ef096d281c2062f4a} 
+int {\bfseries Xp\+To\+Level} = 10
+\begin{DoxyCompactList}\small\item\em Ilość doświadczenia potrzebna do awansu na kolejny poziom. \end{DoxyCompactList}\item 
+\Hypertarget{class_player_ad89cb407e6df206d7a21a714006571c9}\label{class_player_ad89cb407e6df206d7a21a714006571c9} 
+int {\bfseries Level} = 1
+\begin{DoxyCompactList}\small\item\em Aktualny poziom gracza. \end{DoxyCompactList}\item 
+\Hypertarget{class_player_a4c65f9e64640d7a7ff5839a2d33289ce}\label{class_player_a4c65f9e64640d7a7ff5839a2d33289ce} 
+List$<$ \doxymbox{\hyperlink{class_upgrade_data}{Upgrade\+Data}} $>$ {\bfseries Available\+Upgrades} = new()
+\begin{DoxyCompactList}\small\item\em Lista dostępnych ulepszeń, które gracz może wybrać. \end{DoxyCompactList}\item 
+\Hypertarget{class_player_aa5941029adf2b4bb90a3d95163309057}\label{class_player_aa5941029adf2b4bb90a3d95163309057} 
+Marker2D {\bfseries Shoot\+Point}
+\begin{DoxyCompactList}\small\item\em Punkt, z którego wystrzeliwane są pociski. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Klasa reprezentująca gracza. Odpowiada za ruch, doświadczenie, poziomy oraz zarządzanie broniami i ulepszeniami. 
+
+\label{doc-func-members}
+\Hypertarget{class_player_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_player_a58bb8488c42d336b1ba8b3f796ba67f0}\index{Player@{Player}!\_PhysicsProcess@{\_PhysicsProcess}}
+\index{\_PhysicsProcess@{\_PhysicsProcess}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{\_PhysicsProcess()}{\_PhysicsProcess()}}
+{\footnotesize\ttfamily \label{class_player_a58bb8488c42d336b1ba8b3f796ba67f0} 
+override void Player.\+\_\+\+Physics\+Process (\begin{DoxyParamCaption}\item[{double}]{delta}{}\end{DoxyParamCaption})}
+
+
+
+Metoda fizyczna wywoływana co klatkę. Obsługuje ruch gracza oraz inne zdarzenia fizyczne. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em delta} & Czas od ostatniej klatki.\\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_player_af88c73f8d02da8953738ff84d1547cbd}\index{Player@{Player}!GainXp@{GainXp}}
+\index{GainXp@{GainXp}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{GainXp()}{GainXp()}}
+{\footnotesize\ttfamily \label{class_player_af88c73f8d02da8953738ff84d1547cbd} 
+void Player.\+Gain\+Xp (\begin{DoxyParamCaption}\item[{int}]{amount}{}\end{DoxyParamCaption})}
+
+
+
+Dodaje doświadczenie graczowi i sprawdza, czy powinien awansować na kolejny poziom. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em amount} & Ilość zdobytego doświadczenia.\\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_player_af4a774413c768fe7d78ac549a8d408e0}\index{Player@{Player}!GetClosestEnemy@{GetClosestEnemy}}
+\index{GetClosestEnemy@{GetClosestEnemy}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{GetClosestEnemy()}{GetClosestEnemy()}}
+{\footnotesize\ttfamily \label{class_player_af4a774413c768fe7d78ac549a8d408e0} 
+Node2D Player.\+Get\+Closest\+Enemy (\begin{DoxyParamCaption}\item[{float}]{range}{}\end{DoxyParamCaption})}
+
+
+
+Znajduje najbliższego przeciwnika w określonym zasięgu. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em range} & Maksymalny zasięg wyszukiwania.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Najbliższy przeciwnik lub null, jeśli brak w zasięgu.
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+Scripts/\+Player.\+cs\end{DoxyCompactItemize}

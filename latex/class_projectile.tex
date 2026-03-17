@@ -1,0 +1,100 @@
+\doxysection{Projectile Class Reference}
+\hypertarget{class_projectile}{}\label{class_projectile}\index{Projectile@{Projectile}}
+
+
+Klasa reprezentuj¹ca pocisk wystrzeliwany przez broñ. Obs³uguje ruch pocisku, kolizje z wrogami oraz iloœæ przebiæ (Pierce).  
+
+
+Inheritance diagram for Projectile:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_projectile}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_projectile_a88a3aac9b716dc17d5bb3c774cafaf67}{Setup}} (Vector2 dir, \doxymbox{\hyperlink{class_weapon_stats}{Weapon\+Stats}} stats)
+\begin{DoxyCompactList}\small\item\em Inicjalizuje pocisk z kierunkiem, statystykami broni i ustawieniem iloœci przebiæ. \end{DoxyCompactList}\item 
+\Hypertarget{class_projectile_aa76ea7837cff1014bad0d4cb94016f26}\label{class_projectile_aa76ea7837cff1014bad0d4cb94016f26} 
+override void {\bfseries \+\_\+\+Ready} ()
+\begin{DoxyCompactList}\small\item\em Metoda wywo³ywana po dodaniu wêz³a do drzewa sceny. Subskrybuje zdarzenie Body\+Entered do obs³ugi kolizji z wrogami. \end{DoxyCompactList}\item 
+override void \doxymbox{\hyperlink{class_projectile_a161180282124b67b393d1a3280988235}{\+\_\+\+Physics\+Process}} (double delta)
+\begin{DoxyCompactList}\small\item\em Metoda fizyczna wywo³ywana co klatkê. Przesuwa pocisk w kierunku Direction z uwzglêdnieniem prêdkoœci Stats.\+Speed. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \doxymbox{\hyperlink{class_projectile_a855a6909fb83e7cc586c64d9ceb5c454}{On\+Hit}} (Node body)
+\begin{DoxyCompactList}\small\item\em Wywo³ywana po trafieniu w inny wêze³. Je¿eli wêze³ jest przeciwnikiem, zadaje obra¿enia i zmniejsza liczbê przebiæ. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_projectile_a117a5b2f9a9e05cd541a949d47f8d83c}\label{class_projectile_a117a5b2f9a9e05cd541a949d47f8d83c} 
+Vector2 {\bfseries Direction}
+\begin{DoxyCompactList}\small\item\em Kierunek poruszania siê pocisku. \end{DoxyCompactList}\item 
+\Hypertarget{class_projectile_a2791c8f20931d7bc909f3591d381f9b6}\label{class_projectile_a2791c8f20931d7bc909f3591d381f9b6} 
+\doxymbox{\hyperlink{class_weapon_stats}{Weapon\+Stats}} {\bfseries Stats}
+\begin{DoxyCompactList}\small\item\em Statystyki broni, z której pochodzi pocisk. \end{DoxyCompactList}\item 
+\Hypertarget{class_projectile_af9e81cb0e0caf1dc4e948bbaf513169a}\label{class_projectile_af9e81cb0e0caf1dc4e948bbaf513169a} 
+int {\bfseries Pierce\+Left}
+\begin{DoxyCompactList}\small\item\em Pozosta³a liczba przebiæ pocisku. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Klasa reprezentuj¹ca pocisk wystrzeliwany przez broñ. Obs³uguje ruch pocisku, kolizje z wrogami oraz iloœæ przebiæ (Pierce). 
+
+\label{doc-func-members}
+\Hypertarget{class_projectile_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_projectile_a161180282124b67b393d1a3280988235}\index{Projectile@{Projectile}!\_PhysicsProcess@{\_PhysicsProcess}}
+\index{\_PhysicsProcess@{\_PhysicsProcess}!Projectile@{Projectile}}
+\doxysubsubsection{\texorpdfstring{\_PhysicsProcess()}{\_PhysicsProcess()}}
+{\footnotesize\ttfamily \label{class_projectile_a161180282124b67b393d1a3280988235} 
+override void Projectile.\+\_\+\+Physics\+Process (\begin{DoxyParamCaption}\item[{double}]{delta}{}\end{DoxyParamCaption})}
+
+
+
+Metoda fizyczna wywo³ywana co klatkê. Przesuwa pocisk w kierunku Direction z uwzglêdnieniem prêdkoœci Stats.\+Speed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em delta} & Czas od ostatniej klatki.\\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_projectile_a855a6909fb83e7cc586c64d9ceb5c454}\index{Projectile@{Projectile}!OnHit@{OnHit}}
+\index{OnHit@{OnHit}!Projectile@{Projectile}}
+\doxysubsubsection{\texorpdfstring{OnHit()}{OnHit()}}
+{\footnotesize\ttfamily \label{class_projectile_a855a6909fb83e7cc586c64d9ceb5c454} 
+virtual void Projectile.\+On\+Hit (\begin{DoxyParamCaption}\item[{Node}]{body}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Wywo³ywana po trafieniu w inny wêze³. Je¿eli wêze³ jest przeciwnikiem, zadaje obra¿enia i zmniejsza liczbê przebiæ. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em body} & Wêze³, który wszed³ w kolizjê z pociskiem.\\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_projectile_a88a3aac9b716dc17d5bb3c774cafaf67}\index{Projectile@{Projectile}!Setup@{Setup}}
+\index{Setup@{Setup}!Projectile@{Projectile}}
+\doxysubsubsection{\texorpdfstring{Setup()}{Setup()}}
+{\footnotesize\ttfamily \label{class_projectile_a88a3aac9b716dc17d5bb3c774cafaf67} 
+void Projectile.\+Setup (\begin{DoxyParamCaption}\item[{Vector2}]{dir}{, }\item[{\doxymbox{\hyperlink{class_weapon_stats}{Weapon\+Stats}}}]{stats}{}\end{DoxyParamCaption})}
+
+
+
+Inicjalizuje pocisk z kierunkiem, statystykami broni i ustawieniem iloœci przebiæ. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dir} & Kierunek poruszania siê pocisku.\\
+\hline
+{\em stats} & Statystyki broni.\\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+Scripts/\+\+Player\+Weapons/\+Projectile.\+cs\end{DoxyCompactItemize}

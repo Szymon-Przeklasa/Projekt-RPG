@@ -1,0 +1,52 @@
+\doxysection{Lightning Class Reference}
+\hypertarget{class_lightning}{}\label{class_lightning}\index{Lightning@{Lightning}}
+
+
+Klasa reprezentuj¹ca broñ typu \doxylink{class_lightning}{Lightning}. Wystrzeliwuje ³añcuchowy atak elektryczny, który przeskakuje miêdzy przeciwnikami. Dziedziczy po klasie \doxylink{class_weapon}{Weapon}.  
+
+
+Inheritance diagram for Lightning:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_lightning}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_lightning_a5b838c8830a3a14bc5a05783de9dcf75}\label{class_lightning_a5b838c8830a3a14bc5a05783de9dcf75} 
+override void {\bfseries Fire} ()
+\begin{DoxyCompactList}\small\item\em Metoda wywo³ywana przy strzale. Wybiera najbli¿szego przeciwnika i zadaje obra¿enia, przeskakuj¹c do kolejnych w zasiêgu. Tworzy równie¿ efekty wizualne pioruna. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \doxymbox{\hyperlink{class_weapon}{Weapon}}}
+\begin{DoxyCompactItemize}
+\item 
+void {\bfseries Fire} ()
+\begin{DoxyCompactList}\small\item\em Abstrakcyjna metoda odpowiedzialna za wykonanie strzaÅ‚u. Musi zostaÄ‡ zaimplementowana w klasach dziedziczÄ…cych. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{class_weapon}{Weapon}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \doxymbox{\hyperlink{class_weapon_a33d626e47c4808639ffd14de099228ed}{Init}} (\doxymbox{\hyperlink{class_player}{Player}} player)
+\begin{DoxyCompactList}\small\item\em Inicjalizuje broÅ„ dla danego gracza. Tworzy i uruchamia timer odpowiedzialny za strzaÅ‚y. \end{DoxyCompactList}\item 
+void {\bfseries Refresh\+Stats} ()
+\begin{DoxyCompactList}\small\item\em OdÅ›wieÅ¼a statystyki broni. Aktualizuje czas oczekiwania timera na podstawie aktualnego cooldownu. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \doxymbox{\hyperlink{class_weapon}{Weapon}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_weapon_stats}{Weapon\+Stats}} {\bfseries Stats}
+\begin{DoxyCompactList}\small\item\em Statystyki broni (np. cooldown, obraÅ¼enia itp.). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \doxymbox{\hyperlink{class_weapon}{Weapon}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_player}{Player}} {\bfseries Player}
+\begin{DoxyCompactList}\small\item\em Referencja do gracza, ktÃ³ry posiada tÄ™ broÅ„. \end{DoxyCompactList}\item 
+Timer {\bfseries timer}
+\begin{DoxyCompactList}\small\item\em Timer odpowiedzialny za cykliczne wywoÅ‚ywanie metody \doxylink{class_weapon_a4d7034c6c517d5f3a505f648e450e62d}{Fire()}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Klasa reprezentuj¹ca broñ typu \doxylink{class_lightning}{Lightning}. Wystrzeliwuje ³añcuchowy atak elektryczny, który przeskakuje miêdzy przeciwnikami. Dziedziczy po klasie \doxylink{class_weapon}{Weapon}. 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+Scripts/\+\+Player\+Weapons/\+Lightning.\+cs\end{DoxyCompactItemize}

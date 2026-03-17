@@ -1,0 +1,70 @@
+\doxysection{Weapon Class Reference}
+\hypertarget{class_weapon}{}\label{class_weapon}\index{Weapon@{Weapon}}
+
+
+Abstrakcyjna klasa bazowa reprezentująca broń. Odpowiada za zarządzanie statystykami oraz mechanizmem wywoływania strzału w określonych odstępach czasu.  
+
+
+Inheritance diagram for Weapon:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_weapon}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \doxymbox{\hyperlink{class_weapon_a33d626e47c4808639ffd14de099228ed}{Init}} (\doxymbox{\hyperlink{class_player}{Player}} player)
+\begin{DoxyCompactList}\small\item\em Inicjalizuje broń dla danego gracza. Tworzy i uruchamia timer odpowiedzialny za strzały. \end{DoxyCompactList}\item 
+\Hypertarget{class_weapon_a2a24dba6dbe19674a0ab7d9ab0b20d98}\label{class_weapon_a2a24dba6dbe19674a0ab7d9ab0b20d98} 
+void {\bfseries Refresh\+Stats} ()
+\begin{DoxyCompactList}\small\item\em Odświeża statystyki broni. Aktualizuje czas oczekiwania timera na podstawie aktualnego cooldownu. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_weapon_a0f4c970f65c3e7d77d4cdd9bff525f4d}\label{class_weapon_a0f4c970f65c3e7d77d4cdd9bff525f4d} 
+\doxymbox{\hyperlink{class_weapon_stats}{Weapon\+Stats}} {\bfseries Stats}
+\begin{DoxyCompactList}\small\item\em Statystyki broni (np. cooldown, obrażenia itp.). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_weapon_a4d7034c6c517d5f3a505f648e450e62d}\label{class_weapon_a4d7034c6c517d5f3a505f648e450e62d} 
+void {\bfseries Fire} ()
+\begin{DoxyCompactList}\small\item\em Abstrakcyjna metoda odpowiedzialna za wykonanie strzału. Musi zostać zaimplementowana w klasach dziedziczących. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_weapon_ab998a5554d2a9aedc15dc42c72ea91ab}\label{class_weapon_ab998a5554d2a9aedc15dc42c72ea91ab} 
+\doxymbox{\hyperlink{class_player}{Player}} {\bfseries Player}
+\begin{DoxyCompactList}\small\item\em Referencja do gracza, który posiada tę broń. \end{DoxyCompactList}\item 
+\Hypertarget{class_weapon_a9666761200f5ea34e62b0c9b17d28903}\label{class_weapon_a9666761200f5ea34e62b0c9b17d28903} 
+Timer {\bfseries timer}
+\begin{DoxyCompactList}\small\item\em Timer odpowiedzialny za cykliczne wywoływanie metody \doxylink{class_weapon_a4d7034c6c517d5f3a505f648e450e62d}{Fire()}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Abstrakcyjna klasa bazowa reprezentująca broń. Odpowiada za zarządzanie statystykami oraz mechanizmem wywoływania strzału w określonych odstępach czasu. 
+
+\label{doc-func-members}
+\Hypertarget{class_weapon_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_weapon_a33d626e47c4808639ffd14de099228ed}\index{Weapon@{Weapon}!Init@{Init}}
+\index{Init@{Init}!Weapon@{Weapon}}
+\doxysubsubsection{\texorpdfstring{Init()}{Init()}}
+{\footnotesize\ttfamily \label{class_weapon_a33d626e47c4808639ffd14de099228ed} 
+virtual void Weapon.\+Init (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_player}{Player}}}]{player}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Inicjalizuje broń dla danego gracza. Tworzy i uruchamia timer odpowiedzialny za strzały. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & Obiekt gracza, do którego przypisana jest broń.\\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+Weapons/\+Weapon.\+cs\end{DoxyCompactItemize}

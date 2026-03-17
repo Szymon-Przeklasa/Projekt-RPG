@@ -1,40 +1,79 @@
 using Godot;
 
+/// <summary>
+/// Klasa odpowiedzialna za generowanie przeciwników w grze.
+/// Tworzy nowych wrogów wokó³ gracza w okreœlonym promieniu i z czasem skraca odstêp miêdzy spawnami.
+/// </summary>
 public partial class EnemySpawner : Node2D
 {
-	[Export] public PackedScene EnemyScene;
-	[Export] public float SpawnRadius = 100f;
-	[Export] public float SpawnInterval = 1.2f;
-	[Export] public float MinSpawnInterval = 0.05f; // minimum spawn time
-	[Export] public float SpawnDecayFactor = 0.95f; // how much interval decreases per spawn
+    /// <summary>
+    /// Scena przeciwnika do tworzenia instancji.
+    /// </summary>
+    [Export] public PackedScene EnemyScene;
 
-	private Player player;
-	private Timer timer;
+    /// <summary>
+    /// Promieñ wokó³ gracza, w którym przeciwnicy mog¹ siê pojawiaæ.
+    /// </summary>
+    [Export] public float SpawnRadius = 100f;
 
-	public override void _Ready()
-	{
-		player = GetTree().GetFirstNodeInGroup("player") as Player;
+    /// <summary>
+    /// Pocz¹tkowy odstêp miêdzy spawnami przeciwników (w sekundach).
+    /// </summary>
+    [Export] public float SpawnInterval = 1.2f;
 
-		timer = GetNode<Timer>("SpawnTimer");
-		timer.WaitTime = SpawnInterval;
-		timer.Timeout += SpawnEnemy;
-		timer.Start();
-	}
+    /// <summary>
+    /// Minimalny mo¿liwy odstêp miêdzy spawnami.
+    /// </summary>
+    [Export] public float MinSpawnInterval = 0.05f;
 
-	private void SpawnEnemy()
-	{
-		if (player == null) return;
+    /// <summary>
+    /// Wspó³czynnik zmniejszaj¹cy odstêp miêdzy spawnami po ka¿dym wrogu.
+    /// </summary>
+    [Export] public float SpawnDecayFactor = 0.95f;
 
-		// Spawn enemy
-		Vector2 direction = Vector2.Right.Rotated(GD.Randf() * Mathf.Tau);
-		Vector2 spawnPos = player.GlobalPosition + direction * SpawnRadius;
+    /// <summary>
+    /// Referencja do gracza, wokó³ którego spawnuj¹ siê wrogowie.
+    /// </summary>
+    private Player player;
 
-		var enemy = EnemyScene.Instantiate<Enemy>();
-		enemy.GlobalPosition = spawnPos;
-		GetTree().CurrentScene.AddChild(enemy);
+    /// <summary>
+    /// Timer odpowiedzialny za wywo³ywanie spawnów przeciwników.
+    /// </summary>
+    private Timer timer;
 
-		// Gradually decrease spawn interval
-		timer.WaitTime = Mathf.Max(MinSpawnInterval, timer.WaitTime * SpawnDecayFactor);
-		timer.Start(); // restart timer with new interval
-	}
+    /// <summary>
+    /// Metoda wywo³ywana po dodaniu wêz³a do drzewa sceny.
+    /// Inicjalizuje gracza i timer.
+    /// </summary>
+    public override void _Ready()
+    {
+        player = GetTree().GetFirstNodeInGroup("player") as Player;
+
+        timer = GetNode<Timer>("SpawnTimer");
+        timer.WaitTime = SpawnInterval;
+        timer.Timeout += SpawnEnemy;
+        timer.Start();
+    }
+
+    /// <summary>
+    /// Tworzy nowego przeciwnika w losowej pozycji wokó³ gracza.
+    /// Skraca odstêp miêdzy spawnami zgodnie ze wspó³czynnikiem SpawnDecayFactor.
+    /// </summary>
+    private void SpawnEnemy()
+    {
+        if (player == null) return;
+
+        // Losowa pozycja w promieniu SpawnRadius
+        Vector2 direction = Vector2.Right.Rotated(GD.Randf() * Mathf.Tau);
+        Vector2 spawnPos = player.GlobalPosition + direction * SpawnRadius;
+
+        // Tworzenie wroga
+        var enemy = EnemyScene.Instantiate<Enemy>();
+        enemy.GlobalPosition = spawnPos;
+        GetTree().CurrentScene.AddChild(enemy);
+
+        // Stopniowe zmniejszanie odstêpu miêdzy spawnami
+        timer.WaitTime = Mathf.Max(MinSpawnInterval, timer.WaitTime * SpawnDecayFactor);
+        timer.Start(); // restart timera z nowym odstêpem
+    }
 }

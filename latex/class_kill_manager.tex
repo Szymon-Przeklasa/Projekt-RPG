@@ -1,0 +1,109 @@
+\doxysection{Kill\+Manager Class Reference}
+\hypertarget{class_kill_manager}{}\label{class_kill_manager}\index{KillManager@{KillManager}}
+
+
+Menedżer odpowiedzialny za zliczanie zabójstw przeciwników. Implementuje wzorzec singleton i zapisuje dane do pliku.  
+
+
+Inheritance diagram for Kill\+Manager:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_kill_manager}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+delegate void \doxymbox{\hyperlink{class_kill_manager_a71acac214f8b52426a8d19e66140e1a3}{Kill\+Updated\+Event\+Handler}} (string mob\+ID, int kills)
+\begin{DoxyCompactList}\small\item\em Sygnał emitowany po zaktualizowaniu liczby zabójstw. \end{DoxyCompactList}\item 
+\Hypertarget{class_kill_manager_af68be7d94cf971a3dae03e02db331ae2}\label{class_kill_manager_af68be7d94cf971a3dae03e02db331ae2} 
+override void {\bfseries \+\_\+\+Ready} ()
+\begin{DoxyCompactList}\small\item\em Metoda wywoływana po inicjalizacji węzła. Ustawia instancję singletona oraz wczytuje zapisane dane. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_kill_manager_a72e2ecaa626b1cc025df558fac7c4230}{Register\+Kill}} (string mob\+ID)
+\begin{DoxyCompactList}\small\item\em Rejestruje zabójstwo przeciwnika o podanym identyfikatorze. Aktualizuje licznik, emituje sygnał oraz zapisuje dane do pliku. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{class_kill_manager_abbbb8879e05292d8c8bedbc37c16c03f}{Get\+Kills}} (string mob\+ID)
+\begin{DoxyCompactList}\small\item\em Zwraca liczbę zabójstw dla danego przeciwnika. \end{DoxyCompactList}\item 
+Dictionary$<$ string, int $>$ \doxymbox{\hyperlink{class_kill_manager_afe50e12f01d171f98f2624966a5dfda2}{Get\+All\+Kills}} ()
+\begin{DoxyCompactList}\small\item\em Zwraca wszystkie zapisane statystyki zabójstw. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_kill_manager_a09d25178c95d313dffb90d62a4bdf597}\label{class_kill_manager_a09d25178c95d313dffb90d62a4bdf597} 
+static \doxymbox{\hyperlink{class_kill_manager}{Kill\+Manager}} {\bfseries Instance}
+\begin{DoxyCompactList}\small\item\em Statyczna instancja singletona. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Menedżer odpowiedzialny za zliczanie zabójstw przeciwników. Implementuje wzorzec singleton i zapisuje dane do pliku. 
+
+\label{doc-func-members}
+\Hypertarget{class_kill_manager_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_kill_manager_afe50e12f01d171f98f2624966a5dfda2}\index{KillManager@{KillManager}!GetAllKills@{GetAllKills}}
+\index{GetAllKills@{GetAllKills}!KillManager@{KillManager}}
+\doxysubsubsection{\texorpdfstring{GetAllKills()}{GetAllKills()}}
+{\footnotesize\ttfamily \label{class_kill_manager_afe50e12f01d171f98f2624966a5dfda2} 
+Dictionary$<$ string, int $>$ Kill\+Manager.\+Get\+All\+Kills (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Zwraca wszystkie zapisane statystyki zabójstw. 
+
+\begin{DoxyReturn}{Returns}
+Słownik zawierający liczbę zabójstw dla każdego przeciwnika.
+\end{DoxyReturn}
+\Hypertarget{class_kill_manager_abbbb8879e05292d8c8bedbc37c16c03f}\index{KillManager@{KillManager}!GetKills@{GetKills}}
+\index{GetKills@{GetKills}!KillManager@{KillManager}}
+\doxysubsubsection{\texorpdfstring{GetKills()}{GetKills()}}
+{\footnotesize\ttfamily \label{class_kill_manager_abbbb8879e05292d8c8bedbc37c16c03f} 
+int Kill\+Manager.\+Get\+Kills (\begin{DoxyParamCaption}\item[{string}]{mob\+ID}{}\end{DoxyParamCaption})}
+
+
+
+Zwraca liczbę zabójstw dla danego przeciwnika. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mob\+ID} & Identyfikator przeciwnika.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Liczba zabójstw lub 0, jeśli brak wpisu.
+\end{DoxyReturn}
+\Hypertarget{class_kill_manager_a71acac214f8b52426a8d19e66140e1a3}\index{KillManager@{KillManager}!KillUpdatedEventHandler@{KillUpdatedEventHandler}}
+\index{KillUpdatedEventHandler@{KillUpdatedEventHandler}!KillManager@{KillManager}}
+\doxysubsubsection{\texorpdfstring{KillUpdatedEventHandler()}{KillUpdatedEventHandler()}}
+{\footnotesize\ttfamily \label{class_kill_manager_a71acac214f8b52426a8d19e66140e1a3} 
+delegate void Kill\+Manager.\+Kill\+Updated\+Event\+Handler (\begin{DoxyParamCaption}\item[{string}]{mob\+ID}{, }\item[{int}]{kills}{}\end{DoxyParamCaption})}
+
+
+
+Sygnał emitowany po zaktualizowaniu liczby zabójstw. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mob\+ID} & Identyfikator przeciwnika.\\
+\hline
+{\em kills} & Aktualna liczba zabójstw dla danego przeciwnika.\\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_kill_manager_a72e2ecaa626b1cc025df558fac7c4230}\index{KillManager@{KillManager}!RegisterKill@{RegisterKill}}
+\index{RegisterKill@{RegisterKill}!KillManager@{KillManager}}
+\doxysubsubsection{\texorpdfstring{RegisterKill()}{RegisterKill()}}
+{\footnotesize\ttfamily \label{class_kill_manager_a72e2ecaa626b1cc025df558fac7c4230} 
+void Kill\+Manager.\+Register\+Kill (\begin{DoxyParamCaption}\item[{string}]{mob\+ID}{}\end{DoxyParamCaption})}
+
+
+
+Rejestruje zabójstwo przeciwnika o podanym identyfikatorze. Aktualizuje licznik, emituje sygnał oraz zapisuje dane do pliku. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mob\+ID} & Identyfikator przeciwnika.\\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+Scripts/\+Kill\+Manager.\+cs\end{DoxyCompactItemize}

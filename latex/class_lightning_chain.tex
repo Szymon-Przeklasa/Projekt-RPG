@@ -1,0 +1,51 @@
+\doxysection{Lightning\+Chain Class Reference}
+\hypertarget{class_lightning_chain}{}\label{class_lightning_chain}\index{LightningChain@{LightningChain}}
+
+
+Klasa reprezentuj¹ca pojedynczy segment ³añcucha pioruna dla broni \doxylink{class_lightning}{Lightning}. Dziedziczy po Gpu\+Particles2D i odpowiada za wizualizacjê miêdzy dwoma punktami.  
+
+
+Inheritance diagram for Lightning\+Chain:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_lightning_chain}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_lightning_chain_a6dc3d69175a59364aad6a2a06fd43fcb}{Setup}} (Vector2 from, Vector2 to)
+\begin{DoxyCompactList}\small\item\em Konfiguruje segment ³añcucha miêdzy dwoma punktami. Ustawia pozycjê, obrót, skalê i uruchamia emisjê cz¹steczek. \end{DoxyCompactList}\item 
+\Hypertarget{class_lightning_chain_abdbe944f4a5d971c3a0439d2ff31243d}\label{class_lightning_chain_abdbe944f4a5d971c3a0439d2ff31243d} 
+override async void {\bfseries \+\_\+\+Ready} ()
+\begin{DoxyCompactList}\small\item\em Metoda wywo³ywana po dodaniu wêz³a do drzewa sceny. W³¹cza emisjê cz¹steczek i po okreœlonym czasie usuwa segment z gry. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Klasa reprezentuj¹ca pojedynczy segment ³añcucha pioruna dla broni \doxylink{class_lightning}{Lightning}. Dziedziczy po Gpu\+Particles2D i odpowiada za wizualizacjê miêdzy dwoma punktami. 
+
+\label{doc-func-members}
+\Hypertarget{class_lightning_chain_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_lightning_chain_a6dc3d69175a59364aad6a2a06fd43fcb}\index{LightningChain@{LightningChain}!Setup@{Setup}}
+\index{Setup@{Setup}!LightningChain@{LightningChain}}
+\doxysubsubsection{\texorpdfstring{Setup()}{Setup()}}
+{\footnotesize\ttfamily \label{class_lightning_chain_a6dc3d69175a59364aad6a2a06fd43fcb} 
+void Lightning\+Chain.\+Setup (\begin{DoxyParamCaption}\item[{Vector2}]{from}{, }\item[{Vector2}]{to}{}\end{DoxyParamCaption})}
+
+
+
+Konfiguruje segment ³añcucha miêdzy dwoma punktami. Ustawia pozycjê, obrót, skalê i uruchamia emisjê cz¹steczek. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em from} & Pozycja startowa segmentu.\\
+\hline
+{\em to} & Pozycja koñcowa segmentu.\\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+Scripts/\+\+Player\+Weapons/\+Lightning\+Chain.\+cs\end{DoxyCompactItemize}

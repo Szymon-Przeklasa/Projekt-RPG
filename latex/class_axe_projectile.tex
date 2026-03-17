@@ -1,0 +1,70 @@
+\doxysection{Axe\+Projectile Class Reference}
+\hypertarget{class_axe_projectile}{}\label{class_axe_projectile}\index{AxeProjectile@{AxeProjectile}}
+
+
+Klasa reprezentuj¹ca pocisk topora. Dziedziczy po klasie \doxylink{class_projectile}{Projectile} i dodaje efekt opadaj¹cej trajektorii.  
+
+
+Inheritance diagram for Axe\+Projectile:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_axe_projectile}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+override void \doxymbox{\hyperlink{class_axe_projectile_ac493368c9ea3046e00d4b008dcaa6863}{\+\_\+\+Physics\+Process}} (double delta)
+\begin{DoxyCompactList}\small\item\em Metoda fizyczna wywo³ywana co klatkê. Aktualizuje czas i modyfikuje kierunek pocisku, a nastêpnie wywo³uje logikê klasy bazowej. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{class_projectile}{Projectile}}}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_projectile_a88a3aac9b716dc17d5bb3c774cafaf67}{Setup}} (Vector2 dir, \doxymbox{\hyperlink{class_weapon_stats}{Weapon\+Stats}} stats)
+\begin{DoxyCompactList}\small\item\em Inicjalizuje pocisk z kierunkiem, statystykami broni i ustawieniem iloœci przebiæ. \end{DoxyCompactList}\item 
+override void {\bfseries \+\_\+\+Ready} ()
+\begin{DoxyCompactList}\small\item\em Metoda wywo³ywana po dodaniu wêz³a do drzewa sceny. Subskrybuje zdarzenie Body\+Entered do obs³ugi kolizji z wrogami. \end{DoxyCompactList}\item 
+override void \doxymbox{\hyperlink{class_projectile_a161180282124b67b393d1a3280988235}{\+\_\+\+Physics\+Process}} (double delta)
+\begin{DoxyCompactList}\small\item\em Metoda fizyczna wywo³ywana co klatkê. Przesuwa pocisk w kierunku Direction z uwzglêdnieniem prêdkoœci Stats.\+Speed. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Member Functions inherited from \doxymbox{\hyperlink{class_projectile}{Projectile}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \doxymbox{\hyperlink{class_projectile_a855a6909fb83e7cc586c64d9ceb5c454}{On\+Hit}} (Node body)
+\begin{DoxyCompactList}\small\item\em Wywo³ywana po trafieniu w inny wêze³. Je¿eli wêze³ jest przeciwnikiem, zadaje obra¿enia i zmniejsza liczbê przebiæ. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \doxymbox{\hyperlink{class_projectile}{Projectile}}}
+\begin{DoxyCompactItemize}
+\item 
+Vector2 {\bfseries Direction}
+\begin{DoxyCompactList}\small\item\em Kierunek poruszania siê pocisku. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_weapon_stats}{Weapon\+Stats}} {\bfseries Stats}
+\begin{DoxyCompactList}\small\item\em Statystyki broni, z której pochodzi pocisk. \end{DoxyCompactList}\item 
+int {\bfseries Pierce\+Left}
+\begin{DoxyCompactList}\small\item\em Pozosta³a liczba przebiæ pocisku. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Klasa reprezentuj¹ca pocisk topora. Dziedziczy po klasie \doxylink{class_projectile}{Projectile} i dodaje efekt opadaj¹cej trajektorii. 
+
+\label{doc-func-members}
+\Hypertarget{class_axe_projectile_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_axe_projectile_ac493368c9ea3046e00d4b008dcaa6863}\index{AxeProjectile@{AxeProjectile}!\_PhysicsProcess@{\_PhysicsProcess}}
+\index{\_PhysicsProcess@{\_PhysicsProcess}!AxeProjectile@{AxeProjectile}}
+\doxysubsubsection{\texorpdfstring{\_PhysicsProcess()}{\_PhysicsProcess()}}
+{\footnotesize\ttfamily \label{class_axe_projectile_ac493368c9ea3046e00d4b008dcaa6863} 
+override void Axe\+Projectile.\+\_\+\+Physics\+Process (\begin{DoxyParamCaption}\item[{double}]{delta}{}\end{DoxyParamCaption})}
+
+
+
+Metoda fizyczna wywo³ywana co klatkê. Aktualizuje czas i modyfikuje kierunek pocisku, a nastêpnie wywo³uje logikê klasy bazowej. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em delta} & Czas od ostatniej klatki.\\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+Scripts/\+\+Player\+Weapons/\+Axe.\+cs\end{DoxyCompactItemize}
