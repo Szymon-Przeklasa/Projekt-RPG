@@ -21,27 +21,27 @@ override void {\bfseries Fire} ()
 \begin{DoxyCompactItemize}
 \item 
 void {\bfseries Fire} ()
-\begin{DoxyCompactList}\small\item\em Abstrakcyjna metoda odpowiedzialna za wykonanie strzału. Musi zostać zaimplementowana w klasach dziedziczących. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Metoda abstrakcyjna wywoływana przy każdym strzale. Każda broń powinna nadpisać tę metodę, implementując własną logikę strzału. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Additional Inherited Members}
 \doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{class_weapon}{Weapon}}}
 \begin{DoxyCompactItemize}
 \item 
 virtual void \doxymbox{\hyperlink{class_weapon_a33d626e47c4808639ffd14de099228ed}{Init}} (\doxymbox{\hyperlink{class_player}{Player}} player)
-\begin{DoxyCompactList}\small\item\em Inicjalizuje broń dla danego gracza. Tworzy i uruchamia timer odpowiedzialny za strzały. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Inicjalizuje broń dla danego gracza. Ustawia timer na podstawie czasu odnowienia i mnożnika gracza. \end{DoxyCompactList}\item 
 void {\bfseries Refresh\+Stats} ()
-\begin{DoxyCompactList}\small\item\em Odświeża statystyki broni. Aktualizuje czas oczekiwania timera na podstawie aktualnego cooldownu. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Odświeża statystyki broni, aktualizując czas odnowienia w timerze. Powinno być wywoływane po zmianie Stats.\+Cooldown lub \doxylink{class_player_a4ecfa1544f4778a8269e388e48e791ae}{Player.\+Cooldown\+Multiplier}. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Public Attributes inherited from \doxymbox{\hyperlink{class_weapon}{Weapon}}}
 \begin{DoxyCompactItemize}
 \item 
 \doxymbox{\hyperlink{class_weapon_stats}{Weapon\+Stats}} {\bfseries Stats}
-\begin{DoxyCompactList}\small\item\em Statystyki broni (np. cooldown, obrażenia itp.). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Statystyki broni (obrażenia, zasięg, liczba pocisków, czas odnowienia itd.). \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Protected Attributes inherited from \doxymbox{\hyperlink{class_weapon}{Weapon}}}
 \begin{DoxyCompactItemize}
 \item 
 \doxymbox{\hyperlink{class_player}{Player}} {\bfseries Player}
-\begin{DoxyCompactList}\small\item\em Referencja do gracza, który posiada tę broń. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Odniesienie do gracza, który używa broni. \end{DoxyCompactList}\item 
 Timer {\bfseries timer}
-\begin{DoxyCompactList}\small\item\em Timer odpowiedzialny za cykliczne wywoływanie metody \doxylink{class_weapon_a4d7034c6c517d5f3a505f648e450e62d}{Fire()}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Timer odpowiadający za wywoływanie strzałów co określony czas. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}

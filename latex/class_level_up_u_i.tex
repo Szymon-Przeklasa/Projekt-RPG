@@ -2,7 +2,7 @@
 \hypertarget{class_level_up_u_i}{}\label{class_level_up_u_i}\index{LevelUpUI@{LevelUpUI}}
 
 
-Interfejs u¿ytkownika wyœwietlany przy awansie na wy¿szy poziom. Pozwala graczowi wybraæ jedno z dostêpnych ulepszeñ.  
+Klasa odpowiedzialna za interfejs uÅ¼ytkownika poziomu ulepszeÅ„ (Level Up UI). Dziedziczy po Canvas\+Layer. Pozwala wybraÄ‡ do 3 dostÄ™pnych ulepszeÅ„ dla gracza i wstrzymuje grÄ™ podczas wyboru.  
 
 
 Inheritance diagram for Level\+Up\+UI:\+\begin{figure}[H]
@@ -16,13 +16,13 @@ Inheritance diagram for Level\+Up\+UI:\+\begin{figure}[H]
 \item 
 \Hypertarget{class_level_up_u_i_a785f9b79a2a6dd4501c258affe56edd6}\label{class_level_up_u_i_a785f9b79a2a6dd4501c258affe56edd6} 
 override void {\bfseries \+\_\+\+Ready} ()
-\begin{DoxyCompactList}\small\item\em Metoda wywo³ywana po dodaniu wêz³a do drzewa sceny. Inicjalizuje referencje do przycisków i ukrywa UI. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Metoda wywoÅ‚ywana po zaÅ‚adowaniu sceny. Inicjalizuje przyciski i ustawia widocznoÅ›Ä‡ interfejsu na false. \end{DoxyCompactList}\item 
 void \doxymbox{\hyperlink{class_level_up_u_i_aeff85e35667fa1a230e4e09311974b50}{Show\+Upgrades}} (\doxymbox{\hyperlink{class_player}{Player}} p)
-\begin{DoxyCompactList}\small\item\em Wyœwietla losowe ulepszenia dla gracza. Pauzuje grê i pokazuje interfejs wyboru. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em WyÅ›wietla interfejs wyboru ulepszeÅ„ dla danego gracza. Losuje do 3 ulepszeÅ„, ktÃ³re gracz moÅ¼e aktualnie odblokowaÄ‡. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-Interfejs u¿ytkownika wyœwietlany przy awansie na wy¿szy poziom. Pozwala graczowi wybraæ jedno z dostêpnych ulepszeñ. 
+Klasa odpowiedzialna za interfejs uÅ¼ytkownika poziomu ulepszeÅ„ (Level Up UI). Dziedziczy po Canvas\+Layer. Pozwala wybraÄ‡ do 3 dostÄ™pnych ulepszeÅ„ dla gracza i wstrzymuje grÄ™ podczas wyboru. 
 
 \label{doc-func-members}
 \Hypertarget{class_level_up_u_i_doc-func-members}
@@ -35,11 +35,11 @@ void Level\+Up\+UI.\+Show\+Upgrades (\begin{DoxyParamCaption}\item[{\doxymbox{\h
 
 
 
-Wyœwietla losowe ulepszenia dla gracza. Pauzuje grê i pokazuje interfejs wyboru. 
+WyÅ›wietla interfejs wyboru ulepszeÅ„ dla danego gracza. Losuje do 3 ulepszeÅ„, ktÃ³re gracz moÅ¼e aktualnie odblokowaÄ‡. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em p} & Gracz, dla którego generowane s¹ ulepszenia.\\
+{\em p} & Gracz, dla ktÃ³rego wyÅ›wietlamy dostÄ™pne ulepszenia.\\
 \hline
 \end{DoxyParams}
 

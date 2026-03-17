@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['killupdatedeventhandler_0',['KillUpdatedEventHandler',['../class_kill_manager.html#a71acac214f8b52426a8d19e66140e1a3',1,'KillManager']]]
+  ['init_0',['Init',['../class_weapon.html#a33d626e47c4808639ffd14de099228ed',1,'Weapon']]]
 ];

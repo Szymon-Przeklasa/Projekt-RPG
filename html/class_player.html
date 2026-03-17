@@ -92,7 +92,7 @@ $(function(){initNavTree('class_player.html','','class_player-members'); });
 </div><!--header-->
 <div class="contents">
 
-<p>Klasa reprezentująca gracza. Odpowiada za ruch, doświadczenie, poziomy oraz zarządzanie broniami i ulepszeniami.  
+<p>Klasa reprezentująca gracza w grze. Dziedziczy po CharacterBody2D. Zarządza broniami, ulepszeniami, doświadczeniem i poziomami gracza.  
  <a href="#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for Player:</div>
@@ -105,16 +105,24 @@ Inheritance diagram for Player:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ae192a478a80f0e93e01339d62cdd6f6d" id="r_ae192a478a80f0e93e01339d62cdd6f6d"><td class="memItemLeft"><a id="ae192a478a80f0e93e01339d62cdd6f6d" name="ae192a478a80f0e93e01339d62cdd6f6d"></a>
 override void&#160;</td><td class="memItemRight"><b>_Ready</b> ()</td></tr>
-<tr class="memdesc:ae192a478a80f0e93e01339d62cdd6f6d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metoda wywoływana po inicjalizacji węzła. Inicjalizuje ulepszenia, pobiera punkt strzału oraz inicjalizuje bronie. <br /></td></tr>
+<tr class="memdesc:ae192a478a80f0e93e01339d62cdd6f6d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metoda wywoływana po załadowaniu sceny. Inicjalizuje bronie i dostępne ulepszenia. <br /></td></tr>
+<tr class="memitem:a99f503cdb9b18c94b48f8402c3714181" id="r_a99f503cdb9b18c94b48f8402c3714181"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a99f503cdb9b18c94b48f8402c3714181">AddWeapon</a> (PackedScene weaponScene)</td></tr>
+<tr class="memdesc:a99f503cdb9b18c94b48f8402c3714181"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dodaje nową broń do gracza.  <br /></td></tr>
+<tr class="memitem:af74c1447ff411d11a4249abc584f503a" id="r_af74c1447ff411d11a4249abc584f503a"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#af74c1447ff411d11a4249abc584f503a">AddPassive</a> (<a class="el" href="class_upgrade_data.html">UpgradeData</a> upgrade)</td></tr>
+<tr class="memdesc:af74c1447ff411d11a4249abc584f503a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dodaje pasywne ulepszenie do gracza.  <br /></td></tr>
+<tr class="memitem:a4e10eded91132b45c0ea0164c671bf7d" id="r_a4e10eded91132b45c0ea0164c671bf7d"><td class="memItemLeft">List&lt; <a class="el" href="class_upgrade_data.html">UpgradeData</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a4e10eded91132b45c0ea0164c671bf7d">GetUpgradeChoices</a> (int count=3)</td></tr>
+<tr class="memdesc:a4e10eded91132b45c0ea0164c671bf7d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zwraca losową listę dostępnych ulepszeń do wyboru.  <br /></td></tr>
+<tr class="memitem:aef2694077ff73312537f56874215efb3" id="r_aef2694077ff73312537f56874215efb3"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#aef2694077ff73312537f56874215efb3">Shuffle&lt; T &gt;</a> (IList&lt; T &gt; list)</td></tr>
+<tr class="memdesc:aef2694077ff73312537f56874215efb3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tasuje elementy w liście w miejscu.  <br /></td></tr>
 <tr class="memitem:af4a774413c768fe7d78ac549a8d408e0" id="r_af4a774413c768fe7d78ac549a8d408e0"><td class="memItemLeft">Node2D&#160;</td><td class="memItemRight"><a class="el" href="#af4a774413c768fe7d78ac549a8d408e0">GetClosestEnemy</a> (float range)</td></tr>
-<tr class="memdesc:af4a774413c768fe7d78ac549a8d408e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Znajduje najbliższego przeciwnika w określonym zasięgu.  <br /></td></tr>
+<tr class="memdesc:af4a774413c768fe7d78ac549a8d408e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zwraca najbliższego wroga w określonym zasięgu.  <br /></td></tr>
 <tr class="memitem:af88c73f8d02da8953738ff84d1547cbd" id="r_af88c73f8d02da8953738ff84d1547cbd"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#af88c73f8d02da8953738ff84d1547cbd">GainXp</a> (int amount)</td></tr>
-<tr class="memdesc:af88c73f8d02da8953738ff84d1547cbd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dodaje doświadczenie graczowi i sprawdza, czy powinien awansować na kolejny poziom.  <br /></td></tr>
+<tr class="memdesc:af88c73f8d02da8953738ff84d1547cbd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dodaje doświadczenie graczowi i sprawdza, czy nastąpił awans na kolejny poziom.  <br /></td></tr>
 <tr class="memitem:aaa08a71c33eb3d12ec47507697ae8bff" id="r_aaa08a71c33eb3d12ec47507697ae8bff"><td class="memItemLeft"><a id="aaa08a71c33eb3d12ec47507697ae8bff" name="aaa08a71c33eb3d12ec47507697ae8bff"></a>
 void&#160;</td><td class="memItemRight"><b>GetInput</b> ()</td></tr>
-<tr class="memdesc:aaa08a71c33eb3d12ec47507697ae8bff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Odczytuje wejście gracza i ustawia kierunek ruchu. <br /></td></tr>
+<tr class="memdesc:aaa08a71c33eb3d12ec47507697ae8bff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Odczytuje wejście gracza i ustawia wektor prędkości. <br /></td></tr>
 <tr class="memitem:a58bb8488c42d336b1ba8b3f796ba67f0" id="r_a58bb8488c42d336b1ba8b3f796ba67f0"><td class="memItemLeft">override void&#160;</td><td class="memItemRight"><a class="el" href="#a58bb8488c42d336b1ba8b3f796ba67f0">_PhysicsProcess</a> (double delta)</td></tr>
-<tr class="memdesc:a58bb8488c42d336b1ba8b3f796ba67f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metoda fizyczna wywoływana co klatkę. Obsługuje ruch gracza oraz inne zdarzenia fizyczne.  <br /></td></tr>
+<tr class="memdesc:a58bb8488c42d336b1ba8b3f796ba67f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metoda wywoływana w każdej klatce fizyki. Obsługuje pauzę gry oraz poruszanie graczem.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -123,7 +131,7 @@ PackedScene&#160;</td><td class="memItemRight"><b>ProjectileScene</b></td></tr>
 <tr class="memdesc:a7150fb6b28e2e78f5b4f07d5e777827e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scena pocisku używana przez broń gracza. <br /></td></tr>
 <tr class="memitem:a2cdea0bd6e046dbda1dd221d4d033992" id="r_a2cdea0bd6e046dbda1dd221d4d033992"><td class="memItemLeft"><a id="a2cdea0bd6e046dbda1dd221d4d033992" name="a2cdea0bd6e046dbda1dd221d4d033992"></a>
 <a class="el" href="class_weapon_stats.html">WeaponStats</a>&#160;</td><td class="memItemRight"><b>Weapon</b></td></tr>
-<tr class="memdesc:a2cdea0bd6e046dbda1dd221d4d033992"><td class="mdescLeft">&#160;</td><td class="mdescRight">Podstawowe statystyki broni przypisanej do gracza. <br /></td></tr>
+<tr class="memdesc:a2cdea0bd6e046dbda1dd221d4d033992"><td class="mdescLeft">&#160;</td><td class="mdescRight">Statystyki aktualnie wybranej broni. <br /></td></tr>
 <tr class="memitem:aac3a86fcdf79b227f213afbcf88494d1" id="r_aac3a86fcdf79b227f213afbcf88494d1"><td class="memItemLeft"><a id="aac3a86fcdf79b227f213afbcf88494d1" name="aac3a86fcdf79b227f213afbcf88494d1"></a>
 int&#160;</td><td class="memItemRight"><b>Speed</b> = 600</td></tr>
 <tr class="memdesc:aac3a86fcdf79b227f213afbcf88494d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prędkość poruszania się gracza. <br /></td></tr>
@@ -138,13 +146,40 @@ int&#160;</td><td class="memItemRight"><b>Level</b> = 1</td></tr>
 <tr class="memdesc:ad89cb407e6df206d7a21a714006571c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Aktualny poziom gracza. <br /></td></tr>
 <tr class="memitem:a4c65f9e64640d7a7ff5839a2d33289ce" id="r_a4c65f9e64640d7a7ff5839a2d33289ce"><td class="memItemLeft"><a id="a4c65f9e64640d7a7ff5839a2d33289ce" name="a4c65f9e64640d7a7ff5839a2d33289ce"></a>
 List&lt; <a class="el" href="class_upgrade_data.html">UpgradeData</a> &gt;&#160;</td><td class="memItemRight"><b>AvailableUpgrades</b> = new()</td></tr>
-<tr class="memdesc:a4c65f9e64640d7a7ff5839a2d33289ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lista dostępnych ulepszeń, które gracz może wybrać. <br /></td></tr>
+<tr class="memdesc:a4c65f9e64640d7a7ff5839a2d33289ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lista dostępnych ulepszeń dla gracza. <br /></td></tr>
+<tr class="memitem:a7d53509665412fc72353f5b28fe9b8c8" id="r_a7d53509665412fc72353f5b28fe9b8c8"><td class="memItemLeft"><a id="a7d53509665412fc72353f5b28fe9b8c8" name="a7d53509665412fc72353f5b28fe9b8c8"></a>
+float&#160;</td><td class="memItemRight"><b>DamageMultiplier</b> = 1f</td></tr>
+<tr class="memdesc:a7d53509665412fc72353f5b28fe9b8c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Globalny mnożnik obrażeń używany przez bronie. <br /></td></tr>
+<tr class="memitem:a4ecfa1544f4778a8269e388e48e791ae" id="r_a4ecfa1544f4778a8269e388e48e791ae"><td class="memItemLeft"><a id="a4ecfa1544f4778a8269e388e48e791ae" name="a4ecfa1544f4778a8269e388e48e791ae"></a>
+float&#160;</td><td class="memItemRight"><b>CooldownMultiplier</b> = 1f</td></tr>
+<tr class="memdesc:a4ecfa1544f4778a8269e388e48e791ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Globalny mnożnik czasu odnowienia umiejętności. <br /></td></tr>
+<tr class="memitem:a34cef58b9d69b05d3d70ac7d6c1741de" id="r_a34cef58b9d69b05d3d70ac7d6c1741de"><td class="memItemLeft"><a id="a34cef58b9d69b05d3d70ac7d6c1741de" name="a34cef58b9d69b05d3d70ac7d6c1741de"></a>
+float&#160;</td><td class="memItemRight"><b>AreaMultiplier</b> = 1f</td></tr>
+<tr class="memdesc:a34cef58b9d69b05d3d70ac7d6c1741de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Globalny mnożnik zasięgu efektów obszarowych. <br /></td></tr>
+<tr class="memitem:a3220205178b7b2d0a1cd5d2d59847c00" id="r_a3220205178b7b2d0a1cd5d2d59847c00"><td class="memItemLeft"><a id="a3220205178b7b2d0a1cd5d2d59847c00" name="a3220205178b7b2d0a1cd5d2d59847c00"></a>
+float&#160;</td><td class="memItemRight"><b>SpeedMultiplier</b> = 1f</td></tr>
+<tr class="memdesc:a3220205178b7b2d0a1cd5d2d59847c00"><td class="mdescLeft">&#160;</td><td class="mdescRight">Globalny mnożnik prędkości. <br /></td></tr>
+<tr class="memitem:afd3edc315c3676eb1fb9cd6d7f5b6240" id="r_afd3edc315c3676eb1fb9cd6d7f5b6240"><td class="memItemLeft"><a id="afd3edc315c3676eb1fb9cd6d7f5b6240" name="afd3edc315c3676eb1fb9cd6d7f5b6240"></a>
+List&lt; <a class="el" href="class_weapon.html">Weapon</a> &gt;&#160;</td><td class="memItemRight"><b>Weapons</b> = new()</td></tr>
+<tr class="memdesc:afd3edc315c3676eb1fb9cd6d7f5b6240"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lista aktualnych broni gracza. <br /></td></tr>
+<tr class="memitem:aabf41e70c2f451f1f4cb7c4b11b3139f" id="r_aabf41e70c2f451f1f4cb7c4b11b3139f"><td class="memItemLeft"><a id="aabf41e70c2f451f1f4cb7c4b11b3139f" name="aabf41e70c2f451f1f4cb7c4b11b3139f"></a>
+List&lt; <a class="el" href="class_upgrade_data.html">UpgradeData</a> &gt;&#160;</td><td class="memItemRight"><b>PassiveUpgrades</b> = new()</td></tr>
+<tr class="memdesc:aabf41e70c2f451f1f4cb7c4b11b3139f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lista pasywnych ulepszeń gracza. <br /></td></tr>
 <tr class="memitem:aa5941029adf2b4bb90a3d95163309057" id="r_aa5941029adf2b4bb90a3d95163309057"><td class="memItemLeft"><a id="aa5941029adf2b4bb90a3d95163309057" name="aa5941029adf2b4bb90a3d95163309057"></a>
 Marker2D&#160;</td><td class="memItemRight"><b>ShootPoint</b></td></tr>
-<tr class="memdesc:aa5941029adf2b4bb90a3d95163309057"><td class="mdescLeft">&#160;</td><td class="mdescRight">Punkt, z którego wystrzeliwane są pociski. <br /></td></tr>
+<tr class="memdesc:aa5941029adf2b4bb90a3d95163309057"><td class="mdescLeft">&#160;</td><td class="mdescRight">Punkt, z którego gracz strzela pociskami. <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-static-attribs" class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
+Static Public Attributes</h2></td></tr>
+<tr class="memitem:af02b9a53ed47fce9495840522dcb2e70" id="r_af02b9a53ed47fce9495840522dcb2e70"><td class="memItemLeft"><a id="af02b9a53ed47fce9495840522dcb2e70" name="af02b9a53ed47fce9495840522dcb2e70"></a>
+const int&#160;</td><td class="memItemRight"><b>MAX_WEAPONS</b> = 5</td></tr>
+<tr class="memdesc:af02b9a53ed47fce9495840522dcb2e70"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maksymalna liczba broni gracza. <br /></td></tr>
+<tr class="memitem:a1efa52fe48965ad65570ab098cdd1536" id="r_a1efa52fe48965ad65570ab098cdd1536"><td class="memItemLeft"><a id="a1efa52fe48965ad65570ab098cdd1536" name="a1efa52fe48965ad65570ab098cdd1536"></a>
+const int&#160;</td><td class="memItemRight"><b>MAX_PASSIVES</b> = 5</td></tr>
+<tr class="memdesc:a1efa52fe48965ad65570ab098cdd1536"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maksymalna liczba pasywnych ulepszeń gracza. <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Klasa reprezentująca gracza. Odpowiada za ruch, doświadczenie, poziomy oraz zarządzanie broniami i ulepszeniami. </p>
+<div class="textblock"><p>Klasa reprezentująca gracza w grze. Dziedziczy po CharacterBody2D. Zarządza broniami, ulepszeniami, doświadczeniem i poziomami gracza. </p>
 </div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
 <a id="a58bb8488c42d336b1ba8b3f796ba67f0" name="a58bb8488c42d336b1ba8b3f796ba67f0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a58bb8488c42d336b1ba8b3f796ba67f0">&#9670;&#160;</a></span>_PhysicsProcess()</h2>
@@ -161,13 +196,65 @@ Marker2D&#160;</td><td class="memItemRight"><b>ShootPoint</b></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Metoda fizyczna wywoływana co klatkę. Obsługuje ruch gracza oraz inne zdarzenia fizyczne. </p>
+<p>Metoda wywoływana w każdej klatce fizyki. Obsługuje pauzę gry oraz poruszanie graczem. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">delta</td><td>Czas od ostatniej klatki.</td></tr>
+    <tr><td class="paramname">delta</td><td>Czas od ostatniej klatki fizyki w sekundach.</td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="af74c1447ff411d11a4249abc584f503a" name="af74c1447ff411d11a4249abc584f503a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af74c1447ff411d11a4249abc584f503a">&#9670;&#160;</a></span>AddPassive()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Player.AddPassive </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_upgrade_data.html">UpgradeData</a></td>          <td class="paramname"><span class="paramname"><em>upgrade</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Dodaje pasywne ulepszenie do gracza. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">upgrade</td><td>Ulepszenie do dodania.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True, jeśli ulepszenie zostało dodane, false jeśli osiągnięto limit.</dd></dl>
+
+</div>
+</div>
+<a id="a99f503cdb9b18c94b48f8402c3714181" name="a99f503cdb9b18c94b48f8402c3714181"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a99f503cdb9b18c94b48f8402c3714181">&#9670;&#160;</a></span>AddWeapon()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Player.AddWeapon </td>
+          <td>(</td>
+          <td class="paramtype">PackedScene</td>          <td class="paramname"><span class="paramname"><em>weaponScene</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Dodaje nową broń do gracza. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">weaponScene</td><td>Scena broni do dodania.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True, jeśli broń została dodana, false jeśli osiągnięto limit.</dd></dl>
 
 </div>
 </div>
@@ -186,10 +273,10 @@ Marker2D&#160;</td><td class="memItemRight"><b>ShootPoint</b></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Dodaje doświadczenie graczowi i sprawdza, czy powinien awansować na kolejny poziom. </p>
+<p>Dodaje doświadczenie graczowi i sprawdza, czy nastąpił awans na kolejny poziom. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">amount</td><td>Ilość zdobytego doświadczenia.</td></tr>
+    <tr><td class="paramname">amount</td><td>Ilość doświadczenia do dodania.</td></tr>
   </table>
   </dd>
 </dl>
@@ -211,14 +298,71 @@ Marker2D&#160;</td><td class="memItemRight"><b>ShootPoint</b></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Znajduje najbliższego przeciwnika w określonym zasięgu. </p>
+<p>Zwraca najbliższego wroga w określonym zasięgu. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">range</td><td>Maksymalny zasięg wyszukiwania.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Najbliższy przeciwnik lub null, jeśli brak w zasięgu.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Najbliższy wróg typu Node2D lub null, jeśli brak wrogów w zasięgu.</dd></dl>
+
+</div>
+</div>
+<a id="a4e10eded91132b45c0ea0164c671bf7d" name="a4e10eded91132b45c0ea0164c671bf7d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e10eded91132b45c0ea0164c671bf7d">&#9670;&#160;</a></span>GetUpgradeChoices()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">List&lt; <a class="el" href="class_upgrade_data.html">UpgradeData</a> &gt; Player.GetUpgradeChoices </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>count</em></span><span class="paramdefsep"> = </span><span class="paramdefval">3</span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Zwraca losową listę dostępnych ulepszeń do wyboru. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">count</td><td>Liczba ulepszeń do zwrócenia (domyślnie 3).</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Lista dostępnych ulepszeń gracza.</dd></dl>
+
+</div>
+</div>
+<a id="aef2694077ff73312537f56874215efb3" name="aef2694077ff73312537f56874215efb3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef2694077ff73312537f56874215efb3">&#9670;&#160;</a></span>Shuffle&lt; T &gt;()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Player.Shuffle&lt; T &gt; </td>
+          <td>(</td>
+          <td class="paramtype">IList&lt; T &gt;</td>          <td class="paramname"><span class="paramname"><em>list</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Tasuje elementy w liście w miejscu. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>Typ elementów w liście.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">list</td><td>Lista do tasowania.</td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

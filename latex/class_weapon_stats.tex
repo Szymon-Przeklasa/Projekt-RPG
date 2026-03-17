@@ -2,7 +2,7 @@
 \hypertarget{class_weapon_stats}{}\label{class_weapon_stats}\index{WeaponStats@{WeaponStats}}
 
 
-Klasa przechowująca statystyki broni. Wykorzystywana jako zasób (Resource), co umożliwia łatwą konfigurację w edytorze.  
+Klasa reprezentująca statystyki broni. Zawiera wszystkie parametry potrzebne do konfiguracji działania broni, takie jak obrażenia, zasięg czy liczba pocisków. Dziedziczy po Resource, dzięki czemu można ją eksportować i edytować w Godot.  
 
 
 Inheritance diagram for Weapon\+Stats:\+\begin{figure}[H]
@@ -16,32 +16,32 @@ Inheritance diagram for Weapon\+Stats:\+\begin{figure}[H]
 \item 
 \Hypertarget{class_weapon_stats_a17365bccc1b05e523dd95d97fe8dd1d4}\label{class_weapon_stats_a17365bccc1b05e523dd95d97fe8dd1d4} 
 float {\bfseries Cooldown} = 1f
-\begin{DoxyCompactList}\small\item\em Czas odnowienia między kolejnymi strzałami (w sekundach). \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Czas odnowienia broni (w sekundach) między kolejnymi strzałami. \end{DoxyCompactList}\item 
 \Hypertarget{class_weapon_stats_aad765447589b2b9747837024817f4963}\label{class_weapon_stats_aad765447589b2b9747837024817f4963} 
 int {\bfseries Damage} = 5
-\begin{DoxyCompactList}\small\item\em Ilość obrażeń zadawanych przez pojedynczy pocisk. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Obrażenia zadawane przez pojedynczy pocisk lub trafienie. \end{DoxyCompactList}\item 
 \Hypertarget{class_weapon_stats_a61e3b38f8b32e39cc396cf3fe7a95501}\label{class_weapon_stats_a61e3b38f8b32e39cc396cf3fe7a95501} 
 float {\bfseries Speed} = 600f
-\begin{DoxyCompactList}\small\item\em Prędkość poruszania się pocisku. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Prędkość pocisku lub efektu broni. \end{DoxyCompactList}\item 
 \Hypertarget{class_weapon_stats_a9bd555ab3c17fcd312bb25b4248ab3d1}\label{class_weapon_stats_a9bd555ab3c17fcd312bb25b4248ab3d1} 
 int {\bfseries Projectile\+Count} = 1
-\begin{DoxyCompactList}\small\item\em Liczba pocisków wystrzeliwanych jednocześnie. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Liczba pocisków wystrzeliwanych przy jednym strzale. \end{DoxyCompactList}\item 
 \Hypertarget{class_weapon_stats_ae7fbc7afca7d696ef578ccb3baf5f86b}\label{class_weapon_stats_ae7fbc7afca7d696ef578ccb3baf5f86b} 
 int {\bfseries Pierce} = 1
-\begin{DoxyCompactList}\small\item\em Liczba przeciwników, przez których pocisk może przeniknąć. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Liczba wrogów, przez których pocisk może przejść (przebicie). \end{DoxyCompactList}\item 
 \Hypertarget{class_weapon_stats_a1e68670f351638c1e19b3390ea5cd761}\label{class_weapon_stats_a1e68670f351638c1e19b3390ea5cd761} 
 float {\bfseries Knockback} = 200f
-\begin{DoxyCompactList}\small\item\em Siła odrzutu (knockback) zadawana przeciwnikowi. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Siła odrzutu wywołanego przez pocisk. \end{DoxyCompactList}\item 
 \Hypertarget{class_weapon_stats_aaf6dcd6a85de75ea54b80feaca4b8b10}\label{class_weapon_stats_aaf6dcd6a85de75ea54b80feaca4b8b10} 
 float {\bfseries Spread\+Angle} = 15f
-\begin{DoxyCompactList}\small\item\em Kąt rozrzutu pocisków (w stopniach). \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Maksymalny kąt rozrzutu pocisków (w stopniach). \end{DoxyCompactList}\item 
 \Hypertarget{class_weapon_stats_a940e4c47b9a90a3fa9e7e8f6b4304b3e}\label{class_weapon_stats_a940e4c47b9a90a3fa9e7e8f6b4304b3e} 
 float {\bfseries Range} = 500f
-\begin{DoxyCompactList}\small\item\em Maksymalny zasięg pocisku. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Zasięg broni w jednostkach sceny Godot. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-Klasa przechowująca statystyki broni. Wykorzystywana jako zasób (Resource), co umożliwia łatwą konfigurację w edytorze. 
+Klasa reprezentująca statystyki broni. Zawiera wszystkie parametry potrzebne do konfiguracji działania broni, takie jak obrażenia, zasięg czy liczba pocisków. Dziedziczy po Resource, dzięki czemu można ją eksportować i edytować w Godot. 
 
 The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
 \item 

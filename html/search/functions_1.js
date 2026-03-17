@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['fire_0',['Fire',['../class_weapon.html#a4d7034c6c517d5f3a505f648e450e62d',1,'Weapon.Fire()'],['../class_fire_wand.html#a55a301dff7525b614a96b1340be9c3b9',1,'FireWand.Fire()'],['../class_garlic.html#a8f91175cdc32db34a33c6bddbf9c9ec8',1,'Garlic.Fire()'],['../class_lightning.html#a5b838c8830a3a14bc5a05783de9dcf75',1,'Lightning.Fire()'],['../class_magnet.html#aaa77d47afe2b59f278ee89a557596b98',1,'Magnet.Fire()']]]
+  ['addpassive_0',['AddPassive',['../class_player.html#af74c1447ff411d11a4249abc584f503a',1,'Player']]],
+  ['addweapon_1',['AddWeapon',['../class_player.html#a99f503cdb9b18c94b48f8402c3714181',1,'Player']]],
+  ['apply_2',['Apply',['../class_upgrade_data.html#abfa2f0160b03db1f201a6b53acc58915',1,'UpgradeData']]]
 ];

@@ -92,7 +92,7 @@ $(function(){initNavTree('class_lightning.html','','class_lightning-members'); }
 </div><!--header-->
 <div class="contents">
 
-<p>Klasa reprezentuj�ca bro� typu <a class="el" href="class_lightning.html" title="Klasa reprezentuj�ca bro� typu Lightning. Wystrzeliwuje �a�cuchowy atak elektryczny, kt�ry przeskakuje mi�dzy pr...">Lightning</a>. Wystrzeliwuje �a�cuchowy atak elektryczny, kt�ry przeskakuje mi�dzy przeciwnikami. Dziedziczy po klasie <a class="el" href="class_weapon.html" title="Abstrakcyjna klasa bazowa reprezentująca broń. Odpowiada za zarządzanie statystykami oraz mechanizmem...">Weapon</a>.  
+<p>Klasa reprezentująca broń typu <a class="el" href="class_lightning.html" title="Klasa reprezentująca broń typu Lightning. Strzela piorunem, który przeskakuje między najbliższymi wro...">Lightning</a>. Strzela piorunem, który przeskakuje między najbliższymi wrogami do określonej liczby razy. Dziedziczy po klasie <a class="el" href="class_weapon.html" title="Klasa bazowa dla wszystkich broni. Zarządza statystykami broni, czasem odnowienia oraz inicjalizacją....">Weapon</a>.  
  <a href="#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for Lightning:</div>
@@ -100,7 +100,7 @@ Inheritance diagram for Lightning:</div>
  <div class="center">
   <img src="class_lightning.png" usemap="#Lightning_map" alt=""/>
   <map id="Lightning_map" name="Lightning_map">
-<area href="class_weapon.html" title="Abstrakcyjna klasa bazowa reprezentująca broń. Odpowiada za zarządzanie statystykami oraz mechanizmem..." alt="Weapon" shape="rect" coords="0,56,63,80"/>
+<area href="class_weapon.html" title="Klasa bazowa dla wszystkich broni. Zarządza statystykami broni, czasem odnowienia oraz inicjalizacją...." alt="Weapon" shape="rect" coords="0,56,63,80"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -108,34 +108,34 @@ Inheritance diagram for Lightning:</div>
 Protected Member Functions</h2></td></tr>
 <tr class="memitem:a5b838c8830a3a14bc5a05783de9dcf75" id="r_a5b838c8830a3a14bc5a05783de9dcf75"><td class="memItemLeft"><a id="a5b838c8830a3a14bc5a05783de9dcf75" name="a5b838c8830a3a14bc5a05783de9dcf75"></a>
 override void&#160;</td><td class="memItemRight"><b>Fire</b> ()</td></tr>
-<tr class="memdesc:a5b838c8830a3a14bc5a05783de9dcf75"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metoda wywo�ywana przy strzale. Wybiera najbli�szego przeciwnika i zadaje obra�enia, przeskakuj�c do kolejnych w zasi�gu. Tworzy r�wnie� efekty wizualne pioruna. <br /></td></tr>
+<tr class="memdesc:a5b838c8830a3a14bc5a05783de9dcf75"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metoda wywoływana przy strzale. Tworzy efekt pioruna od gracza do najbliższego wroga, przeskakując między kolejnymi wrogami aż do osiągnięcia limitu łańcuchów (Stats.ProjectileCount). Każdy trafiony wróg otrzymuje obrażenia obliczone na podstawie Stats.Damage i <a class="el" href="class_player.html#a7d53509665412fc72353f5b28fe9b8c8" title="Globalny mnożnik obrażeń używany przez bronie.">Player.DamageMultiplier</a>. <br /></td></tr>
 <tr class="inherit_header pro_methods_class_weapon"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_methods_class_weapon')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Protected Member Functions inherited from <a class="el" href="class_weapon.html">Weapon</a></td></tr>
 <tr class="memitem:a4d7034c6c517d5f3a505f648e450e62d inherit pro_methods_class_weapon" id="r_a4d7034c6c517d5f3a505f648e450e62d"><td class="memItemLeft">
 void&#160;</td><td class="memItemRight"><b>Fire</b> ()</td></tr>
-<tr class="memdesc:a4d7034c6c517d5f3a505f648e450e62d inherit pro_methods_class_weapon"><td class="mdescLeft">&#160;</td><td class="mdescRight">Abstrakcyjna metoda odpowiedzialna za wykonanie strzału. Musi zostać zaimplementowana w klasach dziedziczących. <br /></td></tr>
+<tr class="memdesc:a4d7034c6c517d5f3a505f648e450e62d inherit pro_methods_class_weapon"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metoda abstrakcyjna wywoływana przy każdym strzale. Każda broń powinna nadpisać tę metodę, implementując własną logikę strzału. <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-inherited" class="groupheader"><a id="inherited" name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pub_methods_class_weapon"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_class_weapon')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Member Functions inherited from <a class="el" href="class_weapon.html">Weapon</a></td></tr>
 <tr class="memitem:a33d626e47c4808639ffd14de099228ed inherit pub_methods_class_weapon" id="r_a33d626e47c4808639ffd14de099228ed"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="class_weapon.html#a33d626e47c4808639ffd14de099228ed">Init</a> (<a class="el" href="class_player.html">Player</a> player)</td></tr>
-<tr class="memdesc:a33d626e47c4808639ffd14de099228ed inherit pub_methods_class_weapon"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inicjalizuje broń dla danego gracza. Tworzy i uruchamia timer odpowiedzialny za strzały.  <br /></td></tr>
+<tr class="memdesc:a33d626e47c4808639ffd14de099228ed inherit pub_methods_class_weapon"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inicjalizuje broń dla danego gracza. Ustawia timer na podstawie czasu odnowienia i mnożnika gracza.  <br /></td></tr>
 <tr class="memitem:a2a24dba6dbe19674a0ab7d9ab0b20d98 inherit pub_methods_class_weapon" id="r_a2a24dba6dbe19674a0ab7d9ab0b20d98"><td class="memItemLeft">
 void&#160;</td><td class="memItemRight"><b>RefreshStats</b> ()</td></tr>
-<tr class="memdesc:a2a24dba6dbe19674a0ab7d9ab0b20d98 inherit pub_methods_class_weapon"><td class="mdescLeft">&#160;</td><td class="mdescRight">Odświeża statystyki broni. Aktualizuje czas oczekiwania timera na podstawie aktualnego cooldownu. <br /></td></tr>
+<tr class="memdesc:a2a24dba6dbe19674a0ab7d9ab0b20d98 inherit pub_methods_class_weapon"><td class="mdescLeft">&#160;</td><td class="mdescRight">Odświeża statystyki broni, aktualizując czas odnowienia w timerze. Powinno być wywoływane po zmianie Stats.Cooldown lub <a class="el" href="class_player.html#a4ecfa1544f4778a8269e388e48e791ae" title="Globalny mnożnik czasu odnowienia umiejętności.">Player.CooldownMultiplier</a>. <br /></td></tr>
 <tr class="inherit_header pub_attribs_class_weapon"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_attribs_class_weapon')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Attributes inherited from <a class="el" href="class_weapon.html">Weapon</a></td></tr>
 <tr class="memitem:a0f4c970f65c3e7d77d4cdd9bff525f4d inherit pub_attribs_class_weapon" id="r_a0f4c970f65c3e7d77d4cdd9bff525f4d"><td class="memItemLeft">
 <a class="el" href="class_weapon_stats.html">WeaponStats</a>&#160;</td><td class="memItemRight"><b>Stats</b></td></tr>
-<tr class="memdesc:a0f4c970f65c3e7d77d4cdd9bff525f4d inherit pub_attribs_class_weapon"><td class="mdescLeft">&#160;</td><td class="mdescRight">Statystyki broni (np. cooldown, obrażenia itp.). <br /></td></tr>
+<tr class="memdesc:a0f4c970f65c3e7d77d4cdd9bff525f4d inherit pub_attribs_class_weapon"><td class="mdescLeft">&#160;</td><td class="mdescRight">Statystyki broni (obrażenia, zasięg, liczba pocisków, czas odnowienia itd.). <br /></td></tr>
 <tr class="inherit_header pro_attribs_class_weapon"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_attribs_class_weapon')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Protected Attributes inherited from <a class="el" href="class_weapon.html">Weapon</a></td></tr>
 <tr class="memitem:ab998a5554d2a9aedc15dc42c72ea91ab inherit pro_attribs_class_weapon" id="r_ab998a5554d2a9aedc15dc42c72ea91ab"><td class="memItemLeft">
 <a class="el" href="class_player.html">Player</a>&#160;</td><td class="memItemRight"><b>Player</b></td></tr>
-<tr class="memdesc:ab998a5554d2a9aedc15dc42c72ea91ab inherit pro_attribs_class_weapon"><td class="mdescLeft">&#160;</td><td class="mdescRight">Referencja do gracza, który posiada tę broń. <br /></td></tr>
+<tr class="memdesc:ab998a5554d2a9aedc15dc42c72ea91ab inherit pro_attribs_class_weapon"><td class="mdescLeft">&#160;</td><td class="mdescRight">Odniesienie do gracza, który używa broni. <br /></td></tr>
 <tr class="memitem:a9666761200f5ea34e62b0c9b17d28903 inherit pro_attribs_class_weapon" id="r_a9666761200f5ea34e62b0c9b17d28903"><td class="memItemLeft">
 Timer&#160;</td><td class="memItemRight"><b>timer</b></td></tr>
-<tr class="memdesc:a9666761200f5ea34e62b0c9b17d28903 inherit pro_attribs_class_weapon"><td class="mdescLeft">&#160;</td><td class="mdescRight">Timer odpowiedzialny za cykliczne wywoływanie metody <a class="el" href="class_weapon.html#a4d7034c6c517d5f3a505f648e450e62d" title="Abstrakcyjna metoda odpowiedzialna za wykonanie strzału. Musi zostać zaimplementowana w klasach dzied...">Fire()</a>. <br /></td></tr>
+<tr class="memdesc:a9666761200f5ea34e62b0c9b17d28903 inherit pro_attribs_class_weapon"><td class="mdescLeft">&#160;</td><td class="mdescRight">Timer odpowiadający za wywoływanie strzałów co określony czas. <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Klasa reprezentuj�ca bro� typu <a class="el" href="class_lightning.html" title="Klasa reprezentuj�ca bro� typu Lightning. Wystrzeliwuje �a�cuchowy atak elektryczny, kt�ry przeskakuje mi�dzy pr...">Lightning</a>. Wystrzeliwuje �a�cuchowy atak elektryczny, kt�ry przeskakuje mi�dzy przeciwnikami. Dziedziczy po klasie <a class="el" href="class_weapon.html" title="Abstrakcyjna klasa bazowa reprezentująca broń. Odpowiada za zarządzanie statystykami oraz mechanizmem...">Weapon</a>. </p>
+<div class="textblock"><p>Klasa reprezentująca broń typu <a class="el" href="class_lightning.html" title="Klasa reprezentująca broń typu Lightning. Strzela piorunem, który przeskakuje między najbliższymi wro...">Lightning</a>. Strzela piorunem, który przeskakuje między najbliższymi wrogami do określonej liczby razy. Dziedziczy po klasie <a class="el" href="class_weapon.html" title="Klasa bazowa dla wszystkich broni. Zarządza statystykami broni, czasem odnowienia oraz inicjalizacją....">Weapon</a>. </p>
 </div><hr/>The documentation for this class was generated from the following file:<ul>
 <li>Scripts/PlayerWeapons/<b>Lightning.cs</b></li>
 </ul>

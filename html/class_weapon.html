@@ -92,7 +92,7 @@ $(function(){initNavTree('class_weapon.html','','class_weapon-members'); });
 </div><!--header-->
 <div class="contents">
 
-<p>Abstrakcyjna klasa bazowa reprezentująca broń. Odpowiada za zarządzanie statystykami oraz mechanizmem wywoływania strzału w określonych odstępach czasu.  
+<p>Klasa bazowa dla wszystkich broni. Zarządza statystykami broni, czasem odnowienia oraz inicjalizacją. Dziedziczą po niej klasy takie jak <a class="el" href="class_fire_wand.html" title="Klasa reprezentuj�ca bro� typu FireWand. Wystrzeliwuje pociski w kierunku najbli�szego przeciwnika z okr...">FireWand</a>, <a class="el" href="class_garlic.html" title="Klasa reprezentująca broń typu Garlic. Tworzy aurę wokół gracza i zadaje obrażenia wszystkim wrogom z...">Garlic</a>, <a class="el" href="class_lightning.html" title="Klasa reprezentująca broń typu Lightning. Strzela piorunem, który przeskakuje między najbliższymi wro...">Lightning</a> itp.  
  <a href="#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for Weapon:</div>
@@ -101,8 +101,8 @@ Inheritance diagram for Weapon:</div>
   <img src="class_weapon.png" usemap="#Weapon_map" alt=""/>
   <map id="Weapon_map" name="Weapon_map">
 <area href="class_fire_wand.html" title="Klasa reprezentuj�ca bro� typu FireWand. Wystrzeliwuje pociski w kierunku najbli�szego przeciwnika z okr..." alt="FireWand" shape="rect" coords="0,112,67,136"/>
-<area href="class_garlic.html" title="Klasa reprezentuj�ca bro� typu Garlic. Tworzy aur� wok� gracza i zadaje obra�enia wszystkim przeciwnikom w z..." alt="Garlic" shape="rect" coords="77,112,144,136"/>
-<area href="class_lightning.html" title="Klasa reprezentuj�ca bro� typu Lightning. Wystrzeliwuje �a�cuchowy atak elektryczny, kt�ry przeskakuje mi�dzy pr..." alt="Lightning" shape="rect" coords="154,112,221,136"/>
+<area href="class_garlic.html" title="Klasa reprezentująca broń typu Garlic. Tworzy aurę wokół gracza i zadaje obrażenia wszystkim wrogom z..." alt="Garlic" shape="rect" coords="77,112,144,136"/>
+<area href="class_lightning.html" title="Klasa reprezentująca broń typu Lightning. Strzela piorunem, który przeskakuje między najbliższymi wro..." alt="Lightning" shape="rect" coords="154,112,221,136"/>
 <area href="class_magnet.html" title="Klasa reprezentuj�ca bro� typu Magnet. Przyci�ga obiekty typu XP (orb) znajduj�ce si� w zasi�gu gracza...." alt="Magnet" shape="rect" coords="231,112,298,136"/>
   </map>
 </div></div>
@@ -110,34 +110,34 @@ Inheritance diagram for Weapon:</div>
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a33d626e47c4808639ffd14de099228ed" id="r_a33d626e47c4808639ffd14de099228ed"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#a33d626e47c4808639ffd14de099228ed">Init</a> (<a class="el" href="class_player.html">Player</a> player)</td></tr>
-<tr class="memdesc:a33d626e47c4808639ffd14de099228ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inicjalizuje broń dla danego gracza. Tworzy i uruchamia timer odpowiedzialny za strzały.  <br /></td></tr>
+<tr class="memdesc:a33d626e47c4808639ffd14de099228ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inicjalizuje broń dla danego gracza. Ustawia timer na podstawie czasu odnowienia i mnożnika gracza.  <br /></td></tr>
 <tr class="memitem:a2a24dba6dbe19674a0ab7d9ab0b20d98" id="r_a2a24dba6dbe19674a0ab7d9ab0b20d98"><td class="memItemLeft"><a id="a2a24dba6dbe19674a0ab7d9ab0b20d98" name="a2a24dba6dbe19674a0ab7d9ab0b20d98"></a>
 void&#160;</td><td class="memItemRight"><b>RefreshStats</b> ()</td></tr>
-<tr class="memdesc:a2a24dba6dbe19674a0ab7d9ab0b20d98"><td class="mdescLeft">&#160;</td><td class="mdescRight">Odświeża statystyki broni. Aktualizuje czas oczekiwania timera na podstawie aktualnego cooldownu. <br /></td></tr>
+<tr class="memdesc:a2a24dba6dbe19674a0ab7d9ab0b20d98"><td class="mdescLeft">&#160;</td><td class="mdescRight">Odświeża statystyki broni, aktualizując czas odnowienia w timerze. Powinno być wywoływane po zmianie Stats.Cooldown lub <a class="el" href="class_player.html#a4ecfa1544f4778a8269e388e48e791ae" title="Globalny mnożnik czasu odnowienia umiejętności.">Player.CooldownMultiplier</a>. <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a0f4c970f65c3e7d77d4cdd9bff525f4d" id="r_a0f4c970f65c3e7d77d4cdd9bff525f4d"><td class="memItemLeft"><a id="a0f4c970f65c3e7d77d4cdd9bff525f4d" name="a0f4c970f65c3e7d77d4cdd9bff525f4d"></a>
 <a class="el" href="class_weapon_stats.html">WeaponStats</a>&#160;</td><td class="memItemRight"><b>Stats</b></td></tr>
-<tr class="memdesc:a0f4c970f65c3e7d77d4cdd9bff525f4d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Statystyki broni (np. cooldown, obrażenia itp.). <br /></td></tr>
+<tr class="memdesc:a0f4c970f65c3e7d77d4cdd9bff525f4d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Statystyki broni (obrażenia, zasięg, liczba pocisków, czas odnowienia itd.). <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pro-methods" class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
 <tr class="memitem:a4d7034c6c517d5f3a505f648e450e62d" id="r_a4d7034c6c517d5f3a505f648e450e62d"><td class="memItemLeft"><a id="a4d7034c6c517d5f3a505f648e450e62d" name="a4d7034c6c517d5f3a505f648e450e62d"></a>
 void&#160;</td><td class="memItemRight"><b>Fire</b> ()</td></tr>
-<tr class="memdesc:a4d7034c6c517d5f3a505f648e450e62d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Abstrakcyjna metoda odpowiedzialna za wykonanie strzału. Musi zostać zaimplementowana w klasach dziedziczących. <br /></td></tr>
+<tr class="memdesc:a4d7034c6c517d5f3a505f648e450e62d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metoda abstrakcyjna wywoływana przy każdym strzale. Każda broń powinna nadpisać tę metodę, implementując własną logikę strzału. <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pro-attribs" class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr class="memitem:ab998a5554d2a9aedc15dc42c72ea91ab" id="r_ab998a5554d2a9aedc15dc42c72ea91ab"><td class="memItemLeft"><a id="ab998a5554d2a9aedc15dc42c72ea91ab" name="ab998a5554d2a9aedc15dc42c72ea91ab"></a>
 <a class="el" href="class_player.html">Player</a>&#160;</td><td class="memItemRight"><b>Player</b></td></tr>
-<tr class="memdesc:ab998a5554d2a9aedc15dc42c72ea91ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Referencja do gracza, który posiada tę broń. <br /></td></tr>
+<tr class="memdesc:ab998a5554d2a9aedc15dc42c72ea91ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Odniesienie do gracza, który używa broni. <br /></td></tr>
 <tr class="memitem:a9666761200f5ea34e62b0c9b17d28903" id="r_a9666761200f5ea34e62b0c9b17d28903"><td class="memItemLeft"><a id="a9666761200f5ea34e62b0c9b17d28903" name="a9666761200f5ea34e62b0c9b17d28903"></a>
 Timer&#160;</td><td class="memItemRight"><b>timer</b></td></tr>
-<tr class="memdesc:a9666761200f5ea34e62b0c9b17d28903"><td class="mdescLeft">&#160;</td><td class="mdescRight">Timer odpowiedzialny za cykliczne wywoływanie metody <a class="el" href="#a4d7034c6c517d5f3a505f648e450e62d" title="Abstrakcyjna metoda odpowiedzialna za wykonanie strzału. Musi zostać zaimplementowana w klasach dzied...">Fire()</a>. <br /></td></tr>
+<tr class="memdesc:a9666761200f5ea34e62b0c9b17d28903"><td class="mdescLeft">&#160;</td><td class="mdescRight">Timer odpowiadający za wywoływanie strzałów co określony czas. <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Abstrakcyjna klasa bazowa reprezentująca broń. Odpowiada za zarządzanie statystykami oraz mechanizmem wywoływania strzału w określonych odstępach czasu. </p>
+<div class="textblock"><p>Klasa bazowa dla wszystkich broni. Zarządza statystykami broni, czasem odnowienia oraz inicjalizacją. Dziedziczą po niej klasy takie jak <a class="el" href="class_fire_wand.html" title="Klasa reprezentuj�ca bro� typu FireWand. Wystrzeliwuje pociski w kierunku najbli�szego przeciwnika z okr...">FireWand</a>, <a class="el" href="class_garlic.html" title="Klasa reprezentująca broń typu Garlic. Tworzy aurę wokół gracza i zadaje obrażenia wszystkim wrogom z...">Garlic</a>, <a class="el" href="class_lightning.html" title="Klasa reprezentująca broń typu Lightning. Strzela piorunem, który przeskakuje między najbliższymi wro...">Lightning</a> itp. </p>
 </div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
 <a id="a33d626e47c4808639ffd14de099228ed" name="a33d626e47c4808639ffd14de099228ed"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a33d626e47c4808639ffd14de099228ed">&#9670;&#160;</a></span>Init()</h2>
@@ -162,10 +162,10 @@ Timer&#160;</td><td class="memItemRight"><b>timer</b></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Inicjalizuje broń dla danego gracza. Tworzy i uruchamia timer odpowiedzialny za strzały. </p>
+<p>Inicjalizuje broń dla danego gracza. Ustawia timer na podstawie czasu odnowienia i mnożnika gracza. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">player</td><td>Obiekt gracza, do którego przypisana jest broń.</td></tr>
+    <tr><td class="paramname">player</td><td>Gracz, który używa broni.</td></tr>
   </table>
   </dd>
 </dl>

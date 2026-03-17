@@ -92,7 +92,7 @@ $(function(){initNavTree('class_garlic.html','','class_garlic-members'); });
 </div><!--header-->
 <div class="contents">
 
-<p>Klasa reprezentuj�ca bro� typu <a class="el" href="class_garlic.html" title="Klasa reprezentuj�ca bro� typu Garlic. Tworzy aur� wok� gracza i zadaje obra�enia wszystkim przeciwnikom w z...">Garlic</a>. Tworzy aur� wok� gracza i zadaje obra�enia wszystkim przeciwnikom w zasi�gu. Dziedziczy po klasie <a class="el" href="class_weapon.html" title="Abstrakcyjna klasa bazowa reprezentująca broń. Odpowiada za zarządzanie statystykami oraz mechanizmem...">Weapon</a>.  
+<p>Klasa reprezentująca broń typu <a class="el" href="class_garlic.html" title="Klasa reprezentująca broń typu Garlic. Tworzy aurę wokół gracza i zadaje obrażenia wszystkim wrogom z...">Garlic</a>. Tworzy aurę wokół gracza i zadaje obrażenia wszystkim wrogom znajdującym się w zasięgu. Dziedziczy po klasie <a class="el" href="class_weapon.html" title="Klasa bazowa dla wszystkich broni. Zarządza statystykami broni, czasem odnowienia oraz inicjalizacją....">Weapon</a>.  
  <a href="#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for Garlic:</div>
@@ -100,7 +100,7 @@ Inheritance diagram for Garlic:</div>
  <div class="center">
   <img src="class_garlic.png" usemap="#Garlic_map" alt=""/>
   <map id="Garlic_map" name="Garlic_map">
-<area href="class_weapon.html" title="Abstrakcyjna klasa bazowa reprezentująca broń. Odpowiada za zarządzanie statystykami oraz mechanizmem..." alt="Weapon" shape="rect" coords="0,56,58,80"/>
+<area href="class_weapon.html" title="Klasa bazowa dla wszystkich broni. Zarządza statystykami broni, czasem odnowienia oraz inicjalizacją...." alt="Weapon" shape="rect" coords="0,56,58,80"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -108,34 +108,34 @@ Inheritance diagram for Garlic:</div>
 Protected Member Functions</h2></td></tr>
 <tr class="memitem:a8f91175cdc32db34a33c6bddbf9c9ec8" id="r_a8f91175cdc32db34a33c6bddbf9c9ec8"><td class="memItemLeft"><a id="a8f91175cdc32db34a33c6bddbf9c9ec8" name="a8f91175cdc32db34a33c6bddbf9c9ec8"></a>
 override void&#160;</td><td class="memItemRight"><b>Fire</b> ()</td></tr>
-<tr class="memdesc:a8f91175cdc32db34a33c6bddbf9c9ec8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metoda wywo�ywana przy strzale. Tworzy aur� wok� gracza i zadaje obra�enia wszystkim wrogom znajduj�cym si� w zasi�gu. <br /></td></tr>
+<tr class="memdesc:a8f91175cdc32db34a33c6bddbf9c9ec8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metoda wywoływana przy strzale. Tworzy aurę wokół gracza, jeśli jeszcze nie istnieje, i zadaje obrażenia wszystkim wrogom znajdującym się w połowie zasięgu statystyki broni. <br /></td></tr>
 <tr class="inherit_header pro_methods_class_weapon"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_methods_class_weapon')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Protected Member Functions inherited from <a class="el" href="class_weapon.html">Weapon</a></td></tr>
 <tr class="memitem:a4d7034c6c517d5f3a505f648e450e62d inherit pro_methods_class_weapon" id="r_a4d7034c6c517d5f3a505f648e450e62d"><td class="memItemLeft">
 void&#160;</td><td class="memItemRight"><b>Fire</b> ()</td></tr>
-<tr class="memdesc:a4d7034c6c517d5f3a505f648e450e62d inherit pro_methods_class_weapon"><td class="mdescLeft">&#160;</td><td class="mdescRight">Abstrakcyjna metoda odpowiedzialna za wykonanie strzału. Musi zostać zaimplementowana w klasach dziedziczących. <br /></td></tr>
+<tr class="memdesc:a4d7034c6c517d5f3a505f648e450e62d inherit pro_methods_class_weapon"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metoda abstrakcyjna wywoływana przy każdym strzale. Każda broń powinna nadpisać tę metodę, implementując własną logikę strzału. <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-inherited" class="groupheader"><a id="inherited" name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pub_methods_class_weapon"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_class_weapon')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Member Functions inherited from <a class="el" href="class_weapon.html">Weapon</a></td></tr>
 <tr class="memitem:a33d626e47c4808639ffd14de099228ed inherit pub_methods_class_weapon" id="r_a33d626e47c4808639ffd14de099228ed"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="class_weapon.html#a33d626e47c4808639ffd14de099228ed">Init</a> (<a class="el" href="class_player.html">Player</a> player)</td></tr>
-<tr class="memdesc:a33d626e47c4808639ffd14de099228ed inherit pub_methods_class_weapon"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inicjalizuje broń dla danego gracza. Tworzy i uruchamia timer odpowiedzialny za strzały.  <br /></td></tr>
+<tr class="memdesc:a33d626e47c4808639ffd14de099228ed inherit pub_methods_class_weapon"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inicjalizuje broń dla danego gracza. Ustawia timer na podstawie czasu odnowienia i mnożnika gracza.  <br /></td></tr>
 <tr class="memitem:a2a24dba6dbe19674a0ab7d9ab0b20d98 inherit pub_methods_class_weapon" id="r_a2a24dba6dbe19674a0ab7d9ab0b20d98"><td class="memItemLeft">
 void&#160;</td><td class="memItemRight"><b>RefreshStats</b> ()</td></tr>
-<tr class="memdesc:a2a24dba6dbe19674a0ab7d9ab0b20d98 inherit pub_methods_class_weapon"><td class="mdescLeft">&#160;</td><td class="mdescRight">Odświeża statystyki broni. Aktualizuje czas oczekiwania timera na podstawie aktualnego cooldownu. <br /></td></tr>
+<tr class="memdesc:a2a24dba6dbe19674a0ab7d9ab0b20d98 inherit pub_methods_class_weapon"><td class="mdescLeft">&#160;</td><td class="mdescRight">Odświeża statystyki broni, aktualizując czas odnowienia w timerze. Powinno być wywoływane po zmianie Stats.Cooldown lub <a class="el" href="class_player.html#a4ecfa1544f4778a8269e388e48e791ae" title="Globalny mnożnik czasu odnowienia umiejętności.">Player.CooldownMultiplier</a>. <br /></td></tr>
 <tr class="inherit_header pub_attribs_class_weapon"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_attribs_class_weapon')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Attributes inherited from <a class="el" href="class_weapon.html">Weapon</a></td></tr>
 <tr class="memitem:a0f4c970f65c3e7d77d4cdd9bff525f4d inherit pub_attribs_class_weapon" id="r_a0f4c970f65c3e7d77d4cdd9bff525f4d"><td class="memItemLeft">
 <a class="el" href="class_weapon_stats.html">WeaponStats</a>&#160;</td><td class="memItemRight"><b>Stats</b></td></tr>
-<tr class="memdesc:a0f4c970f65c3e7d77d4cdd9bff525f4d inherit pub_attribs_class_weapon"><td class="mdescLeft">&#160;</td><td class="mdescRight">Statystyki broni (np. cooldown, obrażenia itp.). <br /></td></tr>
+<tr class="memdesc:a0f4c970f65c3e7d77d4cdd9bff525f4d inherit pub_attribs_class_weapon"><td class="mdescLeft">&#160;</td><td class="mdescRight">Statystyki broni (obrażenia, zasięg, liczba pocisków, czas odnowienia itd.). <br /></td></tr>
 <tr class="inherit_header pro_attribs_class_weapon"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_attribs_class_weapon')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Protected Attributes inherited from <a class="el" href="class_weapon.html">Weapon</a></td></tr>
 <tr class="memitem:ab998a5554d2a9aedc15dc42c72ea91ab inherit pro_attribs_class_weapon" id="r_ab998a5554d2a9aedc15dc42c72ea91ab"><td class="memItemLeft">
 <a class="el" href="class_player.html">Player</a>&#160;</td><td class="memItemRight"><b>Player</b></td></tr>
-<tr class="memdesc:ab998a5554d2a9aedc15dc42c72ea91ab inherit pro_attribs_class_weapon"><td class="mdescLeft">&#160;</td><td class="mdescRight">Referencja do gracza, który posiada tę broń. <br /></td></tr>
+<tr class="memdesc:ab998a5554d2a9aedc15dc42c72ea91ab inherit pro_attribs_class_weapon"><td class="mdescLeft">&#160;</td><td class="mdescRight">Odniesienie do gracza, który używa broni. <br /></td></tr>
 <tr class="memitem:a9666761200f5ea34e62b0c9b17d28903 inherit pro_attribs_class_weapon" id="r_a9666761200f5ea34e62b0c9b17d28903"><td class="memItemLeft">
 Timer&#160;</td><td class="memItemRight"><b>timer</b></td></tr>
-<tr class="memdesc:a9666761200f5ea34e62b0c9b17d28903 inherit pro_attribs_class_weapon"><td class="mdescLeft">&#160;</td><td class="mdescRight">Timer odpowiedzialny za cykliczne wywoływanie metody <a class="el" href="class_weapon.html#a4d7034c6c517d5f3a505f648e450e62d" title="Abstrakcyjna metoda odpowiedzialna za wykonanie strzału. Musi zostać zaimplementowana w klasach dzied...">Fire()</a>. <br /></td></tr>
+<tr class="memdesc:a9666761200f5ea34e62b0c9b17d28903 inherit pro_attribs_class_weapon"><td class="mdescLeft">&#160;</td><td class="mdescRight">Timer odpowiadający za wywoływanie strzałów co określony czas. <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Klasa reprezentuj�ca bro� typu <a class="el" href="class_garlic.html" title="Klasa reprezentuj�ca bro� typu Garlic. Tworzy aur� wok� gracza i zadaje obra�enia wszystkim przeciwnikom w z...">Garlic</a>. Tworzy aur� wok� gracza i zadaje obra�enia wszystkim przeciwnikom w zasi�gu. Dziedziczy po klasie <a class="el" href="class_weapon.html" title="Abstrakcyjna klasa bazowa reprezentująca broń. Odpowiada za zarządzanie statystykami oraz mechanizmem...">Weapon</a>. </p>
+<div class="textblock"><p>Klasa reprezentująca broń typu <a class="el" href="class_garlic.html" title="Klasa reprezentująca broń typu Garlic. Tworzy aurę wokół gracza i zadaje obrażenia wszystkim wrogom z...">Garlic</a>. Tworzy aurę wokół gracza i zadaje obrażenia wszystkim wrogom znajdującym się w zasięgu. Dziedziczy po klasie <a class="el" href="class_weapon.html" title="Klasa bazowa dla wszystkich broni. Zarządza statystykami broni, czasem odnowienia oraz inicjalizacją....">Weapon</a>. </p>
 </div><hr/>The documentation for this class was generated from the following file:<ul>
 <li>Scripts/PlayerWeapons/<b>Garlic.cs</b></li>
 </ul>

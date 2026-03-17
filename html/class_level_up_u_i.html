@@ -92,7 +92,7 @@ $(function(){initNavTree('class_level_up_u_i.html','','class_level_up_u_i-member
 </div><!--header-->
 <div class="contents">
 
-<p>Interfejs u¿ytkownika wyœwietlany przy awansie na wy¿szy poziom. Pozwala graczowi wybraæ jedno z dostêpnych ulepszeñ.  
+<p>Klasa odpowiedzialna za interfejs uÅ¼ytkownika poziomu ulepszeÅ„ (Level Up UI). Dziedziczy po CanvasLayer. Pozwala wybraÄ‡ do 3 dostÄ™pnych ulepszeÅ„ dla gracza i wstrzymuje grÄ™ podczas wyboru.  
  <a href="#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for LevelUpUI:</div>
@@ -105,12 +105,12 @@ Inheritance diagram for LevelUpUI:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a785f9b79a2a6dd4501c258affe56edd6" id="r_a785f9b79a2a6dd4501c258affe56edd6"><td class="memItemLeft"><a id="a785f9b79a2a6dd4501c258affe56edd6" name="a785f9b79a2a6dd4501c258affe56edd6"></a>
 override void&#160;</td><td class="memItemRight"><b>_Ready</b> ()</td></tr>
-<tr class="memdesc:a785f9b79a2a6dd4501c258affe56edd6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metoda wywo³ywana po dodaniu wêz³a do drzewa sceny. Inicjalizuje referencje do przycisków i ukrywa UI. <br /></td></tr>
+<tr class="memdesc:a785f9b79a2a6dd4501c258affe56edd6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metoda wywoÅ‚ywana po zaÅ‚adowaniu sceny. Inicjalizuje przyciski i ustawia widocznoÅ›Ä‡ interfejsu na false. <br /></td></tr>
 <tr class="memitem:aeff85e35667fa1a230e4e09311974b50" id="r_aeff85e35667fa1a230e4e09311974b50"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#aeff85e35667fa1a230e4e09311974b50">ShowUpgrades</a> (<a class="el" href="class_player.html">Player</a> p)</td></tr>
-<tr class="memdesc:aeff85e35667fa1a230e4e09311974b50"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wyœwietla losowe ulepszenia dla gracza. Pauzuje grê i pokazuje interfejs wyboru.  <br /></td></tr>
+<tr class="memdesc:aeff85e35667fa1a230e4e09311974b50"><td class="mdescLeft">&#160;</td><td class="mdescRight">WyÅ›wietla interfejs wyboru ulepszeÅ„ dla danego gracza. Losuje do 3 ulepszeÅ„, ktÃ³re gracz moÅ¼e aktualnie odblokowaÄ‡.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Interfejs u¿ytkownika wyœwietlany przy awansie na wy¿szy poziom. Pozwala graczowi wybraæ jedno z dostêpnych ulepszeñ. </p>
+<div class="textblock"><p>Klasa odpowiedzialna za interfejs uÅ¼ytkownika poziomu ulepszeÅ„ (Level Up UI). Dziedziczy po CanvasLayer. Pozwala wybraÄ‡ do 3 dostÄ™pnych ulepszeÅ„ dla gracza i wstrzymuje grÄ™ podczas wyboru. </p>
 </div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
 <a id="aeff85e35667fa1a230e4e09311974b50" name="aeff85e35667fa1a230e4e09311974b50"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aeff85e35667fa1a230e4e09311974b50">&#9670;&#160;</a></span>ShowUpgrades()</h2>
@@ -127,10 +127,10 @@ override void&#160;</td><td class="memItemRight"><b>_Ready</b> ()</td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Wyœwietla losowe ulepszenia dla gracza. Pauzuje grê i pokazuje interfejs wyboru. </p>
+<p>WyÅ›wietla interfejs wyboru ulepszeÅ„ dla danego gracza. Losuje do 3 ulepszeÅ„, ktÃ³re gracz moÅ¼e aktualnie odblokowaÄ‡. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">p</td><td>Gracz, dla którego generowane s¹ ulepszenia.</td></tr>
+    <tr><td class="paramname">p</td><td>Gracz, dla ktÃ³rego wyÅ›wietlamy dostÄ™pne ulepszenia.</td></tr>
   </table>
   </dd>
 </dl>
