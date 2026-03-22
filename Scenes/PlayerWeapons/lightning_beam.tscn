@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://bgcoxre81pt4o" path="res://Scripts/PlayerWeapons/LightningBeam.cs" id="1_ligu7"]
 
-
 [node name="LightningBeam" type="Node2D" unique_id=397927101]
+z_index = 2
 script = ExtResource("1_ligu7")
 
 [node name="Line2D" type="Line2D" parent="." unique_id=95554006]

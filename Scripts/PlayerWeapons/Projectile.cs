@@ -1,30 +1,30 @@
 using Godot;
 
 /// <summary>
-/// Klasa reprezentuj¹ca pocisk wystrzeliwany przez broñ.
-/// Obs³uguje ruch pocisku, kolizje z wrogami oraz iloœæ przebiæ (Pierce).
+/// Klasa reprezentujÄ…ca pocisk wystrzeliwany przez broÅ„.
+/// ObsÅ‚uguje ruch pocisku, kolizje z wrogami oraz iloÅ›Ä‡ przebiÄ‡ (Pierce).
 /// </summary>
 public partial class Projectile : Area2D
 {
     /// <summary>
-    /// Kierunek poruszania siê pocisku.
+    /// Kierunek poruszania siÄ™ pocisku.
     /// </summary>
     protected Vector2 Direction;
 
     /// <summary>
-    /// Statystyki broni, z której pochodzi pocisk.
+    /// Statystyki broni, z ktÃ³rej pochodzi pocisk.
     /// </summary>
     protected WeaponStats Stats;
 
     /// <summary>
-    /// Pozosta³a liczba przebiæ pocisku.
+    /// PozostaÅ‚a liczba przebiÄ‡ pocisku.
     /// </summary>
     protected int PierceLeft;
 
     /// <summary>
-    /// Inicjalizuje pocisk z kierunkiem, statystykami broni i ustawieniem iloœci przebiæ.
+    /// Inicjalizuje pocisk z kierunkiem, statystykami broni i ustawieniem iloÅ›ci przebiÄ‡.
     /// </summary>
-    /// <param name="dir">Kierunek poruszania siê pocisku.</param>
+    /// <param name="dir">Kierunek poruszania siÄ™ pocisku.</param>
     /// <param name="stats">Statystyki broni.</param>
     public void Setup(Vector2 dir, WeaponStats stats)
     {
@@ -34,8 +34,8 @@ public partial class Projectile : Area2D
     }
 
     /// <summary>
-    /// Metoda wywo³ywana po dodaniu wêz³a do drzewa sceny.
-    /// Subskrybuje zdarzenie BodyEntered do obs³ugi kolizji z wrogami.
+    /// Metoda wywoÅ‚ywana po dodaniu wÄ™zÅ‚a do drzewa sceny.
+    /// Subskrybuje zdarzenie BodyEntered do obsÅ‚ugi kolizji z wrogami.
     /// </summary>
     public override void _Ready()
     {
@@ -43,8 +43,8 @@ public partial class Projectile : Area2D
     }
 
     /// <summary>
-    /// Metoda fizyczna wywo³ywana co klatkê.
-    /// Przesuwa pocisk w kierunku Direction z uwzglêdnieniem prêdkoœci Stats.Speed.
+    /// Metoda fizyczna wywoÅ‚ywana co klatkÄ™.
+    /// Przesuwa pocisk w kierunku Direction z uwzglÄ™dnieniem prÄ™dkoÅ›ci Stats.Speed.
     /// </summary>
     /// <param name="delta">Czas od ostatniej klatki.</param>
     public override void _PhysicsProcess(double delta)
@@ -53,10 +53,10 @@ public partial class Projectile : Area2D
     }
 
     /// <summary>
-    /// Wywo³ywana po trafieniu w inny wêze³.
-    /// Je¿eli wêze³ jest przeciwnikiem, zadaje obra¿enia i zmniejsza liczbê przebiæ.
+    /// WywoÅ‚ywana po trafieniu w inny wÄ™zeÅ‚.
+    /// JeÅ¼eli wÄ™zeÅ‚ jest przeciwnikiem, zadaje obraÅ¼enia i zmniejsza liczbÄ™ przebiÄ‡.
     /// </summary>
-    /// <param name="body">Wêze³, który wszed³ w kolizjê z pociskiem.</param>
+    /// <param name="body">WÄ™zeÅ‚, ktÃ³ry wszedÅ‚ w kolizjÄ™ z pociskiem.</param>
     protected virtual void OnHit(Node body)
     {
         if (body is Enemy enemy)

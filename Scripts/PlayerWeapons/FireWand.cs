@@ -1,20 +1,20 @@
 using Godot;
 
 /// <summary>
-/// Klasa reprezentuj¹ca broñ typu FireWand.
-/// Wystrzeliwuje pociski w kierunku najbli¿szego przeciwnika z okreœlonym rozrzutem i iloœci¹ projektów.
+/// Klasa reprezentujÄ…ca broÅ„ typu FireWand.
+/// Wystrzeliwuje pociski w kierunku najbliÅ¼szego przeciwnika z okreÅ›lonym rozrzutem i iloÅ›ciÄ… projektÃ³w.
 /// Dziedziczy po klasie Weapon.
 /// </summary>
 public partial class FireWand : Weapon
 {
     /// <summary>
-    /// Scena pocisku, która bêdzie tworzona przy strzale.
+    /// Scena pocisku, ktÃ³ra bÄ™dzie tworzona przy strzale.
     /// </summary>
     [Export] PackedScene ProjectileScene;
 
     /// <summary>
-    /// Metoda wywo³ywana przy strzale.
-    /// Tworzy pociski w kierunku najbli¿szego przeciwnika z uwzglêdnieniem rozrzutu i liczby pocisków.
+    /// Metoda wywoÅ‚ywana przy strzale.
+    /// Tworzy pociski w kierunku najbliÅ¼szego przeciwnika z uwzglÄ™dnieniem rozrzutu i liczby pociskÃ³w.
     /// </summary>
     protected override void Fire()
     {

@@ -24,6 +24,7 @@ turbulence_noise_strength = 20.0
 turbulence_noise_scale = 10.0
 
 [node name="LightningChain" type="GPUParticles2D" unique_id=618480989]
+z_index = 2
 emitting = false
 amount = 60
 lifetime = 0.15000000000000002

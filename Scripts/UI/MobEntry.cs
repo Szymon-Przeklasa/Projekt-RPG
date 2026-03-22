@@ -1,17 +1,17 @@
 using Godot;
 
 /// <summary>
-/// Klasa reprezentuj¹ca pojedynczy wpis przeciwnika w interfejsie u¿ytkownika.
-/// Wyœwietla nazwê przeciwnika, liczbê zabójstw oraz pasek postêpu.
+/// Klasa reprezentujÄ…ca pojedynczy wpis przeciwnika w interfejsie uÅ¼ytkownika.
+/// WyÅ›wietla nazwÄ™ przeciwnika, liczbÄ™ zabÃ³jstw oraz pasek postÄ™pu.
 /// </summary>
 public partial class MobEntry : HBoxContainer
 {
     /// <summary>
     /// Ustawia dane dla wpisu przeciwnika w UI.
-    /// Aktualizuje nazwê, licznik zabójstw oraz pasek postêpu.
+    /// Aktualizuje nazwÄ™, licznik zabÃ³jstw oraz pasek postÄ™pu.
     /// </summary>
     /// <param name="mobID">Identyfikator przeciwnika (nazwa).</param>
-    /// <param name="kills">Liczba zabójstw danego przeciwnika.</param>
+    /// <param name="kills">Liczba zabÃ³jstw danego przeciwnika.</param>
     public void SetData(string mobID, int kills)
     {
         GetNode<Label>("MobInfo/MobName").Text = mobID;

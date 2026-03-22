@@ -1,20 +1,20 @@
 using Godot;
 
 /// <summary>
-/// Klasa reprezentuj¹ca broñ typu Magnet.
-/// Przyci¹ga obiekty typu XP (orb) znajduj¹ce siê w zasiêgu gracza.
+/// Klasa reprezentujÄ…ca broÅ„ typu Magnet.
+/// PrzyciÄ…ga obiekty typu XP (orb) znajdujÄ…ce siÄ™ w zasiÄ™gu gracza.
 /// Dziedziczy po klasie Weapon.
 /// </summary>
 public partial class Magnet : Weapon
 {
     /// <summary>
-    /// Scena pocisku/efektu (nieu¿ywana w tej broni, ale zachowana dla spójnoœci z Weapon).
+    /// Scena pocisku/efektu (nieuÅ¼ywana w tej broni, ale zachowana dla spÃ³jnoÅ›ci z Weapon).
     /// </summary>
     [Export] PackedScene ProjectileScene;
 
     /// <summary>
-    /// Metoda wywo³ywana przy strzale.
-    /// Przesuwa wszystkie orb-y XP w zasiêgu w kierunku punktu strza³u gracza.
+    /// Metoda wywoÅ‚ywana przy strzale.
+    /// Przesuwa wszystkie orb-y XP w zasiÄ™gu w kierunku punktu strzaÅ‚u gracza.
     /// </summary>
     protected override void Fire()
     {

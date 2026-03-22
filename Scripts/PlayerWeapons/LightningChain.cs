@@ -1,17 +1,17 @@
 using Godot;
 
 /// <summary>
-/// Klasa reprezentuj¹ca pojedynczy segment ³añcucha pioruna dla broni Lightning.
-/// Dziedziczy po GpuParticles2D i odpowiada za wizualizacjê miêdzy dwoma punktami.
+/// Klasa reprezentujÄ…ca pojedynczy segment Å‚aÅ„cucha pioruna dla broni Lightning.
+/// Dziedziczy po GpuParticles2D i odpowiada za wizualizacjÄ™ miÄ™dzy dwoma punktami.
 /// </summary>
 public partial class LightningChain : GpuParticles2D
 {
     /// <summary>
-    /// Konfiguruje segment ³añcucha miêdzy dwoma punktami.
-    /// Ustawia pozycjê, obrót, skalê i uruchamia emisjê cz¹steczek.
+    /// Konfiguruje segment Å‚aÅ„cucha miÄ™dzy dwoma punktami.
+    /// Ustawia pozycjÄ™, obrÃ³t, skalÄ™ i uruchamia emisjÄ™ czÄ…steczek.
     /// </summary>
     /// <param name="from">Pozycja startowa segmentu.</param>
-    /// <param name="to">Pozycja koñcowa segmentu.</param>
+    /// <param name="to">Pozycja koÅ„cowa segmentu.</param>
     public void Setup(Vector2 from, Vector2 to)
     {
         GlobalPosition = from;
@@ -28,8 +28,8 @@ public partial class LightningChain : GpuParticles2D
     }
 
     /// <summary>
-    /// Metoda wywo³ywana po dodaniu wêz³a do drzewa sceny.
-    /// W³¹cza emisjê cz¹steczek i po okreœlonym czasie usuwa segment z gry.
+    /// Metoda wywoÅ‚ywana po dodaniu wÄ™zÅ‚a do drzewa sceny.
+    /// WÅ‚Ä…cza emisjÄ™ czÄ…steczek i po okreÅ›lonym czasie usuwa segment z gry.
     /// </summary>
     public override async void _Ready()
     {

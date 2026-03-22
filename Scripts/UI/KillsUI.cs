@@ -2,20 +2,20 @@ using Godot;
 using System;
 
 /// <summary>
-/// Interfejs u¿ytkownika wyœwietlaj¹cy statystyki zabójstw przeciwników.
-/// Pobiera dane z KillManager i wyœwietla je w formie listy.
+/// Interfejs uÅ¼ytkownika wyÅ›wietlajÄ…cy statystyki zabÃ³jstw przeciwnikÃ³w.
+/// Pobiera dane z KillManager i wyÅ›wietla je w formie listy.
 /// </summary>
 public partial class KillsUI : CanvasLayer
 {
     /// <summary>
-    /// Scena u¿ywana do tworzenia pojedynczego wpisu przeciwnika (MobEntry).
+    /// Scena uÅ¼ywana do tworzenia pojedynczego wpisu przeciwnika (MobEntry).
     /// </summary>
     [Export]
     public PackedScene MobEntryScene;
 
     /// <summary>
-    /// Metoda wywo³ywana po dodaniu wêz³a do drzewa sceny.
-    /// Inicjalizuje widocznoœæ UI i subskrybuje sygna³y KillManager.
+    /// Metoda wywoÅ‚ywana po dodaniu wÄ™zÅ‚a do drzewa sceny.
+    /// Inicjalizuje widocznoÅ›Ä‡ UI i subskrybuje sygnaÅ‚y KillManager.
     /// </summary>
     public override void _Ready()
     {
@@ -27,19 +27,19 @@ public partial class KillsUI : CanvasLayer
     }
 
     /// <summary>
-    /// Obs³uguje sygna³ KillUpdated z KillManager.
+    /// ObsÅ‚uguje sygnaÅ‚ KillUpdated z KillManager.
     /// W tej chwili wypisuje informacje do konsoli.
     /// </summary>
     /// <param name="mobID">Identyfikator przeciwnika.</param>
-    /// <param name="kills">Aktualna liczba zabójstw dla danego przeciwnika.</param>
+    /// <param name="kills">Aktualna liczba zabÃ³jstw dla danego przeciwnika.</param>
     private void OnKillUpdated(string mobID, int kills)
     {
         GD.Print($"{mobID} kills: {kills}");
     }
 
     /// <summary>
-    /// Wyœwietla UI ze wszystkimi zabójstwami.
-    /// Tworzy wpisy dla ka¿dego przeciwnika i pauzuje grê.
+    /// WyÅ›wietla UI ze wszystkimi zabÃ³jstwami.
+    /// Tworzy wpisy dla kaÅ¼dego przeciwnika i pauzuje grÄ™.
     /// </summary>
     public void ShowKills()
     {
@@ -48,7 +48,7 @@ public partial class KillsUI : CanvasLayer
 
         var mobgroup = GetNode<VBoxContainer>("Panel/VBoxContainer/MobGroup");
 
-        // Usuñ poprzednie wpisy
+        // UsuÅ„ poprzednie wpisy
         foreach (Node child in mobgroup.GetChildren())
             child.QueueFree();
 
@@ -62,10 +62,10 @@ public partial class KillsUI : CanvasLayer
     }
 
     /// <summary>
-    /// Obs³uguje klikniêcie w t³o UI.
-    /// Zamknie interfejs po klikniêciu lewym przyciskiem myszy.
+    /// ObsÅ‚uguje klikniÄ™cie w tÅ‚o UI.
+    /// Zamknie interfejs po klikniÄ™ciu lewym przyciskiem myszy.
     /// </summary>
-    /// <param name="event">Zdarzenie wejœcia myszy.</param>
+    /// <param name="event">Zdarzenie wejÅ›cia myszy.</param>
     private void OnBackgroundClicked(InputEvent @event)
     {
         if (@event is InputEventMouseButton mouseEvent &&
@@ -77,7 +77,7 @@ public partial class KillsUI : CanvasLayer
     }
 
     /// <summary>
-    /// Metoda wywo³ywana co klatkê.
+    /// Metoda wywoÅ‚ywana co klatkÄ™.
     /// </summary>
     /// <param name="delta">Czas od poprzedniej klatki.</param>
     public override void _Process(double delta)
@@ -85,7 +85,7 @@ public partial class KillsUI : CanvasLayer
     }
 
     /// <summary>
-    /// Zamyka interfejs UI i wznawia grê.
+    /// Zamyka interfejs UI i wznawia grÄ™.
     /// </summary>
     private void Close()
     {
