@@ -1,18 +1,18 @@
 using Godot;
 
 /// <summary>
-/// Klasa reprezentujπca orb doúwiadczenia (XP) w grze.
-/// Po kontakcie z graczem przyznaje mu punkty doúwiadczenia i usuwa siÍ z gry.
+/// Klasa reprezentujƒÖca orb do≈õwiadczenia (XP) w grze.
+/// Po kontakcie z graczem przyznaje mu punkty do≈õwiadczenia i usuwa siƒô z gry.
 /// </summary>
 public partial class XpOrb : Area2D
 {
     /// <summary>
-    /// IloúÊ punktÛw doúwiadczenia przyznawanych graczowi po zebraniu orb.
+    /// Ilo≈õƒá punkt√≥w do≈õwiadczenia przyznawanych graczowi po zebraniu orb.
     /// </summary>
     [Export] public int Value = 1;
 
     /// <summary>
-    /// Metoda wywo≥ywana po dodaniu wÍz≥a do drzewa sceny.
+    /// Metoda wywo≈Çywana po dodaniu wƒôz≈Ça do drzewa sceny.
     /// Subskrybuje zdarzenie BodyEntered dla wykrywania kolizji z graczem.
     /// </summary>
     public override void _Ready()
@@ -21,10 +21,10 @@ public partial class XpOrb : Area2D
     }
 
     /// <summary>
-    /// Wywo≥ywana po wejúciu innego wÍz≥a w obszar orb.
-    /// Jeøeli to gracz, przyznaje mu punkty doúwiadczenia i usuwa orb.
+    /// Wywo≈Çywana po wej≈õciu innego wƒôz≈Ça w obszar orb.
+    /// Je≈ºeli to gracz, przyznaje mu punkty do≈õwiadczenia i usuwa orb.
     /// </summary>
-    /// <param name="body">WÍze≥, ktÛry wszed≥ w obszar orb.</param>
+    /// <param name="body">Wƒôze≈Ç, kt√≥ry wszed≈Ç w obszar orb.</param>
     private void OnBodyEntered(Node body)
     {
         if (body is Player player)

@@ -20,6 +20,7 @@ scale_max = 3.0
 color = Color(0.3894074, 0.69279844, 0.40061423, 1)
 
 [node name="GarlicAuraParticles" type="GPUParticles2D" unique_id=1449197408]
+z_index = 2
 amount = 1500
 lifetime = 0.05
 preprocess = 1.0

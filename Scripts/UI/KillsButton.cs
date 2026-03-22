@@ -2,21 +2,21 @@ using Godot;
 using System;
 
 /// <summary>
-/// Klasa reprezentuj¹ca przycisk do wyœwietlania statystyk zabójstw (KillsUI).
-/// Odpowiada za obs³ugê klikniêcia i efektów wizualnych myszy.
+/// Klasa reprezentujÄ…ca przycisk do wyÅ›wietlania statystyk zabÃ³jstw (KillsUI).
+/// Odpowiada za obsÅ‚ugÄ™ klikniÄ™cia i efektÃ³w wizualnych myszy.
 /// </summary>
 public partial class KillsButton : TextureButton
 {
     /// <summary>
-    /// Metoda wywo³ywana po dodaniu wêz³a do drzewa sceny.
+    /// Metoda wywoÅ‚ywana po dodaniu wÄ™zÅ‚a do drzewa sceny.
     /// </summary>
     public override void _Ready()
     {
     }
 
     /// <summary>
-    /// Obs³uguje klikniêcie przycisku.
-    /// Wywo³uje metodê ShowKills() w KillsUI.
+    /// ObsÅ‚uguje klikniÄ™cie przycisku.
+    /// WywoÅ‚uje metodÄ™ ShowKills() w KillsUI.
     /// </summary>
     private void KillsClicked()
     {
@@ -25,7 +25,7 @@ public partial class KillsButton : TextureButton
     }
 
     /// <summary>
-    /// Metoda wywo³ywana, gdy kursor myszy znajduje siê nad przyciskiem.
+    /// Metoda wywoÅ‚ywana, gdy kursor myszy znajduje siÄ™ nad przyciskiem.
     /// Zmienia kolor przycisku na lekko przyciemniony.
     /// </summary>
     private void MouseOn()
@@ -34,8 +34,8 @@ public partial class KillsButton : TextureButton
     }
 
     /// <summary>
-    /// Metoda wywo³ywana, gdy kursor myszy opuszcza przycisk.
-    /// Przywraca domyœlny kolor przycisku.
+    /// Metoda wywoÅ‚ywana, gdy kursor myszy opuszcza przycisk.
+    /// Przywraca domyÅ›lny kolor przycisku.
     /// </summary>
     private void MouseOff()
     {
@@ -43,9 +43,9 @@ public partial class KillsButton : TextureButton
     }
 
     /// <summary>
-    /// Metoda wywo³ywana co klatkê.
+    /// Metoda wywoÅ‚ywana co klatkÄ™.
     /// </summary>
-    /// <param name="delta">Czas, jaki up³yn¹³ od poprzedniej klatki.</param>
+    /// <param name="delta">Czas, jaki upÅ‚ynÄ…Å‚ od poprzedniej klatki.</param>
     public override void _Process(double delta)
     {
     }

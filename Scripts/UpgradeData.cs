@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 /// <summary>
 /// Typ ulepszenia dostępnego dla gracza.

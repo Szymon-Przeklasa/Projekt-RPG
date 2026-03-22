@@ -2,33 +2,33 @@ using Godot;
 using System;
 
 /// <summary>
-/// Klasa reprezentuj¹ca przeciwnika w grze.
-/// Obs³uguje ruch w kierunku gracza, otrzymywanie obra¿eñ, œmieræ i drop doœwiadczenia.
+/// Klasa reprezentujÄ…ca przeciwnika w grze.
+/// ObsÅ‚uguje ruch w kierunku gracza, otrzymywanie obraÅ¼eÅ„, Å›mierÄ‡ i drop doÅ›wiadczenia.
 /// </summary>
 public partial class Enemy : CharacterBody2D
 {
     /// <summary>
-    /// Prêdkoœæ poruszania siê przeciwnika.
+    /// PrÄ™dkoÅ›Ä‡ poruszania siÄ™ przeciwnika.
     /// </summary>
     [Export] public float Speed = 140f;
 
     /// <summary>
-    /// Maksymalna iloœæ punktów ¿ycia przeciwnika.
+    /// Maksymalna iloÅ›Ä‡ punktÃ³w Å¼ycia przeciwnika.
     /// </summary>
     [Export] public int MaxHealth = 100;
 
     /// <summary>
-    /// Scena pocisku doœwiadczenia (XP), któr¹ przeciwnik zrzuca po œmierci.
+    /// Scena pocisku doÅ›wiadczenia (XP), ktÃ³rÄ… przeciwnik zrzuca po Å›mierci.
     /// </summary>
     [Export] public PackedScene XpOrbScene;
 
     /// <summary>
-    /// Iloœæ doœwiadczenia, które przeciwnik zostawia po œmierci.
+    /// IloÅ›Ä‡ doÅ›wiadczenia, ktÃ³re przeciwnik zostawia po Å›mierci.
     /// </summary>
     [Export] public int XpDrop = 1;
 
     /// <summary>
-    /// Efekt cz¹steczkowy wywo³ywany przy otrzymaniu obra¿eñ.
+    /// Efekt czÄ…steczkowy wywoÅ‚ywany przy otrzymaniu obraÅ¼eÅ„.
     /// </summary>
     [Export] public PackedScene HitParticle;
 
@@ -38,18 +38,18 @@ public partial class Enemy : CharacterBody2D
     [Export] public string MobID = "Red slime";
 
     /// <summary>
-    /// Aktualna iloœæ punktów ¿ycia przeciwnika.
+    /// Aktualna iloÅ›Ä‡ punktÃ³w Å¼ycia przeciwnika.
     /// </summary>
     private int _health;
 
     /// <summary>
-    /// Referencja do gracza, do którego przeciwnik siê porusza.
+    /// Referencja do gracza, do ktÃ³rego przeciwnik siÄ™ porusza.
     /// </summary>
     Player player;
 
     /// <summary>
-    /// Metoda wywo³ywana po dodaniu wêz³a do drzewa sceny.
-    /// Inicjalizuje punkty ¿ycia przeciwnika.
+    /// Metoda wywoÅ‚ywana po dodaniu wÄ™zÅ‚a do drzewa sceny.
+    /// Inicjalizuje punkty Å¼ycia przeciwnika.
     /// </summary>
     public override void _Ready()
     {
@@ -57,11 +57,11 @@ public partial class Enemy : CharacterBody2D
     }
 
     /// <summary>
-    /// Zadaje obra¿enia przeciwnikowi i aplikuje knockback.
-    /// Tworzy efekt cz¹steczkowy przy trafieniu i obs³uguje œmieræ przeciwnika.
+    /// Zadaje obraÅ¼enia przeciwnikowi i aplikuje knockback.
+    /// Tworzy efekt czÄ…steczkowy przy trafieniu i obsÅ‚uguje Å›mierÄ‡ przeciwnika.
     /// </summary>
-    /// <param name="damage">Iloœæ zadanych obra¿eñ.</param>
-    /// <param name="knockback">Wektor knockbacku, który zostanie dodany do Velocity.</param>
+    /// <param name="damage">IloÅ›Ä‡ zadanych obraÅ¼eÅ„.</param>
+    /// <param name="knockback">Wektor knockbacku, ktÃ³ry zostanie dodany do Velocity.</param>
     public void TakeDamage(int damage, Vector2 knockback)
     {
         _health -= damage;
@@ -77,7 +77,7 @@ public partial class Enemy : CharacterBody2D
 
         if (_health <= 0)
         {
-            // œmieræ przeciwnika
+            // Å›mierÄ‡ przeciwnika
             GetNode<KillManager>("/root/KillManager").RegisterKill(MobID);
             DropXp();
             QueueFree();
@@ -85,7 +85,7 @@ public partial class Enemy : CharacterBody2D
     }
 
     /// <summary>
-    /// Tworzy orb doœwiadczenia w miejscu œmierci przeciwnika.
+    /// Tworzy orb doÅ›wiadczenia w miejscu Å›mierci przeciwnika.
     /// </summary>
     private void DropXp()
     {
@@ -100,8 +100,8 @@ public partial class Enemy : CharacterBody2D
     }
 
     /// <summary>
-    /// Metoda fizyczna wywo³ywana co klatkê.
-    /// Obs³uguje ruch przeciwnika w kierunku gracza oraz spowalnianie Velocity.
+    /// Metoda fizyczna wywoÅ‚ywana co klatkÄ™.
+    /// ObsÅ‚uguje ruch przeciwnika w kierunku gracza oraz spowalnianie Velocity.
     /// </summary>
     /// <param name="delta">Czas od ostatniej klatki.</param>
     public override void _PhysicsProcess(double delta)

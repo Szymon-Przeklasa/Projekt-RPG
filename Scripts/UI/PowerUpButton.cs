@@ -2,24 +2,24 @@ using Godot;
 using System;
 
 /// <summary>
-/// Klasa reprezentuj¹ca przycisk odpowiedzialny za wyœwietlanie power-upów.
-/// Docelowo bêdzie zmieniaæ scenê lub otwieraæ interfejs ulepszeñ.
+/// Klasa reprezentujaca przycisk odpowiedzialny za wyswietlanie power-upow.
+/// Docelowo bedzie zmieniac scene lub otwierac interfejs ulepszen.
 /// </summary>
 public partial class PowerUpButton : TextureButton
 {
     /// <summary>
-    /// Metoda wywo³ywana po dodaniu wêz³a do drzewa sceny.
+    /// Metoda wywolywana po dodaniu wezla do drzewa sceny.
     /// </summary>
     public override void _Ready()
     {
     }
 
     /// <summary>
-    /// Wyœwietla ekran power-upów lub zmienia scenê na odpowiedni¹.
+    /// Wyswietla ekran power-upow lub zmienia scene na odpowiednia.
     /// </summary>
     /// <remarks>
     /// Metoda nie jest jeszcze zaimplementowana.
-    /// Docelowo powinna dzia³aæ analogicznie do przycisku startowego (zmiana sceny).
+    /// Docelowo powinna dzialac analogicznie do przycisku startowego (zmiana sceny).
     /// </remarks>
     private void ShowPowerups()
     {
@@ -27,7 +27,7 @@ public partial class PowerUpButton : TextureButton
     }
 
     /// <summary>
-    /// Metoda wywo³ywana, gdy kursor myszy znajduje siê nad przyciskiem.
+    /// Metoda wywolywana, gdy kursor myszy znajduje sie nad przyciskiem.
     /// Zmienia kolor przycisku na lekko przyciemniony.
     /// </summary>
     private void MouseOn()
@@ -36,8 +36,8 @@ public partial class PowerUpButton : TextureButton
     }
 
     /// <summary>
-    /// Metoda wywo³ywana, gdy kursor myszy opuszcza przycisk.
-    /// Przywraca domyœlny kolor przycisku.
+    /// Metoda wywolywana, gdy kursor myszy opuszcza przycisk.
+    /// Przywraca domyslny kolor przycisku.
     /// </summary>
     private void MouseOff()
     {
@@ -45,9 +45,9 @@ public partial class PowerUpButton : TextureButton
     }
 
     /// <summary>
-    /// Metoda wywo³ywana co klatkê.
+    /// Metoda wywolywana co klatke.
     /// </summary>
-    /// <param name="delta">Czas, jaki up³yn¹³ od poprzedniej klatki.</param>
+    /// <param name="delta">Czas, jaki uplynal od poprzedniej klatki.</param>
     public override void _Process(double delta)
     {
     }

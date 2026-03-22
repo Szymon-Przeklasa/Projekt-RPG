@@ -9,7 +9,6 @@
 [ext_resource type="Script" uid="uid://dj5nv6m2e7lcs" path="res://Scripts/UI/PowerUpButton.cs" id="8_trj04"]
 [ext_resource type="PackedScene" uid="uid://vhlkfdx6q1w0" path="res://Scenes/UI/KillsUI.tscn" id="8_yhxw7"]
 
-
 [node name="Main Menu" type="Control" unique_id=1056142175]
 layout_mode = 3
 anchors_preset = 0

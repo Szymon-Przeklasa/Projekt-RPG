@@ -1,13 +1,13 @@
 using Godot;
 
 /// <summary>
-/// Prosty efekt cz¹steczkowy dla przeciwnika (np. przy otrzymaniu obra¿eñ).
+/// Prosty efekt czÄ…steczkowy dla przeciwnika (np. przy otrzymaniu obraÅ¼eÅ„).
 /// </summary>
 public partial class Enemybleed : GpuParticles2D
 {
     /// <summary>
-    /// Metoda wywo³ywana po dodaniu wêz³a do drzewa sceny.
-    /// W³¹cza emisjê cz¹steczek.
+    /// Metoda wywoÅ‚ywana po dodaniu wÄ™zÅ‚a do drzewa sceny.
+    /// WÅ‚Ä…cza emisjÄ™ czÄ…steczek.
     /// </summary>
     public override void _Ready()
     {

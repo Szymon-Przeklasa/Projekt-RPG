@@ -2,20 +2,20 @@ using Godot;
 using System;
 
 /// <summary>
-/// Klasa reprezentuj¹ca przycisk startowy.
-/// Odpowiada za rozpoczêcie gry oraz efekty wizualne zwi¹zane z interakcj¹ myszy.
+/// Klasa reprezentujaca przycisk startowy.
+/// Odpowiada za rozpoczecie gry oraz efekty wizualne zwiazane z interakcja myszy.
 /// </summary>
 public partial class StartButton : TextureButton
 {
     /// <summary>
-    /// Metoda wywo³ywana po dodaniu wêz³a do drzewa sceny.
+    /// Metoda wywolywana po dodaniu wezla do drzewa sceny.
     /// </summary>
     public override void _Ready()
     {
     }
 
     /// <summary>
-    /// Rozpoczyna grê poprzez zmianê sceny na g³ówn¹ scenê rozgrywki.
+    /// Rozpoczyna gre poprzez zmiane sceny na glowna scene rozgrywki.
     /// </summary>
     private void StartGame()
     {
@@ -23,7 +23,7 @@ public partial class StartButton : TextureButton
     }
 
     /// <summary>
-    /// Metoda wywo³ywana, gdy kursor myszy znajduje siê nad przyciskiem.
+    /// Metoda wywolywana, gdy kursor myszy znajduje sie nad przyciskiem.
     /// Zmienia kolor przycisku na lekko przyciemniony.
     /// </summary>
     private void MouseOn()
@@ -32,8 +32,8 @@ public partial class StartButton : TextureButton
     }
 
     /// <summary>
-    /// Metoda wywo³ywana, gdy kursor myszy opuszcza przycisk.
-    /// Przywraca domyœlny kolor przycisku.
+    /// Metoda wywolywana, gdy kursor myszy opuszcza przycisk.
+    /// Przywraca domyslny kolor przycisku.
     /// </summary>
     private void MouseOff()
     {
@@ -41,9 +41,9 @@ public partial class StartButton : TextureButton
     }
 
     /// <summary>
-    /// Metoda wywo³ywana co klatkê.
+    /// Metoda wywolywana co klatke.
     /// </summary>
-    /// <param name="delta">Czas, jaki up³yn¹³ od poprzedniej klatki.</param>
+    /// <param name="delta">Czas, jaki uplynal od poprzedniej klatki.</param>
     public override void _Process(double delta)
     {
     }

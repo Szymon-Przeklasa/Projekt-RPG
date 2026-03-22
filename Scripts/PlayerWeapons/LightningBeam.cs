@@ -1,19 +1,19 @@
 using Godot;
 
 /// <summary>
-/// Klasa reprezentuj¹ca wizualny efekt pioruna (Beam) dla broni Lightning.
-/// Tworzy dynamiczn¹ liniê z lekkim rozga³êzieniem i animacj¹ migotania.
+/// Klasa reprezentujÄ…ca wizualny efekt pioruna (Beam) dla broni Lightning.
+/// Tworzy dynamicznÄ… liniÄ™ z lekkim rozgaÅ‚Ä™zieniem i animacjÄ… migotania.
 /// </summary>
 public partial class LightningBeam : Node2D
 {
     /// <summary>
-    /// Referencja do wêz³a Line2D u¿ywanego do rysowania efektu pioruna.
+    /// Referencja do wÄ™zÅ‚a Line2D uÅ¼ywanego do rysowania efektu pioruna.
     /// </summary>
     private Line2D line;
 
     /// <summary>
-    /// Metoda wywo³ywana po dodaniu wêz³a do drzewa sceny.
-    /// Inicjalizuje referencjê do Line2D.
+    /// Metoda wywoÅ‚ywana po dodaniu wÄ™zÅ‚a do drzewa sceny.
+    /// Inicjalizuje referencjÄ™ do Line2D.
     /// </summary>
     public override void _Ready()
     {
@@ -21,11 +21,11 @@ public partial class LightningBeam : Node2D
     }
 
     /// <summary>
-    /// Konfiguruje efekt pioruna miêdzy dwoma punktami.
+    /// Konfiguruje efekt pioruna miÄ™dzy dwoma punktami.
     /// Tworzy segmenty z lekkim rozrzutem dla efektu wizualnego.
     /// </summary>
     /// <param name="from">Pozycja startowa pioruna.</param>
-    /// <param name="to">Pozycja koñcowa pioruna.</param>
+    /// <param name="to">Pozycja koÅ„cowa pioruna.</param>
     public void Setup(Vector2 from, Vector2 to)
     {
         line.ClearPoints();
@@ -54,12 +54,12 @@ public partial class LightningBeam : Node2D
     }
 
     /// <summary>
-    /// Asynchroniczna animacja pioruna – migotanie linii przez krótki czas.
-    /// Po zakoñczeniu animacji wêze³ usuwa siê z drzewa sceny.
+    /// Asynchroniczna animacja pioruna â€“ migotanie linii przez krÃ³tki czas.
+    /// Po zakoÅ„czeniu animacji wÄ™zeÅ‚ usuwa siÄ™ z drzewa sceny.
     /// </summary>
     private async void Animate()
     {
-        // Ma³y efekt migotania
+        // MaÅ‚y efekt migotania
         for (int i = 0; i < 3; i++)
         {
             line.Width = (float)GD.RandRange(5f, 9f);
