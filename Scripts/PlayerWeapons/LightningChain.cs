@@ -6,35 +6,35 @@ using Godot;
 /// </summary>
 public partial class LightningChain : GpuParticles2D
 {
-    /// <summary>
-    /// Konfiguruje segment łańcucha między dwoma punktami.
-    /// Ustawia pozycję, obrót, skalę i uruchamia emisję cząsteczek.
-    /// </summary>
-    /// <param name="from">Pozycja startowa segmentu.</param>
-    /// <param name="to">Pozycja końcowa segmentu.</param>
-    public void Setup(Vector2 from, Vector2 to)
-    {
-        GlobalPosition = from;
+	/// <summary>
+	/// Konfiguruje segment łańcucha między dwoma punktami.
+	/// Ustawia pozycję, obrót, skalę i uruchamia emisję cząsteczek.
+	/// </summary>
+	/// <param name="from">Pozycja startowa segmentu.</param>
+	/// <param name="to">Pozycja końcowa segmentu.</param>
+	public void Setup(Vector2 from, Vector2 to)
+	{
+		GlobalPosition = from;
 
-        var direction = (to - from).Normalized();
-        Rotation = direction.Angle();
+		var direction = (to - from).Normalized();
+		Rotation = direction.Angle();
 
-        float distance = from.DistanceTo(to);
+		float distance = from.DistanceTo(to);
 
-        Scale = new Vector2(distance / 100f, 1f);
+		Scale = new Vector2(distance / 100f, 1f);
 
-        Restart();
-        Emitting = true;
-    }
+		Restart();
+		Emitting = true;
+	}
 
-    /// <summary>
-    /// Metoda wywoływana po dodaniu węzła do drzewa sceny.
-    /// Włącza emisję cząsteczek i po określonym czasie usuwa segment z gry.
-    /// </summary>
-    public override async void _Ready()
-    {
-        Emitting = true;
-        await ToSignal(GetTree().CreateTimer(Lifetime), "timeout");
-        QueueFree();
-    }
+	/// <summary>
+	/// Metoda wywoływana po dodaniu węzła do drzewa sceny.
+	/// Włącza emisję cząsteczek i po określonym czasie usuwa segment z gry.
+	/// </summary>
+	public override async void _Ready()
+	{
+		Emitting = true;
+		await ToSignal(GetTree().CreateTimer(Lifetime), "timeout");
+		QueueFree();
+	}
 }

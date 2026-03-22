@@ -8,94 +8,94 @@ using System.Collections.Generic;
 /// </summary>
 public partial class Lightning : Weapon
 {
-    /// <summary>
-    /// Scena efektu pioruna (LightningBeam), która będzie instancjonowana przy strzale.
-    /// </summary>
-    [Export] PackedScene ProjectileScene;
+	/// <summary>
+	/// Scena efektu pioruna (LightningBeam), która będzie instancjonowana przy strzale.
+	/// </summary>
+	[Export] PackedScene ProjectileScene;
 
-    /// <summary>
-    /// Metoda wywoływana przy strzale.
-    /// Tworzy efekt pioruna od gracza do najbliższego wroga, przeskakując między kolejnymi wrogami
-    /// aż do osiągnięcia limitu łańcuchów (Stats.ProjectileCount).
-    /// Każdy trafiony wróg otrzymuje obrażenia obliczone na podstawie Stats.Damage i Player.DamageMultiplier.
-    /// </summary>
-    protected override void Fire()
-    {
-        var enemies = GetTree().GetNodesInGroup("enemies");
+	/// <summary>
+	/// Metoda wywoływana przy strzale.
+	/// Tworzy efekt pioruna od gracza do najbliższego wroga, przeskakując między kolejnymi wrogami
+	/// aż do osiągnięcia limitu łańcuchów (Stats.ProjectileCount).
+	/// Każdy trafiony wróg otrzymuje obrażenia obliczone na podstawie Stats.Damage i Player.DamageMultiplier.
+	/// </summary>
+	protected override void Fire()
+	{
+		var enemies = GetTree().GetNodesInGroup("enemies");
 
-        if (enemies.Count == 0)
-            return;
+		if (enemies.Count == 0)
+			return;
 
-        int chainsLeft = Stats.ProjectileCount;
-        Node2D current = Player.GetClosestEnemy(Stats.Range);
+		int chainsLeft = Stats.ProjectileCount;
+		Node2D current = Player.GetClosestEnemy(Stats.Range);
 
-        if (current == null)
-            return;
+		if (current == null)
+			return;
 
-        var hitEnemies = new HashSet<Node2D>();
-        Vector2 fromPosition = Player.ShootPoint.GlobalPosition;
+		var hitEnemies = new HashSet<Node2D>();
+		Vector2 fromPosition = Player.ShootPoint.GlobalPosition;
 
-        while (current != null && chainsLeft-- > 0)
-        {
-            if (hitEnemies.Contains(current))
-                break;
+		while (current != null && chainsLeft-- > 0)
+		{
+			if (hitEnemies.Contains(current))
+				break;
 
-            hitEnemies.Add(current);
+			hitEnemies.Add(current);
 
-            var center = current.GetNode<Marker2D>("Center");
-            Vector2 toPosition = center.GlobalPosition;
+			var center = current.GetNode<Marker2D>("Center");
+			Vector2 toPosition = center.GlobalPosition;
 
-            // Zadawanie obrażeń
-            int damage = Mathf.RoundToInt(Stats.Damage * Player.DamageMultiplier);
-            ((Enemy)current).TakeDamage(damage, Vector2.Zero);
+			// Zadawanie obrażeń
+			int damage = Mathf.RoundToInt(Stats.Damage * Player.DamageMultiplier);
+			((Enemy)current).TakeDamage(damage, Vector2.Zero);
 
-            // Efekt wizualny pioruna
-            SpawnLightningFX(fromPosition, toPosition);
+			// Efekt wizualny pioruna
+			SpawnLightningFX(fromPosition, toPosition);
 
-            fromPosition = toPosition;
+			fromPosition = toPosition;
 
-            current = GetClosestUnhitEnemy(toPosition, hitEnemies);
-        }
-    }
+			current = GetClosestUnhitEnemy(toPosition, hitEnemies);
+		}
+	}
 
-    /// <summary>
-    /// Zwraca najbliższego wroga od danej pozycji, który nie został jeszcze trafiony.
-    /// </summary>
-    /// <param name="fromPos">Pozycja, od której szukamy najbliższego wroga.</param>
-    /// <param name="hitEnemies">Zbiór wrogów, którzy już zostali trafieni piorunem.</param>
-    /// <returns>Najbliższy nie trafiony wróg typu Node2D lub null, jeśli żaden nie pasuje.</returns>
-    Node2D GetClosestUnhitEnemy(Vector2 fromPos, HashSet<Node2D> hitEnemies)
-    {
-        Node2D closest = null;
-        float closestDist = float.MaxValue;
+	/// <summary>
+	/// Zwraca najbliższego wroga od danej pozycji, który nie został jeszcze trafiony.
+	/// </summary>
+	/// <param name="fromPos">Pozycja, od której szukamy najbliższego wroga.</param>
+	/// <param name="hitEnemies">Zbiór wrogów, którzy już zostali trafieni piorunem.</param>
+	/// <returns>Najbliższy nie trafiony wróg typu Node2D lub null, jeśli żaden nie pasuje.</returns>
+	Node2D GetClosestUnhitEnemy(Vector2 fromPos, HashSet<Node2D> hitEnemies)
+	{
+		Node2D closest = null;
+		float closestDist = float.MaxValue;
 
-        foreach (Node node in GetTree().GetNodesInGroup("enemies"))
-        {
-            if (node is Node2D enemy && !hitEnemies.Contains(enemy))
-            {
-                var center = enemy.GetNode<Marker2D>("Center");
-                float dist = fromPos.DistanceTo(center.GlobalPosition);
+		foreach (Node node in GetTree().GetNodesInGroup("enemies"))
+		{
+			if (node is Node2D enemy && !hitEnemies.Contains(enemy))
+			{
+				var center = enemy.GetNode<Marker2D>("Center");
+				float dist = fromPos.DistanceTo(center.GlobalPosition);
 
-                if (dist < closestDist && dist <= Stats.Range)
-                {
-                    closestDist = dist;
-                    closest = enemy;
-                }
-            }
-        }
+				if (dist < closestDist && dist <= Stats.Range)
+				{
+					closestDist = dist;
+					closest = enemy;
+				}
+			}
+		}
 
-        return closest;
-    }
+		return closest;
+	}
 
-    /// <summary>
-    /// Tworzy wizualny efekt pioruna między dwiema pozycjami.
-    /// </summary>
-    /// <param name="from">Pozycja początkowa pioruna.</param>
-    /// <param name="to">Pozycja końcowa pioruna.</param>
-    void SpawnLightningFX(Vector2 from, Vector2 to)
-    {
-        var beam = ProjectileScene.Instantiate<LightningBeam>();
-        GetTree().CurrentScene.AddChild(beam);
-        beam.Setup(from, to);
-    }
+	/// <summary>
+	/// Tworzy wizualny efekt pioruna między dwiema pozycjami.
+	/// </summary>
+	/// <param name="from">Pozycja początkowa pioruna.</param>
+	/// <param name="to">Pozycja końcowa pioruna.</param>
+	void SpawnLightningFX(Vector2 from, Vector2 to)
+	{
+		var beam = ProjectileScene.Instantiate<LightningBeam>();
+		GetTree().CurrentScene.AddChild(beam);
+		beam.Setup(from, to);
+	}
 }
