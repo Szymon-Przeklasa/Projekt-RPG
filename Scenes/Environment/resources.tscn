@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://drds4o60lgpxp"]
+
+[ext_resource type="Texture2D" uid="uid://byiu5fet7n20h" path="res://Textures/oryx_16bit_fantasy_world-928030668.png" id="1_bkc1f"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jchaj"]
+atlas = ExtResource("1_bkc1f")
+region = Rect2(24, 24, 1320, 936)
+
+[node name="Resources" type="Sprite2D" unique_id=1125835623]
+texture_filter = 1
+texture = SubResource("AtlasTexture_jchaj")
