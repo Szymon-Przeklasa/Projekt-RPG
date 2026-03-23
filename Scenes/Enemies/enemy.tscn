@@ -3,10 +3,14 @@
 [ext_resource type="Script" uid="uid://c3u7kyrqwc387" path="res://Scripts/Enemies/Enemy.cs" id="1_ubio8"]
 [ext_resource type="PackedScene" uid="uid://bvw20tawyx4hh" path="res://Scenes/Environment/XpOrb.tscn" id="2_miwey"]
 [ext_resource type="PackedScene" uid="uid://c21xa0f8nmxaa" path="res://Scenes/Enemies/enemybleed.tscn" id="3_l8da7"]
-[ext_resource type="Texture2D" uid="uid://ca6yi5kwffw17" path="res://Textures/icon3.png" id="4_haj6g"]
+[ext_resource type="Texture2D" uid="uid://c35bg4y5ri888" path="res://Textures/c10_image_1.png" id="4_ubio8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_miwey"]
+atlas = ExtResource("4_ubio8")
+region = Rect2(641, 726, 14, 15)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iifgy"]
-size = Vector2(128, 128)
+size = Vector2(51.25305, 51.25305)
 
 [node name="Enemy" type="CharacterBody2D" unique_id=1707419740 groups=["enemies"]]
 z_index = 2
@@ -19,7 +23,9 @@ HitParticle = ExtResource("3_l8da7")
 metadata/grkh = false
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=744124537]
-texture = ExtResource("4_haj6g")
+texture_filter = 1
+scale = Vector2(3, 3)
+texture = SubResource("AtlasTexture_miwey")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=16526739]
 shape = SubResource("RectangleShape2D_iifgy")

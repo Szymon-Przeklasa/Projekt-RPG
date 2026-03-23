@@ -39,19 +39,34 @@ public abstract partial class Weapon : Node
 		timer.Start();
 	}
 
-	/// <summary>
-	/// Odświeża statystyki broni, aktualizując czas odnowienia w timerze.
-	/// Powinno być wywoływane po zmianie Stats.Cooldown lub Player.CooldownMultiplier.
-	/// </summary>
-	public void RefreshStats()
-	{
-		if (timer != null)
-			timer.WaitTime = Stats.Cooldown * Player.CooldownMultiplier;
-	}
+    /// <summary>
+    /// Odświeża statystyki broni, aktualizując czas odnowienia w timerze.
+    /// Powinno być wywoływane po zmianie Stats.Cooldown lub Player.CooldownMultiplier.
+    /// </summary>
+    public virtual void RefreshStats()
+    {
+        if (timer != null)
+            timer.WaitTime = Mathf.Max(0.1f, Stats.Cooldown * Player.CooldownMultiplier);
+    }
 
-	/// <summary>
-	/// Metoda abstrakcyjna wywoływana przy każdym strzale.
-	/// Każda broń powinna nadpisać tę metodę, implementując własną logikę strzału.
-	/// </summary>
-	protected abstract void Fire();
+    /// <summary>
+    /// Oblicza aktualne obrażenia z uwzględnieniem mnożnika gracza.
+    /// </summary>
+    protected int GetDamage() => Mathf.RoundToInt(Stats.Damage * Player.DamageMultiplier);
+
+    /// <summary>
+    /// Oblicza aktualny zasięg z uwzględnieniem mnożnika obszaru gracza.
+    /// </summary>
+    protected float GetRange() => Stats.Range * Player.AreaMultiplier;
+
+    /// <summary>
+    /// Oblicza aktualną prędkość pocisków z uwzględnieniem mnożnika.
+    /// </summary>
+    protected float GetSpeed() => Stats.Speed * Player.ProjectileSpeedMultiplier;
+
+    /// <summary>
+    /// Metoda abstrakcyjna wywoływana przy każdym strzale.
+    /// Każda broń powinna nadpisać tę metodę, implementując własną logikę strzału.
+    /// </summary>
+    protected abstract void Fire();
 }

@@ -44,7 +44,7 @@ public partial class LightningBeam : Node2D
 
 			if (i != 0 && i != segments)
 			{
-				point += normal * (float)GD.RandRange(-15f, 15f);
+				point += normal * (float)GD.RandRange(-12f, 12f);
 			}
 
 			line.AddPoint(point);
@@ -62,7 +62,7 @@ public partial class LightningBeam : Node2D
 		// Mały efekt migotania
 		for (int i = 0; i < 3; i++)
 		{
-			line.Width = (float)GD.RandRange(5f, 9f);
+			line.Width = (float)GD.RandRange(2f, 5f);
 			await ToSignal(GetTree().CreateTimer(0.03f), "timeout");
 		}
 

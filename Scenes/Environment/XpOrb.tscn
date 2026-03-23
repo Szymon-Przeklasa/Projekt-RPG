@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://bel82gute18gk" path="res://Textures/Sprite-Experience_Gem.webp" id="2_88b67"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_88b67"]
-radius = 2.166263
-height = 8.499157
+radius = 4.0
+height = 17.647058
 
 [node name="Area2D" type="Area2D" unique_id=571562567 groups=["xp"]]
 z_index = 2
@@ -13,10 +13,11 @@ collision_layer = 8
 script = ExtResource("1_25g4u")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=528424974]
+texture_filter = 1
 position = Vector2(4.7683716e-07, 4.7683716e-07)
-scale = Vector2(0.24999999, 0.24999999)
+scale = Vector2(0.05, 0.05)
 texture = ExtResource("2_88b67")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=214434663]
-scale = Vector2(4.1546197, 2.8238094)
+scale = Vector2(0.5, 0.34)
 shape = SubResource("CapsuleShape2D_88b67")

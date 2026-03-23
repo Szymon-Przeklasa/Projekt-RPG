@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dbed3q2s3rkve" path="res://Scripts/Player.cs" id="1_4flbx"]
 [ext_resource type="PackedScene" uid="uid://7gc16jyb4wwm" path="res://Scenes/PlayerWeapons/projectile.tscn" id="2_onrkg"]
-[ext_resource type="Texture2D" uid="uid://tgk1brhkc72m" path="res://Textures/icon2.svg" id="3_tx1dd"]
+[ext_resource type="Texture2D" uid="uid://c35bg4y5ri888" path="res://Textures/c10_image_1.png" id="3_tx1dd"]
 [ext_resource type="Script" uid="uid://cxw0japnps6gj" path="res://Scripts/PlayerWeapons/FireWand.cs" id="3_vgqql"]
 [ext_resource type="Script" uid="uid://dbo4rnc0ylwwr" path="res://Weapons/WeaponStats.cs" id="4_3smsa"]
 [ext_resource type="Script" uid="uid://b5gyq3cwvf1fv" path="res://Scripts/PlayerWeapons/Garlic.cs" id="4_fkybt"]
@@ -11,8 +11,12 @@
 [ext_resource type="PackedScene" uid="uid://cvbewtyx8tg0k" path="res://Scenes/PlayerWeapons/lightning_beam.tscn" id="7_tx1dd"]
 [ext_resource type="PackedScene" uid="uid://lklfguw38lmy" path="res://Scenes/PlayerWeapons/garlic_aura_particles.tscn" id="8_tx1dd"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_gymyn"]
+atlas = ExtResource("3_tx1dd")
+region = Rect2(641, 641, 14, 15)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i3pqv"]
-size = Vector2(128, 128)
+size = Vector2(50.027752, 50.027752)
 
 [sub_resource type="Resource" id="Resource_8erm5"]
 script = ExtResource("4_3smsa")
@@ -44,6 +48,7 @@ Cooldown = 0.4
 Damage = 4
 Knockback = 40.0
 SpreadAngle = 0.0
+Range = 200.0
 metadata/_custom_type_script = "uid://dbo4rnc0ylwwr"
 
 [node name="Player" type="CharacterBody2D" unique_id=960175255 groups=["player"]]
@@ -54,14 +59,18 @@ collision_mask = 2
 motion_mode = 1
 script = ExtResource("1_4flbx")
 ProjectileScene = ExtResource("2_onrkg")
+Speed = 200
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=751756645]
-texture = ExtResource("3_tx1dd")
+texture_filter = 1
+scale = Vector2(3, 3)
+texture = SubResource("AtlasTexture_gymyn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1527608151]
 shape = SubResource("RectangleShape2D_i3pqv")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=49971150]
+zoom = Vector2(2, 2)
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 

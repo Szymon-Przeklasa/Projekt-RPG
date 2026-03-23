@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Xml.Linq;
 
 /// <summary>
@@ -179,66 +180,165 @@ public partial class Player : CharacterBody2D
 		}
 	}
 
+	// Nowe pole — mnożnik prędkości pocisków
+	public float ProjectileSpeedMultiplier = 1f;
+
+	// Lista pasywnych (zmień typ z UpgradeData na PassiveData)
+	public List<PassiveData> Passives = new();
+
+	/// <summary>
+	/// Dodaje pasywną umiejętność.
+	/// </summary>
+	public bool AddPassive(PassiveData passive)
+	{
+		if (!passive.CanUpgrade) return false;
+
+		if (!Passives.Contains(passive))
+		{
+			if (Passives.Count >= MAX_PASSIVES) return false;
+			Passives.Add(passive);
+		}
+
+		passive.Apply(this);
+		return true;
+	}
+
+	/// <summary>
+	/// Odświeża timery i prędkości wszystkich broni po zmianie statystyk gracza.
+	/// </summary>
+	public void RefreshAllWeapons()
+	{
+		foreach (var weapon in Weapons)
+			weapon.RefreshStats();
+	}
+
 	/// <summary>
 	/// Inicjalizuje dostępne ulepszenia gracza.
 	/// Dodaje ulepszenia dla konkretnych broni oraz globalne statystyki.
 	/// </summary>
 	private void SetupUpgrades()
 	{
+		// ── PASYWY ──────────────────────────────────────────────
+		var spinach = new PassiveData
+		{
+			Name = "Szpinak",
+			Description = "+10% obrażeń",
+			Type = PassiveType.Spinach,
+			MaxLevel = 5,
+			BonusPerLevel = 0.1f
+		};
+		var pummarola = new PassiveData
+		{
+			Name = "Pummarola",
+			Description = "-10% cooldown",
+			Type = PassiveType.Pummarola,
+			MaxLevel = 5,
+			BonusPerLevel = 0.1f
+		};
+		var hollowHeart = new PassiveData
+		{
+			Name = "Hollow Heart",
+			Description = "+10% zasięg obszarowy",
+			Type = PassiveType.HollowHeart,
+			MaxLevel = 5,
+			BonusPerLevel = 0.1f
+		};
+		var bracer = new PassiveData
+		{
+			Name = "Bracer",
+			Description = "+10% prędkość pocisków",
+			Type = PassiveType.Bracer,
+			MaxLevel = 5,
+			BonusPerLevel = 0.1f
+		};
+		var wings = new PassiveData
+		{
+			Name = "Skrzydła",
+			Description = "+10% prędkość ruchu",
+			Type = PassiveType.Wings,
+			MaxLevel = 5,
+			BonusPerLevel = 0.1f
+		};
+
+		// Pasywne jako ulepszenia
+		AvailableUpgrades.Add(new UpgradeData("Szpinak", UpgradeType.Stat,
+			(p) => AddPassive(spinach), 5));
+		AvailableUpgrades.Add(new UpgradeData("Pummarola", UpgradeType.Stat,
+			(p) => AddPassive(pummarola), 5));
+		AvailableUpgrades.Add(new UpgradeData("Hollow Heart", UpgradeType.Stat,
+			(p) => AddPassive(hollowHeart), 5));
+		AvailableUpgrades.Add(new UpgradeData("Bracer", UpgradeType.Stat,
+			(p) => AddPassive(bracer), 5));
+		AvailableUpgrades.Add(new UpgradeData("Skrzydła", UpgradeType.Stat,
+			(p) => AddPassive(wings), 5));
+
+		// ── ULEPSZENIA BRONI ─────────────────────────────────────
 		var lightning = GetNodeOrNull<Lightning>("Weapons/Lightning");
 		if (lightning != null)
 		{
-			AvailableUpgrades.Add(new UpgradeData(
-				"Lightning Damage +5",
-				UpgradeType.Weapon,
-				(p) => { lightning.Stats.Damage += 5; },
-				8
-			));
-
-			AvailableUpgrades.Add(new UpgradeData(
-				"Lightning Cooldown -0.1",
-				UpgradeType.Weapon,
-				(p) => {
-					lightning.Stats.Cooldown = Mathf.Max(0.2f, lightning.Stats.Cooldown - 0.1f);
-					lightning.RefreshStats();
-				},
-				8
-			));
-
-			AvailableUpgrades.Add(new UpgradeData(
-				"Lightning +1 Projectile",
-				UpgradeType.Weapon,
-				(p) => { lightning.Stats.ProjectileCount += 1; },
-				8
-			));
+			AvailableUpgrades.Add(new UpgradeData("Błyskawica: +5 DMG", UpgradeType.Weapon,
+				(p) => { lightning.Stats.Damage += 5; }, 8));
+			AvailableUpgrades.Add(new UpgradeData("Błyskawica: -0.2s cooldown", UpgradeType.Weapon,
+				(p) => { lightning.Stats.Cooldown = Mathf.Max(0.3f, lightning.Stats.Cooldown - 0.2f); lightning.RefreshStats(); }, 5));
+			AvailableUpgrades.Add(new UpgradeData("Błyskawica: +1 łańcuch", UpgradeType.Weapon,
+				(p) => { lightning.Stats.ProjectileCount += 1; }, 4));
+			AvailableUpgrades.Add(new UpgradeData("Błyskawica: +150 zasięg", UpgradeType.Weapon,
+				(p) => { lightning.Stats.Range += 150f; }, 4));
 		}
 
 		var garlic = GetNodeOrNull<Garlic>("Weapons/Garlic");
 		if (garlic != null)
 		{
-			AvailableUpgrades.Add(new UpgradeData(
-				"Garlic Damage +2",
-				UpgradeType.Weapon,
-				(p) => { garlic.Stats.Damage += 2; },
-				8
-			));
-
-			AvailableUpgrades.Add(new UpgradeData(
-				"Garlic Range +20",
-				UpgradeType.Weapon,
-				(p) => { garlic.Stats.Range += 20; },
-				8
-			));
+			AvailableUpgrades.Add(new UpgradeData("Czosnek: +3 DMG", UpgradeType.Weapon,
+				(p) => { garlic.Stats.Damage += 3; }, 8));
+			AvailableUpgrades.Add(new UpgradeData("Czosnek: +100 zasięg", UpgradeType.Weapon,
+				(p) => { garlic.Stats.Range += 100f; }, 5));
+			AvailableUpgrades.Add(new UpgradeData("Czosnek: szybszy tick", UpgradeType.Weapon,
+				(p) => { garlic.Stats.Cooldown = Mathf.Max(0.3f, garlic.Stats.Cooldown - 0.2f); garlic.RefreshStats(); }, 4));
 		}
 
-		// global stat upgrade
-		AvailableUpgrades.Add(new UpgradeData(
-			"Damage +10%",
-			UpgradeType.Stat,
-			(p) => { p.DamageMultiplier += 0.1f; },
-			5
-		));
+		var firewand = GetNodeOrNull<FireWand>("Weapons/FireWand");
+		if (firewand != null)
+		{
+			AvailableUpgrades.Add(new UpgradeData("Różdżka: +4 DMG", UpgradeType.Weapon,
+				(p) => { firewand.Stats.Damage += 4; }, 8));
+			AvailableUpgrades.Add(new UpgradeData("Różdżka: +1 pocisk", UpgradeType.Weapon,
+				(p) => { firewand.Stats.ProjectileCount += 1; }, 4));
+			AvailableUpgrades.Add(new UpgradeData("Różdżka: +1 przebicie", UpgradeType.Weapon,
+				(p) => { firewand.Stats.Pierce += 1; }, 4));
+			AvailableUpgrades.Add(new UpgradeData("Różdżka: -0.15s cooldown", UpgradeType.Weapon,
+				(p) => { firewand.Stats.Cooldown = Mathf.Max(0.1f, firewand.Stats.Cooldown - 0.15f); firewand.RefreshStats(); }, 5));
+		}
 	}
+			//---
+
+			//## Tabela balansowania bazowych statystyk
+
+			//| Broń | Damage | Cooldown | ProjectileCount | Range | Pierce | Speed |
+			//|---|---|---|---|---|---|---|
+			//| FireWand | 10 | 0.8s | 1 | 500 | 1 | 600 |
+			//| Lightning | 20 | 1.5s | 3 łańcuchy | 400 | — | — |
+			//| Garlic | 5 | 0.5s | — | 200 (radius) | — | — |
+			//| Axe | 15 | 1.2s | 1 | 600 | 2 | 400 |
+			//| MagicMissile | 12 | 1.0s | 1 | 700 | 1 | 250 |
+
+			//---
+
+			//## Jak to działa razem (flow skalowania)
+			//```
+			//Gracz podnosi Szpinak(Spinach lvl 1)
+			//→ player.DamageMultiplier += 0.1  (teraz 1.1)
+			//→ player.RefreshAllWeapons()
+			//→ każda broń w Fire() wywołuje GetDamage()
+			//→ GetDamage() = Stats.Damage* Player.DamageMultiplier
+			//→ wszystkie bronie automatycznie zadają 10% więcej DMG
+
+
+			//Gracz podnosi Hollow Heart (lvl 3)
+			//→ player.AreaMultiplier = 1.3
+			//→ Garlic.Fire() wywołuje GetRange() = Stats.Range* 1.3
+			//→ aura czosnku jest 30% większa
+
 
 	/// <summary>
 	/// Zwraca najbliższego wroga w określonym zasięgu.

@@ -25,7 +25,6 @@ public partial class Garlic : Weapon
 	/// </summary>
 	protected override void Fire()
 	{
-		// Tworzenie aury wokół gracza, jeśli jeszcze nie istnieje
 		if (aura == null)
 		{
 			aura = ProjectileScene.Instantiate<GpuParticles2D>();
@@ -33,15 +32,14 @@ public partial class Garlic : Weapon
 			aura.Position = Vector2.Zero;
 		}
 
-		// Zadawanie obrażeń wszystkim wrogom w zasięgu
+		float radius = GetRange(); // <-- teraz używa AreaMultiplier!
+
 		foreach (Node node in GetTree().GetNodesInGroup("enemies"))
 		{
-			float radius = Stats.Range;
-
 			if (node is Enemy enemy &&
-				Player.GlobalPosition.DistanceTo(enemy.GlobalPosition) <= radius / 2)
+				Player.GlobalPosition.DistanceTo(enemy.GlobalPosition) <= radius)
 			{
-				enemy.TakeDamage(Stats.Damage, Vector2.Zero);
+				enemy.TakeDamage(GetDamage(), Vector2.Zero);
 			}
 		}
 	}

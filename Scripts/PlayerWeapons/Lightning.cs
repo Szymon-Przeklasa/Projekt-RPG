@@ -22,40 +22,52 @@ public partial class Lightning : Weapon
 	protected override void Fire()
 	{
 		var enemies = GetTree().GetNodesInGroup("enemies");
+		if (enemies.Count == 0) return;
 
-		if (enemies.Count == 0)
-			return;
-
+		float range = GetRange(); // Wings pośrednio przez SpeedMultiplier wpływa na gameplay,
+								  // ale zasięg skalujemy przez AreaMultiplier
 		int chainsLeft = Stats.ProjectileCount;
-		Node2D current = Player.GetClosestEnemy(Stats.Range);
-
-		if (current == null)
-			return;
+		Node2D current = Player.GetClosestEnemy(range);
+		if (current == null) return;
 
 		var hitEnemies = new HashSet<Node2D>();
 		Vector2 fromPosition = Player.ShootPoint.GlobalPosition;
 
 		while (current != null && chainsLeft-- > 0)
 		{
-			if (hitEnemies.Contains(current))
-				break;
+			if (hitEnemies.Contains(current)) break;
 
 			hitEnemies.Add(current);
-
 			var center = current.GetNode<Marker2D>("Center");
 			Vector2 toPosition = center.GlobalPosition;
 
-			// Zadawanie obrażeń
-			int damage = Mathf.RoundToInt(Stats.Damage * Player.DamageMultiplier);
-			((Enemy)current).TakeDamage(damage, Vector2.Zero);
+			((Enemy)current).TakeDamage(GetDamage(), Vector2.Zero); // <-- GetDamage()
 
-			// Efekt wizualny pioruna
 			SpawnLightningFX(fromPosition, toPosition);
-
 			fromPosition = toPosition;
-
-			current = GetClosestUnhitEnemy(toPosition, hitEnemies);
+			current = GetClosestUnhitEnemy(toPosition, hitEnemies, range);
 		}
+	}
+
+	Node2D GetClosestUnhitEnemy(Vector2 fromPos, HashSet<Node2D> hitEnemies, float range)
+	{
+		Node2D closest = null;
+		float closestDist = float.MaxValue;
+
+		foreach (Node node in GetTree().GetNodesInGroup("enemies"))
+		{
+			if (node is Node2D enemy && !hitEnemies.Contains(enemy))
+			{
+				var center = enemy.GetNode<Marker2D>("Center");
+				float dist = fromPos.DistanceTo(center.GlobalPosition);
+				if (dist < closestDist && dist <= range)
+				{
+					closestDist = dist;
+					closest = enemy;
+				}
+			}
+		}
+		return closest;
 	}
 
 	/// <summary>

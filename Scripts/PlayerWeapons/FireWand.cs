@@ -1,24 +1,12 @@
 using Godot;
 
-/// <summary>
-/// Klasa reprezentująca broń typu FireWand.
-/// Wystrzeliwuje pociski w kierunku najbliższego przeciwnika z określonym rozrzutem i ilością projektów.
-/// Dziedziczy po klasie Weapon.
-/// </summary>
 public partial class FireWand : Weapon
 {
-	/// <summary>
-	/// Scena pocisku, która będzie tworzona przy strzale.
-	/// </summary>
 	[Export] PackedScene ProjectileScene;
 
-	/// <summary>
-	/// Metoda wywoływana przy strzale.
-	/// Tworzy pociski w kierunku najbliższego przeciwnika z uwzględnieniem rozrzutu i liczby pocisków.
-	/// </summary>
 	protected override void Fire()
 	{
-		var enemy = Player.GetClosestEnemy(Stats.Range);
+		var enemy = Player.GetClosestEnemy(GetRange());
 		if (enemy == null) return;
 
 		Vector2 dir = (enemy.GlobalPosition - Player.GlobalPosition).Normalized();
@@ -32,7 +20,8 @@ public partial class FireWand : Weapon
 				Mathf.DegToRad((float)GD.RandRange(-Stats.SpreadAngle, Stats.SpreadAngle))
 			);
 
-			p.Setup(spread, Stats);
+			// Przekazujemy zmodyfikowane statystyki przez WeaponStatsRuntime
+			p.Setup(spread, Stats, GetDamage(), GetSpeed());
 			GetTree().CurrentScene.AddChild(p);
 		}
 	}

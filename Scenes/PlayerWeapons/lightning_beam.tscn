@@ -7,7 +7,7 @@ z_index = 2
 script = ExtResource("1_ligu7")
 
 [node name="Line2D" type="Line2D" parent="." unique_id=95554006]
-width = 2.0
+width = 0.5
 default_color = Color(0.81980616, 0.95187396, 1, 1)
 texture_mode = 2
 antialiased = true

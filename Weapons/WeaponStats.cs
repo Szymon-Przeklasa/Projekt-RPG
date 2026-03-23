@@ -8,10 +8,15 @@ using Godot;
 [GlobalClass]
 public partial class WeaponStats : Resource
 {
-	/// <summary>
-	/// Czas odnowienia broni (w sekundach) między kolejnymi strzałami.
-	/// </summary>
-	[Export] public float Cooldown = 1f;
+    /// <summary>
+    /// Bazowe obrażenia przed mnożnikami. Używane do obliczeń skalowania.
+    /// </summary>
+    [Export] public int BaseDamage = 5;
+
+    /// <summary>
+    /// Czas odnowienia broni (w sekundach) między kolejnymi strzałami.
+    /// </summary>
+    [Export] public float Cooldown = 1f;
 
 	/// <summary>
 	/// Obrażenia zadawane przez pojedynczy pocisk lub trafienie.
