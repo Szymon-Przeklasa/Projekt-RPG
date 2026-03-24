@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dc8qyayuiqhib"]
 
 [ext_resource type="Script" uid="uid://c3u7kyrqwc387" path="res://Scripts/Enemies/Enemy.cs" id="1_ubio8"]
+[ext_resource type="Resource" uid="uid://c13p24vtvbc0s" path="res://Data/Enemies/SlimeStats.tres" id="2_l8da7"]
 [ext_resource type="PackedScene" uid="uid://bvw20tawyx4hh" path="res://Scenes/Environment/XpOrb.tscn" id="2_miwey"]
 [ext_resource type="PackedScene" uid="uid://c21xa0f8nmxaa" path="res://Scenes/Enemies/enemybleed.tscn" id="3_l8da7"]
 [ext_resource type="Texture2D" uid="uid://c35bg4y5ri888" path="res://Textures/c10_image_1.png" id="4_ubio8"]
@@ -18,6 +19,7 @@ position = Vector2(25.000002, 25.000002)
 scale = Vector2(0.3902205, 0.3902205)
 collision_layer = 2
 script = ExtResource("1_ubio8")
+Stats = ExtResource("2_l8da7")
 XpOrbScene = ExtResource("2_miwey")
 HitParticle = ExtResource("3_l8da7")
 metadata/grkh = false

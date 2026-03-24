@@ -9,8 +9,8 @@ public partial class EnemySpawner : Node2D
 {
     // ── konfiguracja ──────────────────────────────────────────
     [Export] public TileMapLayer SpawnMap;
-    [Export] public float SpawnRadius = 9000f;  // max odległość spawnu od gracza
-    [Export] public float MinPlayerDistance = 5f;  // min — żeby nie spawnować na graczu
+    [Export] public float SpawnRadius = 1200f;  // max odległość spawnu od gracza
+    [Export] public float MinPlayerDistance = 400f;  // min — żeby nie spawnować na graczu
 
     /// <summary>Lista fal przypisana w Inspektorze (tablica WaveDefinition .tres).</summary>
     [Export] public Godot.Collections.Array<WaveDefinition> Waves = new();
@@ -37,17 +37,26 @@ public partial class EnemySpawner : Node2D
         AddChild(managementTimer);
     }
 
+    private float _cacheTimer = 0f;
+
     public override void _Process(double delta)
     {
         _elapsed += (float)delta;
-    }
 
+        _cacheTimer += (float)delta;
+        if (_cacheTimer >= 2.0f)
+        {
+            RebuildNearbyCache();
+            _cacheTimer = 0f;
+        }
+    }
     // ── zarządzanie falami ────────────────────────────────────
 
     /// <summary>Co sekundę sprawdza, które fale powinny być aktywne.</summary>
     private void UpdateActiveWaves()
     {
         float minute = _elapsed / 60f;
+        GD.Print($"UpdateActiveWaves — elapsed: {_elapsed:F1}s, minute: {minute:F2}, waves count: {Waves.Count}");
 
         foreach (var wave in Waves)
         {
@@ -67,6 +76,7 @@ public partial class EnemySpawner : Node2D
 
     private void ActivateWave(WaveDefinition wave)
     {
+        GD.Print($"ActivateWave: {wave}, StartMinute: {wave.StartMinute}");
         var t = new Timer();
         t.WaitTime = GetCurrentInterval(wave);
         t.OneShot = false;
@@ -110,52 +120,74 @@ public partial class EnemySpawner : Node2D
     {
         if (wave.EnemyType?.Scene == null || _player == null) return;
 
-        // Batch rośnie co 5 minut
         int minute = (int)(_elapsed / 60f);
         int batchSize = wave.BatchSize + minute / 1;
+
+        GD.Print($"SpawnBatch: batchSize={batchSize}, nearbyCache={_nearbyCache.Count}");
 
         for (int i = 0; i < batchSize; i++)
         {
             Vector2 pos = GetSpawnPosition();
-            if (pos == Vector2.Zero) continue;
+            GD.Print($"  pos={pos}");
+            if (pos == Vector2.Zero)
+            {
+                GD.PrintErr("  SKIP: pos is Zero");
+                continue;
+            }
 
             var enemy = wave.EnemyType.Scene.Instantiate<Enemy>();
+            GD.Print($"  instantiated: {enemy}");
+
             enemy.Stats = wave.EnemyType;
             enemy.GlobalPosition = pos;
 
-            // Skalowanie HP z czasem gry: +8% HP na minutę
             if (enemy.Stats != null)
             {
                 int scaledHp = Mathf.RoundToInt(wave.EnemyType.MaxHealth * (1f + minute * 0.08f));
                 enemy.MaxHealth = scaledHp;
-
-                // XP rośnie wolniej niż HP — +5% na minutę, zaokrąglone w górę
                 enemy.XpDrop = Mathf.CeilToInt(wave.EnemyType.XpDrop * (1f + minute * 0.05f));
             }
 
+            GD.Print($"  adding to scene...");
             GetTree().CurrentScene.AddChild(enemy);
-            GD.Print($"Spawned {enemy.Name} at {pos}");
+            GD.Print($"  DONE: Spawned {enemy.Name} at {pos}");
         }
     }
 
+    private List<Vector2> _nearbyCache = new();
+    private float _cacheRebuildTimer = 0f;
+
     private Vector2 GetSpawnPosition()
     {
-        if (_spawnPool.Count == 0) return Vector2.Zero;
+        if (_spawnPool.Count == 0 || _player == null) return Vector2.Zero;
 
-        // Szukamy miejsca w odpowiedniej odległości od gracza
-        const int Attempts = 15;
-        for (int i = 0; i < Attempts; i++)
+        // Przebuduj cache co 2 sekundy (gracz się porusza)
+        _cacheRebuildTimer -= 0.016f; // przybliżone, można też wywołać w _Process
+        if (_nearbyCache.Count == 0 || _cacheRebuildTimer <= 0f)
         {
-            var pos = _spawnPool[(int)(GD.Randi() % (uint)_spawnPool.Count)];
-            float dist = _player.GlobalPosition.DistanceTo(pos);
-
-            if (dist >= MinPlayerDistance && dist <= SpawnRadius)
-                return pos;
+            RebuildNearbyCache();
+            _cacheRebuildTimer = 2.0f;
         }
 
-        // Fallback — losowy kafelek poza min-odległością
-        var fallback = _spawnPool[(int)(GD.Randi() % (uint)_spawnPool.Count)];
-        return fallback;
+        if (_nearbyCache.Count == 0) return Vector2.Zero;
+
+        return _nearbyCache[(int)(GD.Randi() % (uint)_nearbyCache.Count)];
+    }
+
+    private void RebuildNearbyCache()
+    {
+        _nearbyCache.Clear();
+        float minSq = MinPlayerDistance * MinPlayerDistance;
+        float maxSq = SpawnRadius * SpawnRadius;
+
+        foreach (Vector2 pos in _spawnPool)
+        {
+            float distSq = _player.GlobalPosition.DistanceSquaredTo(pos);
+            if (distSq >= minSq && distSq <= maxSq)
+                _nearbyCache.Add(pos);
+        }
+
+        GD.Print($"NearbyCache: {_nearbyCache.Count} pozycji w zasięgu spawnu.");
     }
 
     // ── mapa spawnu ───────────────────────────────────────────
