@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="EnemyStats" format=3 uid="uid://cax4g52p50j5p"]
+
+[ext_resource type="Script" uid="uid://cfakv8obujqqd" path="res://Scripts/Enemies/EnemyStats.cs" id="1_48atj"]
+[ext_resource type="PackedScene" uid="uid://6wwhrahy0y75" path="res://Scenes/Enemies/vampire.tscn" id="1_77a1h"]
+
+[resource]
+script = ExtResource("1_48atj")
+MobID = "vampire"
+DisplayName = "Vampire"
+Speed = 200.0
+MaxHealth = 18
+ContactDamage = 1
+Scale = 0.8
+Scene = ExtResource("1_77a1h")

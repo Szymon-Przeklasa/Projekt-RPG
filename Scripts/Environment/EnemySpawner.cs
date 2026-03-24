@@ -9,8 +9,8 @@ public partial class EnemySpawner : Node2D
 {
     // ── konfiguracja ──────────────────────────────────────────
     [Export] public TileMapLayer SpawnMap;
-    [Export] public float SpawnRadius = 900f;  // max odległość spawnu od gracza
-    [Export] public float MinPlayerDistance = 500f;  // min — żeby nie spawnować na graczu
+    [Export] public float SpawnRadius = 9000f;  // max odległość spawnu od gracza
+    [Export] public float MinPlayerDistance = 5f;  // min — żeby nie spawnować na graczu
 
     /// <summary>Lista fal przypisana w Inspektorze (tablica WaveDefinition .tres).</summary>
     [Export] public Godot.Collections.Array<WaveDefinition> Waves = new();
@@ -112,7 +112,7 @@ public partial class EnemySpawner : Node2D
 
         // Batch rośnie co 5 minut
         int minute = (int)(_elapsed / 60f);
-        int batchSize = wave.BatchSize + minute / 5;
+        int batchSize = wave.BatchSize + minute / 1;
 
         for (int i = 0; i < batchSize; i++)
         {
@@ -128,9 +128,13 @@ public partial class EnemySpawner : Node2D
             {
                 int scaledHp = Mathf.RoundToInt(wave.EnemyType.MaxHealth * (1f + minute * 0.08f));
                 enemy.MaxHealth = scaledHp;
+
+                // XP rośnie wolniej niż HP — +5% na minutę, zaokrąglone w górę
+                enemy.XpDrop = Mathf.CeilToInt(wave.EnemyType.XpDrop * (1f + minute * 0.05f));
             }
 
             GetTree().CurrentScene.AddChild(enemy);
+            GD.Print($"Spawned {enemy.Name} at {pos}");
         }
     }
 

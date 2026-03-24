@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="EnemyStats" format=3 uid="uid://cr36jklmny2c5"]
+
+[ext_resource type="Script" uid="uid://cfakv8obujqqd" path="res://Scripts/Enemies/EnemyStats.cs" id="1_6kyny"]
+[ext_resource type="PackedScene" uid="uid://ctql8qlnld0mm" path="res://Scenes/Enemies/skeleton.tscn" id="1_c6kbn"]
+
+[resource]
+script = ExtResource("1_6kyny")
+MobID = "skeleton"
+DisplayName = "Skeleton"
+Speed = 140.0
+MaxHealth = 80
+XpDrop = 3
+ContactDamage = 2
+Scene = ExtResource("1_c6kbn")

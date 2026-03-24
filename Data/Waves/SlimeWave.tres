@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="WaveDefinition" format=3 uid="uid://xgbi5851k1vn"]
+
+[ext_resource type="Script" uid="uid://e7moyouwnt5y" path="res://Scripts/Enemies/WaveDefinition.cs" id="1_5r2vc"]
+[ext_resource type="Resource" uid="uid://c13p24vtvbc0s" path="res://Data/Enemies/SlimeStats.tres" id="1_babfl"]
+
+[resource]
+script = ExtResource("1_5r2vc")
+EndMinute = 20.0
+EnemyType = ExtResource("1_babfl")
+BaseInterval = 1.8

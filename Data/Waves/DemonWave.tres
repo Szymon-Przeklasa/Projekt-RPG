@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="WaveDefinition" format=3 uid="uid://cblj5awwuurai"]
+
+[ext_resource type="Resource" uid="uid://dg0vulxjtaa60" path="res://Data/Enemies/DemonStats.tres" id="1_n2nxm"]
+[ext_resource type="Script" uid="uid://e7moyouwnt5y" path="res://Scripts/Enemies/WaveDefinition.cs" id="2_s7vb1"]
+
+[resource]
+script = ExtResource("2_s7vb1")
+StartMinute = 5.0
+EndMinute = 20.0
+EnemyType = ExtResource("1_n2nxm")
+BaseInterval = 6.0
+BatchSize = 2

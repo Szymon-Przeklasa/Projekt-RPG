@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="EnemyStats" format=3 uid="uid://dg0vulxjtaa60"]
+
+[ext_resource type="PackedScene" uid="uid://o3fcuaell5xk" path="res://Scenes/Enemies/demon.tscn" id="1_om2eh"]
+[ext_resource type="Script" uid="uid://cfakv8obujqqd" path="res://Scripts/Enemies/EnemyStats.cs" id="1_qk78a"]
+
+[resource]
+script = ExtResource("1_qk78a")
+MobID = "demon"
+DisplayName = "Demon"
+Speed = 165.0
+MaxHealth = 140
+XpDrop = 5
+ContactDamage = 3
+Scale = 1.1
+Scene = ExtResource("1_om2eh")

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="WaveDefinition" format=3 uid="uid://c5d0bf328jnmh"]
+
+[ext_resource type="Resource" uid="uid://cr36jklmny2c5" path="res://Data/Enemies/SkeletonStats.tres" id="1_y72rt"]
+[ext_resource type="Script" uid="uid://e7moyouwnt5y" path="res://Scripts/Enemies/WaveDefinition.cs" id="2_ey4bs"]
+
+[resource]
+script = ExtResource("2_ey4bs")
+StartMinute = 3.0
+EndMinute = 20.0
+EnemyType = ExtResource("1_y72rt")
+BaseInterval = 3.0

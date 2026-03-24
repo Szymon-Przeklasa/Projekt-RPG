@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="EnemyStats" format=3 uid="uid://c3bglwkt43w2c"]
+
+[ext_resource type="PackedScene" uid="uid://lirraj2q7hiw" path="res://Scenes/Enemies/golem.tscn" id="1_nenew"]
+[ext_resource type="Script" uid="uid://cfakv8obujqqd" path="res://Scripts/Enemies/EnemyStats.cs" id="1_tlfh4"]
+
+[resource]
+script = ExtResource("1_tlfh4")
+MobID = "golem"
+DisplayName = "Golem"
+Speed = 70.0
+MaxHealth = 350
+XpDrop = 8
+ContactDamage = 5
+Scale = 1.6
+Scene = ExtResource("1_nenew")

@@ -26,20 +26,7 @@ public partial class Player : CharacterBody2D
 	/// </summary>
 	[Export] public int Speed = 600;
 
-	/// <summary>
-	/// Aktualna ilość doświadczenia gracza.
-	/// </summary>
-	[Export] public int Xp = 0;
 
-	/// <summary>
-	/// Ilość doświadczenia potrzebna do awansu na kolejny poziom.
-	/// </summary>
-	[Export] public int XpToLevel = 10;
-
-	/// <summary>
-	/// Aktualny poziom gracza.
-	/// </summary>
-	[Export] public int Level = 1;
 
 	/// <summary>
 	/// Lista dostępnych ulepszeń dla gracza.
@@ -365,38 +352,46 @@ public partial class Player : CharacterBody2D
 		return closest;
 	}
 
-	/// <summary>
-	/// Dodaje doświadczenie graczowi i sprawdza, czy nastąpił awans na kolejny poziom.
-	/// </summary>
-	/// <param name="amount">Ilość doświadczenia do dodania.</param>
-	public void GainXp(int amount)
-	{
-		Xp += amount;
+    // ── XP curve ─────────────────────────────────────────────────
+    // XpToLevel[lvl] = floor(4 * lvl^1.8)  — wolno na początku, szybko potem
+    // Ale wystarczy prosta tablica hard-coded dla czytelności:
+    private static readonly int[] XpTable = {
+	//  lvl:  1   2   3   4   5   6   7   8   9  10
+			   5, 10, 18, 28, 40, 55, 72, 92,115,140,
+	// 11-20
+			  170,202,238,278,322,370,422,478,540,608,
+	// 21-30
+			  680,760,845,940,1040,1150,1270,1400,1540,1700
+	};
 
-		if (Xp >= XpToLevel)
-			LevelUp();
-	}
+    public int Level = 1;
+    public int Xp = 0;
+    public int XpToLevel => Level - 1 < XpTable.Length ? XpTable[Level - 1] : Level * 80;
 
-	/// <summary>
-	/// Zwiększa poziom gracza i wywołuje interfejs wyboru ulepszeń.
-	/// </summary>
-	private void LevelUp()
-	{
-		Level++;
-		Xp -= XpToLevel;
-		XpToLevel = Mathf.RoundToInt(XpToLevel * 1.4f);
+    public void GainXp(int amount)
+    {
+        Xp += amount;
+        while (Xp >= XpToLevel)
+        {
+            Xp -= XpToLevel;
+            LevelUp();
+        }
+    }
 
-		GD.Print($"LEVEL UP! Level: {Level}");
+    private void LevelUp()
+    {
+        Level++;
+        GD.Print($"LEVEL UP! → {Level}");
 
-		var ui = GetTree().CurrentScene.GetNode<LevelUpUI>("LevelUpUI");
-		var upgrades = GetUpgradeChoices(3);
-		ui.ShowUpgrades(this);
-	}
+        var ui = GetTree().CurrentScene.GetNodeOrNull<LevelUpUI>("LevelUpUI");
+        if (ui != null)
+            ui.ShowUpgrades(this);
+    }
 
-	/// <summary>
-	/// Odczytuje wejście gracza i ustawia wektor prędkości.
-	/// </summary>
-	public void GetInput()
+    /// <summary>
+    /// Odczytuje wejście gracza i ustawia wektor prędkości.
+    /// </summary>
+    public void GetInput()
 	{
 		Vector2 inputDirection = Input.GetVector("left", "right", "up", "down");
 		Velocity = inputDirection * Speed;

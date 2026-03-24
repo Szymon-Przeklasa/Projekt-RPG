@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="EnemyStats" format=3 uid="uid://c13p24vtvbc0s"]
+
+[ext_resource type="Script" uid="uid://cfakv8obujqqd" path="res://Scripts/Enemies/EnemyStats.cs" id="1_81t7e"]
+[ext_resource type="PackedScene" uid="uid://bacnh7qhlte6v" path="res://Scenes/Enemies/slime.tscn" id="1_gxxou"]
+
+[resource]
+script = ExtResource("1_81t7e")
+ContactDamage = 1
+Scene = ExtResource("1_gxxou")

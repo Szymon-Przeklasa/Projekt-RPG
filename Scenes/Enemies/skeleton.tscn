@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://ctql8qlnld0mm"]
+
+[ext_resource type="Texture2D" uid="uid://c35bg4y5ri888" path="res://Textures/c10_image_1.png" id="1_fjg4h"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pm37t"]
+atlas = ExtResource("1_fjg4h")
+region = Rect2(641, 403, 14, 15)
+
+[node name="Skeleton" type="Sprite2D" unique_id=957478779]
+texture_filter = 1
+texture = SubResource("AtlasTexture_pm37t")

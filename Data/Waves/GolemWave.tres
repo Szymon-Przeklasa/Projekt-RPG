@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="WaveDefinition" format=3 uid="uid://db1khudln4lj1"]
+
+[ext_resource type="Resource" uid="uid://c3bglwkt43w2c" path="res://Data/Enemies/GolemStats.tres" id="1_4l2r6"]
+[ext_resource type="Script" uid="uid://e7moyouwnt5y" path="res://Scripts/Enemies/WaveDefinition.cs" id="2_rfwd3"]
+
+[resource]
+script = ExtResource("2_rfwd3")
+StartMinute = 4.0
+EndMinute = 20.0
+EnemyType = ExtResource("1_4l2r6")
+BaseInterval = 8.0
