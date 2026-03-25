@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="EnemyStats" format=3 uid="uid://dg0vulxjtaa60"]
 
-[ext_resource type="PackedScene" uid="uid://o3fcuaell5xk" path="res://Scenes/Enemies/demon.tscn" id="1_om2eh"]
+[ext_resource type="PackedScene" uid="uid://bf7o1cbfl0mnd" path="res://Scenes/Enemies/demon_enemy.tscn" id="1_om2eh"]
 [ext_resource type="Script" uid="uid://cfakv8obujqqd" path="res://Scripts/Enemies/EnemyStats.cs" id="1_qk78a"]
 
 [resource]

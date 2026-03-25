@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="EnemyStats" format=3 uid="uid://cax4g52p50j5p"]
 
 [ext_resource type="Script" uid="uid://cfakv8obujqqd" path="res://Scripts/Enemies/EnemyStats.cs" id="1_48atj"]
-[ext_resource type="PackedScene" uid="uid://6wwhrahy0y75" path="res://Scenes/Enemies/vampire.tscn" id="1_77a1h"]
+[ext_resource type="PackedScene" uid="uid://43qnsgqnyk1a" path="res://Scenes/Enemies/vampire_enemy.tscn" id="1_77a1h"]
 
 [resource]
 script = ExtResource("1_48atj")

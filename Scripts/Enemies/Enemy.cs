@@ -36,27 +36,48 @@ public partial class Enemy : CharacterBody2D
 		_health = MaxHealth;
 	}
 
-	// -----------------------------------------------------------------
-	public void TakeDamage(int damage, Vector2 knockback)
-	{
-		_health -= damage;
-		Velocity += knockback;
+    // -----------------------------------------------------------------
+    public void TakeDamage(int damage, Vector2 knockback, string weaponName = "unknown")
+    {
+        _health -= damage;
+        Velocity += knockback;
 
-		if (HitParticle != null)
-		{
-			var fx = HitParticle.Instantiate<Enemybleed>();
-			AddChild(fx);
-			fx.Position = Vector2.Zero;
-			fx.Emitting = true;
-		} 
+        if (HitParticle != null)
+        {
+            var fx = HitParticle.Instantiate<Enemybleed>();
+            AddChild(fx);
+            fx.Position = Vector2.Zero;
+            fx.Emitting = true;
+        }
 
-		if (_health <= 0)
-		{
-			Die();
-		}
-	}
+        // Floating damage label
+        SpawnDamageLabel(damage, weaponName);
 
-	private void Die()
+        if (_health <= 0)
+            Die();
+    }
+
+    private void SpawnDamageLabel(int damage, string weaponName)
+    {
+        var label = new Label();
+        label.Text = $"{damage} [{weaponName}]";
+        label.ZIndex = 10;
+        label.Position = new Vector2(-30f, -60f);
+
+        // Styl tekstu
+        label.AddThemeColorOverride("font_color", Colors.Yellow);
+        label.AddThemeFontSizeOverride("font_size", 12);
+
+        AddChild(label);
+
+        // Animacja: unosić się w górę i znikać
+        var tween = CreateTween();
+        tween.TweenProperty(label, "position", label.Position + new Vector2(0, -40f), 0.8f);
+        tween.Parallel().TweenProperty(label, "modulate:a", 0f, 0.8f);
+        tween.TweenCallback(Callable.From(() => label.QueueFree()));
+    }
+
+    private void Die()
 	{
         GetNode<KillManager>("/root/KillManager").RegisterKill(MobID);
         DropXp();

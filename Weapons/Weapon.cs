@@ -22,6 +22,8 @@ public abstract partial class Weapon : Node
 	/// </summary>
 	protected Timer timer;
 
+	public virtual string WeaponName => GetType().Name;
+
 	/// <summary>
 	/// Inicjalizuje broń dla danego gracza.
 	/// Ustawia timer na podstawie czasu odnowienia i mnożnika gracza.

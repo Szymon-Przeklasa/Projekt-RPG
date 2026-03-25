@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="EnemyStats" format=3 uid="uid://c3bglwkt43w2c"]
 
-[ext_resource type="PackedScene" uid="uid://lirraj2q7hiw" path="res://Scenes/Enemies/golem.tscn" id="1_nenew"]
+[ext_resource type="PackedScene" uid="uid://bqm4dfy1y8nc3" path="res://Scenes/Enemies/golem_enemy.tscn" id="1_nenew"]
 [ext_resource type="Script" uid="uid://cfakv8obujqqd" path="res://Scripts/Enemies/EnemyStats.cs" id="1_tlfh4"]
 
 [resource]

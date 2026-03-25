@@ -78,11 +78,38 @@ public partial class Player : CharacterBody2D
 	/// </summary>
 	public Marker2D ShootPoint;
 
-	/// <summary>
-	/// Metoda wywoływana po załadowaniu sceny.
-	/// Inicjalizuje bronie i dostępne ulepszenia.
-	/// </summary>
-	public override void _Ready()
+    [Export] public bool DebugDrawEnemyLines = true;
+
+    public override void _Draw()
+    {
+        if (!DebugDrawEnemyLines) return;
+
+        foreach (Node node in GetTree().GetNodesInGroup("enemies"))
+        {
+            if (node is Enemy enemy)
+            {
+                // Pozycja względem gracza (Draw działa w lokalnych współrzędnych)
+                Vector2 localPos = ToLocal(enemy.GlobalPosition);
+                float dist = GlobalPosition.DistanceTo(enemy.GlobalPosition);
+
+                // Linia do przeciwnika
+                DrawLine(Vector2.Zero, localPos, new Color(1f, 0.2f, 0.2f, 0.6f), 1f);
+
+                // Punkt na przeciwniku
+                DrawCircle(localPos, 4f, Colors.Red);
+
+                // Tekst z odległością — rysujemy przez Label nad graczem
+                // (DrawString wymaga Font, więc użyjemy osobnego node'a)
+            }
+        }
+    }
+
+    /// <summary>
+    /// Metoda wywoływana po załadowaniu sceny.
+    /// Inicjalizuje bronie i dostępne ulepszenia.
+    /// </summary>
+	private Label _debugLabel;
+    public override void _Ready()
 	{
 		SetupUpgrades();
 		GD.Print("Upgrades count: ", AvailableUpgrades.Count);
@@ -94,6 +121,17 @@ public partial class Player : CharacterBody2D
 			weapon.Init(this);
 			Weapons.Add(weapon);
 		}
+
+				// Debug label node — tworzony raz
+		
+
+			// Na końcu _Ready():
+		_debugLabel = new Label();
+		_debugLabel.ZIndex = 20;
+		_debugLabel.Position = new Vector2(20, -80);
+		_debugLabel.AddThemeColorOverride("font_color", Colors.Cyan);
+		_debugLabel.AddThemeFontSizeOverride("font_size", 10);
+		AddChild(_debugLabel);
 	}
 
 	/// <summary>
@@ -412,4 +450,25 @@ public partial class Player : CharacterBody2D
 		GetInput();
 		MoveAndSlide();
 	}
+
+    // Na końcu _Process (dodaj jeśli nie masz, lub rozszerz istniejący):
+    public override void _Process(double delta)
+    {
+        if (!DebugDrawEnemyLines) return;
+
+        var lines = new System.Text.StringBuilder();
+        foreach (Node node in GetTree().GetNodesInGroup("enemies"))
+        {
+            if (node is Enemy enemy)
+            {
+                float dist = GlobalPosition.DistanceTo(enemy.GlobalPosition);
+                string name = enemy.Stats != null ? enemy.Stats.MobID : enemy.Name;
+                lines.AppendLine($"{name}: {dist:F0}px");
+            }
+        }
+        if (_debugLabel != null)
+            _debugLabel.Text = lines.ToString();
+
+        QueueRedraw();
+    }
 }

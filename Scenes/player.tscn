@@ -9,7 +9,6 @@
 [ext_resource type="Script" uid="uid://38jsvpaqn2i3" path="res://Scripts/PlayerWeapons/Lightning.cs" id="5_fkybt"]
 [ext_resource type="Script" uid="uid://cm7tkql28sr1a" path="res://Scripts/PlayerWeapons/Magnet.cs" id="7_3smsa"]
 [ext_resource type="PackedScene" uid="uid://cvbewtyx8tg0k" path="res://Scenes/PlayerWeapons/lightning_beam.tscn" id="7_tx1dd"]
-[ext_resource type="PackedScene" uid="uid://lklfguw38lmy" path="res://Scenes/PlayerWeapons/garlic_aura_particles.tscn" id="8_tx1dd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gymyn"]
 atlas = ExtResource("3_tx1dd")
@@ -20,9 +19,8 @@ size = Vector2(50.027752, 50.027752)
 
 [sub_resource type="Resource" id="Resource_8erm5"]
 script = ExtResource("4_3smsa")
-Cooldown = 0.1
 Damage = 10
-Speed = 700.0
+Speed = 200.0
 Knockback = 250.0
 SpreadAngle = 10.0
 Range = 600.0
@@ -30,8 +28,8 @@ metadata/_custom_type_script = "uid://dbo4rnc0ylwwr"
 
 [sub_resource type="Resource" id="Resource_f1ek2"]
 script = ExtResource("4_3smsa")
-Cooldown = 1.2
-Damage = 25
+Cooldown = 2.0
+Damage = 20
 Knockback = 150.0
 SpreadAngle = 0.0
 metadata/_custom_type_script = "uid://dbo4rnc0ylwwr"
@@ -60,6 +58,7 @@ motion_mode = 1
 script = ExtResource("1_4flbx")
 ProjectileScene = ExtResource("2_onrkg")
 Speed = 200
+DebugDrawEnemyLines = false
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=751756645]
 texture_filter = 1
@@ -105,7 +104,6 @@ Stats = SubResource("Resource_tx1dd")
 
 [node name="Garlic" type="Node" parent="Weapons" unique_id=532956032]
 script = ExtResource("4_fkybt")
-ProjectileScene = ExtResource("8_tx1dd")
 Stats = SubResource("Resource_3smsa")
 
 [node name="Timer" type="Timer" parent="Weapons/Garlic" unique_id=340890847]

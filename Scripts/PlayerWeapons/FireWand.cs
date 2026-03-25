@@ -20,9 +20,9 @@ public partial class FireWand : Weapon
 				Mathf.DegToRad((float)GD.RandRange(-Stats.SpreadAngle, Stats.SpreadAngle))
 			);
 
-			// Przekazujemy zmodyfikowane statystyki przez WeaponStatsRuntime
-			p.Setup(spread, Stats, GetDamage(), GetSpeed());
-			GetTree().CurrentScene.AddChild(p);
+            // Przekazujemy zmodyfikowane statystyki przez WeaponStatsRuntime
+            p.Setup(spread, Stats, GetDamage(), GetSpeed(), WeaponName);
+            GetTree().CurrentScene.AddChild(p);
 		}
 	}
 }
