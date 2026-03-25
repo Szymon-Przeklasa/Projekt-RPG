@@ -4,7 +4,7 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pm37t"]
 atlas = ExtResource("1_o7y3m")
-region = Rect2(1, 371, 32, 32)
+region = Rect2(69, 267, 30, 32)
 
 [node name="Demon" type="Sprite2D" unique_id=957478779]
 texture_filter = 1

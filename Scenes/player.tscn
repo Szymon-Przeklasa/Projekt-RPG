@@ -58,7 +58,6 @@ motion_mode = 1
 script = ExtResource("1_4flbx")
 ProjectileScene = ExtResource("2_onrkg")
 Speed = 200
-DebugDrawEnemyLines = false
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=751756645]
 texture_filter = 1

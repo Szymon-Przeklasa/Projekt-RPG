@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://c3u7kyrqwc387" path="res://Scripts/Enemies/Enemy.cs" id="1_ggpyb"]
 [ext_resource type="PackedScene" uid="uid://bvw20tawyx4hh" path="res://Scenes/Environment/XpOrb.tscn" id="2_vnagb"]
 [ext_resource type="PackedScene" uid="uid://c21xa0f8nmxaa" path="res://Scenes/Enemies/enemybleed.tscn" id="3_onuv3"]
-[ext_resource type="PackedScene" uid="uid://bacnh7qhlte6v" path="res://Scenes/Enemies/slime.tscn" id="4_iewx5"]
+[ext_resource type="PackedScene" uid="uid://6wwhrahy0y75" path="res://Scenes/Enemies/vampire.tscn" id="4_rs4vg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iifgy"]
 size = Vector2(18, 24)
@@ -16,7 +16,7 @@ XpOrbScene = ExtResource("2_vnagb")
 HitParticle = ExtResource("3_onuv3")
 metadata/grkh = false
 
-[node name="Sprite" parent="." unique_id=957478779 instance=ExtResource("4_iewx5")]
+[node name="Vampire" parent="." unique_id=957478779 instance=ExtResource("4_rs4vg")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=16526739]
 shape = SubResource("RectangleShape2D_iifgy")
