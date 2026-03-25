@@ -41,9 +41,9 @@ public partial class Lightning : Weapon
 			var center = current.GetNode<Marker2D>("Center");
 			Vector2 toPosition = center.GlobalPosition;
 
-            ((Enemy)current).TakeDamage(GetDamage(), Vector2.Zero, WeaponName); // <-- GetDamage()
+			((Enemy)current).TakeDamage(GetDamage(), Vector2.Zero, WeaponName); // <-- GetDamage()
 
-            SpawnLightningFX(fromPosition, toPosition);
+			SpawnLightningFX(fromPosition, toPosition);
 			fromPosition = toPosition;
 			current = GetClosestUnhitEnemy(toPosition, hitEnemies, range);
 		}

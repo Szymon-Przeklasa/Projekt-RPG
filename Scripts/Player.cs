@@ -253,8 +253,8 @@ public partial class Player : CharacterBody2D
 		// ── PASYWY ──────────────────────────────────────────────
 		var spinach = new PassiveData
 		{
-			Name = "Szpinak",
-			Description = "+10% obrażeń",
+			Name = "Spinach",
+			Description = "+10% damage",
 			Type = PassiveType.Spinach,
 			MaxLevel = 5,
 			BonusPerLevel = 0.1f
@@ -270,7 +270,7 @@ public partial class Player : CharacterBody2D
 		var hollowHeart = new PassiveData
 		{
 			Name = "Hollow Heart",
-			Description = "+10% zasięg obszarowy",
+			Description = "+10% area range",
 			Type = PassiveType.HollowHeart,
 			MaxLevel = 5,
 			BonusPerLevel = 0.1f
@@ -278,22 +278,22 @@ public partial class Player : CharacterBody2D
 		var bracer = new PassiveData
 		{
 			Name = "Bracer",
-			Description = "+10% prędkość pocisków",
+			Description = "+10% projectile speed",
 			Type = PassiveType.Bracer,
 			MaxLevel = 5,
 			BonusPerLevel = 0.1f
 		};
 		var wings = new PassiveData
 		{
-			Name = "Skrzydła",
-			Description = "+10% prędkość ruchu",
+			Name = "Wings",
+			Description = "+10% move speed",
 			Type = PassiveType.Wings,
 			MaxLevel = 5,
 			BonusPerLevel = 0.1f
 		};
 
 		// Pasywne jako ulepszenia
-		AvailableUpgrades.Add(new UpgradeData("Szpinak", UpgradeType.Stat,
+		AvailableUpgrades.Add(new UpgradeData("Spinach", UpgradeType.Stat,
 			(p) => AddPassive(spinach), 5));
 		AvailableUpgrades.Add(new UpgradeData("Pummarola", UpgradeType.Stat,
 			(p) => AddPassive(pummarola), 5));
@@ -301,44 +301,44 @@ public partial class Player : CharacterBody2D
 			(p) => AddPassive(hollowHeart), 5));
 		AvailableUpgrades.Add(new UpgradeData("Bracer", UpgradeType.Stat,
 			(p) => AddPassive(bracer), 5));
-		AvailableUpgrades.Add(new UpgradeData("Skrzydła", UpgradeType.Stat,
+		AvailableUpgrades.Add(new UpgradeData("Wings", UpgradeType.Stat,
 			(p) => AddPassive(wings), 5));
 
 		// ── ULEPSZENIA BRONI ─────────────────────────────────────
 		var lightning = GetNodeOrNull<Lightning>("Weapons/Lightning");
 		if (lightning != null)
 		{
-			AvailableUpgrades.Add(new UpgradeData("Błyskawica: +5 DMG", UpgradeType.Weapon,
+			AvailableUpgrades.Add(new UpgradeData("Lightning: +5 DMG", UpgradeType.Weapon,
 				(p) => { lightning.Stats.Damage += 5; }, 8));
-			AvailableUpgrades.Add(new UpgradeData("Błyskawica: -0.2s cooldown", UpgradeType.Weapon,
+			AvailableUpgrades.Add(new UpgradeData("Lightning: -0.2s cooldown", UpgradeType.Weapon,
 				(p) => { lightning.Stats.Cooldown = Mathf.Max(0.3f, lightning.Stats.Cooldown - 0.2f); lightning.RefreshStats(); }, 5));
-			AvailableUpgrades.Add(new UpgradeData("Błyskawica: +1 łańcuch", UpgradeType.Weapon,
+			AvailableUpgrades.Add(new UpgradeData("Lightning: +1 chains", UpgradeType.Weapon,
 				(p) => { lightning.Stats.ProjectileCount += 1; }, 4));
-			AvailableUpgrades.Add(new UpgradeData("Błyskawica: +150 zasięg", UpgradeType.Weapon,
+			AvailableUpgrades.Add(new UpgradeData("Lightning: +150 range", UpgradeType.Weapon,
 				(p) => { lightning.Stats.Range += 150f; }, 4));
 		}
 
 		var garlic = GetNodeOrNull<Garlic>("Weapons/Garlic");
 		if (garlic != null)
 		{
-			AvailableUpgrades.Add(new UpgradeData("Czosnek: +3 DMG", UpgradeType.Weapon,
+			AvailableUpgrades.Add(new UpgradeData("Garlic: +3 DMG", UpgradeType.Weapon,
 				(p) => { garlic.Stats.Damage += 3; }, 8));
-			AvailableUpgrades.Add(new UpgradeData("Czosnek: +100 zasięg", UpgradeType.Weapon,
+			AvailableUpgrades.Add(new UpgradeData("Garlic: +100 range", UpgradeType.Weapon,
 				(p) => { garlic.Stats.Range += 100f; }, 5));
-			AvailableUpgrades.Add(new UpgradeData("Czosnek: szybszy tick", UpgradeType.Weapon,
+			AvailableUpgrades.Add(new UpgradeData("Garlic: -0.2s cooldown", UpgradeType.Weapon,
 				(p) => { garlic.Stats.Cooldown = Mathf.Max(0.3f, garlic.Stats.Cooldown - 0.2f); garlic.RefreshStats(); }, 4));
 		}
 
 		var firewand = GetNodeOrNull<FireWand>("Weapons/FireWand");
 		if (firewand != null)
 		{
-			AvailableUpgrades.Add(new UpgradeData("Różdżka: +4 DMG", UpgradeType.Weapon,
+			AvailableUpgrades.Add(new UpgradeData("Fire Wand: +4 DMG", UpgradeType.Weapon,
 				(p) => { firewand.Stats.Damage += 4; }, 8));
-			AvailableUpgrades.Add(new UpgradeData("Różdżka: +1 pocisk", UpgradeType.Weapon,
+			AvailableUpgrades.Add(new UpgradeData("Fire Wand: +1 projectile", UpgradeType.Weapon,
 				(p) => { firewand.Stats.ProjectileCount += 1; }, 4));
-			AvailableUpgrades.Add(new UpgradeData("Różdżka: +1 przebicie", UpgradeType.Weapon,
+			AvailableUpgrades.Add(new UpgradeData("Fire Wand: +1 pierce", UpgradeType.Weapon,
 				(p) => { firewand.Stats.Pierce += 1; }, 4));
-			AvailableUpgrades.Add(new UpgradeData("Różdżka: -0.15s cooldown", UpgradeType.Weapon,
+			AvailableUpgrades.Add(new UpgradeData("Fire Wand: -0.15s cooldown", UpgradeType.Weapon,
 				(p) => { firewand.Stats.Cooldown = Mathf.Max(0.1f, firewand.Stats.Cooldown - 0.15f); firewand.RefreshStats(); }, 5));
 		}
 	}
@@ -346,13 +346,13 @@ public partial class Player : CharacterBody2D
 
 			//## Tabela balansowania bazowych statystyk
 
-			//| Broń | Damage | Cooldown | ProjectileCount | Range | Pierce | Speed |
-			//|---|---|---|---|---|---|---|
-			//| FireWand | 10 | 0.8s | 1 | 500 | 1 | 600 |
-			//| Lightning | 20 | 1.5s | 3 łańcuchy | 400 | — | — |
-			//| Garlic | 5 | 0.5s | — | 200 (radius) | — | — |
-			//| Axe | 15 | 1.2s | 1 | 600 | 2 | 400 |
-			//| MagicMissile | 12 | 1.0s | 1 | 700 | 1 | 250 |
+			//| Broń         | Damage | Cooldown | ProjectileCount | Range | Pierce | Speed |
+			//               |--------|----------|-----------------|-------|--------|-------|---|
+			//| FireWand     | 10     | 0.8s     | 1               | 500   | 1      | 600   |
+			//| Lightning    | 20     | 1.5s     | 3 łańcuchy	   | 400   | —      | —     |
+			//| Garlic       | 5	  | 0.5s     | —			   | 200   | —      | —     |
+			//| Axe          | 15     | 1.2s     | 1			   | 600   | 2      | 400   |
+			//| MagicMissile | 12     | 1.0s     | 1			   | 700   | 1      | 250   |
 
 			//---
 
@@ -458,16 +458,15 @@ public partial class Player : CharacterBody2D
 	/// <param name="delta">Czas od ostatniej klatki fizyki w sekundach.</param>
 	public override void _PhysicsProcess(double delta)
 	{
-		if (Input.IsActionJustPressed("pause"))
-		{
-			GetTree().Paused = !GetTree().Paused;
-		}
+		//if (Input.IsActionJustPressed("pause"))
+		//{
+		//	GetTree().Paused = !GetTree().Paused;
+		//}
 
 		GetInput();
 		MoveAndSlide();
 	}
 
-	// Na końcu _Process (dodaj jeśli nie masz, lub rozszerz istniejący):
 	public override void _Process(double delta)
 	{
 		if (!DebugDrawEnemyLines) return;
