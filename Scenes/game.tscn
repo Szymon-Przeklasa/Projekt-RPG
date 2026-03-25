@@ -5154,6 +5154,17 @@ sources/1 = SubResource("TileSetAtlasSource_h4fw4")
 [node name="Game" type="Node2D" unique_id=581274643]
 script = ExtResource("1_80nbo")
 
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=27451881]
+
+[node name="XPBar" type="ProgressBar" parent="CanvasLayer" unique_id=893445372]
+offset_left = 8.0
+offset_top = 4.0
+offset_right = 1144.0
+offset_bottom = 16.0
+step = 1.0
+rounded = true
+show_percentage = false
+
 [node name="Player" parent="." unique_id=960175255 instance=ExtResource("2_feb5d")]
 position = Vector2(250, 200)
 

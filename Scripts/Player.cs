@@ -77,44 +77,49 @@ public partial class Player : CharacterBody2D
 	/// Punkt, z którego gracz strzela pociskami.
 	/// </summary>
 	public Marker2D ShootPoint;
+	
+	private ProgressBar xpBar;
 
-    [Export] public bool DebugDrawEnemyLines = true;
+	[Export] public bool DebugDrawEnemyLines = true;
+	
 
-    public override void _Draw()
-    {
-        if (!DebugDrawEnemyLines) return;
+	public override void _Draw()
+	{
+		if (!DebugDrawEnemyLines) return;
 
-        foreach (Node node in GetTree().GetNodesInGroup("enemies"))
-        {
-            if (node is Enemy enemy)
-            {
-                // Pozycja względem gracza (Draw działa w lokalnych współrzędnych)
-                Vector2 localPos = ToLocal(enemy.GlobalPosition);
-                float dist = GlobalPosition.DistanceTo(enemy.GlobalPosition);
+		foreach (Node node in GetTree().GetNodesInGroup("enemies"))
+		{
+			if (node is Enemy enemy)
+			{
+				// Pozycja względem gracza (Draw działa w lokalnych współrzędnych)
+				Vector2 localPos = ToLocal(enemy.GlobalPosition);
+				float dist = GlobalPosition.DistanceTo(enemy.GlobalPosition);
 
-                // Linia do przeciwnika
-                DrawLine(Vector2.Zero, localPos, new Color(1f, 0.2f, 0.2f, 0.6f), 1f);
+				// Linia do przeciwnika
+				DrawLine(Vector2.Zero, localPos, new Color(1f, 0.2f, 0.2f, 0.6f), 1f);
 
-                // Punkt na przeciwniku
-                DrawCircle(localPos, 4f, Colors.Red);
+				// Punkt na przeciwniku
+				DrawCircle(localPos, 4f, Colors.Red);
 
-                // Tekst z odległością — rysujemy przez Label nad graczem
-                // (DrawString wymaga Font, więc użyjemy osobnego node'a)
-            }
-        }
-    }
+				// Tekst z odległością — rysujemy przez Label nad graczem
+				// (DrawString wymaga Font, więc użyjemy osobnego node'a)
+			}
+		}
+	}
 
-    /// <summary>
-    /// Metoda wywoływana po załadowaniu sceny.
-    /// Inicjalizuje bronie i dostępne ulepszenia.
-    /// </summary>
+	/// <summary>
+	/// Metoda wywoływana po załadowaniu sceny.
+	/// Inicjalizuje bronie i dostępne ulepszenia.
+	/// </summary>
 	private Label _debugLabel;
-    public override void _Ready()
+	public override void _Ready()
 	{
 		SetupUpgrades();
 		GD.Print("Upgrades count: ", AvailableUpgrades.Count);
 
 		ShootPoint = GetNode<Marker2D>("ShootPoint");
+		
+		xpBar = GetTree().CurrentScene.GetNode<ProgressBar>("CanvasLayer/XPBar");
 
 		foreach (Weapon weapon in GetNode("Weapons").GetChildren())
 		{
@@ -132,6 +137,8 @@ public partial class Player : CharacterBody2D
 		_debugLabel.AddThemeColorOverride("font_color", Colors.Cyan);
 		_debugLabel.AddThemeFontSizeOverride("font_size", 10);
 		AddChild(_debugLabel);
+		
+		UpdateXpBar();
 	}
 
 	/// <summary>
@@ -390,10 +397,10 @@ public partial class Player : CharacterBody2D
 		return closest;
 	}
 
-    // ── XP curve ─────────────────────────────────────────────────
-    // XpToLevel[lvl] = floor(4 * lvl^1.8)  — wolno na początku, szybko potem
-    // Ale wystarczy prosta tablica hard-coded dla czytelności:
-    private static readonly int[] XpTable = {
+	// ── XP curve ─────────────────────────────────────────────────
+	// XpToLevel[lvl] = floor(4 * lvl^1.8)  — wolno na początku, szybko potem
+	// Ale wystarczy prosta tablica hard-coded dla czytelności:
+	private static readonly int[] XpTable = {
 	//  lvl:  1   2   3   4   5   6   7   8   9  10
 			   5, 10, 18, 28, 40, 55, 72, 92,115,140,
 	// 11-20
@@ -402,34 +409,43 @@ public partial class Player : CharacterBody2D
 			  680,760,845,940,1040,1150,1270,1400,1540,1700
 	};
 
-    public int Level = 1;
-    public int Xp = 0;
-    public int XpToLevel => Level - 1 < XpTable.Length ? XpTable[Level - 1] : Level * 80;
+	public int Level = 1;
+	public int Xp = 0;
+	public int XpToLevel => Level - 1 < XpTable.Length ? XpTable[Level - 1] : Level * 80;
 
-    public void GainXp(int amount)
-    {
-        Xp += amount;
-        while (Xp >= XpToLevel)
-        {
-            Xp -= XpToLevel;
-            LevelUp();
-        }
-    }
+	public void GainXp(int amount)
+	{
+		Xp += amount;
+		while (Xp >= XpToLevel)
+		{
+			Xp -= XpToLevel;
+			LevelUp();
+		}
+		UpdateXpBar();
+	}
 
-    private void LevelUp()
-    {
-        Level++;
-        GD.Print($"LEVEL UP! → {Level}");
+	private void UpdateXpBar()
+	{
+		if (xpBar == null) return;
 
-        var ui = GetTree().CurrentScene.GetNodeOrNull<LevelUpUI>("LevelUpUI");
-        if (ui != null)
-            ui.ShowUpgrades(this);
-    }
+		xpBar.MaxValue = XpToLevel;
+		xpBar.Value = Xp;
+	}
 
-    /// <summary>
-    /// Odczytuje wejście gracza i ustawia wektor prędkości.
-    /// </summary>
-    public void GetInput()
+	private void LevelUp()
+	{
+		Level++;
+		GD.Print($"LEVEL UP! → {Level}");
+
+		var ui = GetTree().CurrentScene.GetNodeOrNull<LevelUpUI>("LevelUpUI");
+		if (ui != null)
+			ui.ShowUpgrades(this);
+	}
+
+	/// <summary>
+	/// Odczytuje wejście gracza i ustawia wektor prędkości.
+	/// </summary>
+	public void GetInput()
 	{
 		Vector2 inputDirection = Input.GetVector("left", "right", "up", "down");
 		Velocity = inputDirection * Speed;
@@ -451,24 +467,24 @@ public partial class Player : CharacterBody2D
 		MoveAndSlide();
 	}
 
-    // Na końcu _Process (dodaj jeśli nie masz, lub rozszerz istniejący):
-    public override void _Process(double delta)
-    {
-        if (!DebugDrawEnemyLines) return;
+	// Na końcu _Process (dodaj jeśli nie masz, lub rozszerz istniejący):
+	public override void _Process(double delta)
+	{
+		if (!DebugDrawEnemyLines) return;
 
-        var lines = new System.Text.StringBuilder();
-        foreach (Node node in GetTree().GetNodesInGroup("enemies"))
-        {
-            if (node is Enemy enemy)
-            {
-                float dist = GlobalPosition.DistanceTo(enemy.GlobalPosition);
-                string name = enemy.Stats != null ? enemy.Stats.MobID : enemy.Name;
-                lines.AppendLine($"{name}: {dist:F0}px");
-            }
-        }
-        if (_debugLabel != null)
-            _debugLabel.Text = lines.ToString();
+		var lines = new System.Text.StringBuilder();
+		foreach (Node node in GetTree().GetNodesInGroup("enemies"))
+		{
+			if (node is Enemy enemy)
+			{
+				float dist = GlobalPosition.DistanceTo(enemy.GlobalPosition);
+				string name = enemy.Stats != null ? enemy.Stats.MobID : enemy.Name;
+				lines.AppendLine($"{name}: {dist:F0}px");
+			}
+		}
+		if (_debugLabel != null)
+			_debugLabel.Text = lines.ToString();
 
-        QueueRedraw();
-    }
+		QueueRedraw();
+	}
 }
