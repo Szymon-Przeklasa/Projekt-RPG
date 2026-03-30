@@ -2,7 +2,7 @@
 \hypertarget{class_lightning}{}\label{class_lightning}\index{Lightning@{Lightning}}
 
 
-Klasa reprezentująca broń typu \doxylink{class_lightning}{Lightning}. Strzela piorunem, który przeskakuje między najbliższymi wrogami do określonej liczby razy. Dziedziczy po klasie \doxylink{class_weapon}{Weapon}.  
+Klasa reprezentująca broń typu \doxylink{class_lightning}{Lightning}. Strzela piorunem, który przeskakuje między wrogami do określonej liczby razy. Dziedziczy po klasie \doxylink{class_weapon}{Weapon}.  
 
 
 Inheritance diagram for Lightning:\+\begin{figure}[H]
@@ -16,10 +16,16 @@ Inheritance diagram for Lightning:\+\begin{figure}[H]
 \item 
 \Hypertarget{class_lightning_a5b838c8830a3a14bc5a05783de9dcf75}\label{class_lightning_a5b838c8830a3a14bc5a05783de9dcf75} 
 override void {\bfseries Fire} ()
-\begin{DoxyCompactList}\small\item\em Metoda wywoływana przy strzale. Tworzy efekt pioruna od gracza do najbliższego wroga, przeskakując między kolejnymi wrogami aż do osiągnięcia limitu łańcuchów (Stats.\+Projectile\+Count). Każdy trafiony wróg otrzymuje obrażenia obliczone na podstawie Stats.\+Damage i \doxylink{class_player_a7d53509665412fc72353f5b28fe9b8c8}{Player.\+Damage\+Multiplier}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Wywoływana przy strzale metoda Fire. Tworzy efekt pioruna od gracza do najbliższego wroga, przeskakując między kolejnymi wrogami aż do limitu łańcuchów. Każdy trafiony wróg otrzymuje obrażenia. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Protected Member Functions inherited from \doxymbox{\hyperlink{class_weapon}{Weapon}}}
 \begin{DoxyCompactItemize}
 \item 
+int {\bfseries Get\+Damage} ()
+\begin{DoxyCompactList}\small\item\em Oblicza aktualne obrażenia z uwzględnieniem mnożnika gracza. \end{DoxyCompactList}\item 
+float {\bfseries Get\+Range} ()
+\begin{DoxyCompactList}\small\item\em Oblicza aktualny zasięg z uwzględnieniem mnożnika obszaru gracza. \end{DoxyCompactList}\item 
+float {\bfseries Get\+Speed} ()
+\begin{DoxyCompactList}\small\item\em Oblicza aktualną prędkość pocisków z uwzględnieniem mnożnika. \end{DoxyCompactList}\item 
 void {\bfseries Fire} ()
 \begin{DoxyCompactList}\small\item\em Metoda abstrakcyjna wywoływana przy każdym strzale. Każda broń powinna nadpisać tę metodę, implementując własną logikę strzału. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Additional Inherited Members}
@@ -28,7 +34,7 @@ void {\bfseries Fire} ()
 \item 
 virtual void \doxymbox{\hyperlink{class_weapon_a33d626e47c4808639ffd14de099228ed}{Init}} (\doxymbox{\hyperlink{class_player}{Player}} player)
 \begin{DoxyCompactList}\small\item\em Inicjalizuje broń dla danego gracza. Ustawia timer na podstawie czasu odnowienia i mnożnika gracza. \end{DoxyCompactList}\item 
-void {\bfseries Refresh\+Stats} ()
+virtual void {\bfseries Refresh\+Stats} ()
 \begin{DoxyCompactList}\small\item\em Odświeża statystyki broni, aktualizując czas odnowienia w timerze. Powinno być wywoływane po zmianie Stats.\+Cooldown lub \doxylink{class_player_a4ecfa1544f4778a8269e388e48e791ae}{Player.\+Cooldown\+Multiplier}. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Public Attributes inherited from \doxymbox{\hyperlink{class_weapon}{Weapon}}}
 \begin{DoxyCompactItemize}
@@ -42,10 +48,15 @@ void {\bfseries Refresh\+Stats} ()
 \begin{DoxyCompactList}\small\item\em Odniesienie do gracza, który używa broni. \end{DoxyCompactList}\item 
 Timer {\bfseries timer}
 \begin{DoxyCompactList}\small\item\em Timer odpowiadający za wywoływanie strzałów co określony czas. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Properties inherited from \doxymbox{\hyperlink{class_weapon}{Weapon}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual string {\bfseries Weapon\+Name}\hspace{0.3cm}{\ttfamily  \+[get]\+}
+\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-Klasa reprezentująca broń typu \doxylink{class_lightning}{Lightning}. Strzela piorunem, który przeskakuje między najbliższymi wrogami do określonej liczby razy. Dziedziczy po klasie \doxylink{class_weapon}{Weapon}. 
+Klasa reprezentująca broń typu \doxylink{class_lightning}{Lightning}. Strzela piorunem, który przeskakuje między wrogami do określonej liczby razy. Dziedziczy po klasie \doxylink{class_weapon}{Weapon}. 
 
 The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
 \item 

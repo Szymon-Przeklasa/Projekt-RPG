@@ -2,7 +2,7 @@
 \hypertarget{class_enemy}{}\label{class_enemy}\index{Enemy@{Enemy}}
 
 
-Klasa reprezentuj¹ca przeciwnika w grze. Obs³uguje ruch w kierunku gracza, otrzymywanie obra¿eñ, œmieræ i drop doœwiadczenia.  
+Klasa reprezentujÄ…ca przeciwnika (\doxylink{class_enemy}{Enemy}) w grze. ObsÅ‚uguje ruch w kierunku gracza, otrzymywanie obraÅ¼eÅ„, Å›mierÄ‡ i drop doÅ›wiadczenia. Dziedziczy po Character\+Body2D.  
 
 
 Inheritance diagram for Enemy:\+\begin{figure}[H]
@@ -16,70 +16,61 @@ Inheritance diagram for Enemy:\+\begin{figure}[H]
 \item 
 \Hypertarget{class_enemy_a637bd267c02af30ad5af52c55dbf1439}\label{class_enemy_a637bd267c02af30ad5af52c55dbf1439} 
 override void {\bfseries \+\_\+\+Ready} ()
-\begin{DoxyCompactList}\small\item\em Metoda wywo³ywana po dodaniu wêz³a do drzewa sceny. Inicjalizuje punkty ¿ycia przeciwnika. \end{DoxyCompactList}\item 
-void \doxymbox{\hyperlink{class_enemy_aa69fb925511bafa9b08d9d07664de5d1}{Take\+Damage}} (int damage, Vector2 knockback)
-\begin{DoxyCompactList}\small\item\em Zadaje obra¿enia przeciwnikowi i aplikuje knockback. Tworzy efekt cz¹steczkowy przy trafieniu i obs³uguje œmieræ przeciwnika. \end{DoxyCompactList}\item 
-override void \doxymbox{\hyperlink{class_enemy_aa1df6763ae3a612f36447340577dcb8e}{\+\_\+\+Physics\+Process}} (double delta)
-\begin{DoxyCompactList}\small\item\em Metoda fizyczna wywo³ywana co klatkê. Obs³uguje ruch przeciwnika w kierunku gracza oraz spowalnianie Velocity. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Metoda wywoÅ‚ywana po dodaniu wroga do sceny. Inicjalizuje statystyki, zdrowie i skalÄ™ wroga. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_enemy_ad2dc81da9768c7b919c9ed2a588e2031}{Take\+Damage}} (int damage, Vector2 knockback, string weapon\+Name="{}unknown"{})
+\begin{DoxyCompactList}\small\item\em Zadaje obraÅ¼enia wrogowi. Tworzy efekt trafienia i wyÅ›wietla etykietÄ™ obraÅ¼eÅ„. \end{DoxyCompactList}\item 
+\Hypertarget{class_enemy_aa1df6763ae3a612f36447340577dcb8e}\label{class_enemy_aa1df6763ae3a612f36447340577dcb8e} 
+override void {\bfseries \+\_\+\+Physics\+Process} (double delta)
+\begin{DoxyCompactList}\small\item\em Metoda fizyczna wywoÅ‚ywana co klatkÄ™. ObsÅ‚uguje ruch w kierunku gracza i zadawanie obraÅ¼eÅ„ kontaktowych. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\Hypertarget{class_enemy_afd0a97a8f0772bd9f598c8e273bdad47}\label{class_enemy_afd0a97a8f0772bd9f598c8e273bdad47} 
-float {\bfseries Speed} = 140f
-\begin{DoxyCompactList}\small\item\em Prêdkoœæ poruszania siê przeciwnika. \end{DoxyCompactList}\item 
-\Hypertarget{class_enemy_a20628488c5d12840d152e484b16682c9}\label{class_enemy_a20628488c5d12840d152e484b16682c9} 
-int {\bfseries Max\+Health} = 100
-\begin{DoxyCompactList}\small\item\em Maksymalna iloœæ punktów ¿ycia przeciwnika. \end{DoxyCompactList}\item 
+\Hypertarget{class_enemy_ae0eff91f1a58c639486eec142f2a45e0}\label{class_enemy_ae0eff91f1a58c639486eec142f2a45e0} 
+\doxymbox{\hyperlink{class_enemy_stats}{Enemy\+Stats}} {\bfseries Stats}
+\begin{DoxyCompactList}\small\item\em Statystyki wroga przechowywane w \doxylink{class_enemy_stats}{Enemy\+Stats}. \end{DoxyCompactList}\item 
 \Hypertarget{class_enemy_aee332cdb5ee5923ac80e56ac28d5229e}\label{class_enemy_aee332cdb5ee5923ac80e56ac28d5229e} 
 Packed\+Scene {\bfseries Xp\+Orb\+Scene}
-\begin{DoxyCompactList}\small\item\em Scena pocisku doœwiadczenia (XP), któr¹ przeciwnik zrzuca po œmierci. \end{DoxyCompactList}\item 
-\Hypertarget{class_enemy_ac3a29dd57db6581f594c85257e1cbd25}\label{class_enemy_ac3a29dd57db6581f594c85257e1cbd25} 
-int {\bfseries Xp\+Drop} = 1
-\begin{DoxyCompactList}\small\item\em Iloœæ doœwiadczenia, które przeciwnik zostawia po œmierci. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Scena orb-\/u XP, ktÃ³ry zostaje upuszczony po Å›mierci wroga. \end{DoxyCompactList}\item 
 \Hypertarget{class_enemy_a1bd5557ad866dea773b349fb66178260}\label{class_enemy_a1bd5557ad866dea773b349fb66178260} 
 Packed\+Scene {\bfseries Hit\+Particle}
-\begin{DoxyCompactList}\small\item\em Efekt cz¹steczkowy wywo³ywany przy otrzymaniu obra¿eñ. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Scena czÄ…steczek przy trafieniu wroga. \end{DoxyCompactList}\item 
+\Hypertarget{class_enemy_afd0a97a8f0772bd9f598c8e273bdad47}\label{class_enemy_afd0a97a8f0772bd9f598c8e273bdad47} 
+float {\bfseries Speed} = 140f
+\begin{DoxyCompactList}\small\item\em PrÄ™dkoÅ›Ä‡ wroga, moÅ¼e byÄ‡ nadpisana przez Stats. \end{DoxyCompactList}\item 
+\Hypertarget{class_enemy_a20628488c5d12840d152e484b16682c9}\label{class_enemy_a20628488c5d12840d152e484b16682c9} 
+int {\bfseries Max\+Health} = 100
+\begin{DoxyCompactList}\small\item\em Maksymalne zdrowie wroga, nadpisywane przez Stats. \end{DoxyCompactList}\item 
+\Hypertarget{class_enemy_ac3a29dd57db6581f594c85257e1cbd25}\label{class_enemy_ac3a29dd57db6581f594c85257e1cbd25} 
+int {\bfseries Xp\+Drop} = 1
+\begin{DoxyCompactList}\small\item\em IloÅ›Ä‡ doÅ›wiadczenia przyznawana po zabiciu wroga. \end{DoxyCompactList}\item 
 \Hypertarget{class_enemy_a8f6bd48a3cd79c56bf7b8a2a72eb4723}\label{class_enemy_a8f6bd48a3cd79c56bf7b8a2a72eb4723} 
-string {\bfseries Mob\+ID} = "{}Red slime"{}
-\begin{DoxyCompactList}\small\item\em Unikalny identyfikator przeciwnika (np. nazwa w \doxylink{class_kill_manager}{Kill\+Manager}). \end{DoxyCompactList}\end{DoxyCompactItemize}
+string {\bfseries Mob\+ID} = "{}enemy"{}
+\begin{DoxyCompactList}\small\item\em ID wroga, np. "{}goblin"{}, "{}skeleton"{}. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-Klasa reprezentuj¹ca przeciwnika w grze. Obs³uguje ruch w kierunku gracza, otrzymywanie obra¿eñ, œmieræ i drop doœwiadczenia. 
+Klasa reprezentujÄ…ca przeciwnika (\doxylink{class_enemy}{Enemy}) w grze. ObsÅ‚uguje ruch w kierunku gracza, otrzymywanie obraÅ¼eÅ„, Å›mierÄ‡ i drop doÅ›wiadczenia. Dziedziczy po Character\+Body2D. 
 
 \label{doc-func-members}
 \Hypertarget{class_enemy_doc-func-members}
 \doxysubsection{Member Function Documentation}
-\Hypertarget{class_enemy_aa1df6763ae3a612f36447340577dcb8e}\index{Enemy@{Enemy}!\_PhysicsProcess@{\_PhysicsProcess}}
-\index{\_PhysicsProcess@{\_PhysicsProcess}!Enemy@{Enemy}}
-\doxysubsubsection{\texorpdfstring{\_PhysicsProcess()}{\_PhysicsProcess()}}
-{\footnotesize\ttfamily \label{class_enemy_aa1df6763ae3a612f36447340577dcb8e} 
-override void Enemy.\+\_\+\+Physics\+Process (\begin{DoxyParamCaption}\item[{double}]{delta}{}\end{DoxyParamCaption})}
-
-
-
-Metoda fizyczna wywo³ywana co klatkê. Obs³uguje ruch przeciwnika w kierunku gracza oraz spowalnianie Velocity. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em delta} & Czas od ostatniej klatki.\\
-\hline
-\end{DoxyParams}
-\Hypertarget{class_enemy_aa69fb925511bafa9b08d9d07664de5d1}\index{Enemy@{Enemy}!TakeDamage@{TakeDamage}}
+\Hypertarget{class_enemy_ad2dc81da9768c7b919c9ed2a588e2031}\index{Enemy@{Enemy}!TakeDamage@{TakeDamage}}
 \index{TakeDamage@{TakeDamage}!Enemy@{Enemy}}
 \doxysubsubsection{\texorpdfstring{TakeDamage()}{TakeDamage()}}
-{\footnotesize\ttfamily \label{class_enemy_aa69fb925511bafa9b08d9d07664de5d1} 
-void Enemy.\+Take\+Damage (\begin{DoxyParamCaption}\item[{int}]{damage}{, }\item[{Vector2}]{knockback}{}\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{class_enemy_ad2dc81da9768c7b919c9ed2a588e2031} 
+void Enemy.\+Take\+Damage (\begin{DoxyParamCaption}\item[{int}]{damage}{, }\item[{Vector2}]{knockback}{, }\item[{string}]{weapon\+Name}{ = {\ttfamily "{}unknown"{}}}\end{DoxyParamCaption})}
 
 
 
-Zadaje obra¿enia przeciwnikowi i aplikuje knockback. Tworzy efekt cz¹steczkowy przy trafieniu i obs³uguje œmieræ przeciwnika. 
+Zadaje obraÅ¼enia wrogowi. Tworzy efekt trafienia i wyÅ›wietla etykietÄ™ obraÅ¼eÅ„. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em damage} & Iloœæ zadanych obra¿eñ.\\
+{\em damage} & IloÅ›Ä‡ obraÅ¼eÅ„.\\
 \hline
-{\em knockback} & Wektor knockbacku, który zostanie dodany do Velocity.\\
+{\em knockback} & Wektor odrzutu.\\
+\hline
+{\em weapon\+Name} & Nazwa ÅºrÃ³dÅ‚a obraÅ¼eÅ„.\\
 \hline
 \end{DoxyParams}
 

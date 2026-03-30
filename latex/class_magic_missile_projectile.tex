@@ -1,0 +1,82 @@
+\doxysection{Magic\+Missile\+Projectile Class Reference}
+\hypertarget{class_magic_missile_projectile}{}\label{class_magic_missile_projectile}\index{MagicMissileProjectile@{MagicMissileProjectile}}
+
+
+Specjalny typ pocisku Magic Missile. Pocisk automatycznie naprowadza się na wyznaczony cel (Target) oraz posiada ograniczony czas życia.  
+
+
+Inheritance diagram for Magic\+Missile\+Projectile:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_magic_missile_projectile}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+override void \doxymbox{\hyperlink{class_magic_missile_projectile_a8ae1bd18bb36d4f3106d54b3d601182d}{\+\_\+\+Physics\+Process}} (double delta)
+\begin{DoxyCompactList}\small\item\em Aktualizacja fizyki pocisku. Odpowiada za:\+ \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{class_projectile}{Projectile}}}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_projectile_afe18a73081ae164186fd3bdfcbe62055}{Setup}} (Vector2 dir, \doxymbox{\hyperlink{class_weapon_stats}{Weapon\+Stats}} stats, int damage=-\/1, float speed=-\/1, string weapon\+Name="{}Projectile"{})
+\begin{DoxyCompactList}\small\item\em Inicjalizuje pocisk. Pozwala nadpisać obrażenia i prędkość (np. po uwzględnieniu mnożników gracza). \end{DoxyCompactList}\item 
+override void {\bfseries \+\_\+\+Ready} ()
+\begin{DoxyCompactList}\small\item\em Rejestruje zdarzenie kolizji po utworzeniu pocisku. \end{DoxyCompactList}\item 
+override void {\bfseries \+\_\+\+Physics\+Process} (double delta)
+\begin{DoxyCompactList}\small\item\em Aktualizuje pozycję pocisku w każdej klatce fizyki. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_magic_missile_projectile_ab51c4a2b2d9654ab0a9ff755dea2d2d3}\label{class_magic_missile_projectile_ab51c4a2b2d9654ab0a9ff755dea2d2d3} 
+Node2D {\bfseries Target}
+\begin{DoxyCompactList}\small\item\em Aktualny cel pocisku. Jeśli istnieje, pocisk będzie próbował się do niego naprowadzać. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Member Functions inherited from \doxymbox{\hyperlink{class_projectile}{Projectile}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \doxymbox{\hyperlink{class_projectile_a855a6909fb83e7cc586c64d9ceb5c454}{On\+Hit}} (Node body)
+\begin{DoxyCompactList}\small\item\em Obsługuje trafienie w obiekt. Jeśli trafiony obiekt to przeciwnik:\+ \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \doxymbox{\hyperlink{class_projectile}{Projectile}}}
+\begin{DoxyCompactItemize}
+\item 
+Vector2 {\bfseries Direction}
+\begin{DoxyCompactList}\small\item\em Kierunek ruchu pocisku (znormalizowany wektor). \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_weapon_stats}{Weapon\+Stats}} {\bfseries Stats}
+\begin{DoxyCompactList}\small\item\em Referencja do statystyk broni, z której pochodzi pocisk. \end{DoxyCompactList}\item 
+int {\bfseries Pierce\+Left}
+\begin{DoxyCompactList}\small\item\em Liczba przeciwników, przez których pocisk może jeszcze przejść. \end{DoxyCompactList}\item 
+int {\bfseries Runtime\+Damage}
+\begin{DoxyCompactList}\small\item\em Obrażenia obliczone w momencie wystrzału (runtime). \end{DoxyCompactList}\item 
+float {\bfseries Runtime\+Speed}
+\begin{DoxyCompactList}\small\item\em Prędkość pocisku obliczona w momencie wystrzału (runtime). \end{DoxyCompactList}\item 
+string {\bfseries Source\+Weapon} = "{}Projectile"{}
+\begin{DoxyCompactList}\small\item\em Nazwa broni, która wystrzeliła pocisk (do debugowania /\+ logów). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Specjalny typ pocisku Magic Missile. Pocisk automatycznie naprowadza się na wyznaczony cel (Target) oraz posiada ograniczony czas życia. 
+
+\label{doc-func-members}
+\Hypertarget{class_magic_missile_projectile_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_magic_missile_projectile_a8ae1bd18bb36d4f3106d54b3d601182d}\index{MagicMissileProjectile@{MagicMissileProjectile}!\_PhysicsProcess@{\_PhysicsProcess}}
+\index{\_PhysicsProcess@{\_PhysicsProcess}!MagicMissileProjectile@{MagicMissileProjectile}}
+\doxysubsubsection{\texorpdfstring{\_PhysicsProcess()}{\_PhysicsProcess()}}
+{\footnotesize\ttfamily \label{class_magic_missile_projectile_a8ae1bd18bb36d4f3106d54b3d601182d} 
+override void Magic\+Missile\+Projectile.\+\_\+\+Physics\+Process (\begin{DoxyParamCaption}\item[{double}]{delta}{}\end{DoxyParamCaption})}
+
+
+
+Aktualizacja fizyki pocisku. Odpowiada za:\+ 
+
+
+\begin{DoxyItemize}
+\item skracanie czasu życia,
+\item naprowadzanie na cel,
+\item ruch pocisku. 
+\end{DoxyItemize}
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+Scripts/\+\+Player\+Weapons/\+Magic\+Missile\+Projectile.\+cs\end{DoxyCompactItemize}

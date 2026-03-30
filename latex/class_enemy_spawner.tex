@@ -2,7 +2,7 @@
 \hypertarget{class_enemy_spawner}{}\label{class_enemy_spawner}\index{EnemySpawner@{EnemySpawner}}
 
 
-Klasa odpowiedzialna za generowanie przeciwników w grze. Tworzy nowych wrogów wokó³ gracza w okreœlonym promieniu i z czasem skraca odstêp miêdzy spawnami.  
+ZarzÄ…dza pojawianiem siÄ™ przeciwnikÃ³w w grze na podstawie listy fal (\doxylink{class_wave_definition}{Wave\+Definition}). InterwaÅ‚ spawnÃ³w i liczba przeciwnikÃ³w w batchu roÅ›nie z czasem gry, co powoduje progresywnÄ… trudnoÅ›Ä‡.  
 
 
 Inheritance diagram for Enemy\+Spawner:\+\begin{figure}[H]
@@ -16,29 +16,29 @@ Inheritance diagram for Enemy\+Spawner:\+\begin{figure}[H]
 \item 
 \Hypertarget{class_enemy_spawner_a208d31d0bf33a87befcc234bed3446eb}\label{class_enemy_spawner_a208d31d0bf33a87befcc234bed3446eb} 
 override void {\bfseries \+\_\+\+Ready} ()
-\begin{DoxyCompactList}\small\item\em Metoda wywo³ywana po dodaniu wêz³a do drzewa sceny. Inicjalizuje gracza i timer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\item 
+\Hypertarget{class_enemy_spawner_ae04a5bac81becbbe1617177159068c4e}\label{class_enemy_spawner_ae04a5bac81becbbe1617177159068c4e} 
+override void {\bfseries \+\_\+\+Process} (double delta)
+\end{DoxyCompactItemize}
 \doxysubsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\Hypertarget{class_enemy_spawner_a4e1a25b6d95d680f39d05bf29b2d977a}\label{class_enemy_spawner_a4e1a25b6d95d680f39d05bf29b2d977a} 
-Packed\+Scene {\bfseries Enemy\+Scene}
-\begin{DoxyCompactList}\small\item\em Scena przeciwnika do tworzenia instancji. \end{DoxyCompactList}\item 
+\Hypertarget{class_enemy_spawner_ab3fa82e16b2d973a01c248b25f39bcaf}\label{class_enemy_spawner_ab3fa82e16b2d973a01c248b25f39bcaf} 
+Tile\+Map\+Layer {\bfseries Spawn\+Map}
+\begin{DoxyCompactList}\small\item\em Mapa Tile\+Map wskazujÄ…ca moÅ¼liwe pozycje spawnu. \end{DoxyCompactList}\item 
 \Hypertarget{class_enemy_spawner_adbddf6cf35dffd6514463eb0f386af3c}\label{class_enemy_spawner_adbddf6cf35dffd6514463eb0f386af3c} 
-float {\bfseries Spawn\+Radius} = 100f
-\begin{DoxyCompactList}\small\item\em Promieñ wokó³ gracza, w którym przeciwnicy mog¹ siê pojawiaæ. \end{DoxyCompactList}\item 
-\Hypertarget{class_enemy_spawner_aa23d71245a0258dd25dd6551ca7b40ea}\label{class_enemy_spawner_aa23d71245a0258dd25dd6551ca7b40ea} 
-float {\bfseries Spawn\+Interval} = 1.\+2f
-\begin{DoxyCompactList}\small\item\em Pocz¹tkowy odstêp miêdzy spawnami przeciwników (w sekundach). \end{DoxyCompactList}\item 
-\Hypertarget{class_enemy_spawner_af0a2f844216ed36420773c8c70bc49f2}\label{class_enemy_spawner_af0a2f844216ed36420773c8c70bc49f2} 
-float {\bfseries Min\+Spawn\+Interval} = 0.\+05f
-\begin{DoxyCompactList}\small\item\em Minimalny mo¿liwy odstêp miêdzy spawnami. \end{DoxyCompactList}\item 
-\Hypertarget{class_enemy_spawner_aa5821fec400655c34f1043ac5199d3c2}\label{class_enemy_spawner_aa5821fec400655c34f1043ac5199d3c2} 
-float {\bfseries Spawn\+Decay\+Factor} = 0.\+95f
-\begin{DoxyCompactList}\small\item\em Wspó³czynnik zmniejszaj¹cy odstêp miêdzy spawnami po ka¿dym wrogu. \end{DoxyCompactList}\end{DoxyCompactItemize}
+float {\bfseries Spawn\+Radius} = 1200f
+\begin{DoxyCompactList}\small\item\em Maksymalny promieÅ„ spawnu wokÃ³Å‚ gracza. \end{DoxyCompactList}\item 
+\Hypertarget{class_enemy_spawner_a96f43fba2b8920e4cf23716696f38172}\label{class_enemy_spawner_a96f43fba2b8920e4cf23716696f38172} 
+float {\bfseries Min\+Player\+Distance} = 400f
+\begin{DoxyCompactList}\small\item\em Minimalna odlegÅ‚oÅ›Ä‡ od gracza, Å¼eby nie spawnowaÄ‡ wroga bezpoÅ›rednio na nim. \end{DoxyCompactList}\item 
+\Hypertarget{class_enemy_spawner_a2ca514152b5179bb66e87784daa42c8f}\label{class_enemy_spawner_a2ca514152b5179bb66e87784daa42c8f} 
+Godot.\+Collections.\+Array$<$ \doxymbox{\hyperlink{class_wave_definition}{Wave\+Definition}} $>$ {\bfseries Waves} = new()
+\begin{DoxyCompactList}\small\item\em Lista fal przypisana w Inspektorze (tablica \doxylink{class_wave_definition}{Wave\+Definition} .tres). \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-Klasa odpowiedzialna za generowanie przeciwników w grze. Tworzy nowych wrogów wokó³ gracza w okreœlonym promieniu i z czasem skraca odstêp miêdzy spawnami. 
+ZarzÄ…dza pojawianiem siÄ™ przeciwnikÃ³w w grze na podstawie listy fal (\doxylink{class_wave_definition}{Wave\+Definition}). InterwaÅ‚ spawnÃ³w i liczba przeciwnikÃ³w w batchu roÅ›nie z czasem gry, co powoduje progresywnÄ… trudnoÅ›Ä‡. 
 
 The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
 \item 

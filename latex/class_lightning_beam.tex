@@ -2,7 +2,7 @@
 \hypertarget{class_lightning_beam}{}\label{class_lightning_beam}\index{LightningBeam@{LightningBeam}}
 
 
-Klasa reprezentuj¹ca wizualny efekt pioruna (Beam) dla broni \doxylink{class_lightning}{Lightning}. Tworzy dynamiczn¹ liniê z lekkim rozga³êzieniem i animacj¹ migotania.  
+Klasa odpowiedzialna za wizualny efekt pioruna (beam). Tworzy dynamicznÄ…, "{}poszarpanÄ…"{} liniÄ™ miÄ™dzy dwoma punktami oraz krÃ³tkÄ… animacjÄ™ migotania.  
 
 
 Inheritance diagram for Lightning\+Beam:\+\begin{figure}[H]
@@ -16,13 +16,13 @@ Inheritance diagram for Lightning\+Beam:\+\begin{figure}[H]
 \item 
 \Hypertarget{class_lightning_beam_ad94d4295e4854081e0317f8f8db0e1a0}\label{class_lightning_beam_ad94d4295e4854081e0317f8f8db0e1a0} 
 override void {\bfseries \+\_\+\+Ready} ()
-\begin{DoxyCompactList}\small\item\em Metoda wywo³ywana po dodaniu wêz³a do drzewa sceny. Inicjalizuje referencjê do Line2D. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Inicjalizacja wÄ™zÅ‚a po dodaniu do sceny. Pobiera referencjÄ™ do Line2D. \end{DoxyCompactList}\item 
 void \doxymbox{\hyperlink{class_lightning_beam_a949c4cbd382f419694fd0437866d81a7}{Setup}} (Vector2 from, Vector2 to)
-\begin{DoxyCompactList}\small\item\em Konfiguruje efekt pioruna miêdzy dwoma punktami. Tworzy segmenty z lekkim rozrzutem dla efektu wizualnego. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Konfiguruje efekt pioruna pomiÄ™dzy dwoma punktami. Generuje segmenty z losowym odchyleniem, aby uzyskaÄ‡ efekt elektrycznego Å‚uku. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-Klasa reprezentuj¹ca wizualny efekt pioruna (Beam) dla broni \doxylink{class_lightning}{Lightning}. Tworzy dynamiczn¹ liniê z lekkim rozga³êzieniem i animacj¹ migotania. 
+Klasa odpowiedzialna za wizualny efekt pioruna (beam). Tworzy dynamicznÄ…, "{}poszarpanÄ…"{} liniÄ™ miÄ™dzy dwoma punktami oraz krÃ³tkÄ… animacjÄ™ migotania. 
 
 \label{doc-func-members}
 \Hypertarget{class_lightning_beam_doc-func-members}
@@ -35,13 +35,13 @@ void Lightning\+Beam.\+Setup (\begin{DoxyParamCaption}\item[{Vector2}]{from}{, }
 
 
 
-Konfiguruje efekt pioruna miêdzy dwoma punktami. Tworzy segmenty z lekkim rozrzutem dla efektu wizualnego. 
+Konfiguruje efekt pioruna pomiÄ™dzy dwoma punktami. Generuje segmenty z losowym odchyleniem, aby uzyskaÄ‡ efekt elektrycznego Å‚uku. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em from} & Pozycja startowa pioruna.\\
+{\em from} & Punkt poczÄ…tkowy (ÅºrÃ³dÅ‚o pioruna).\\
 \hline
-{\em to} & Pozycja koñcowa pioruna.\\
+{\em to} & Punkt koÅ„cowy (cel pioruna).\\
 \hline
 \end{DoxyParams}
 

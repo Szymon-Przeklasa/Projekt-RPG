@@ -2,7 +2,7 @@
 \hypertarget{class_axe_projectile}{}\label{class_axe_projectile}\index{AxeProjectile@{AxeProjectile}}
 
 
-Klasa reprezentuj¹ca pocisk topora. Dziedziczy po klasie \doxylink{class_projectile}{Projectile} i dodaje efekt opadaj¹cej trajektorii.  
+Klasa reprezentujÄ…ca pocisk topora (\doxylink{class_axe_projectile}{Axe\+Projectile}). Dziedziczy po klasie \doxylink{class_projectile}{Projectile} i dodaje efekt opadajÄ…cej trajektorii, symulujÄ…c spadajÄ…cy topÃ³r.  
 
 
 Inheritance diagram for Axe\+Projectile:\+\begin{figure}[H]
@@ -15,35 +15,41 @@ Inheritance diagram for Axe\+Projectile:\+\begin{figure}[H]
 \begin{DoxyCompactItemize}
 \item 
 override void \doxymbox{\hyperlink{class_axe_projectile_ac493368c9ea3046e00d4b008dcaa6863}{\+\_\+\+Physics\+Process}} (double delta)
-\begin{DoxyCompactList}\small\item\em Metoda fizyczna wywo³ywana co klatkê. Aktualizuje czas i modyfikuje kierunek pocisku, a nastêpnie wywo³uje logikê klasy bazowej. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Metoda fizyczna wywoÅ‚ywana co klatkÄ™ (\+\_\+\+Physics\+Process). Aktualizuje czas, modyfikuje kierunek pocisku w osi Y, a nastÄ™pnie wykonuje standardowÄ… logikÄ™ przesuwania pocisku z klasy bazowej. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{class_projectile}{Projectile}}}
 \begin{DoxyCompactItemize}
 \item 
-void \doxymbox{\hyperlink{class_projectile_a88a3aac9b716dc17d5bb3c774cafaf67}{Setup}} (Vector2 dir, \doxymbox{\hyperlink{class_weapon_stats}{Weapon\+Stats}} stats)
-\begin{DoxyCompactList}\small\item\em Inicjalizuje pocisk z kierunkiem, statystykami broni i ustawieniem iloœci przebiæ. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_projectile_afe18a73081ae164186fd3bdfcbe62055}{Setup}} (Vector2 dir, \doxymbox{\hyperlink{class_weapon_stats}{Weapon\+Stats}} stats, int damage=-\/1, float speed=-\/1, string weapon\+Name="{}Projectile"{})
+\begin{DoxyCompactList}\small\item\em Inicjalizuje pocisk. Pozwala nadpisaÄ‡ obraÅ¼enia i prÄ™dkoÅ›Ä‡ (np. po uwzglÄ™dnieniu mnoÅ¼nikÃ³w gracza). \end{DoxyCompactList}\item 
 override void {\bfseries \+\_\+\+Ready} ()
-\begin{DoxyCompactList}\small\item\em Metoda wywo³ywana po dodaniu wêz³a do drzewa sceny. Subskrybuje zdarzenie Body\+Entered do obs³ugi kolizji z wrogami. \end{DoxyCompactList}\item 
-override void \doxymbox{\hyperlink{class_projectile_a161180282124b67b393d1a3280988235}{\+\_\+\+Physics\+Process}} (double delta)
-\begin{DoxyCompactList}\small\item\em Metoda fizyczna wywo³ywana co klatkê. Przesuwa pocisk w kierunku Direction z uwzglêdnieniem prêdkoœci Stats.\+Speed. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Rejestruje zdarzenie kolizji po utworzeniu pocisku. \end{DoxyCompactList}\item 
+override void {\bfseries \+\_\+\+Physics\+Process} (double delta)
+\begin{DoxyCompactList}\small\item\em Aktualizuje pozycjÄ™ pocisku w kaÅ¼dej klatce fizyki. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Additional Inherited Members}
 \doxysubsection*{Protected Member Functions inherited from \doxymbox{\hyperlink{class_projectile}{Projectile}}}
 \begin{DoxyCompactItemize}
 \item 
 virtual void \doxymbox{\hyperlink{class_projectile_a855a6909fb83e7cc586c64d9ceb5c454}{On\+Hit}} (Node body)
-\begin{DoxyCompactList}\small\item\em Wywo³ywana po trafieniu w inny wêze³. Je¿eli wêze³ jest przeciwnikiem, zadaje obra¿enia i zmniejsza liczbê przebiæ. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em ObsÅ‚uguje trafienie w obiekt. JeÅ›li trafiony obiekt to przeciwnik:\+ \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Protected Attributes inherited from \doxymbox{\hyperlink{class_projectile}{Projectile}}}
 \begin{DoxyCompactItemize}
 \item 
 Vector2 {\bfseries Direction}
-\begin{DoxyCompactList}\small\item\em Kierunek poruszania siê pocisku. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Kierunek ruchu pocisku (znormalizowany wektor). \end{DoxyCompactList}\item 
 \doxymbox{\hyperlink{class_weapon_stats}{Weapon\+Stats}} {\bfseries Stats}
-\begin{DoxyCompactList}\small\item\em Statystyki broni, z której pochodzi pocisk. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Referencja do statystyk broni, z ktÃ³rej pochodzi pocisk. \end{DoxyCompactList}\item 
 int {\bfseries Pierce\+Left}
-\begin{DoxyCompactList}\small\item\em Pozosta³a liczba przebiæ pocisku. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Liczba przeciwnikÃ³w, przez ktÃ³rych pocisk moÅ¼e jeszcze przejÅ›Ä‡. \end{DoxyCompactList}\item 
+int {\bfseries Runtime\+Damage}
+\begin{DoxyCompactList}\small\item\em ObraÅ¼enia obliczone w momencie wystrzaÅ‚u (runtime). \end{DoxyCompactList}\item 
+float {\bfseries Runtime\+Speed}
+\begin{DoxyCompactList}\small\item\em PrÄ™dkoÅ›Ä‡ pocisku obliczona w momencie wystrzaÅ‚u (runtime). \end{DoxyCompactList}\item 
+string {\bfseries Source\+Weapon} = "{}Projectile"{}
+\begin{DoxyCompactList}\small\item\em Nazwa broni, ktÃ³ra wystrzeliÅ‚a pocisk (do debugowania /\+ logÃ³w). \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-Klasa reprezentuj¹ca pocisk topora. Dziedziczy po klasie \doxylink{class_projectile}{Projectile} i dodaje efekt opadaj¹cej trajektorii. 
+Klasa reprezentujÄ…ca pocisk topora (\doxylink{class_axe_projectile}{Axe\+Projectile}). Dziedziczy po klasie \doxylink{class_projectile}{Projectile} i dodaje efekt opadajÄ…cej trajektorii, symulujÄ…c spadajÄ…cy topÃ³r. 
 
 \label{doc-func-members}
 \Hypertarget{class_axe_projectile_doc-func-members}
@@ -56,11 +62,11 @@ override void Axe\+Projectile.\+\_\+\+Physics\+Process (\begin{DoxyParamCaption}
 
 
 
-Metoda fizyczna wywo³ywana co klatkê. Aktualizuje czas i modyfikuje kierunek pocisku, a nastêpnie wywo³uje logikê klasy bazowej. 
+Metoda fizyczna wywoÅ‚ywana co klatkÄ™ (\+\_\+\+Physics\+Process). Aktualizuje czas, modyfikuje kierunek pocisku w osi Y, a nastÄ™pnie wykonuje standardowÄ… logikÄ™ przesuwania pocisku z klasy bazowej. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em delta} & Czas od ostatniej klatki.\\
+{\em delta} & Czas (w sekundach) od ostatniej klatki.\\
 \hline
 \end{DoxyParams}
 

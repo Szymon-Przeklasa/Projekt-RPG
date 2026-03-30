@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['weapon_0',['Weapon',['../class_weapon.html',1,'']]],
-  ['weaponstats_1',['WeaponStats',['../class_weapon_stats.html',1,'']]]
+  ['wavedefinition_0',['WaveDefinition',['../class_wave_definition.html',1,'']]],
+  ['weapon_1',['Weapon',['../class_weapon.html',1,'']]],
+  ['weaponstats_2',['WeaponStats',['../class_weapon_stats.html',1,'']]]
 ];

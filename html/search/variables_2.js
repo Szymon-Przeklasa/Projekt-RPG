@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['damage_0',['Damage',['../class_weapon_stats.html#aad765447589b2b9747837024817f4963',1,'WeaponStats']]],
-  ['damagemultiplier_1',['DamageMultiplier',['../class_player.html#a7d53509665412fc72353f5b28fe9b8c8',1,'Player']]],
-  ['direction_2',['Direction',['../class_projectile.html#a117a5b2f9a9e05cd541a949d47f8d83c',1,'Projectile']]]
+  ['contactdamage_0',['ContactDamage',['../class_enemy_stats.html#ab6beb19d7c1f49d7b077f0adca8b89d9',1,'EnemyStats']]],
+  ['cooldown_1',['Cooldown',['../class_weapon_stats.html#a17365bccc1b05e523dd95d97fe8dd1d4',1,'WeaponStats']]],
+  ['cooldownmultiplier_2',['CooldownMultiplier',['../class_player.html#a4ecfa1544f4778a8269e388e48e791ae',1,'Player']]],
+  ['currentlevel_3',['CurrentLevel',['../class_passive_data.html#ae613301f8a45fd2ccfe2a131f12c84f8',1,'PassiveData']]]
 ];

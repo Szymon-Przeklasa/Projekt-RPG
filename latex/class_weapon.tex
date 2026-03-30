@@ -16,8 +16,8 @@ Inheritance diagram for Weapon:\+\begin{figure}[H]
 \item 
 virtual void \doxymbox{\hyperlink{class_weapon_a33d626e47c4808639ffd14de099228ed}{Init}} (\doxymbox{\hyperlink{class_player}{Player}} player)
 \begin{DoxyCompactList}\small\item\em Inicjalizuje broń dla danego gracza. Ustawia timer na podstawie czasu odnowienia i mnożnika gracza. \end{DoxyCompactList}\item 
-\Hypertarget{class_weapon_a2a24dba6dbe19674a0ab7d9ab0b20d98}\label{class_weapon_a2a24dba6dbe19674a0ab7d9ab0b20d98} 
-void {\bfseries Refresh\+Stats} ()
+\Hypertarget{class_weapon_a3f5299789e8faaaceeafd7dc58283292}\label{class_weapon_a3f5299789e8faaaceeafd7dc58283292} 
+virtual void {\bfseries Refresh\+Stats} ()
 \begin{DoxyCompactList}\small\item\em Odświeża statystyki broni, aktualizując czas odnowienia w timerze. Powinno być wywoływane po zmianie Stats.\+Cooldown lub \doxylink{class_player_a4ecfa1544f4778a8269e388e48e791ae}{Player.\+Cooldown\+Multiplier}. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
@@ -28,6 +28,15 @@ void {\bfseries Refresh\+Stats} ()
 \doxysubsubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+\Hypertarget{class_weapon_a6dbcb22cf61c8160e4543ddcab0435ff}\label{class_weapon_a6dbcb22cf61c8160e4543ddcab0435ff} 
+int {\bfseries Get\+Damage} ()
+\begin{DoxyCompactList}\small\item\em Oblicza aktualne obrażenia z uwzględnieniem mnożnika gracza. \end{DoxyCompactList}\item 
+\Hypertarget{class_weapon_a80270d3f3afc971b05973f7d1efd310d}\label{class_weapon_a80270d3f3afc971b05973f7d1efd310d} 
+float {\bfseries Get\+Range} ()
+\begin{DoxyCompactList}\small\item\em Oblicza aktualny zasięg z uwzględnieniem mnożnika obszaru gracza. \end{DoxyCompactList}\item 
+\Hypertarget{class_weapon_a601c3a5b380968ecd954cceca8b7b98f}\label{class_weapon_a601c3a5b380968ecd954cceca8b7b98f} 
+float {\bfseries Get\+Speed} ()
+\begin{DoxyCompactList}\small\item\em Oblicza aktualną prędkość pocisków z uwzględnieniem mnożnika. \end{DoxyCompactList}\item 
 \Hypertarget{class_weapon_a4d7034c6c517d5f3a505f648e450e62d}\label{class_weapon_a4d7034c6c517d5f3a505f648e450e62d} 
 void {\bfseries Fire} ()
 \begin{DoxyCompactList}\small\item\em Metoda abstrakcyjna wywoływana przy każdym strzale. Każda broń powinna nadpisać tę metodę, implementując własną logikę strzału. \end{DoxyCompactList}\end{DoxyCompactItemize}
@@ -40,6 +49,12 @@ void {\bfseries Fire} ()
 \Hypertarget{class_weapon_a9666761200f5ea34e62b0c9b17d28903}\label{class_weapon_a9666761200f5ea34e62b0c9b17d28903} 
 Timer {\bfseries timer}
 \begin{DoxyCompactList}\small\item\em Timer odpowiadający za wywoływanie strzałów co określony czas. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_weapon_a1e650e3cd02f2b6114df0ac4b5116d85}\label{class_weapon_a1e650e3cd02f2b6114df0ac4b5116d85} 
+virtual string {\bfseries Weapon\+Name}\hspace{0.3cm}{\ttfamily  \+[get]\+}
+\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}

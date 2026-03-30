@@ -1,0 +1,63 @@
+\doxysection{Magic\+Missile Class Reference}
+\hypertarget{class_magic_missile}{}\label{class_magic_missile}\index{MagicMissile@{MagicMissile}}
+
+
+Broń Magic Missile. Wystrzeliwuje pociski, które automatycznie naprowadzają się na najbliższego przeciwnika. Skaluje się z globalnymi statystykami gracza (np. Damage\+Multiplier, Cooldown\+Multiplier).  
+
+
+Inheritance diagram for Magic\+Missile:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_magic_missile}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_magic_missile_a05bcba4995a5bbc1a3b755812bec5e00}\label{class_magic_missile_a05bcba4995a5bbc1a3b755812bec5e00} 
+override void {\bfseries Fire} ()
+\begin{DoxyCompactList}\small\item\em Metoda wywoływana przy strzale. Tworzy określoną liczbę pocisków i przypisuje im cel. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \doxymbox{\hyperlink{class_weapon}{Weapon}}}
+\begin{DoxyCompactItemize}
+\item 
+int {\bfseries Get\+Damage} ()
+\begin{DoxyCompactList}\small\item\em Oblicza aktualne obrażenia z uwzględnieniem mnożnika gracza. \end{DoxyCompactList}\item 
+float {\bfseries Get\+Range} ()
+\begin{DoxyCompactList}\small\item\em Oblicza aktualny zasięg z uwzględnieniem mnożnika obszaru gracza. \end{DoxyCompactList}\item 
+float {\bfseries Get\+Speed} ()
+\begin{DoxyCompactList}\small\item\em Oblicza aktualną prędkość pocisków z uwzględnieniem mnożnika. \end{DoxyCompactList}\item 
+void {\bfseries Fire} ()
+\begin{DoxyCompactList}\small\item\em Metoda abstrakcyjna wywoływana przy każdym strzale. Każda broń powinna nadpisać tę metodę, implementując własną logikę strzału. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{class_weapon}{Weapon}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \doxymbox{\hyperlink{class_weapon_a33d626e47c4808639ffd14de099228ed}{Init}} (\doxymbox{\hyperlink{class_player}{Player}} player)
+\begin{DoxyCompactList}\small\item\em Inicjalizuje broń dla danego gracza. Ustawia timer na podstawie czasu odnowienia i mnożnika gracza. \end{DoxyCompactList}\item 
+virtual void {\bfseries Refresh\+Stats} ()
+\begin{DoxyCompactList}\small\item\em Odświeża statystyki broni, aktualizując czas odnowienia w timerze. Powinno być wywoływane po zmianie Stats.\+Cooldown lub \doxylink{class_player_a4ecfa1544f4778a8269e388e48e791ae}{Player.\+Cooldown\+Multiplier}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \doxymbox{\hyperlink{class_weapon}{Weapon}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_weapon_stats}{Weapon\+Stats}} {\bfseries Stats}
+\begin{DoxyCompactList}\small\item\em Statystyki broni (obrażenia, zasięg, liczba pocisków, czas odnowienia itd.). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \doxymbox{\hyperlink{class_weapon}{Weapon}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_player}{Player}} {\bfseries Player}
+\begin{DoxyCompactList}\small\item\em Odniesienie do gracza, który używa broni. \end{DoxyCompactList}\item 
+Timer {\bfseries timer}
+\begin{DoxyCompactList}\small\item\em Timer odpowiadający za wywoływanie strzałów co określony czas. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Properties inherited from \doxymbox{\hyperlink{class_weapon}{Weapon}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual string {\bfseries Weapon\+Name}\hspace{0.3cm}{\ttfamily  \+[get]\+}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Broń Magic Missile. Wystrzeliwuje pociski, które automatycznie naprowadzają się na najbliższego przeciwnika. Skaluje się z globalnymi statystykami gracza (np. Damage\+Multiplier, Cooldown\+Multiplier). 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+Scripts/\+\+Player\+Weapons/\+Magic\+Missile.\+cs\end{DoxyCompactItemize}

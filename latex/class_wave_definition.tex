@@ -1,0 +1,39 @@
+\doxysection{Wave\+Definition Class Reference}
+\hypertarget{class_wave_definition}{}\label{class_wave_definition}\index{WaveDefinition@{WaveDefinition}}
+
+
+Definicja pojedynczej fali przeciwników w grze. Dziedziczy po Resource, dzięki czemu można tworzyć instancje w edytorze Godot (.tres/\+.res).  
+
+
+Inheritance diagram for Wave\+Definition:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_wave_definition}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_wave_definition_a9b2d53da68065624bcacdb97f15697cd}\label{class_wave_definition_a9b2d53da68065624bcacdb97f15697cd} 
+float {\bfseries Start\+Minute} = 0f
+\begin{DoxyCompactList}\small\item\em Minuta gry, od której ta fala zaczyna się pojawiać. \end{DoxyCompactList}\item 
+\Hypertarget{class_wave_definition_a3ff4095806b9f23aa77c7ad61349f4c6}\label{class_wave_definition_a3ff4095806b9f23aa77c7ad61349f4c6} 
+float {\bfseries End\+Minute} = 0f
+\begin{DoxyCompactList}\small\item\em Minuta gry, po której ta fala przestaje się pojawiać (0 = nigdy nie kończy). \end{DoxyCompactList}\item 
+\Hypertarget{class_wave_definition_ae6074141fdb537e58990db8f162d34a4}\label{class_wave_definition_ae6074141fdb537e58990db8f162d34a4} 
+\doxymbox{\hyperlink{class_enemy_stats}{Enemy\+Stats}} {\bfseries Enemy\+Type}
+\begin{DoxyCompactList}\small\item\em Typ przeciwnika przypisany do tej fali (odwołanie do \doxylink{class_enemy_stats}{Enemy\+Stats}). \end{DoxyCompactList}\item 
+\Hypertarget{class_wave_definition_a11743b07224af16b11b2f567db4fbbb7}\label{class_wave_definition_a11743b07224af16b11b2f567db4fbbb7} 
+float {\bfseries Base\+Interval} = 2.\+0f
+\begin{DoxyCompactList}\small\item\em Bazowy interwał spawnu w sekundach między kolejnymi batchami przeciwników tej fali. \end{DoxyCompactList}\item 
+\Hypertarget{class_wave_definition_a488afd9df8375bcdc75bd231f3460294}\label{class_wave_definition_a488afd9df8375bcdc75bd231f3460294} 
+int {\bfseries Batch\+Size} = 1
+\begin{DoxyCompactList}\small\item\em Liczba przeciwników spawnujących się naraz w jednym batchu. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Definicja pojedynczej fali przeciwników w grze. Dziedziczy po Resource, dzięki czemu można tworzyć instancje w edytorze Godot (.tres/\+.res). 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+Scripts/\+\+Enemies/\+Wave\+Definition.\+cs\end{DoxyCompactItemize}

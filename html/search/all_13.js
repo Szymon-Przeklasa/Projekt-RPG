@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['value_0',['Value',['../class_xp_orb.html#af35b071c04fd2bc02fbc6e06fc9cfe3c',1,'XpOrb']]]
+  ['upgradedata_0',['UpgradeData',['../class_upgrade_data.html',1,'UpgradeData'],['../class_upgrade_data.html#ab09eafbff0dcad671060be4c1caeb7a2',1,'UpgradeData.UpgradeData()']]]
 ];

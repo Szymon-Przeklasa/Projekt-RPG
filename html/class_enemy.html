@@ -92,7 +92,7 @@ $(function(){initNavTree('class_enemy.html','','class_enemy-members'); });
 </div><!--header-->
 <div class="contents">
 
-<p>Klasa reprezentuj¹ca przeciwnika w grze. Obs³uguje ruch w kierunku gracza, otrzymywanie obra¿eñ, œmieræ i drop doœwiadczenia.  
+<p>Klasa reprezentujÄ…ca przeciwnika (<a class="el" href="class_enemy.html" title="Klasa reprezentujÄ…ca przeciwnika (Enemy) w grze. ObsÅ‚uguje ruch w kierunku gracza,...">Enemy</a>) w grze. ObsÅ‚uguje ruch w kierunku gracza, otrzymywanie obraÅ¼eÅ„, Å›mierÄ‡ i drop doÅ›wiadczenia. Dziedziczy po CharacterBody2D.  
  <a href="#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for Enemy:</div>
@@ -105,63 +105,42 @@ Inheritance diagram for Enemy:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a637bd267c02af30ad5af52c55dbf1439" id="r_a637bd267c02af30ad5af52c55dbf1439"><td class="memItemLeft"><a id="a637bd267c02af30ad5af52c55dbf1439" name="a637bd267c02af30ad5af52c55dbf1439"></a>
 override void&#160;</td><td class="memItemRight"><b>_Ready</b> ()</td></tr>
-<tr class="memdesc:a637bd267c02af30ad5af52c55dbf1439"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metoda wywo³ywana po dodaniu wêz³a do drzewa sceny. Inicjalizuje punkty ¿ycia przeciwnika. <br /></td></tr>
-<tr class="memitem:aa69fb925511bafa9b08d9d07664de5d1" id="r_aa69fb925511bafa9b08d9d07664de5d1"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#aa69fb925511bafa9b08d9d07664de5d1">TakeDamage</a> (int damage, Vector2 knockback)</td></tr>
-<tr class="memdesc:aa69fb925511bafa9b08d9d07664de5d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zadaje obra¿enia przeciwnikowi i aplikuje knockback. Tworzy efekt cz¹steczkowy przy trafieniu i obs³uguje œmieræ przeciwnika.  <br /></td></tr>
-<tr class="memitem:aa1df6763ae3a612f36447340577dcb8e" id="r_aa1df6763ae3a612f36447340577dcb8e"><td class="memItemLeft">override void&#160;</td><td class="memItemRight"><a class="el" href="#aa1df6763ae3a612f36447340577dcb8e">_PhysicsProcess</a> (double delta)</td></tr>
-<tr class="memdesc:aa1df6763ae3a612f36447340577dcb8e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metoda fizyczna wywo³ywana co klatkê. Obs³uguje ruch przeciwnika w kierunku gracza oraz spowalnianie Velocity.  <br /></td></tr>
+<tr class="memdesc:a637bd267c02af30ad5af52c55dbf1439"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metoda wywoÅ‚ywana po dodaniu wroga do sceny. Inicjalizuje statystyki, zdrowie i skalÄ™ wroga. <br /></td></tr>
+<tr class="memitem:ad2dc81da9768c7b919c9ed2a588e2031" id="r_ad2dc81da9768c7b919c9ed2a588e2031"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ad2dc81da9768c7b919c9ed2a588e2031">TakeDamage</a> (int damage, Vector2 knockback, string weaponName=&quot;unknown&quot;)</td></tr>
+<tr class="memdesc:ad2dc81da9768c7b919c9ed2a588e2031"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zadaje obraÅ¼enia wrogowi. Tworzy efekt trafienia i wyÅ›wietla etykietÄ™ obraÅ¼eÅ„.  <br /></td></tr>
+<tr class="memitem:aa1df6763ae3a612f36447340577dcb8e" id="r_aa1df6763ae3a612f36447340577dcb8e"><td class="memItemLeft"><a id="aa1df6763ae3a612f36447340577dcb8e" name="aa1df6763ae3a612f36447340577dcb8e"></a>
+override void&#160;</td><td class="memItemRight"><b>_PhysicsProcess</b> (double delta)</td></tr>
+<tr class="memdesc:aa1df6763ae3a612f36447340577dcb8e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metoda fizyczna wywoÅ‚ywana co klatkÄ™. ObsÅ‚uguje ruch w kierunku gracza i zadawanie obraÅ¼eÅ„ kontaktowych. <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:afd0a97a8f0772bd9f598c8e273bdad47" id="r_afd0a97a8f0772bd9f598c8e273bdad47"><td class="memItemLeft"><a id="afd0a97a8f0772bd9f598c8e273bdad47" name="afd0a97a8f0772bd9f598c8e273bdad47"></a>
-float&#160;</td><td class="memItemRight"><b>Speed</b> = 140f</td></tr>
-<tr class="memdesc:afd0a97a8f0772bd9f598c8e273bdad47"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prêdkoœæ poruszania siê przeciwnika. <br /></td></tr>
-<tr class="memitem:a20628488c5d12840d152e484b16682c9" id="r_a20628488c5d12840d152e484b16682c9"><td class="memItemLeft"><a id="a20628488c5d12840d152e484b16682c9" name="a20628488c5d12840d152e484b16682c9"></a>
-int&#160;</td><td class="memItemRight"><b>MaxHealth</b> = 100</td></tr>
-<tr class="memdesc:a20628488c5d12840d152e484b16682c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maksymalna iloœæ punktów ¿ycia przeciwnika. <br /></td></tr>
+<tr class="memitem:ae0eff91f1a58c639486eec142f2a45e0" id="r_ae0eff91f1a58c639486eec142f2a45e0"><td class="memItemLeft"><a id="ae0eff91f1a58c639486eec142f2a45e0" name="ae0eff91f1a58c639486eec142f2a45e0"></a>
+<a class="el" href="class_enemy_stats.html">EnemyStats</a>&#160;</td><td class="memItemRight"><b>Stats</b></td></tr>
+<tr class="memdesc:ae0eff91f1a58c639486eec142f2a45e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Statystyki wroga przechowywane w <a class="el" href="class_enemy_stats.html" title="Klasa reprezentujÄ…ca dane konfiguracyjne przeciwnika. Dziedziczy po Resource, dziÄ™ki czemu moÅ¼na twor...">EnemyStats</a>. <br /></td></tr>
 <tr class="memitem:aee332cdb5ee5923ac80e56ac28d5229e" id="r_aee332cdb5ee5923ac80e56ac28d5229e"><td class="memItemLeft"><a id="aee332cdb5ee5923ac80e56ac28d5229e" name="aee332cdb5ee5923ac80e56ac28d5229e"></a>
 PackedScene&#160;</td><td class="memItemRight"><b>XpOrbScene</b></td></tr>
-<tr class="memdesc:aee332cdb5ee5923ac80e56ac28d5229e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scena pocisku doœwiadczenia (XP), któr¹ przeciwnik zrzuca po œmierci. <br /></td></tr>
-<tr class="memitem:ac3a29dd57db6581f594c85257e1cbd25" id="r_ac3a29dd57db6581f594c85257e1cbd25"><td class="memItemLeft"><a id="ac3a29dd57db6581f594c85257e1cbd25" name="ac3a29dd57db6581f594c85257e1cbd25"></a>
-int&#160;</td><td class="memItemRight"><b>XpDrop</b> = 1</td></tr>
-<tr class="memdesc:ac3a29dd57db6581f594c85257e1cbd25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Iloœæ doœwiadczenia, które przeciwnik zostawia po œmierci. <br /></td></tr>
+<tr class="memdesc:aee332cdb5ee5923ac80e56ac28d5229e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scena orb-u XP, ktÃ³ry zostaje upuszczony po Å›mierci wroga. <br /></td></tr>
 <tr class="memitem:a1bd5557ad866dea773b349fb66178260" id="r_a1bd5557ad866dea773b349fb66178260"><td class="memItemLeft"><a id="a1bd5557ad866dea773b349fb66178260" name="a1bd5557ad866dea773b349fb66178260"></a>
 PackedScene&#160;</td><td class="memItemRight"><b>HitParticle</b></td></tr>
-<tr class="memdesc:a1bd5557ad866dea773b349fb66178260"><td class="mdescLeft">&#160;</td><td class="mdescRight">Efekt cz¹steczkowy wywo³ywany przy otrzymaniu obra¿eñ. <br /></td></tr>
+<tr class="memdesc:a1bd5557ad866dea773b349fb66178260"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scena czÄ…steczek przy trafieniu wroga. <br /></td></tr>
+<tr class="memitem:afd0a97a8f0772bd9f598c8e273bdad47" id="r_afd0a97a8f0772bd9f598c8e273bdad47"><td class="memItemLeft"><a id="afd0a97a8f0772bd9f598c8e273bdad47" name="afd0a97a8f0772bd9f598c8e273bdad47"></a>
+float&#160;</td><td class="memItemRight"><b>Speed</b> = 140f</td></tr>
+<tr class="memdesc:afd0a97a8f0772bd9f598c8e273bdad47"><td class="mdescLeft">&#160;</td><td class="mdescRight">PrÄ™dkoÅ›Ä‡ wroga, moÅ¼e byÄ‡ nadpisana przez Stats. <br /></td></tr>
+<tr class="memitem:a20628488c5d12840d152e484b16682c9" id="r_a20628488c5d12840d152e484b16682c9"><td class="memItemLeft"><a id="a20628488c5d12840d152e484b16682c9" name="a20628488c5d12840d152e484b16682c9"></a>
+int&#160;</td><td class="memItemRight"><b>MaxHealth</b> = 100</td></tr>
+<tr class="memdesc:a20628488c5d12840d152e484b16682c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maksymalne zdrowie wroga, nadpisywane przez Stats. <br /></td></tr>
+<tr class="memitem:ac3a29dd57db6581f594c85257e1cbd25" id="r_ac3a29dd57db6581f594c85257e1cbd25"><td class="memItemLeft"><a id="ac3a29dd57db6581f594c85257e1cbd25" name="ac3a29dd57db6581f594c85257e1cbd25"></a>
+int&#160;</td><td class="memItemRight"><b>XpDrop</b> = 1</td></tr>
+<tr class="memdesc:ac3a29dd57db6581f594c85257e1cbd25"><td class="mdescLeft">&#160;</td><td class="mdescRight">IloÅ›Ä‡ doÅ›wiadczenia przyznawana po zabiciu wroga. <br /></td></tr>
 <tr class="memitem:a8f6bd48a3cd79c56bf7b8a2a72eb4723" id="r_a8f6bd48a3cd79c56bf7b8a2a72eb4723"><td class="memItemLeft"><a id="a8f6bd48a3cd79c56bf7b8a2a72eb4723" name="a8f6bd48a3cd79c56bf7b8a2a72eb4723"></a>
-string&#160;</td><td class="memItemRight"><b>MobID</b> = &quot;Red slime&quot;</td></tr>
-<tr class="memdesc:a8f6bd48a3cd79c56bf7b8a2a72eb4723"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unikalny identyfikator przeciwnika (np. nazwa w <a class="el" href="class_kill_manager.html" title="MenedÅ¼er odpowiedzialny za zliczanie zabÃ³jstw przeciwnikÃ³w. Implementuje wzorzec singleton i zapisuje...">KillManager</a>). <br /></td></tr>
+string&#160;</td><td class="memItemRight"><b>MobID</b> = &quot;enemy&quot;</td></tr>
+<tr class="memdesc:a8f6bd48a3cd79c56bf7b8a2a72eb4723"><td class="mdescLeft">&#160;</td><td class="mdescRight">ID wroga, np. "goblin", "skeleton". <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Klasa reprezentuj¹ca przeciwnika w grze. Obs³uguje ruch w kierunku gracza, otrzymywanie obra¿eñ, œmieræ i drop doœwiadczenia. </p>
+<div class="textblock"><p>Klasa reprezentujÄ…ca przeciwnika (<a class="el" href="class_enemy.html" title="Klasa reprezentujÄ…ca przeciwnika (Enemy) w grze. ObsÅ‚uguje ruch w kierunku gracza,...">Enemy</a>) w grze. ObsÅ‚uguje ruch w kierunku gracza, otrzymywanie obraÅ¼eÅ„, Å›mierÄ‡ i drop doÅ›wiadczenia. Dziedziczy po CharacterBody2D. </p>
 </div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
-<a id="aa1df6763ae3a612f36447340577dcb8e" name="aa1df6763ae3a612f36447340577dcb8e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa1df6763ae3a612f36447340577dcb8e">&#9670;&#160;</a></span>_PhysicsProcess()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">override void Enemy._PhysicsProcess </td>
-          <td>(</td>
-          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>delta</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Metoda fizyczna wywo³ywana co klatkê. Obs³uguje ruch przeciwnika w kierunku gracza oraz spowalnianie Velocity. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">delta</td><td>Czas od ostatniej klatki.</td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="aa69fb925511bafa9b08d9d07664de5d1" name="aa69fb925511bafa9b08d9d07664de5d1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa69fb925511bafa9b08d9d07664de5d1">&#9670;&#160;</a></span>TakeDamage()</h2>
+<a id="ad2dc81da9768c7b919c9ed2a588e2031" name="ad2dc81da9768c7b919c9ed2a588e2031"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad2dc81da9768c7b919c9ed2a588e2031">&#9670;&#160;</a></span>TakeDamage()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -174,16 +153,22 @@ string&#160;</td><td class="memItemRight"><b>MobID</b> = &quot;Red slime&quot;</
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">Vector2</td>          <td class="paramname"><span class="paramname"><em>knockback</em></span>&#160;)</td>
+          <td class="paramtype">Vector2</td>          <td class="paramname"><span class="paramname"><em>knockback</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string</td>          <td class="paramname"><span class="paramname"><em>weaponName</em></span><span class="paramdefsep"> = </span><span class="paramdefval">&quot;unknown&quot;</span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Zadaje obra¿enia przeciwnikowi i aplikuje knockback. Tworzy efekt cz¹steczkowy przy trafieniu i obs³uguje œmieræ przeciwnika. </p>
+<p>Zadaje obraÅ¼enia wrogowi. Tworzy efekt trafienia i wyÅ›wietla etykietÄ™ obraÅ¼eÅ„. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">damage</td><td>Iloœæ zadanych obra¿eñ.</td></tr>
-    <tr><td class="paramname">knockback</td><td>Wektor knockbacku, który zostanie dodany do Velocity.</td></tr>
+    <tr><td class="paramname">damage</td><td>IloÅ›Ä‡ obraÅ¼eÅ„.</td></tr>
+    <tr><td class="paramname">knockback</td><td>Wektor odrzutu.</td></tr>
+    <tr><td class="paramname">weaponName</td><td>Nazwa ÅºrÃ³dÅ‚a obraÅ¼eÅ„.</td></tr>
   </table>
   </dd>
 </dl>

@@ -92,7 +92,7 @@ $(function(){initNavTree('class_lightning_chain.html','','class_lightning_chain-
 </div><!--header-->
 <div class="contents">
 
-<p>Klasa reprezentuj¹ca pojedynczy segment ³añcucha pioruna dla broni <a class="el" href="class_lightning.html" title="Klasa reprezentujÄ…ca broÅ„ typu Lightning. Strzela piorunem, ktÃ³ry przeskakuje miÄ™dzy najbliÅ¼szymi wro...">Lightning</a>. Dziedziczy po GpuParticles2D i odpowiada za wizualizacjê miêdzy dwoma punktami.  
+<p>Klasa reprezentujÄ…ca pojedynczy segment wizualny Å‚aÅ„cucha pioruna. Odpowiada za efekt graficzny miÄ™dzy dwoma punktami (np. miÄ™dzy wrogami). Dziedziczy po GpuParticles2D.  
  <a href="#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for LightningChain:</div>
@@ -104,13 +104,13 @@ Inheritance diagram for LightningChain:</div>
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a6dc3d69175a59364aad6a2a06fd43fcb" id="r_a6dc3d69175a59364aad6a2a06fd43fcb"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a6dc3d69175a59364aad6a2a06fd43fcb">Setup</a> (Vector2 from, Vector2 to)</td></tr>
-<tr class="memdesc:a6dc3d69175a59364aad6a2a06fd43fcb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Konfiguruje segment ³añcucha miêdzy dwoma punktami. Ustawia pozycjê, obrót, skalê i uruchamia emisjê cz¹steczek.  <br /></td></tr>
+<tr class="memdesc:a6dc3d69175a59364aad6a2a06fd43fcb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Konfiguruje segment pioruna miÄ™dzy dwoma punktami w Å›wiecie gry. Ustawia pozycjÄ™, rotacjÄ™ oraz skalÄ™ efektu czÄ…steczkowego.  <br /></td></tr>
 <tr class="memitem:abdbe944f4a5d971c3a0439d2ff31243d" id="r_abdbe944f4a5d971c3a0439d2ff31243d"><td class="memItemLeft"><a id="abdbe944f4a5d971c3a0439d2ff31243d" name="abdbe944f4a5d971c3a0439d2ff31243d"></a>
 override async void&#160;</td><td class="memItemRight"><b>_Ready</b> ()</td></tr>
-<tr class="memdesc:abdbe944f4a5d971c3a0439d2ff31243d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metoda wywo³ywana po dodaniu wêz³a do drzewa sceny. W³¹cza emisjê cz¹steczek i po okreœlonym czasie usuwa segment z gry. <br /></td></tr>
+<tr class="memdesc:abdbe944f4a5d971c3a0439d2ff31243d"><td class="mdescLeft">&#160;</td><td class="mdescRight">WywoÅ‚ywana po dodaniu wÄ™zÅ‚a do sceny. Automatycznie uruchamia emisjÄ™ i usuwa efekt po czasie Å¼ycia (Lifetime). <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Klasa reprezentuj¹ca pojedynczy segment ³añcucha pioruna dla broni <a class="el" href="class_lightning.html" title="Klasa reprezentujÄ…ca broÅ„ typu Lightning. Strzela piorunem, ktÃ³ry przeskakuje miÄ™dzy najbliÅ¼szymi wro...">Lightning</a>. Dziedziczy po GpuParticles2D i odpowiada za wizualizacjê miêdzy dwoma punktami. </p>
+<div class="textblock"><p>Klasa reprezentujÄ…ca pojedynczy segment wizualny Å‚aÅ„cucha pioruna. Odpowiada za efekt graficzny miÄ™dzy dwoma punktami (np. miÄ™dzy wrogami). Dziedziczy po GpuParticles2D. </p>
 </div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
 <a id="a6dc3d69175a59364aad6a2a06fd43fcb" name="a6dc3d69175a59364aad6a2a06fd43fcb"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6dc3d69175a59364aad6a2a06fd43fcb">&#9670;&#160;</a></span>Setup()</h2>
@@ -131,11 +131,11 @@ override async void&#160;</td><td class="memItemRight"><b>_Ready</b> ()</td></tr
       </table>
 </div><div class="memdoc">
 
-<p>Konfiguruje segment ³añcucha miêdzy dwoma punktami. Ustawia pozycjê, obrót, skalê i uruchamia emisjê cz¹steczek. </p>
+<p>Konfiguruje segment pioruna miÄ™dzy dwoma punktami w Å›wiecie gry. Ustawia pozycjÄ™, rotacjÄ™ oraz skalÄ™ efektu czÄ…steczkowego. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">from</td><td>Pozycja startowa segmentu.</td></tr>
-    <tr><td class="paramname">to</td><td>Pozycja koñcowa segmentu.</td></tr>
+    <tr><td class="paramname">from</td><td>Punkt poczÄ…tkowy (np. ÅºrÃ³dÅ‚o ataku).</td></tr>
+    <tr><td class="paramname">to</td><td>Punkt koÅ„cowy (np. trafiony przeciwnik).</td></tr>
   </table>
   </dd>
 </dl>

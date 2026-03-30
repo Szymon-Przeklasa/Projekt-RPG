@@ -2,7 +2,8 @@ var hierarchy =
 [
     [ "Area2D", null, [
       [ "Projectile", "class_projectile.html", [
-        [ "AxeProjectile", "class_axe_projectile.html", null ]
+        [ "AxeProjectile", "class_axe_projectile.html", null ],
+        [ "MagicMissileProjectile", "class_magic_missile_projectile.html", null ]
       ] ],
       [ "XpOrb", "class_xp_orb.html", null ]
     ] ],
@@ -30,15 +31,20 @@ var hierarchy =
         [ "FireWand", "class_fire_wand.html", null ],
         [ "Garlic", "class_garlic.html", null ],
         [ "Lightning", "class_lightning.html", null ],
+        [ "MagicMissile", "class_magic_missile.html", null ],
         [ "Magnet", "class_magnet.html", null ]
       ] ]
     ] ],
     [ "Node2D", null, [
       [ "EnemySpawner", "class_enemy_spawner.html", null ],
       [ "Game", "class_game.html", null ],
+      [ "GarlicAura", "class_garlic_aura.html", null ],
       [ "LightningBeam", "class_lightning_beam.html", null ]
     ] ],
     [ "Resource", null, [
+      [ "EnemyStats", "class_enemy_stats.html", null ],
+      [ "PassiveData", "class_passive_data.html", null ],
+      [ "WaveDefinition", "class_wave_definition.html", null ],
       [ "WeaponStats", "class_weapon_stats.html", null ]
     ] ],
     [ "TextureButton", null, [

@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['refreshstats_0',['RefreshStats',['../class_weapon.html#a2a24dba6dbe19674a0ab7d9ab0b20d98',1,'Weapon']]],
-  ['registerkill_1',['RegisterKill',['../class_kill_manager.html#a72e2ecaa626b1cc025df558fac7c4230',1,'KillManager']]]
+  ['refreshallweapons_0',['RefreshAllWeapons',['../class_player.html#a20f43367b0a9f31797f95469f83645c2',1,'Player']]],
+  ['refreshstats_1',['RefreshStats',['../class_weapon.html#a3f5299789e8faaaceeafd7dc58283292',1,'Weapon']]],
+  ['registerkill_2',['RegisterKill',['../class_kill_manager.html#a72e2ecaa626b1cc025df558fac7c4230',1,'KillManager']]]
 ];

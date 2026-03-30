@@ -92,39 +92,39 @@ $(function(){initNavTree('class_upgrade_data.html','','class_upgrade_data-member
 </div><!--header-->
 <div class="contents">
 
-<p>Klasa reprezentująca pojedyncze ulepszenie dla gracza. Zawiera nazwę, typ, poziom, maksymalny poziom oraz efekt do zastosowania.  
+<p>Klasa reprezentująca pojedyncze ulepszenie dostępne dla gracza. Przechowuje dane o nazwie, typie, poziomie oraz logikę aplikowania efektu.  
  <a href="#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ab09eafbff0dcad671060be4c1caeb7a2" id="r_ab09eafbff0dcad671060be4c1caeb7a2"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#ab09eafbff0dcad671060be4c1caeb7a2">UpgradeData</a> (string name, UpgradeType type, Action&lt; <a class="el" href="class_player.html">Player</a> &gt; applyEffect, int maxLevel=5)</td></tr>
-<tr class="memdesc:ab09eafbff0dcad671060be4c1caeb7a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Konstruktor klasy <a class="el" href="class_upgrade_data.html" title="Klasa reprezentująca pojedyncze ulepszenie dla gracza. Zawiera nazwę, typ, poziom,...">UpgradeData</a>.  <br /></td></tr>
+<tr class="memdesc:ab09eafbff0dcad671060be4c1caeb7a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tworzy nowe ulepszenie.  <br /></td></tr>
 <tr class="memitem:abfa2f0160b03db1f201a6b53acc58915" id="r_abfa2f0160b03db1f201a6b53acc58915"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#abfa2f0160b03db1f201a6b53acc58915">Apply</a> (<a class="el" href="class_player.html">Player</a> player)</td></tr>
-<tr class="memdesc:abfa2f0160b03db1f201a6b53acc58915"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zastosowuje ulepszenie na gracza. Zwiększa poziom i wywołuje przypisaną funkcję ApplyEffect, jeśli ulepszenie może być podniesione.  <br /></td></tr>
+<tr class="memdesc:abfa2f0160b03db1f201a6b53acc58915"><td class="mdescLeft">&#160;</td><td class="mdescRight">Aplikuje ulepszenie na podanego gracza. Jeśli ulepszenie nie osiągnęło maksymalnego poziomu, zwiększa jego poziom i wywołuje przypisany efekt.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a25a0abd3e1d618f4659eb19f01529778" id="r_a25a0abd3e1d618f4659eb19f01529778"><td class="memItemLeft"><a id="a25a0abd3e1d618f4659eb19f01529778" name="a25a0abd3e1d618f4659eb19f01529778"></a>
 string&#160;</td><td class="memItemRight"><b>Name</b></td></tr>
-<tr class="memdesc:a25a0abd3e1d618f4659eb19f01529778"><td class="mdescLeft">&#160;</td><td class="mdescRight">Nazwa ulepszenia. <br /></td></tr>
+<tr class="memdesc:a25a0abd3e1d618f4659eb19f01529778"><td class="mdescLeft">&#160;</td><td class="mdescRight">Nazwa ulepszenia wyświetlana w grze. <br /></td></tr>
 <tr class="memitem:afc19abbce2c20b4e78d4998811e871d7" id="r_afc19abbce2c20b4e78d4998811e871d7"><td class="memItemLeft"><a id="afc19abbce2c20b4e78d4998811e871d7" name="afc19abbce2c20b4e78d4998811e871d7"></a>
 UpgradeType&#160;</td><td class="memItemRight"><b>Type</b></td></tr>
-<tr class="memdesc:afc19abbce2c20b4e78d4998811e871d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Typ ulepszenia. <br /></td></tr>
+<tr class="memdesc:afc19abbce2c20b4e78d4998811e871d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Typ ulepszenia określający jego kategorię. <br /></td></tr>
 <tr class="memitem:afbed250af121eb15ea309b61b7f01ff7" id="r_afbed250af121eb15ea309b61b7f01ff7"><td class="memItemLeft"><a id="afbed250af121eb15ea309b61b7f01ff7" name="afbed250af121eb15ea309b61b7f01ff7"></a>
 int&#160;</td><td class="memItemRight"><b>Level</b> = 0</td></tr>
 <tr class="memdesc:afbed250af121eb15ea309b61b7f01ff7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Aktualny poziom ulepszenia. <br /></td></tr>
 <tr class="memitem:abb384bfb2ee3d951cb89a6c09dbe776d" id="r_abb384bfb2ee3d951cb89a6c09dbe776d"><td class="memItemLeft"><a id="abb384bfb2ee3d951cb89a6c09dbe776d" name="abb384bfb2ee3d951cb89a6c09dbe776d"></a>
 int&#160;</td><td class="memItemRight"><b>MaxLevel</b> = 5</td></tr>
-<tr class="memdesc:abb384bfb2ee3d951cb89a6c09dbe776d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maksymalny poziom ulepszenia. <br /></td></tr>
+<tr class="memdesc:abb384bfb2ee3d951cb89a6c09dbe776d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maksymalny możliwy poziom ulepszenia. <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-properties" class="groupheader"><a id="properties" name="properties"></a>
 Properties</h2></td></tr>
 <tr class="memitem:a36647ed59d50c73689570e01e88b9eb7" id="r_a36647ed59d50c73689570e01e88b9eb7"><td class="memItemLeft"><a id="a36647ed59d50c73689570e01e88b9eb7" name="a36647ed59d50c73689570e01e88b9eb7"></a>
 bool&#160;</td><td class="memItemRight"><b>CanUpgrade</b><code> [get]</code></td></tr>
-<tr class="memdesc:a36647ed59d50c73689570e01e88b9eb7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zwraca true, jeśli ulepszenie może być jeszcze podniesione (Level &lt; MaxLevel). <br /></td></tr>
+<tr class="memdesc:a36647ed59d50c73689570e01e88b9eb7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Określa, czy ulepszenie może zostać jeszcze rozwinięte. <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Klasa reprezentująca pojedyncze ulepszenie dla gracza. Zawiera nazwę, typ, poziom, maksymalny poziom oraz efekt do zastosowania. </p>
+<div class="textblock"><p>Klasa reprezentująca pojedyncze ulepszenie dostępne dla gracza. Przechowuje dane o nazwie, typie, poziomie oraz logikę aplikowania efektu. </p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ab09eafbff0dcad671060be4c1caeb7a2" name="ab09eafbff0dcad671060be4c1caeb7a2"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab09eafbff0dcad671060be4c1caeb7a2">&#9670;&#160;</a></span>UpgradeData()</h2>
@@ -155,12 +155,12 @@ bool&#160;</td><td class="memItemRight"><b>CanUpgrade</b><code> [get]</code></td
       </table>
 </div><div class="memdoc">
 
-<p>Konstruktor klasy <a class="el" href="class_upgrade_data.html" title="Klasa reprezentująca pojedyncze ulepszenie dla gracza. Zawiera nazwę, typ, poziom,...">UpgradeData</a>. </p>
+<p>Tworzy nowe ulepszenie. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">name</td><td>Nazwa ulepszenia.</td></tr>
     <tr><td class="paramname">type</td><td>Typ ulepszenia.</td></tr>
-    <tr><td class="paramname">applyEffect</td><td>Funkcja wywoływana przy zastosowaniu ulepszenia na gracza.</td></tr>
+    <tr><td class="paramname">applyEffect</td><td>Funkcja definiująca efekt ulepszenia (np. modyfikacja statystyk gracza). </td></tr>
     <tr><td class="paramname">maxLevel</td><td>Maksymalny poziom ulepszenia (domyślnie 5).</td></tr>
   </table>
   </dd>
@@ -184,10 +184,10 @@ bool&#160;</td><td class="memItemRight"><b>CanUpgrade</b><code> [get]</code></td
       </table>
 </div><div class="memdoc">
 
-<p>Zastosowuje ulepszenie na gracza. Zwiększa poziom i wywołuje przypisaną funkcję ApplyEffect, jeśli ulepszenie może być podniesione. </p>
+<p>Aplikuje ulepszenie na podanego gracza. Jeśli ulepszenie nie osiągnęło maksymalnego poziomu, zwiększa jego poziom i wywołuje przypisany efekt. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">player</td><td>Gracz, na którym zostanie zastosowane ulepszenie.</td></tr>
+    <tr><td class="paramname">player</td><td>Obiekt gracza, na którym zostanie zastosowane ulepszenie.</td></tr>
   </table>
   </dd>
 </dl>

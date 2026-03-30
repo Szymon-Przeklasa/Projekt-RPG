@@ -1,0 +1,73 @@
+\doxysection{Passive\+Data Class Reference}
+\hypertarget{class_passive_data}{}\label{class_passive_data}\index{PassiveData@{PassiveData}}
+
+
+Klasa reprezentująca dane pasywnego ulepszenia. Dziedziczy po Resource, dzięki czemu może być łatwo edytowana w edytorze Godot. Zawiera informacje o nazwie, opisie, typie oraz skalowaniu efektu.  
+
+
+Inheritance diagram for Passive\+Data:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_passive_data}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_passive_data_a2cd221364514ea4ce925bcac449e0378}{Apply}} (\doxymbox{\hyperlink{class_player}{Player}} player)
+\begin{DoxyCompactList}\small\item\em Aplikuje efekt pasywny na gracza oraz zwiększa poziom pasywki. Modyfikuje odpowiednie mnożniki statystyk w zależności od typu pasywki, a następnie odświeża wszystkie bronie gracza. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_passive_data_ac2f6bd9c11a9655b90ed5c37aaf9d064}\label{class_passive_data_ac2f6bd9c11a9655b90ed5c37aaf9d064} 
+string {\bfseries Name} = "{}"{}
+\begin{DoxyCompactList}\small\item\em Nazwa pasywki wyświetlana w grze. \end{DoxyCompactList}\item 
+\Hypertarget{class_passive_data_a94859c824a045da7b9005c648c6840af}\label{class_passive_data_a94859c824a045da7b9005c648c6840af} 
+string {\bfseries Description} = "{}"{}
+\begin{DoxyCompactList}\small\item\em Opis działania pasywki (np. w UI lub tooltipie). \end{DoxyCompactList}\item 
+\Hypertarget{class_passive_data_a126797db727eab65f2634247a3e63b84}\label{class_passive_data_a126797db727eab65f2634247a3e63b84} 
+Passive\+Type {\bfseries Type}
+\begin{DoxyCompactList}\small\item\em Typ pasywki określający, jaką statystykę modyfikuje. \end{DoxyCompactList}\item 
+\Hypertarget{class_passive_data_aa6543dfa0e2111f6c65ccd9fb23945fb}\label{class_passive_data_aa6543dfa0e2111f6c65ccd9fb23945fb} 
+int {\bfseries Max\+Level} = 5
+\begin{DoxyCompactList}\small\item\em Maksymalny poziom ulepszenia pasywki. \end{DoxyCompactList}\item 
+\Hypertarget{class_passive_data_aae5f7f9b935434aff95c4979a3296085}\label{class_passive_data_aae5f7f9b935434aff95c4979a3296085} 
+float {\bfseries Bonus\+Per\+Level} = 0.\+1f
+\begin{DoxyCompactList}\small\item\em Wartość bonusu dodawanego na każdy poziom (np. 0.\+1 = +10\%). \end{DoxyCompactList}\item 
+\Hypertarget{class_passive_data_ae613301f8a45fd2ccfe2a131f12c84f8}\label{class_passive_data_ae613301f8a45fd2ccfe2a131f12c84f8} 
+int {\bfseries Current\+Level} = 0
+\begin{DoxyCompactList}\small\item\em Aktualny poziom pasywki. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_passive_data_ae6a1ce0eeb3b68a3bef4ad72aec2e799}\label{class_passive_data_ae6a1ce0eeb3b68a3bef4ad72aec2e799} 
+bool {\bfseries Can\+Upgrade}\hspace{0.3cm}{\ttfamily  \+[get]\+}
+\begin{DoxyCompactList}\small\item\em Określa, czy pasywka może zostać jeszcze ulepszona. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Klasa reprezentująca dane pasywnego ulepszenia. Dziedziczy po Resource, dzięki czemu może być łatwo edytowana w edytorze Godot. Zawiera informacje o nazwie, opisie, typie oraz skalowaniu efektu. 
+
+\label{doc-func-members}
+\Hypertarget{class_passive_data_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_passive_data_a2cd221364514ea4ce925bcac449e0378}\index{PassiveData@{PassiveData}!Apply@{Apply}}
+\index{Apply@{Apply}!PassiveData@{PassiveData}}
+\doxysubsubsection{\texorpdfstring{Apply()}{Apply()}}
+{\footnotesize\ttfamily \label{class_passive_data_a2cd221364514ea4ce925bcac449e0378} 
+void Passive\+Data.\+Apply (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_player}{Player}}}]{player}{}\end{DoxyParamCaption})}
+
+
+
+Aplikuje efekt pasywny na gracza oraz zwiększa poziom pasywki. Modyfikuje odpowiednie mnożniki statystyk w zależności od typu pasywki, a następnie odświeża wszystkie bronie gracza. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & Obiekt gracza, na którym zostanie zastosowany efekt.\\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+Weapons/\+Passive\+Data.\+cs\end{DoxyCompactItemize}

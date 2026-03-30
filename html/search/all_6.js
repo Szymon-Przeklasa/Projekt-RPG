@@ -1,11 +1,5 @@
 var searchData=
 [
-  ['gainxp_0',['GainXp',['../class_player.html#af88c73f8d02da8953738ff84d1547cbd',1,'Player']]],
-  ['game_1',['Game',['../class_game.html',1,'']]],
-  ['garlic_2',['Garlic',['../class_garlic.html',1,'']]],
-  ['getallkills_3',['GetAllKills',['../class_kill_manager.html#afe50e12f01d171f98f2624966a5dfda2',1,'KillManager']]],
-  ['getclosestenemy_4',['GetClosestEnemy',['../class_player.html#af4a774413c768fe7d78ac549a8d408e0',1,'Player']]],
-  ['getinput_5',['GetInput',['../class_player.html#aaa08a71c33eb3d12ec47507697ae8bff',1,'Player']]],
-  ['getkills_6',['GetKills',['../class_kill_manager.html#abbbb8879e05292d8c8bedbc37c16c03f',1,'KillManager']]],
-  ['getupgradechoices_7',['GetUpgradeChoices',['../class_player.html#a4e10eded91132b45c0ea0164c671bf7d',1,'Player']]]
+  ['fire_0',['Fire',['../class_weapon.html#a4d7034c6c517d5f3a505f648e450e62d',1,'Weapon.Fire()'],['../class_fire_wand.html#a55a301dff7525b614a96b1340be9c3b9',1,'FireWand.Fire()'],['../class_garlic.html#a8f91175cdc32db34a33c6bddbf9c9ec8',1,'Garlic.Fire()'],['../class_lightning.html#a5b838c8830a3a14bc5a05783de9dcf75',1,'Lightning.Fire()'],['../class_magic_missile.html#a05bcba4995a5bbc1a3b755812bec5e00',1,'MagicMissile.Fire()'],['../class_magnet.html#aaa77d47afe2b59f278ee89a557596b98',1,'Magnet.Fire()']]],
+  ['firewand_1',['FireWand',['../class_fire_wand.html',1,'']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['knockback_0',['Knockback',['../class_weapon_stats.html#a1e68670f351638c1e19b3390ea5cd761',1,'WeaponStats']]]
+  ['instance_0',['Instance',['../class_kill_manager.html#a09d25178c95d313dffb90d62a4bdf597',1,'KillManager']]]
 ];

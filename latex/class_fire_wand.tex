@@ -2,7 +2,7 @@
 \hypertarget{class_fire_wand}{}\label{class_fire_wand}\index{FireWand@{FireWand}}
 
 
-Klasa reprezentuj�ca bro� typu \doxylink{class_fire_wand}{Fire\+Wand}. Wystrzeliwuje pociski w kierunku najbli�szego przeciwnika z okre�lonym rozrzutem i ilo�ci� projekt�w. Dziedziczy po klasie \doxylink{class_weapon}{Weapon}.  
+Klasa reprezentująca broń \doxylink{class_fire_wand}{Fire\+Wand}. Wystrzeliwuje pociski w kierunku najbliższego wroga z możliwością rozproszenia (spread). Dziedziczy po klasie \doxylink{class_weapon}{Weapon}.  
 
 
 Inheritance diagram for Fire\+Wand:\+\begin{figure}[H]
@@ -16,10 +16,16 @@ Inheritance diagram for Fire\+Wand:\+\begin{figure}[H]
 \item 
 \Hypertarget{class_fire_wand_a55a301dff7525b614a96b1340be9c3b9}\label{class_fire_wand_a55a301dff7525b614a96b1340be9c3b9} 
 override void {\bfseries Fire} ()
-\begin{DoxyCompactList}\small\item\em Metoda wywo�ywana przy strzale. Tworzy pociski w kierunku najbli�szego przeciwnika z uwzgl�dnieniem rozrzutu i liczby pocisk�w. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Metoda wywoływana przy strzale. Wystrzeliwuje określoną liczbę pocisków (Stats.\+Projectile\+Count) w kierunku najbliższego wroga. Każdy pocisk może mieć losowe rozproszenie w zakresie określonym przez Stats.\+Spread\+Angle. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Protected Member Functions inherited from \doxymbox{\hyperlink{class_weapon}{Weapon}}}
 \begin{DoxyCompactItemize}
 \item 
+int {\bfseries Get\+Damage} ()
+\begin{DoxyCompactList}\small\item\em Oblicza aktualne obrażenia z uwzględnieniem mnożnika gracza. \end{DoxyCompactList}\item 
+float {\bfseries Get\+Range} ()
+\begin{DoxyCompactList}\small\item\em Oblicza aktualny zasięg z uwzględnieniem mnożnika obszaru gracza. \end{DoxyCompactList}\item 
+float {\bfseries Get\+Speed} ()
+\begin{DoxyCompactList}\small\item\em Oblicza aktualną prędkość pocisków z uwzględnieniem mnożnika. \end{DoxyCompactList}\item 
 void {\bfseries Fire} ()
 \begin{DoxyCompactList}\small\item\em Metoda abstrakcyjna wywoływana przy każdym strzale. Każda broń powinna nadpisać tę metodę, implementując własną logikę strzału. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Additional Inherited Members}
@@ -28,7 +34,7 @@ void {\bfseries Fire} ()
 \item 
 virtual void \doxymbox{\hyperlink{class_weapon_a33d626e47c4808639ffd14de099228ed}{Init}} (\doxymbox{\hyperlink{class_player}{Player}} player)
 \begin{DoxyCompactList}\small\item\em Inicjalizuje broń dla danego gracza. Ustawia timer na podstawie czasu odnowienia i mnożnika gracza. \end{DoxyCompactList}\item 
-void {\bfseries Refresh\+Stats} ()
+virtual void {\bfseries Refresh\+Stats} ()
 \begin{DoxyCompactList}\small\item\em Odświeża statystyki broni, aktualizując czas odnowienia w timerze. Powinno być wywoływane po zmianie Stats.\+Cooldown lub \doxylink{class_player_a4ecfa1544f4778a8269e388e48e791ae}{Player.\+Cooldown\+Multiplier}. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Public Attributes inherited from \doxymbox{\hyperlink{class_weapon}{Weapon}}}
 \begin{DoxyCompactItemize}
@@ -42,10 +48,15 @@ void {\bfseries Refresh\+Stats} ()
 \begin{DoxyCompactList}\small\item\em Odniesienie do gracza, który używa broni. \end{DoxyCompactList}\item 
 Timer {\bfseries timer}
 \begin{DoxyCompactList}\small\item\em Timer odpowiadający za wywoływanie strzałów co określony czas. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Properties inherited from \doxymbox{\hyperlink{class_weapon}{Weapon}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual string {\bfseries Weapon\+Name}\hspace{0.3cm}{\ttfamily  \+[get]\+}
+\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-Klasa reprezentuj�ca bro� typu \doxylink{class_fire_wand}{Fire\+Wand}. Wystrzeliwuje pociski w kierunku najbli�szego przeciwnika z okre�lonym rozrzutem i ilo�ci� projekt�w. Dziedziczy po klasie \doxylink{class_weapon}{Weapon}. 
+Klasa reprezentująca broń \doxylink{class_fire_wand}{Fire\+Wand}. Wystrzeliwuje pociski w kierunku najbliższego wroga z możliwością rozproszenia (spread). Dziedziczy po klasie \doxylink{class_weapon}{Weapon}. 
 
 The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
 \item 

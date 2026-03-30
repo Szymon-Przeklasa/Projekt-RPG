@@ -2,7 +2,7 @@
 \hypertarget{class_garlic}{}\label{class_garlic}\index{Garlic@{Garlic}}
 
 
-Klasa reprezentująca broń typu \doxylink{class_garlic}{Garlic}. Tworzy aurę wokół gracza i zadaje obrażenia wszystkim wrogom znajdującym się w zasięgu. Dziedziczy po klasie \doxylink{class_weapon}{Weapon}.  
+Klasa reprezentująca broń typu \doxylink{class_garlic}{Garlic}. Tworzy aurę wokół gracza, która zadaje obrażenia wszystkim wrogom w zasięgu. Dziedziczy po klasie \doxylink{class_weapon}{Weapon}.  
 
 
 Inheritance diagram for Garlic:\+\begin{figure}[H]
@@ -16,10 +16,16 @@ Inheritance diagram for Garlic:\+\begin{figure}[H]
 \item 
 \Hypertarget{class_garlic_a8f91175cdc32db34a33c6bddbf9c9ec8}\label{class_garlic_a8f91175cdc32db34a33c6bddbf9c9ec8} 
 override void {\bfseries Fire} ()
-\begin{DoxyCompactList}\small\item\em Metoda wywoływana przy strzale. Tworzy aurę wokół gracza, jeśli jeszcze nie istnieje, i zadaje obrażenia wszystkim wrogom znajdującym się w połowie zasięgu statystyki broni. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Metoda wywoływana przy strzale. Tworzy aurę, ustawia jej promień i zadaje obrażenia wszystkim wrogom w zasięgu. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Protected Member Functions inherited from \doxymbox{\hyperlink{class_weapon}{Weapon}}}
 \begin{DoxyCompactItemize}
 \item 
+int {\bfseries Get\+Damage} ()
+\begin{DoxyCompactList}\small\item\em Oblicza aktualne obrażenia z uwzględnieniem mnożnika gracza. \end{DoxyCompactList}\item 
+float {\bfseries Get\+Range} ()
+\begin{DoxyCompactList}\small\item\em Oblicza aktualny zasięg z uwzględnieniem mnożnika obszaru gracza. \end{DoxyCompactList}\item 
+float {\bfseries Get\+Speed} ()
+\begin{DoxyCompactList}\small\item\em Oblicza aktualną prędkość pocisków z uwzględnieniem mnożnika. \end{DoxyCompactList}\item 
 void {\bfseries Fire} ()
 \begin{DoxyCompactList}\small\item\em Metoda abstrakcyjna wywoływana przy każdym strzale. Każda broń powinna nadpisać tę metodę, implementując własną logikę strzału. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Additional Inherited Members}
@@ -28,7 +34,7 @@ void {\bfseries Fire} ()
 \item 
 virtual void \doxymbox{\hyperlink{class_weapon_a33d626e47c4808639ffd14de099228ed}{Init}} (\doxymbox{\hyperlink{class_player}{Player}} player)
 \begin{DoxyCompactList}\small\item\em Inicjalizuje broń dla danego gracza. Ustawia timer na podstawie czasu odnowienia i mnożnika gracza. \end{DoxyCompactList}\item 
-void {\bfseries Refresh\+Stats} ()
+virtual void {\bfseries Refresh\+Stats} ()
 \begin{DoxyCompactList}\small\item\em Odświeża statystyki broni, aktualizując czas odnowienia w timerze. Powinno być wywoływane po zmianie Stats.\+Cooldown lub \doxylink{class_player_a4ecfa1544f4778a8269e388e48e791ae}{Player.\+Cooldown\+Multiplier}. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Public Attributes inherited from \doxymbox{\hyperlink{class_weapon}{Weapon}}}
 \begin{DoxyCompactItemize}
@@ -42,10 +48,15 @@ void {\bfseries Refresh\+Stats} ()
 \begin{DoxyCompactList}\small\item\em Odniesienie do gracza, który używa broni. \end{DoxyCompactList}\item 
 Timer {\bfseries timer}
 \begin{DoxyCompactList}\small\item\em Timer odpowiadający za wywoływanie strzałów co określony czas. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Properties inherited from \doxymbox{\hyperlink{class_weapon}{Weapon}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual string {\bfseries Weapon\+Name}\hspace{0.3cm}{\ttfamily  \+[get]\+}
+\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-Klasa reprezentująca broń typu \doxylink{class_garlic}{Garlic}. Tworzy aurę wokół gracza i zadaje obrażenia wszystkim wrogom znajdującym się w zasięgu. Dziedziczy po klasie \doxylink{class_weapon}{Weapon}. 
+Klasa reprezentująca broń typu \doxylink{class_garlic}{Garlic}. Tworzy aurę wokół gracza, która zadaje obrażenia wszystkim wrogom w zasięgu. Dziedziczy po klasie \doxylink{class_weapon}{Weapon}. 
 
 The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
 \item 

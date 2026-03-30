@@ -92,7 +92,7 @@ $(function(){initNavTree('class_lightning_beam.html','','class_lightning_beam-me
 </div><!--header-->
 <div class="contents">
 
-<p>Klasa reprezentuj�ca wizualny efekt pioruna (Beam) dla broni <a class="el" href="class_lightning.html" title="Klasa reprezentująca broń typu Lightning. Strzela piorunem, który przeskakuje między najbliższymi wro...">Lightning</a>. Tworzy dynamiczn� lini� z lekkim rozga��zieniem i animacj� migotania.  
+<p>Klasa odpowiedzialna za wizualny efekt pioruna (beam). Tworzy dynamiczną, "poszarpaną" linię między dwoma punktami oraz krótką animację migotania.  
  <a href="#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for LightningBeam:</div>
@@ -105,12 +105,12 @@ Inheritance diagram for LightningBeam:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ad94d4295e4854081e0317f8f8db0e1a0" id="r_ad94d4295e4854081e0317f8f8db0e1a0"><td class="memItemLeft"><a id="ad94d4295e4854081e0317f8f8db0e1a0" name="ad94d4295e4854081e0317f8f8db0e1a0"></a>
 override void&#160;</td><td class="memItemRight"><b>_Ready</b> ()</td></tr>
-<tr class="memdesc:ad94d4295e4854081e0317f8f8db0e1a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metoda wywo�ywana po dodaniu w�z�a do drzewa sceny. Inicjalizuje referencj� do Line2D. <br /></td></tr>
+<tr class="memdesc:ad94d4295e4854081e0317f8f8db0e1a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inicjalizacja węzła po dodaniu do sceny. Pobiera referencję do Line2D. <br /></td></tr>
 <tr class="memitem:a949c4cbd382f419694fd0437866d81a7" id="r_a949c4cbd382f419694fd0437866d81a7"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a949c4cbd382f419694fd0437866d81a7">Setup</a> (Vector2 from, Vector2 to)</td></tr>
-<tr class="memdesc:a949c4cbd382f419694fd0437866d81a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Konfiguruje efekt pioruna mi�dzy dwoma punktami. Tworzy segmenty z lekkim rozrzutem dla efektu wizualnego.  <br /></td></tr>
+<tr class="memdesc:a949c4cbd382f419694fd0437866d81a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Konfiguruje efekt pioruna pomiędzy dwoma punktami. Generuje segmenty z losowym odchyleniem, aby uzyskać efekt elektrycznego łuku.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Klasa reprezentuj�ca wizualny efekt pioruna (Beam) dla broni <a class="el" href="class_lightning.html" title="Klasa reprezentująca broń typu Lightning. Strzela piorunem, który przeskakuje między najbliższymi wro...">Lightning</a>. Tworzy dynamiczn� lini� z lekkim rozga��zieniem i animacj� migotania. </p>
+<div class="textblock"><p>Klasa odpowiedzialna za wizualny efekt pioruna (beam). Tworzy dynamiczną, "poszarpaną" linię między dwoma punktami oraz krótką animację migotania. </p>
 </div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
 <a id="a949c4cbd382f419694fd0437866d81a7" name="a949c4cbd382f419694fd0437866d81a7"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a949c4cbd382f419694fd0437866d81a7">&#9670;&#160;</a></span>Setup()</h2>
@@ -131,11 +131,11 @@ override void&#160;</td><td class="memItemRight"><b>_Ready</b> ()</td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Konfiguruje efekt pioruna mi�dzy dwoma punktami. Tworzy segmenty z lekkim rozrzutem dla efektu wizualnego. </p>
+<p>Konfiguruje efekt pioruna pomiędzy dwoma punktami. Generuje segmenty z losowym odchyleniem, aby uzyskać efekt elektrycznego łuku. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">from</td><td>Pozycja startowa pioruna.</td></tr>
-    <tr><td class="paramname">to</td><td>Pozycja ko�cowa pioruna.</td></tr>
+    <tr><td class="paramname">from</td><td>Punkt początkowy (źródło pioruna).</td></tr>
+    <tr><td class="paramname">to</td><td>Punkt końcowy (cel pioruna).</td></tr>
   </table>
   </dd>
 </dl>

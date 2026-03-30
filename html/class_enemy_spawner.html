@@ -92,7 +92,7 @@ $(function(){initNavTree('class_enemy_spawner.html','','class_enemy_spawner-memb
 </div><!--header-->
 <div class="contents">
 
-<p>Klasa odpowiedzialna za generowanie przeciwników w grze. Tworzy nowych wrogów wokó³ gracza w okreœlonym promieniu i z czasem skraca odstêp miêdzy spawnami.  
+<p>ZarzÄ…dza pojawianiem siÄ™ przeciwnikÃ³w w grze na podstawie listy fal (<a class="el" href="class_wave_definition.html" title="Definicja pojedynczej fali przeciwnikÃ³w w grze. Dziedziczy po Resource, dziÄ™ki czemu moÅ¼na tworzyÄ‡ in...">WaveDefinition</a>). InterwaÅ‚ spawnÃ³w i liczba przeciwnikÃ³w w batchu roÅ›nie z czasem gry, co powoduje progresywnÄ… trudnoÅ›Ä‡.  
  <a href="#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for EnemySpawner:</div>
@@ -105,28 +105,26 @@ Inheritance diagram for EnemySpawner:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a208d31d0bf33a87befcc234bed3446eb" id="r_a208d31d0bf33a87befcc234bed3446eb"><td class="memItemLeft"><a id="a208d31d0bf33a87befcc234bed3446eb" name="a208d31d0bf33a87befcc234bed3446eb"></a>
 override void&#160;</td><td class="memItemRight"><b>_Ready</b> ()</td></tr>
-<tr class="memdesc:a208d31d0bf33a87befcc234bed3446eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metoda wywo³ywana po dodaniu wêz³a do drzewa sceny. Inicjalizuje gracza i timer. <br /></td></tr>
+<tr class="memitem:ae04a5bac81becbbe1617177159068c4e" id="r_ae04a5bac81becbbe1617177159068c4e"><td class="memItemLeft"><a id="ae04a5bac81becbbe1617177159068c4e" name="ae04a5bac81becbbe1617177159068c4e"></a>
+override void&#160;</td><td class="memItemRight"><b>_Process</b> (double delta)</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a4e1a25b6d95d680f39d05bf29b2d977a" id="r_a4e1a25b6d95d680f39d05bf29b2d977a"><td class="memItemLeft"><a id="a4e1a25b6d95d680f39d05bf29b2d977a" name="a4e1a25b6d95d680f39d05bf29b2d977a"></a>
-PackedScene&#160;</td><td class="memItemRight"><b>EnemyScene</b></td></tr>
-<tr class="memdesc:a4e1a25b6d95d680f39d05bf29b2d977a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scena przeciwnika do tworzenia instancji. <br /></td></tr>
+<tr class="memitem:ab3fa82e16b2d973a01c248b25f39bcaf" id="r_ab3fa82e16b2d973a01c248b25f39bcaf"><td class="memItemLeft"><a id="ab3fa82e16b2d973a01c248b25f39bcaf" name="ab3fa82e16b2d973a01c248b25f39bcaf"></a>
+TileMapLayer&#160;</td><td class="memItemRight"><b>SpawnMap</b></td></tr>
+<tr class="memdesc:ab3fa82e16b2d973a01c248b25f39bcaf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mapa TileMap wskazujÄ…ca moÅ¼liwe pozycje spawnu. <br /></td></tr>
 <tr class="memitem:adbddf6cf35dffd6514463eb0f386af3c" id="r_adbddf6cf35dffd6514463eb0f386af3c"><td class="memItemLeft"><a id="adbddf6cf35dffd6514463eb0f386af3c" name="adbddf6cf35dffd6514463eb0f386af3c"></a>
-float&#160;</td><td class="memItemRight"><b>SpawnRadius</b> = 100f</td></tr>
-<tr class="memdesc:adbddf6cf35dffd6514463eb0f386af3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Promieñ wokó³ gracza, w którym przeciwnicy mog¹ siê pojawiaæ. <br /></td></tr>
-<tr class="memitem:aa23d71245a0258dd25dd6551ca7b40ea" id="r_aa23d71245a0258dd25dd6551ca7b40ea"><td class="memItemLeft"><a id="aa23d71245a0258dd25dd6551ca7b40ea" name="aa23d71245a0258dd25dd6551ca7b40ea"></a>
-float&#160;</td><td class="memItemRight"><b>SpawnInterval</b> = 1.2f</td></tr>
-<tr class="memdesc:aa23d71245a0258dd25dd6551ca7b40ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pocz¹tkowy odstêp miêdzy spawnami przeciwników (w sekundach). <br /></td></tr>
-<tr class="memitem:af0a2f844216ed36420773c8c70bc49f2" id="r_af0a2f844216ed36420773c8c70bc49f2"><td class="memItemLeft"><a id="af0a2f844216ed36420773c8c70bc49f2" name="af0a2f844216ed36420773c8c70bc49f2"></a>
-float&#160;</td><td class="memItemRight"><b>MinSpawnInterval</b> = 0.05f</td></tr>
-<tr class="memdesc:af0a2f844216ed36420773c8c70bc49f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Minimalny mo¿liwy odstêp miêdzy spawnami. <br /></td></tr>
-<tr class="memitem:aa5821fec400655c34f1043ac5199d3c2" id="r_aa5821fec400655c34f1043ac5199d3c2"><td class="memItemLeft"><a id="aa5821fec400655c34f1043ac5199d3c2" name="aa5821fec400655c34f1043ac5199d3c2"></a>
-float&#160;</td><td class="memItemRight"><b>SpawnDecayFactor</b> = 0.95f</td></tr>
-<tr class="memdesc:aa5821fec400655c34f1043ac5199d3c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wspó³czynnik zmniejszaj¹cy odstêp miêdzy spawnami po ka¿dym wrogu. <br /></td></tr>
+float&#160;</td><td class="memItemRight"><b>SpawnRadius</b> = 1200f</td></tr>
+<tr class="memdesc:adbddf6cf35dffd6514463eb0f386af3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maksymalny promieÅ„ spawnu wokÃ³Å‚ gracza. <br /></td></tr>
+<tr class="memitem:a96f43fba2b8920e4cf23716696f38172" id="r_a96f43fba2b8920e4cf23716696f38172"><td class="memItemLeft"><a id="a96f43fba2b8920e4cf23716696f38172" name="a96f43fba2b8920e4cf23716696f38172"></a>
+float&#160;</td><td class="memItemRight"><b>MinPlayerDistance</b> = 400f</td></tr>
+<tr class="memdesc:a96f43fba2b8920e4cf23716696f38172"><td class="mdescLeft">&#160;</td><td class="mdescRight">Minimalna odlegÅ‚oÅ›Ä‡ od gracza, Å¼eby nie spawnowaÄ‡ wroga bezpoÅ›rednio na nim. <br /></td></tr>
+<tr class="memitem:a2ca514152b5179bb66e87784daa42c8f" id="r_a2ca514152b5179bb66e87784daa42c8f"><td class="memItemLeft"><a id="a2ca514152b5179bb66e87784daa42c8f" name="a2ca514152b5179bb66e87784daa42c8f"></a>
+Godot.Collections.Array&lt; <a class="el" href="class_wave_definition.html">WaveDefinition</a> &gt;&#160;</td><td class="memItemRight"><b>Waves</b> = new()</td></tr>
+<tr class="memdesc:a2ca514152b5179bb66e87784daa42c8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lista fal przypisana w Inspektorze (tablica <a class="el" href="class_wave_definition.html" title="Definicja pojedynczej fali przeciwnikÃ³w w grze. Dziedziczy po Resource, dziÄ™ki czemu moÅ¼na tworzyÄ‡ in...">WaveDefinition</a> .tres). <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Klasa odpowiedzialna za generowanie przeciwników w grze. Tworzy nowych wrogów wokó³ gracza w okreœlonym promieniu i z czasem skraca odstêp miêdzy spawnami. </p>
+<div class="textblock"><p>ZarzÄ…dza pojawianiem siÄ™ przeciwnikÃ³w w grze na podstawie listy fal (<a class="el" href="class_wave_definition.html" title="Definicja pojedynczej fali przeciwnikÃ³w w grze. Dziedziczy po Resource, dziÄ™ki czemu moÅ¼na tworzyÄ‡ in...">WaveDefinition</a>). InterwaÅ‚ spawnÃ³w i liczba przeciwnikÃ³w w batchu roÅ›nie z czasem gry, co powoduje progresywnÄ… trudnoÅ›Ä‡. </p>
 </div><hr/>The documentation for this class was generated from the following file:<ul>
 <li>Scripts/Environment/<b>EnemySpawner.cs</b></li>
 </ul>

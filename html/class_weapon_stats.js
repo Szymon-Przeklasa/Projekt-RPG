@@ -1,5 +1,6 @@
 var class_weapon_stats =
 [
+    [ "BaseDamage", "class_weapon_stats.html#a1337f7b758e734cd2bbdd34adfa75361", null ],
     [ "Cooldown", "class_weapon_stats.html#a17365bccc1b05e523dd95d97fe8dd1d4", null ],
     [ "Damage", "class_weapon_stats.html#aad765447589b2b9747837024817f4963", null ],
     [ "Knockback", "class_weapon_stats.html#a1e68670f351638c1e19b3390ea5cd761", null ],

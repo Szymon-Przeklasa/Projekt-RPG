@@ -2,7 +2,7 @@
 \hypertarget{class_lightning_chain}{}\label{class_lightning_chain}\index{LightningChain@{LightningChain}}
 
 
-Klasa reprezentuj¹ca pojedynczy segment ³añcucha pioruna dla broni \doxylink{class_lightning}{Lightning}. Dziedziczy po Gpu\+Particles2D i odpowiada za wizualizacjê miêdzy dwoma punktami.  
+Klasa reprezentujÄ…ca pojedynczy segment wizualny Å‚aÅ„cucha pioruna. Odpowiada za efekt graficzny miÄ™dzy dwoma punktami (np. miÄ™dzy wrogami). Dziedziczy po Gpu\+Particles2D.  
 
 
 Inheritance diagram for Lightning\+Chain:\+\begin{figure}[H]
@@ -15,14 +15,14 @@ Inheritance diagram for Lightning\+Chain:\+\begin{figure}[H]
 \begin{DoxyCompactItemize}
 \item 
 void \doxymbox{\hyperlink{class_lightning_chain_a6dc3d69175a59364aad6a2a06fd43fcb}{Setup}} (Vector2 from, Vector2 to)
-\begin{DoxyCompactList}\small\item\em Konfiguruje segment ³añcucha miêdzy dwoma punktami. Ustawia pozycjê, obrót, skalê i uruchamia emisjê cz¹steczek. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Konfiguruje segment pioruna miÄ™dzy dwoma punktami w Å›wiecie gry. Ustawia pozycjÄ™, rotacjÄ™ oraz skalÄ™ efektu czÄ…steczkowego. \end{DoxyCompactList}\item 
 \Hypertarget{class_lightning_chain_abdbe944f4a5d971c3a0439d2ff31243d}\label{class_lightning_chain_abdbe944f4a5d971c3a0439d2ff31243d} 
 override async void {\bfseries \+\_\+\+Ready} ()
-\begin{DoxyCompactList}\small\item\em Metoda wywo³ywana po dodaniu wêz³a do drzewa sceny. W³¹cza emisjê cz¹steczek i po okreœlonym czasie usuwa segment z gry. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em WywoÅ‚ywana po dodaniu wÄ™zÅ‚a do sceny. Automatycznie uruchamia emisjÄ™ i usuwa efekt po czasie Å¼ycia (Lifetime). \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-Klasa reprezentuj¹ca pojedynczy segment ³añcucha pioruna dla broni \doxylink{class_lightning}{Lightning}. Dziedziczy po Gpu\+Particles2D i odpowiada za wizualizacjê miêdzy dwoma punktami. 
+Klasa reprezentujÄ…ca pojedynczy segment wizualny Å‚aÅ„cucha pioruna. Odpowiada za efekt graficzny miÄ™dzy dwoma punktami (np. miÄ™dzy wrogami). Dziedziczy po Gpu\+Particles2D. 
 
 \label{doc-func-members}
 \Hypertarget{class_lightning_chain_doc-func-members}
@@ -35,13 +35,13 @@ void Lightning\+Chain.\+Setup (\begin{DoxyParamCaption}\item[{Vector2}]{from}{, 
 
 
 
-Konfiguruje segment ³añcucha miêdzy dwoma punktami. Ustawia pozycjê, obrót, skalê i uruchamia emisjê cz¹steczek. 
+Konfiguruje segment pioruna miÄ™dzy dwoma punktami w Å›wiecie gry. Ustawia pozycjÄ™, rotacjÄ™ oraz skalÄ™ efektu czÄ…steczkowego. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em from} & Pozycja startowa segmentu.\\
+{\em from} & Punkt poczÄ…tkowy (np. ÅºrÃ³dÅ‚o ataku).\\
 \hline
-{\em to} & Pozycja koñcowa segmentu.\\
+{\em to} & Punkt koÅ„cowy (np. trafiony przeciwnik).\\
 \hline
 \end{DoxyParams}
 

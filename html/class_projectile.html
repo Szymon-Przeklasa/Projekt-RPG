@@ -92,7 +92,7 @@ $(function(){initNavTree('class_projectile.html','','class_projectile-members');
 </div><!--header-->
 <div class="contents">
 
-<p>Klasa reprezentuj¹ca pocisk wystrzeliwany przez broñ. Obs³uguje ruch pocisku, kolizje z wrogami oraz iloœæ przebiæ (Pierce).  
+<p>Klasa bazowa pocisku w grze. Odpowiada za ruch, kolizjÄ™ oraz zadawanie obraÅ¼eÅ„ przeciwnikom.  
  <a href="#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for Projectile:</div>
@@ -100,65 +100,51 @@ Inheritance diagram for Projectile:</div>
  <div class="center">
   <img src="class_projectile.png" usemap="#Projectile_map" alt=""/>
   <map id="Projectile_map" name="Projectile_map">
-<area href="class_axe_projectile.html" title="Klasa reprezentuj¹ca pocisk topora. Dziedziczy po klasie Projectile i dodaje efekt opadaj¹cej trajekt..." alt="AxeProjectile" shape="rect" coords="0,112,87,136"/>
+<area href="class_axe_projectile.html" title="Klasa reprezentujÄ…ca pocisk topora (AxeProjectile). Dziedziczy po klasie Projectile i dodaje efekt op..." alt="AxeProjectile" shape="rect" coords="0,112,139,136"/>
+<area href="class_magic_missile_projectile.html" title="Specjalny typ pocisku Magic Missile. Pocisk automatycznie naprowadza siÄ™ na wyznaczony cel (Target) o..." alt="MagicMissileProjectile" shape="rect" coords="149,112,288,136"/>
   </map>
 </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a88a3aac9b716dc17d5bb3c774cafaf67" id="r_a88a3aac9b716dc17d5bb3c774cafaf67"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a88a3aac9b716dc17d5bb3c774cafaf67">Setup</a> (Vector2 dir, <a class="el" href="class_weapon_stats.html">WeaponStats</a> stats)</td></tr>
-<tr class="memdesc:a88a3aac9b716dc17d5bb3c774cafaf67"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inicjalizuje pocisk z kierunkiem, statystykami broni i ustawieniem iloœci przebiæ.  <br /></td></tr>
+<tr class="memitem:afe18a73081ae164186fd3bdfcbe62055" id="r_afe18a73081ae164186fd3bdfcbe62055"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#afe18a73081ae164186fd3bdfcbe62055">Setup</a> (Vector2 dir, <a class="el" href="class_weapon_stats.html">WeaponStats</a> stats, int damage=-1, float speed=-1, string weaponName=&quot;Projectile&quot;)</td></tr>
+<tr class="memdesc:afe18a73081ae164186fd3bdfcbe62055"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inicjalizuje pocisk. Pozwala nadpisaÄ‡ obraÅ¼enia i prÄ™dkoÅ›Ä‡ (np. po uwzglÄ™dnieniu mnoÅ¼nikÃ³w gracza).  <br /></td></tr>
 <tr class="memitem:aa76ea7837cff1014bad0d4cb94016f26" id="r_aa76ea7837cff1014bad0d4cb94016f26"><td class="memItemLeft"><a id="aa76ea7837cff1014bad0d4cb94016f26" name="aa76ea7837cff1014bad0d4cb94016f26"></a>
 override void&#160;</td><td class="memItemRight"><b>_Ready</b> ()</td></tr>
-<tr class="memdesc:aa76ea7837cff1014bad0d4cb94016f26"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metoda wywo³ywana po dodaniu wêz³a do drzewa sceny. Subskrybuje zdarzenie BodyEntered do obs³ugi kolizji z wrogami. <br /></td></tr>
-<tr class="memitem:a161180282124b67b393d1a3280988235" id="r_a161180282124b67b393d1a3280988235"><td class="memItemLeft">override void&#160;</td><td class="memItemRight"><a class="el" href="#a161180282124b67b393d1a3280988235">_PhysicsProcess</a> (double delta)</td></tr>
-<tr class="memdesc:a161180282124b67b393d1a3280988235"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metoda fizyczna wywo³ywana co klatkê. Przesuwa pocisk w kierunku Direction z uwzglêdnieniem prêdkoœci Stats.Speed.  <br /></td></tr>
+<tr class="memdesc:aa76ea7837cff1014bad0d4cb94016f26"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rejestruje zdarzenie kolizji po utworzeniu pocisku. <br /></td></tr>
+<tr class="memitem:a161180282124b67b393d1a3280988235" id="r_a161180282124b67b393d1a3280988235"><td class="memItemLeft"><a id="a161180282124b67b393d1a3280988235" name="a161180282124b67b393d1a3280988235"></a>
+override void&#160;</td><td class="memItemRight"><b>_PhysicsProcess</b> (double delta)</td></tr>
+<tr class="memdesc:a161180282124b67b393d1a3280988235"><td class="mdescLeft">&#160;</td><td class="mdescRight">Aktualizuje pozycjÄ™ pocisku w kaÅ¼dej klatce fizyki. <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pro-methods" class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
 <tr class="memitem:a855a6909fb83e7cc586c64d9ceb5c454" id="r_a855a6909fb83e7cc586c64d9ceb5c454"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#a855a6909fb83e7cc586c64d9ceb5c454">OnHit</a> (Node body)</td></tr>
-<tr class="memdesc:a855a6909fb83e7cc586c64d9ceb5c454"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wywo³ywana po trafieniu w inny wêze³. Je¿eli wêze³ jest przeciwnikiem, zadaje obra¿enia i zmniejsza liczbê przebiæ.  <br /></td></tr>
+<tr class="memdesc:a855a6909fb83e7cc586c64d9ceb5c454"><td class="mdescLeft">&#160;</td><td class="mdescRight">ObsÅ‚uguje trafienie w obiekt. JeÅ›li trafiony obiekt to przeciwnik:  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pro-attribs" class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr class="memitem:a117a5b2f9a9e05cd541a949d47f8d83c" id="r_a117a5b2f9a9e05cd541a949d47f8d83c"><td class="memItemLeft"><a id="a117a5b2f9a9e05cd541a949d47f8d83c" name="a117a5b2f9a9e05cd541a949d47f8d83c"></a>
 Vector2&#160;</td><td class="memItemRight"><b>Direction</b></td></tr>
-<tr class="memdesc:a117a5b2f9a9e05cd541a949d47f8d83c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kierunek poruszania siê pocisku. <br /></td></tr>
+<tr class="memdesc:a117a5b2f9a9e05cd541a949d47f8d83c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kierunek ruchu pocisku (znormalizowany wektor). <br /></td></tr>
 <tr class="memitem:a2791c8f20931d7bc909f3591d381f9b6" id="r_a2791c8f20931d7bc909f3591d381f9b6"><td class="memItemLeft"><a id="a2791c8f20931d7bc909f3591d381f9b6" name="a2791c8f20931d7bc909f3591d381f9b6"></a>
 <a class="el" href="class_weapon_stats.html">WeaponStats</a>&#160;</td><td class="memItemRight"><b>Stats</b></td></tr>
-<tr class="memdesc:a2791c8f20931d7bc909f3591d381f9b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Statystyki broni, z której pochodzi pocisk. <br /></td></tr>
+<tr class="memdesc:a2791c8f20931d7bc909f3591d381f9b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Referencja do statystyk broni, z ktÃ³rej pochodzi pocisk. <br /></td></tr>
 <tr class="memitem:af9e81cb0e0caf1dc4e948bbaf513169a" id="r_af9e81cb0e0caf1dc4e948bbaf513169a"><td class="memItemLeft"><a id="af9e81cb0e0caf1dc4e948bbaf513169a" name="af9e81cb0e0caf1dc4e948bbaf513169a"></a>
 int&#160;</td><td class="memItemRight"><b>PierceLeft</b></td></tr>
-<tr class="memdesc:af9e81cb0e0caf1dc4e948bbaf513169a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pozosta³a liczba przebiæ pocisku. <br /></td></tr>
+<tr class="memdesc:af9e81cb0e0caf1dc4e948bbaf513169a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Liczba przeciwnikÃ³w, przez ktÃ³rych pocisk moÅ¼e jeszcze przejÅ›Ä‡. <br /></td></tr>
+<tr class="memitem:a35ef499c35e995e5fcae33aeac9882de" id="r_a35ef499c35e995e5fcae33aeac9882de"><td class="memItemLeft"><a id="a35ef499c35e995e5fcae33aeac9882de" name="a35ef499c35e995e5fcae33aeac9882de"></a>
+int&#160;</td><td class="memItemRight"><b>RuntimeDamage</b></td></tr>
+<tr class="memdesc:a35ef499c35e995e5fcae33aeac9882de"><td class="mdescLeft">&#160;</td><td class="mdescRight">ObraÅ¼enia obliczone w momencie wystrzaÅ‚u (runtime). <br /></td></tr>
+<tr class="memitem:a751224ba507867b5593a35ea08efa250" id="r_a751224ba507867b5593a35ea08efa250"><td class="memItemLeft"><a id="a751224ba507867b5593a35ea08efa250" name="a751224ba507867b5593a35ea08efa250"></a>
+float&#160;</td><td class="memItemRight"><b>RuntimeSpeed</b></td></tr>
+<tr class="memdesc:a751224ba507867b5593a35ea08efa250"><td class="mdescLeft">&#160;</td><td class="mdescRight">PrÄ™dkoÅ›Ä‡ pocisku obliczona w momencie wystrzaÅ‚u (runtime). <br /></td></tr>
+<tr class="memitem:aa39a23a2201e9a06be9787bb2eb6b608" id="r_aa39a23a2201e9a06be9787bb2eb6b608"><td class="memItemLeft"><a id="aa39a23a2201e9a06be9787bb2eb6b608" name="aa39a23a2201e9a06be9787bb2eb6b608"></a>
+string&#160;</td><td class="memItemRight"><b>SourceWeapon</b> = &quot;Projectile&quot;</td></tr>
+<tr class="memdesc:aa39a23a2201e9a06be9787bb2eb6b608"><td class="mdescLeft">&#160;</td><td class="mdescRight">Nazwa broni, ktÃ³ra wystrzeliÅ‚a pocisk (do debugowania / logÃ³w). <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Klasa reprezentuj¹ca pocisk wystrzeliwany przez broñ. Obs³uguje ruch pocisku, kolizje z wrogami oraz iloœæ przebiæ (Pierce). </p>
+<div class="textblock"><p>Klasa bazowa pocisku w grze. Odpowiada za ruch, kolizjÄ™ oraz zadawanie obraÅ¼eÅ„ przeciwnikom. </p>
 </div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
-<a id="a161180282124b67b393d1a3280988235" name="a161180282124b67b393d1a3280988235"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a161180282124b67b393d1a3280988235">&#9670;&#160;</a></span>_PhysicsProcess()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">override void Projectile._PhysicsProcess </td>
-          <td>(</td>
-          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>delta</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Metoda fizyczna wywo³ywana co klatkê. Przesuwa pocisk w kierunku Direction z uwzglêdnieniem prêdkoœci Stats.Speed. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">delta</td><td>Czas od ostatniej klatki.</td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
 <a id="a855a6909fb83e7cc586c64d9ceb5c454" name="a855a6909fb83e7cc586c64d9ceb5c454"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a855a6909fb83e7cc586c64d9ceb5c454">&#9670;&#160;</a></span>OnHit()</h2>
 
@@ -182,18 +168,24 @@ int&#160;</td><td class="memItemRight"><b>PierceLeft</b></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Wywo³ywana po trafieniu w inny wêze³. Je¿eli wêze³ jest przeciwnikiem, zadaje obra¿enia i zmniejsza liczbê przebiæ. </p>
+<p>ObsÅ‚uguje trafienie w obiekt. JeÅ›li trafiony obiekt to przeciwnik: </p>
+<ul>
+<li>zadaje obraÅ¼enia,</li>
+<li>aplikuje knockback,</li>
+<li>zmniejsza liczbÄ™ przebiÄ‡ (pierce),</li>
+<li>usuwa pocisk, jeÅ›li nie ma juÅ¼ przebiÄ‡.</li>
+</ul>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">body</td><td>Wêze³, który wszed³ w kolizjê z pociskiem.</td></tr>
+    <tr><td class="paramname">body</td><td>Obiekt, z ktÃ³rym nastÄ…piÅ‚a kolizja.</td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a id="a88a3aac9b716dc17d5bb3c774cafaf67" name="a88a3aac9b716dc17d5bb3c774cafaf67"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a88a3aac9b716dc17d5bb3c774cafaf67">&#9670;&#160;</a></span>Setup()</h2>
+<a id="afe18a73081ae164186fd3bdfcbe62055" name="afe18a73081ae164186fd3bdfcbe62055"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afe18a73081ae164186fd3bdfcbe62055">&#9670;&#160;</a></span>Setup()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -206,16 +198,34 @@ int&#160;</td><td class="memItemRight"><b>PierceLeft</b></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="class_weapon_stats.html">WeaponStats</a></td>          <td class="paramname"><span class="paramname"><em>stats</em></span>&#160;)</td>
+          <td class="paramtype"><a class="el" href="class_weapon_stats.html">WeaponStats</a></td>          <td class="paramname"><span class="paramname"><em>stats</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>damage</em></span><span class="paramdefsep"> = </span><span class="paramdefval">-1</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>speed</em></span><span class="paramdefsep"> = </span><span class="paramdefval">-1</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string</td>          <td class="paramname"><span class="paramname"><em>weaponName</em></span><span class="paramdefsep"> = </span><span class="paramdefval">&quot;Projectile&quot;</span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Inicjalizuje pocisk z kierunkiem, statystykami broni i ustawieniem iloœci przebiæ. </p>
+<p>Inicjalizuje pocisk. Pozwala nadpisaÄ‡ obraÅ¼enia i prÄ™dkoÅ›Ä‡ (np. po uwzglÄ™dnieniu mnoÅ¼nikÃ³w gracza). </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">dir</td><td>Kierunek poruszania siê pocisku.</td></tr>
+    <tr><td class="paramname">dir</td><td>Kierunek ruchu pocisku.</td></tr>
     <tr><td class="paramname">stats</td><td>Statystyki broni.</td></tr>
+    <tr><td class="paramname">damage</td><td>Opcjonalne obraÅ¼enia (jeÅ›li -1 â†’ uÅ¼yj bazowych).</td></tr>
+    <tr><td class="paramname">speed</td><td>Opcjonalna prÄ™dkoÅ›Ä‡ (jeÅ›li -1 â†’ uÅ¼yj bazowej).</td></tr>
+    <tr><td class="paramname">weaponName</td><td>Nazwa ÅºrÃ³dÅ‚owej broni.</td></tr>
   </table>
   </dd>
 </dl>
