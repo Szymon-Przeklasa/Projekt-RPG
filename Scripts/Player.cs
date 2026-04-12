@@ -215,103 +215,103 @@ public partial class Player : CharacterBody2D
 	/// </summary>
 	private void SetupUpgrades()
 	{
-        // ── PASYWY ──────────────────────────────────────────────
-        var spinach = new PassiveData
-        {
-            Name = "Spinach",
-            Description = "+10% damage",
-            Type = PassiveType.Spinach,
-            MaxLevel = 5,
-            BonusPerLevel = 0.1f
-        };
-        var pummarola = new PassiveData
-        {
-            Name = "Pummarola",
-            Description = "-10% cooldown",
-            Type = PassiveType.Pummarola,
-            MaxLevel = 5,
-            BonusPerLevel = 0.1f
-        };
-        var hollowHeart = new PassiveData
-        {
-            Name = "Hollow Heart",
-            Description = "+10% area range",
-            Type = PassiveType.HollowHeart,
-            MaxLevel = 5,
-            BonusPerLevel = 0.1f
-        };
-        var bracer = new PassiveData
-        {
-            Name = "Bracer",
-            Description = "+10% projectile speed",
-            Type = PassiveType.Bracer,
-            MaxLevel = 5,
-            BonusPerLevel = 0.1f
-        };
-        var wings = new PassiveData
-        {
-            Name = "Wings",
-            Description = "+10% move speed",
-            Type = PassiveType.Wings,
-            MaxLevel = 5,
-            BonusPerLevel = 0.1f
-        };
+		// ── PASYWY ──────────────────────────────────────────────
+		var spinach = new PassiveData
+		{
+			Name = "Spinach",
+			Description = "+10% damage",
+			Type = PassiveType.Spinach,
+			MaxLevel = 5,
+			BonusPerLevel = 0.1f
+		};
+		var pummarola = new PassiveData
+		{
+			Name = "Pummarola",
+			Description = "-10% cooldown",
+			Type = PassiveType.Pummarola,
+			MaxLevel = 5,
+			BonusPerLevel = 0.1f
+		};
+		var hollowHeart = new PassiveData
+		{
+			Name = "Hollow Heart",
+			Description = "+10% area range",
+			Type = PassiveType.HollowHeart,
+			MaxLevel = 5,
+			BonusPerLevel = 0.1f
+		};
+		var bracer = new PassiveData
+		{
+			Name = "Bracer",
+			Description = "+10% projectile speed",
+			Type = PassiveType.Bracer,
+			MaxLevel = 5,
+			BonusPerLevel = 0.1f
+		};
+		var wings = new PassiveData
+		{
+			Name = "Wings",
+			Description = "+10% move speed",
+			Type = PassiveType.Wings,
+			MaxLevel = 5,
+			BonusPerLevel = 0.1f
+		};
 
-        // Pasywne jako ulepszenia
-        AvailableUpgrades.Add(new UpgradeData("Spinach", UpgradeType.Stat,
-            (p) => AddPassive(spinach), 5));
-        AvailableUpgrades.Add(new UpgradeData("Pummarola", UpgradeType.Stat,
-            (p) => AddPassive(pummarola), 5));
-        AvailableUpgrades.Add(new UpgradeData("Hollow Heart", UpgradeType.Stat,
-            (p) => AddPassive(hollowHeart), 5));
-        AvailableUpgrades.Add(new UpgradeData("Bracer", UpgradeType.Stat,
-            (p) => AddPassive(bracer), 5));
-        AvailableUpgrades.Add(new UpgradeData("Wings", UpgradeType.Stat,
-            (p) => AddPassive(wings), 5));
+		// Pasywne jako ulepszenia
+		AvailableUpgrades.Add(new UpgradeData("Spinach", UpgradeType.Stat,
+			(p) => AddPassive(spinach), 5));
+		AvailableUpgrades.Add(new UpgradeData("Pummarola", UpgradeType.Stat,
+			(p) => AddPassive(pummarola), 5));
+		AvailableUpgrades.Add(new UpgradeData("Hollow Heart", UpgradeType.Stat,
+			(p) => AddPassive(hollowHeart), 5));
+		AvailableUpgrades.Add(new UpgradeData("Bracer", UpgradeType.Stat,
+			(p) => AddPassive(bracer), 5));
+		AvailableUpgrades.Add(new UpgradeData("Wings", UpgradeType.Stat,
+			(p) => AddPassive(wings), 5));
 
-        // ── ULEPSZENIA BRONI ─────────────────────────────────────
-        var lightning = GetNodeOrNull<Lightning>("Weapons/Lightning");
-        if (lightning != null)
-        {
-            AvailableUpgrades.Add(new UpgradeData("Lightning: +5 DMG", UpgradeType.Weapon,
-                (p) => { lightning.Stats.Damage += 5; }, 8));
-            AvailableUpgrades.Add(new UpgradeData("Lightning: -0.2s cooldown", UpgradeType.Weapon,
-                (p) => { lightning.Stats.Cooldown = Mathf.Max(0.3f, lightning.Stats.Cooldown - 0.2f); lightning.RefreshStats(); }, 5));
-            AvailableUpgrades.Add(new UpgradeData("Lightning: +1 chains", UpgradeType.Weapon,
-                (p) => { lightning.Stats.ProjectileCount += 1; }, 4));
-            AvailableUpgrades.Add(new UpgradeData("Lightning: +150 range", UpgradeType.Weapon,
-                (p) => { lightning.Stats.Range += 150f; }, 4));
-        }
+		// ── ULEPSZENIA BRONI ─────────────────────────────────────
+		var lightning = GetNodeOrNull<Lightning>("Weapons/Lightning");
+		if (lightning != null)
+		{
+			AvailableUpgrades.Add(new UpgradeData("Lightning: +5 DMG", UpgradeType.Weapon,
+				(p) => { lightning.Stats.Damage += 5; }, 8));
+			AvailableUpgrades.Add(new UpgradeData("Lightning: -0.2s cooldown", UpgradeType.Weapon,
+				(p) => { lightning.Stats.Cooldown = Mathf.Max(0.3f, lightning.Stats.Cooldown - 0.2f); lightning.RefreshStats(); }, 5));
+			AvailableUpgrades.Add(new UpgradeData("Lightning: +1 chains", UpgradeType.Weapon,
+				(p) => { lightning.Stats.ProjectileCount += 1; }, 4));
+			AvailableUpgrades.Add(new UpgradeData("Lightning: +150 range", UpgradeType.Weapon,
+				(p) => { lightning.Stats.Range += 150f; }, 4));
+		}
 
-        var garlic = GetNodeOrNull<Garlic>("Weapons/Garlic");
-        if (garlic != null)
-        {
-            AvailableUpgrades.Add(new UpgradeData("Garlic: +3 DMG", UpgradeType.Weapon,
-                (p) => { garlic.Stats.Damage += 3; }, 8));
-            AvailableUpgrades.Add(new UpgradeData("Garlic: +100 range", UpgradeType.Weapon,
-                (p) => { garlic.Stats.Range += 100f; }, 5));
-            AvailableUpgrades.Add(new UpgradeData("Garlic: -0.2s cooldown", UpgradeType.Weapon,
-                (p) => { garlic.Stats.Cooldown = Mathf.Max(0.3f, garlic.Stats.Cooldown - 0.2f); garlic.RefreshStats(); }, 4));
-        }
+		var garlic = GetNodeOrNull<Garlic>("Weapons/Garlic");
+		if (garlic != null)
+		{
+			AvailableUpgrades.Add(new UpgradeData("Garlic: +3 DMG", UpgradeType.Weapon,
+				(p) => { garlic.Stats.Damage += 3; }, 8));
+			AvailableUpgrades.Add(new UpgradeData("Garlic: +100 range", UpgradeType.Weapon,
+				(p) => { garlic.Stats.Range += 100f; }, 5));
+			AvailableUpgrades.Add(new UpgradeData("Garlic: -0.2s cooldown", UpgradeType.Weapon,
+				(p) => { garlic.Stats.Cooldown = Mathf.Max(0.3f, garlic.Stats.Cooldown - 0.2f); garlic.RefreshStats(); }, 4));
+		}
 
-        var firewand = GetNodeOrNull<FireWand>("Weapons/FireWand");
-        if (firewand != null)
-        {
-            AvailableUpgrades.Add(new UpgradeData("Fire Wand: +4 DMG", UpgradeType.Weapon,
-                (p) => { firewand.Stats.Damage += 4; }, 8));
-            AvailableUpgrades.Add(new UpgradeData("Fire Wand: +1 projectile", UpgradeType.Weapon,
-                (p) => { firewand.Stats.ProjectileCount += 1; }, 4));
-            AvailableUpgrades.Add(new UpgradeData("Fire Wand: +1 pierce", UpgradeType.Weapon,
-                (p) => { firewand.Stats.Pierce += 1; }, 4));
-            AvailableUpgrades.Add(new UpgradeData("Fire Wand: -0.15s cooldown", UpgradeType.Weapon,
-                (p) => { firewand.Stats.Cooldown = Mathf.Max(0.1f, firewand.Stats.Cooldown - 0.15f); firewand.RefreshStats(); }, 5));
-        }
-    }
+		var firewand = GetNodeOrNull<FireWand>("Weapons/FireWand");
+		if (firewand != null)
+		{
+			AvailableUpgrades.Add(new UpgradeData("Fire Wand: +4 DMG", UpgradeType.Weapon,
+				(p) => { firewand.Stats.Damage += 4; }, 8));
+			AvailableUpgrades.Add(new UpgradeData("Fire Wand: +1 projectile", UpgradeType.Weapon,
+				(p) => { firewand.Stats.ProjectileCount += 1; }, 4));
+			AvailableUpgrades.Add(new UpgradeData("Fire Wand: +1 pierce", UpgradeType.Weapon,
+				(p) => { firewand.Stats.Pierce += 1; }, 4));
+			AvailableUpgrades.Add(new UpgradeData("Fire Wand: -0.15s cooldown", UpgradeType.Weapon,
+				(p) => { firewand.Stats.Cooldown = Mathf.Max(0.1f, firewand.Stats.Cooldown - 0.15f); firewand.RefreshStats(); }, 5));
+		}
+	}
 
-    /// <summary>
-    /// Zwraca najbliższego przeciwnika w danym zasięgu.
-    /// </summary>
-    public Node2D GetClosestEnemy(float range)
+	/// <summary>
+	/// Zwraca najbliższego przeciwnika w danym zasięgu.
+	/// </summary>
+	public Node2D GetClosestEnemy(float range)
 	{
 		Node2D closest = null;
 		float best = range;
