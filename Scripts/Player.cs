@@ -95,6 +95,9 @@ public partial class Player : CharacterBody2D
 
         Health -= damage;
         _invincibilityTimer = InvincibilityTime;
+
+        SoundManager.Instance?.PlayHurt();
+
         UpdateHpBar();
         FlashDamage();
 
@@ -108,6 +111,9 @@ public partial class Player : CharacterBody2D
     public void Heal(int amount)
     {
         Health = Mathf.Min(Health + amount, MaxHealth);
+
+        SoundManager.Instance?.PlayHeal();
+
         UpdateHpBar();
     }
 
@@ -216,42 +222,90 @@ public partial class Player : CharacterBody2D
 
     private void SetupUpgrades()
     {
-        var spinach = new PassiveData { Name = "Spinach", Type = PassiveType.Spinach, MaxLevel = 5, BonusPerLevel = 0.1f };
-        var pummarola = new PassiveData { Name = "Pummarola", Type = PassiveType.Pummarola, MaxLevel = 5, BonusPerLevel = 0.1f };
-        var hollowHeart = new PassiveData { Name = "Hollow Heart", Type = PassiveType.HollowHeart, MaxLevel = 5, BonusPerLevel = 0.1f };
-        var bracer = new PassiveData { Name = "Bracer", Type = PassiveType.Bracer, MaxLevel = 5, BonusPerLevel = 0.1f };
-        var wings = new PassiveData { Name = "Wings", Type = PassiveType.Wings, MaxLevel = 5, BonusPerLevel = 0.1f };
+        // ── Pasywki ──────────────────────────────────────────
 
-        AvailableUpgrades.Add(new UpgradeData("Spinach", UpgradeType.Stat, (p) => AddPassive(spinach), 5));
-        AvailableUpgrades.Add(new UpgradeData("Pummarola", UpgradeType.Stat, (p) => AddPassive(pummarola), 5));
-        AvailableUpgrades.Add(new UpgradeData("Hollow Heart", UpgradeType.Stat, (p) => AddPassive(hollowHeart), 5));
-        AvailableUpgrades.Add(new UpgradeData("Bracer", UpgradeType.Stat, (p) => AddPassive(bracer), 5));
-        AvailableUpgrades.Add(new UpgradeData("Wings", UpgradeType.Stat, (p) => AddPassive(wings), 5));
+        var spinach = new PassiveData { Name = "Spinach", Type = PassiveType.Spinach, MaxLevel = 5, BonusPerLevel = 0.1f };
+        AvailableUpgrades.Add(new UpgradeData("Spinach", UpgradeType.Passive)
+            .AddLevel("Damage +10%.",          p => AddPassive(spinach))
+            .AddLevel("Damage +10%.",          p => AddPassive(spinach))
+            .AddLevel("Damage +10%.",          p => AddPassive(spinach))
+            .AddLevel("Damage +10%.",          p => AddPassive(spinach))
+            .AddLevel("Damage +10%.",          p => AddPassive(spinach)));
+
+        var pummarola = new PassiveData { Name = "Pummarola", Type = PassiveType.Pummarola, MaxLevel = 5, BonusPerLevel = 0.1f };
+        AvailableUpgrades.Add(new UpgradeData("Pummarola", UpgradeType.Passive)
+            .AddLevel("Cooldown -10%.",        p => AddPassive(pummarola))
+            .AddLevel("Cooldown -10%.",        p => AddPassive(pummarola))
+            .AddLevel("Cooldown -10%.",        p => AddPassive(pummarola))
+            .AddLevel("Cooldown -10%.",        p => AddPassive(pummarola))
+            .AddLevel("Cooldown -10%.",        p => AddPassive(pummarola)));
+
+        var hollowHeart = new PassiveData { Name = "Hollow Heart", Type = PassiveType.HollowHeart, MaxLevel = 5, BonusPerLevel = 0.1f };
+        AvailableUpgrades.Add(new UpgradeData("Hollow Heart", UpgradeType.Passive)
+            .AddLevel("Area +10%.",            p => AddPassive(hollowHeart))
+            .AddLevel("Area +10%.",            p => AddPassive(hollowHeart))
+            .AddLevel("Area +10%.",            p => AddPassive(hollowHeart))
+            .AddLevel("Area +10%.",            p => AddPassive(hollowHeart))
+            .AddLevel("Area +10%.",            p => AddPassive(hollowHeart)));
+
+        var bracer = new PassiveData { Name = "Bracer", Type = PassiveType.Bracer, MaxLevel = 5, BonusPerLevel = 0.1f };
+        AvailableUpgrades.Add(new UpgradeData("Bracer", UpgradeType.Passive)
+            .AddLevel("Projectile Speed +10%.", p => AddPassive(bracer))
+            .AddLevel("Projectile Speed +10%.", p => AddPassive(bracer))
+            .AddLevel("Projectile Speed +10%.", p => AddPassive(bracer))
+            .AddLevel("Projectile Speed +10%.", p => AddPassive(bracer))
+            .AddLevel("Projectile Speed +10%.", p => AddPassive(bracer)));
+
+        var wings = new PassiveData { Name = "Wings", Type = PassiveType.Wings, MaxLevel = 5, BonusPerLevel = 0.1f };
+        AvailableUpgrades.Add(new UpgradeData("Wings", UpgradeType.Passive)
+            .AddLevel("Move Speed +10%.",      p => AddPassive(wings))
+            .AddLevel("Move Speed +10%.",      p => AddPassive(wings))
+            .AddLevel("Move Speed +10%.",      p => AddPassive(wings))
+            .AddLevel("Move Speed +10%.",      p => AddPassive(wings))
+            .AddLevel("Move Speed +10%.",      p => AddPassive(wings)));
+
+        // ── Bronie ───────────────────────────────────────────
 
         var lightning = GetNodeOrNull<Lightning>("Weapons/Lightning");
         if (lightning != null)
         {
-            AvailableUpgrades.Add(new UpgradeData("Lightning: +5 DMG", UpgradeType.Weapon, (p) => { lightning.Stats.Damage += 5; }, 8));
-            AvailableUpgrades.Add(new UpgradeData("Lightning: -0.1s cooldown", UpgradeType.Weapon, (p) => { lightning.Stats.Cooldown = Mathf.Max(0.3f, lightning.Stats.Cooldown - 0.1f); lightning.RefreshStats(); }, 5));
-            AvailableUpgrades.Add(new UpgradeData("Lightning: +1 chains", UpgradeType.Weapon, (p) => { lightning.Stats.ProjectileCount += 1; }, 4));
-            AvailableUpgrades.Add(new UpgradeData("Lightning: +40 range", UpgradeType.Weapon, (p) => { lightning.Stats.Range += 40f; }, 4));
+            AvailableUpgrades.Add(new UpgradeData("Lightning", UpgradeType.Weapon)
+                .AddLevel("Strikes the nearest enemy. Chains to others.", p => { /* Lv1 — bazowy unlock */ })
+                .AddLevel("Base Damage +5. +1 chain.",                    p => { lightning.Stats.Damage += 5; lightning.Stats.ProjectileCount += 1; })
+                .AddLevel("Cooldown -0.1s. Base Damage +5.",              p => { lightning.Stats.Damage += 5; lightning.Stats.Cooldown = Mathf.Max(0.3f, lightning.Stats.Cooldown - 0.1f); lightning.RefreshStats(); })
+                .AddLevel("Base Range +40. +1 chain.",                    p => { lightning.Stats.Range += 40f; lightning.Stats.ProjectileCount += 1; })
+                .AddLevel("Base Damage +5. Cooldown -0.1s.",              p => { lightning.Stats.Damage += 5; lightning.Stats.Cooldown = Mathf.Max(0.3f, lightning.Stats.Cooldown - 0.1f); lightning.RefreshStats(); })
+                .AddLevel("Base Range +40. +1 chain.",                    p => { lightning.Stats.Range += 40f; lightning.Stats.ProjectileCount += 1; })
+                .AddLevel("Base Damage +5. Cooldown -0.1s.",              p => { lightning.Stats.Damage += 5; lightning.Stats.Cooldown = Mathf.Max(0.3f, lightning.Stats.Cooldown - 0.1f); lightning.RefreshStats(); })
+                .AddLevel("Base Damage +10. Base Range +40.",             p => { lightning.Stats.Damage += 10; lightning.Stats.Range += 40f; }));
         }
 
         var garlic = GetNodeOrNull<Garlic>("Weapons/Garlic");
         if (garlic != null)
         {
-            AvailableUpgrades.Add(new UpgradeData("Garlic: +3 DMG", UpgradeType.Weapon, (p) => { garlic.Stats.Damage += 3; }, 8));
-            AvailableUpgrades.Add(new UpgradeData("Garlic: +20 range", UpgradeType.Weapon, (p) => { garlic.Stats.Range += 20f; }, 5));
-            AvailableUpgrades.Add(new UpgradeData("Garlic: -0.1s cooldown", UpgradeType.Weapon, (p) => { garlic.Stats.Cooldown = Mathf.Max(0.3f, garlic.Stats.Cooldown - 0.1f); garlic.RefreshStats(); }, 4));
+            AvailableUpgrades.Add(new UpgradeData("Garlic", UpgradeType.Weapon)
+                .AddLevel("Damages nearby enemies.",                      p => { /* Lv1 — bazowy unlock */ })
+                .AddLevel("Base Area +40%. Base Damage +2.",              p => { garlic.Stats.Range += garlic.Stats.Range * 0.4f; garlic.Stats.Damage += 2; })
+                .AddLevel("Cooldown -0.1s. Base Damage +1.",              p => { garlic.Stats.Damage += 1; garlic.Stats.Cooldown = Mathf.Max(0.3f, garlic.Stats.Cooldown - 0.1f); garlic.RefreshStats(); })
+                .AddLevel("Base Area +20%. Base Damage +1.",              p => { garlic.Stats.Range += garlic.Stats.Range * 0.2f; garlic.Stats.Damage += 1; })
+                .AddLevel("Cooldown -0.1s. Base Damage +2.",              p => { garlic.Stats.Damage += 2; garlic.Stats.Cooldown = Mathf.Max(0.3f, garlic.Stats.Cooldown - 0.1f); garlic.RefreshStats(); })
+                .AddLevel("Base Area +20%. Base Damage +1.",              p => { garlic.Stats.Range += garlic.Stats.Range * 0.2f; garlic.Stats.Damage += 1; })
+                .AddLevel("Cooldown -0.1s. Base Damage +1.",              p => { garlic.Stats.Damage += 1; garlic.Stats.Cooldown = Mathf.Max(0.3f, garlic.Stats.Cooldown - 0.1f); garlic.RefreshStats(); })
+                .AddLevel("Base Area +20%. Base Damage +2.",              p => { garlic.Stats.Range += garlic.Stats.Range * 0.2f; garlic.Stats.Damage += 2; }));
         }
 
         var firewand = GetNodeOrNull<FireWand>("Weapons/FireWand");
         if (firewand != null)
         {
-            AvailableUpgrades.Add(new UpgradeData("Fire Wand: +4 DMG", UpgradeType.Weapon, (p) => { firewand.Stats.Damage += 4; }, 8));
-            AvailableUpgrades.Add(new UpgradeData("Fire Wand: +1 projectile", UpgradeType.Weapon, (p) => { firewand.Stats.ProjectileCount += 1; }, 4));
-            AvailableUpgrades.Add(new UpgradeData("Fire Wand: +1 pierce", UpgradeType.Weapon, (p) => { firewand.Stats.Pierce += 1; }, 4));
-            AvailableUpgrades.Add(new UpgradeData("Fire Wand: -0.15s cooldown", UpgradeType.Weapon, (p) => { firewand.Stats.Cooldown = Mathf.Max(0.1f, firewand.Stats.Cooldown - 0.15f); firewand.RefreshStats(); }, 5));
+            AvailableUpgrades.Add(new UpgradeData("Fire Wand", UpgradeType.Weapon)
+                .AddLevel("Fires at the nearest enemy.",                  p => { /* Lv1 — bazowy unlock */ })
+                .AddLevel("Base Damage +4. +1 Projectile.",               p => { firewand.Stats.Damage += 4; firewand.Stats.ProjectileCount += 1; })
+                .AddLevel("Cooldown -0.15s. Base Damage +4.",             p => { firewand.Stats.Damage += 4; firewand.Stats.Cooldown = Mathf.Max(0.1f, firewand.Stats.Cooldown - 0.15f); firewand.RefreshStats(); })
+                .AddLevel("+1 Pierce. Base Damage +4.",                   p => { firewand.Stats.Damage += 4; firewand.Stats.Pierce += 1; })
+                .AddLevel("Cooldown -0.15s. +1 Projectile.",              p => { firewand.Stats.ProjectileCount += 1; firewand.Stats.Cooldown = Mathf.Max(0.1f, firewand.Stats.Cooldown - 0.15f); firewand.RefreshStats(); })
+                .AddLevel("Base Damage +4. +1 Pierce.",                   p => { firewand.Stats.Damage += 4; firewand.Stats.Pierce += 1; })
+                .AddLevel("Cooldown -0.15s. Base Damage +4.",             p => { firewand.Stats.Damage += 4; firewand.Stats.Cooldown = Mathf.Max(0.1f, firewand.Stats.Cooldown - 0.15f); firewand.RefreshStats(); })
+                .AddLevel("Base Damage +8. +1 Projectile. +1 Pierce.",   p => { firewand.Stats.Damage += 8; firewand.Stats.ProjectileCount += 1; firewand.Stats.Pierce += 1; }));
         }
     }
 
@@ -300,6 +354,9 @@ public partial class Player : CharacterBody2D
     private void LevelUp()
     {
         Level++;
+
+        SoundManager.Instance?.PlayLevelUp();
+
         var ui = GetTree().CurrentScene.GetNodeOrNull<LevelUpUI>("LevelUpUI");
         ui?.ShowUpgrades(this);
     }

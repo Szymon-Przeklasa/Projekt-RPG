@@ -22,6 +22,7 @@ config/icon="res://Textures/icon.svg"
 [autoload]
 
 KillManager="*uid://bw3gag17rww4w"
+SoundManager="*uid://c6fjgxlk0ndvm"
 
 [display]
 

@@ -29,6 +29,8 @@ public partial class XpOrb : Area2D
     {
         if (body is Player player)
         {
+            SoundManager.Instance?.PlayLoot();
+
             // Przyznaj XP graczowi
             player.GainXp(Value);
 

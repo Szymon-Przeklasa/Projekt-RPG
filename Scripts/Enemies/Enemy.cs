@@ -42,6 +42,8 @@ public partial class Enemy : CharacterBody2D
         _health -= damage;
         Velocity += knockback;
 
+        SoundManager.Instance?.PlayHit();
+
         if (HitParticle != null)
         {
             var fx = HitParticle.Instantiate<Enemybleed>();
@@ -119,7 +121,7 @@ public partial class Enemy : CharacterBody2D
         if (_player == null) return;
 
         float dist = GlobalPosition.DistanceTo(_player.GlobalPosition);
-        if (dist > 40f) return;
+        if (dist > 25f) return;
 
         int dmg = Stats != null ? Stats.ContactDamage : 1;
         _player.TakeDamage(dmg);

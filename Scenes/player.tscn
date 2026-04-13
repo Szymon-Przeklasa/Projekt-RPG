@@ -15,7 +15,7 @@ atlas = ExtResource("3_tx1dd")
 region = Rect2(641, 641, 14, 15)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i3pqv"]
-size = Vector2(50.027752, 50.027752)
+size = Vector2(40.0222, 45.02498)
 
 [sub_resource type="Resource" id="Resource_f1ek2"]
 script = ExtResource("4_3smsa")

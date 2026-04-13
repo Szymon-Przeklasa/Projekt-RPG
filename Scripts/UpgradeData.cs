@@ -1,96 +1,89 @@
 using System;
+using System.Collections.Generic;
 
 /// <summary>
 /// Typ ulepszenia dostępnego dla gracza.
-/// Określa kategorię, do której należy dane ulepszenie.
 /// </summary>
 public enum UpgradeType
 {
-    /// <summary>
-    /// Ulepszenie związane z bronią (np. nowe bronie lub ich rozwój).
-    /// </summary>
     Weapon,
-
-    /// <summary>
-    /// Ulepszenie pasywne wpływające na statystyki pośrednio (np. bonusy procentowe).
-    /// </summary>
     Passive,
-
-    /// <summary>
-    /// Ulepszenie bezpośrednio modyfikujące globalne statystyki gracza
-    /// (np. DamageMultiplier, SpeedMultiplier).
-    /// </summary>
     Stat
 }
 
 /// <summary>
-/// Klasa reprezentująca pojedyncze ulepszenie dostępne dla gracza.
-/// Przechowuje dane o nazwie, typie, poziomie oraz logikę aplikowania efektu.
+/// Pojedynczy poziom ulepszenia — opis i efekt aplikowany na gracza.
+/// </summary>
+public class UpgradeLevel
+{
+    /// <summary>
+    /// Opis wyświetlany w UI dla tego poziomu.
+    /// </summary>
+    public string Description;
+
+    /// <summary>
+    /// Efekt aplikowany przy wyborze tego poziomu.
+    /// </summary>
+    public Action<Player> Effect;
+
+    public UpgradeLevel(string description, Action<Player> effect)
+    {
+        Description = description;
+        Effect = effect;
+    }
+}
+
+/// <summary>
+/// Klasa reprezentująca ulepszenie broni/pasywki w stylu Vampire Survivors.
+/// Każdy poziom ma własny opis i efekt — gracz wybiera BROŃ do ulepszenia,
+/// a system automatycznie aplikuje efekt odpowiedni dla obecnego poziomu.
 /// </summary>
 public class UpgradeData
 {
-    /// <summary>
-    /// Nazwa ulepszenia wyświetlana w grze.
-    /// </summary>
+    /// <summary>Nazwa ulepszenia wyświetlana w UI (np. "Garlic").</summary>
     public string Name;
 
-    /// <summary>
-    /// Typ ulepszenia określający jego kategorię.
-    /// </summary>
+    /// <summary>Typ ulepszenia.</summary>
     public UpgradeType Type;
 
-    /// <summary>
-    /// Aktualny poziom ulepszenia.
-    /// </summary>
+    /// <summary>Aktualny poziom (0 = nie ulepszone).</summary>
     public int Level = 0;
 
-    /// <summary>
-    /// Maksymalny możliwy poziom ulepszenia.
-    /// </summary>
-    public int MaxLevel = 5;
+    /// <summary>Lista poziomów z opisami i efektami.</summary>
+    public List<UpgradeLevel> Levels = new();
 
-    /// <summary>
-    /// Funkcja zawierająca efekt ulepszenia,
-    /// wywoływana przy jego zastosowaniu na graczu.
-    /// </summary>
-    private Action<Player> ApplyEffect;
+    /// <summary>Maksymalny poziom wynikający z liczby zdefiniowanych poziomów.</summary>
+    public int MaxLevel => Levels.Count;
 
-    /// <summary>
-    /// Określa, czy ulepszenie może zostać jeszcze rozwinięte.
-    /// </summary>
+    /// <summary>Czy można jeszcze ulepszyć.</summary>
     public bool CanUpgrade => Level < MaxLevel;
 
-    /// <summary>
-    /// Tworzy nowe ulepszenie.
-    /// </summary>
-    /// <param name="name">Nazwa ulepszenia.</param>
-    /// <param name="type">Typ ulepszenia.</param>
-    /// <param name="applyEffect">
-    /// Funkcja definiująca efekt ulepszenia (np. modyfikacja statystyk gracza).
-    /// </param>
-    /// <param name="maxLevel">Maksymalny poziom ulepszenia (domyślnie 5).</param>
-    public UpgradeData(string name, UpgradeType type, Action<Player> applyEffect, int maxLevel = 5)
+    /// <summary>Opis następnego poziomu do wyświetlenia w UI.</summary>
+    public string NextLevelDescription => CanUpgrade ? Levels[Level].Description : "MAX";
+
+    public UpgradeData(string name, UpgradeType type)
     {
         Name = name;
         Type = type;
-        ApplyEffect = applyEffect;
-        MaxLevel = maxLevel;
     }
 
     /// <summary>
-    /// Aplikuje ulepszenie na podanego gracza.
-    /// Jeśli ulepszenie nie osiągnęło maksymalnego poziomu,
-    /// zwiększa jego poziom i wywołuje przypisany efekt.
+    /// Dodaje kolejny poziom ulepszenia.
     /// </summary>
-    /// <param name="player">Obiekt gracza, na którym zostanie zastosowane ulepszenie.</param>
+    public UpgradeData AddLevel(string description, Action<Player> effect)
+    {
+        Levels.Add(new UpgradeLevel(description, effect));
+        return this; // fluent API
+    }
+
+    /// <summary>
+    /// Aplikuje efekt bieżącego poziomu i zwiększa licznik.
+    /// </summary>
     public void Apply(Player player)
     {
-        if (!CanUpgrade)
-            return;
+        if (!CanUpgrade) return;
 
+        Levels[Level].Effect(player);
         Level++;
-
-        // Wykonanie logiki ulepszenia (np. zwiększenie statystyk)
-        ApplyEffect(player);
     }
 }
