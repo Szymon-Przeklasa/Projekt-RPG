@@ -47,31 +47,19 @@ grow_vertical = 2
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("3_4hbei")
 
-[node name="VScrollBar" type="VScrollBar" parent="Panel" unique_id=929536097]
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel" unique_id=1452390045]
 layout_mode = 0
-offset_left = 220.0
-offset_top = -80.0
-offset_right = 228.0
-offset_bottom = 120.0
-size_flags_horizontal = 8
-size_flags_vertical = 3
-rounded = true
+offset_left = -194.0
+offset_top = -84.0
+offset_right = 227.0
+offset_bottom = 137.0
+horizontal_scroll_mode = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel" unique_id=1899610680]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -216.0
-offset_top = -100.0
-offset_right = 200.0
-offset_bottom = 116.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/ScrollContainer" unique_id=1899610680]
+layout_mode = 2
+size_flags_horizontal = 3
 
-[node name="MobGroup" type="VBoxContainer" parent="Panel/VBoxContainer" unique_id=678103059]
+[node name="MobGroup" type="VBoxContainer" parent="Panel/ScrollContainer/VBoxContainer" unique_id=678103059]
 layout_mode = 2
 size_flags_vertical = 3
 

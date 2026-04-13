@@ -12,6 +12,9 @@ public partial class KillsUI : CanvasLayer
 	/// </summary>
 	[Export]
 	public PackedScene MobEntryScene;
+	
+	private VBoxContainer _mobGroup;
+	private ScrollContainer _scrollContainer;
 
 	/// <summary>
 	/// Metoda wywoływana po dodaniu węzła do drzewa sceny.
@@ -20,10 +23,11 @@ public partial class KillsUI : CanvasLayer
 	public override void _Ready()
 	{
 		Visible = false;
-
 		var killManager = GetNode<KillManager>("/root/KillManager");
-
 		killManager.KillUpdated += OnKillUpdated;
+
+		_mobGroup = GetNode<VBoxContainer>("Panel/ScrollContainer/VBoxContainer/MobGroup");
+		_scrollContainer = GetNode<ScrollContainer>("Panel/ScrollContainer");
 	}
 
 	/// <summary>
@@ -46,18 +50,19 @@ public partial class KillsUI : CanvasLayer
 		Visible = true;
 		GetTree().Paused = true;
 
-		var mobgroup = GetNode<VBoxContainer>("Panel/VBoxContainer/MobGroup");
-
+		// Resetuj scroll na górę
+		_scrollContainer.ScrollVertical = 0;
+		
 		// Usuń poprzednie wpisy
-		foreach (Node child in mobgroup.GetChildren())
+		foreach (Node child in _mobGroup.GetChildren())
 			child.QueueFree();
-
+		
 		// Dodaj nowe wpisy
 		foreach (var pair in KillManager.Instance.GetAllKills())
 		{
 			var entry = MobEntryScene.Instantiate<MobEntry>();
 			entry.SetData(pair.Key, pair.Value);
-			mobgroup.AddChild(entry);
+			_mobGroup.AddChild(entry);
 		}
 	}
 
