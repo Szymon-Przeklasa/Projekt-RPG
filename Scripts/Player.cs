@@ -232,17 +232,17 @@ public partial class Player : CharacterBody2D
         if (lightning != null)
         {
             AvailableUpgrades.Add(new UpgradeData("Lightning: +5 DMG", UpgradeType.Weapon, (p) => { lightning.Stats.Damage += 5; }, 8));
-            AvailableUpgrades.Add(new UpgradeData("Lightning: -0.2s cooldown", UpgradeType.Weapon, (p) => { lightning.Stats.Cooldown = Mathf.Max(0.3f, lightning.Stats.Cooldown - 0.2f); lightning.RefreshStats(); }, 5));
+            AvailableUpgrades.Add(new UpgradeData("Lightning: -0.1s cooldown", UpgradeType.Weapon, (p) => { lightning.Stats.Cooldown = Mathf.Max(0.3f, lightning.Stats.Cooldown - 0.1f); lightning.RefreshStats(); }, 5));
             AvailableUpgrades.Add(new UpgradeData("Lightning: +1 chains", UpgradeType.Weapon, (p) => { lightning.Stats.ProjectileCount += 1; }, 4));
-            AvailableUpgrades.Add(new UpgradeData("Lightning: +150 range", UpgradeType.Weapon, (p) => { lightning.Stats.Range += 150f; }, 4));
+            AvailableUpgrades.Add(new UpgradeData("Lightning: +40 range", UpgradeType.Weapon, (p) => { lightning.Stats.Range += 40f; }, 4));
         }
 
         var garlic = GetNodeOrNull<Garlic>("Weapons/Garlic");
         if (garlic != null)
         {
             AvailableUpgrades.Add(new UpgradeData("Garlic: +3 DMG", UpgradeType.Weapon, (p) => { garlic.Stats.Damage += 3; }, 8));
-            AvailableUpgrades.Add(new UpgradeData("Garlic: +100 range", UpgradeType.Weapon, (p) => { garlic.Stats.Range += 100f; }, 5));
-            AvailableUpgrades.Add(new UpgradeData("Garlic: -0.2s cooldown", UpgradeType.Weapon, (p) => { garlic.Stats.Cooldown = Mathf.Max(0.3f, garlic.Stats.Cooldown - 0.2f); garlic.RefreshStats(); }, 4));
+            AvailableUpgrades.Add(new UpgradeData("Garlic: +20 range", UpgradeType.Weapon, (p) => { garlic.Stats.Range += 20f; }, 5));
+            AvailableUpgrades.Add(new UpgradeData("Garlic: -0.1s cooldown", UpgradeType.Weapon, (p) => { garlic.Stats.Cooldown = Mathf.Max(0.3f, garlic.Stats.Cooldown - 0.1f); garlic.RefreshStats(); }, 4));
         }
 
         var firewand = GetNodeOrNull<FireWand>("Weapons/FireWand");
