@@ -8,21 +8,12 @@ public partial class Player : CharacterBody2D
     [Export] public WeaponStats Weapon;
     [Export] public int Speed = 600;
 
-    // ── HP ───────────────────────────────────────────────────
-
     [Export] public int MaxHealth = 100;
     public int Health { get; private set; }
 
-    /// <summary>
-    /// Czas nietykalności po trafieniu skrócony do 0.3s —
-    /// obrażenia kontaktowe będą odczuwalne szybciej.
-    /// </summary>
     [Export] public float InvincibilityTime = 0.3f;
-
     private float _invincibilityTimer = 0f;
     private ProgressBar _hpBar;
-
-    // ── Mnożniki ─────────────────────────────────────────────
 
     public float DamageMultiplier = 1f;
     public float CooldownMultiplier = 1f;
@@ -41,6 +32,8 @@ public partial class Player : CharacterBody2D
 
     [Export] public bool DebugDrawEnemyLines = false;
     private Label _debugLabel;
+
+    private bool _isDead = false;
 
     // ── Draw ─────────────────────────────────────────────────
 
@@ -62,18 +55,23 @@ public partial class Player : CharacterBody2D
 
     public override void _Ready()
     {
+        // Gracz: Always — żeby _PhysicsProcess działał podczas pauzy (LevelUpUI).
+        // Ruch blokujemy ręcznie sprawdzając GetTree().Paused.
+        ProcessMode = ProcessModeEnum.Always;
+
         Health = MaxHealth;
         SetupUpgrades();
 
         ShootPoint = GetNode<Marker2D>("ShootPoint");
         xpBar = GetTree().CurrentScene.GetNodeOrNull<ProgressBar>("CanvasLayer/XPBar");
         _hpBar = GetTree().CurrentScene.GetNodeOrNull<ProgressBar>("CanvasLayer/HPBar");
-
         UpdateHpBar();
 
         foreach (Weapon weapon in GetNode("Weapons").GetChildren())
         {
             weapon.Init(this);
+            // Bronie: Inherit — zatrzymują się przy pauzie razem z resztą gry.
+            weapon.ProcessMode = ProcessModeEnum.Inherit;
             Weapons.Add(weapon);
         }
 
@@ -93,11 +91,10 @@ public partial class Player : CharacterBody2D
 
     public void TakeDamage(int damage)
     {
-        if (_invincibilityTimer > 0f) return;
+        if (_invincibilityTimer > 0f || _isDead) return;
 
         Health -= damage;
         _invincibilityTimer = InvincibilityTime;
-
         UpdateHpBar();
         FlashDamage();
 
@@ -130,20 +127,29 @@ public partial class Player : CharacterBody2D
 
     private void Die()
     {
-        foreach (var weapon in Weapons)
-            weapon.SetProcess(false);
+        if (_isDead) return;
+        _isDead = true;
 
-        SetPhysicsProcess(false);
-        SetProcess(false);
+        // Wyłącz bronie gracza
+        foreach (var weapon in Weapons)
+            weapon.ProcessMode = ProcessModeEnum.Disabled;
+
+        // Pauzuj całą grę — zatrzymuje przeciwników, spawner, XP orby
+        GetTree().Paused = true;
 
         var deathScreen = GetTree().CurrentScene.GetNodeOrNull<CanvasLayer>("DeathScreen");
         if (deathScreen != null)
+        {
+            // DeathScreen musi mieć ProcessMode = Always żeby działał przy pauzie
+            deathScreen.ProcessMode = ProcessModeEnum.Always;
             deathScreen.Call("ShowDeathScreen", Level, GetKillCount());
+        }
         else
         {
-            GD.Print("Player died! No DeathScreen found, returning to menu...");
+            // Fallback: odpauzuj żeby timer SceneTree zadziałał, potem wróć do menu
+            GetTree().Paused = false;
             GetTree().CreateTimer(1.5f).Timeout += () =>
-                GetTree().ChangeSceneToFile("res://Scenes/menu.tscn");
+                GetTree().ChangeSceneToFile("res://Scenes/main_menu.tscn");
         }
     }
 
@@ -163,6 +169,7 @@ public partial class Player : CharacterBody2D
         var weapon = weaponScene.Instantiate<Weapon>();
         GetNode("Weapons").AddChild(weapon);
         weapon.Init(this);
+        weapon.ProcessMode = ProcessModeEnum.Inherit;
         Weapons.Add(weapon);
         return true;
     }
@@ -269,17 +276,12 @@ public partial class Player : CharacterBody2D
 
     public int Level = 1;
     public int Xp = 0;
-
-    /// <summary>
-    /// Próg XP obniżony z Level*80 do Level*40 — level upy przychodzą szybciej.
-    /// </summary>
     public int XpToLevel => Level * 40;
 
     public void GainXp(int amount)
     {
-        // Mnożnik x2 na każdy zebrany orb
+        if (_isDead) return;
         Xp += amount * 2;
-
         while (Xp >= XpToLevel)
         {
             Xp -= XpToLevel;
@@ -306,6 +308,13 @@ public partial class Player : CharacterBody2D
 
     public void GetInput()
     {
+        // Blokuj ruch podczas pauzy (LevelUpUI) i po śmierci
+        if (GetTree().Paused || _isDead)
+        {
+            Velocity = Vector2.Zero;
+            return;
+        }
+
         Vector2 inputDirection = Input.GetVector("left", "right", "up", "down");
         Velocity = inputDirection * Speed * SpeedMultiplier;
     }
