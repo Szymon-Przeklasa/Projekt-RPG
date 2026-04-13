@@ -11237,6 +11237,9 @@ sources/1 = SubResource("TileSetAtlasSource_h4fw4")
 
 [sub_resource type="Theme" id="Theme_v158k"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_1phco"]
+font_size = 25
+
 [node name="Game" type="Node2D" unique_id=581274643]
 script = ExtResource("1_80nbo")
 
@@ -11271,21 +11274,28 @@ show_percentage = false
 
 [node name="HPBar" type="ProgressBar" parent="CanvasLayer" unique_id=1772653588]
 z_index = 2
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 308.0
-offset_top = -41.0
-offset_right = 567.0
-offset_bottom = -22.986115
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -268.0
+offset_top = 281.0
+offset_right = -9.0
+offset_bottom = 299.0139
+grow_horizontal = 0
 theme = ExtResource("3_i6g32")
 value = 100.0
 rounded = true
 show_percentage = false
+
+[node name="Timer" type="Label" parent="CanvasLayer" unique_id=711731654]
+offset_left = 1079.0
+offset_top = 300.0
+offset_right = 1143.0
+offset_bottom = 335.0
+size_flags_horizontal = 8
+text = "00:00"
+label_settings = SubResource("LabelSettings_1phco")
+horizontal_alignment = 2
 
 [node name="EnemySpawns" type="Node2D" parent="." unique_id=302284075]
 z_index = 2
