@@ -11297,6 +11297,33 @@ text = "00:00"
 label_settings = SubResource("LabelSettings_1phco")
 horizontal_alignment = 2
 
+[node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer" unique_id=1965055147]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -263.0
+offset_top = 23.0
+offset_right = -13.0
+offset_bottom = 273.0
+grow_horizontal = 0
+
+[node name="SubViewport" type="SubViewport" parent="CanvasLayer/SubViewportContainer" unique_id=1841149667]
+transparent_bg = true
+handle_input_locally = false
+gui_disable_input = true
+size = Vector2i(250, 250)
+render_target_update_mode = 4
+script = ExtResource("14_1phco")
+
+[node name="Camera2D" type="Camera2D" parent="CanvasLayer/SubViewportContainer/SubViewport" unique_id=221894687]
+zoom = Vector2(0.5, 0.5)
+
+[node name="Line2D" type="Line2D" parent="CanvasLayer/SubViewportContainer" unique_id=1362323745]
+points = PackedVector2Array(-2, -2, -2, 252, 252, 252, 252, -2)
+closed = true
+width = 5.0
+default_color = Color(0.3184363, 0.054168113, 2.4065375e-08, 1)
+
 [node name="EnemySpawns" type="Node2D" parent="." unique_id=302284075]
 z_index = 2
 position = Vector2(664, 536)
@@ -11307,32 +11334,3 @@ SpawnRadius = 1000.0
 Waves = Array[ExtResource("8_1phco")]([ExtResource("9_nb51f"), ExtResource("11_ewbju"), ExtResource("10_nnt18"), ExtResource("13_iivbl"), ExtResource("12_85qyi")])
 
 [node name="LevelUpUI" parent="." unique_id=1585551123 instance=ExtResource("5_i6g32")]
-
-[node name="MiniMap" type="CanvasLayer" parent="." unique_id=2110541544]
-
-[node name="SubViewportContainer" type="SubViewportContainer" parent="MiniMap" unique_id=1965055147]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -263.0
-offset_top = 23.0
-offset_right = -13.0
-offset_bottom = 273.0
-grow_horizontal = 0
-
-[node name="SubViewport" type="SubViewport" parent="MiniMap/SubViewportContainer" unique_id=1841149667]
-transparent_bg = true
-handle_input_locally = false
-gui_disable_input = true
-size = Vector2i(250, 250)
-render_target_update_mode = 4
-script = ExtResource("14_1phco")
-
-[node name="Camera2D" type="Camera2D" parent="MiniMap/SubViewportContainer/SubViewport" unique_id=221894687]
-zoom = Vector2(0.5, 0.5)
-
-[node name="Line2D" type="Line2D" parent="MiniMap/SubViewportContainer" unique_id=1362323745]
-points = PackedVector2Array(-2, -2, -2, 252, 252, 252, 252, -2)
-closed = true
-width = 5.0
-default_color = Color(0.3184363, 0.054168113, 2.4065375e-08, 1)
