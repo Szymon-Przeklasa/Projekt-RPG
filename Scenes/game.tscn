@@ -11258,24 +11258,6 @@ tile_set = SubResource("TileSet_1phco")
 position = Vector2(250, 200)
 collision_mask = 3
 
-[node name="HealthBar" type="ProgressBar" parent="Player" unique_id=1772653588]
-z_index = 2
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -70.03885
-offset_top = -95.052734
-offset_right = 70.038864
-offset_bottom = -70.03886
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("3_i6g32")
-value = 100.0
-rounded = true
-show_percentage = false
-
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=27451881]
 
 [node name="XPBar" type="ProgressBar" parent="CanvasLayer" unique_id=893445372]
@@ -11285,6 +11267,24 @@ offset_right = 1144.0
 offset_bottom = 16.0
 theme = SubResource("Theme_v158k")
 step = 1.0
+show_percentage = false
+
+[node name="HPBar" type="ProgressBar" parent="CanvasLayer" unique_id=1772653588]
+z_index = 2
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 308.0
+offset_top = -41.0
+offset_right = 567.0
+offset_bottom = -22.986115
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_i6g32")
+value = 100.0
+rounded = true
 show_percentage = false
 
 [node name="EnemySpawns" type="Node2D" parent="." unique_id=302284075]
