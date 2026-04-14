@@ -14,6 +14,7 @@
 [ext_resource type="Resource" uid="uid://db1khudln4lj1" path="res://Data/Waves/GolemWave.tres" id="12_85qyi"]
 [ext_resource type="Resource" uid="uid://cblj5awwuurai" path="res://Data/Waves/DemonWave.tres" id="13_iivbl"]
 [ext_resource type="Script" uid="uid://17sagpr77k5i" path="res://Scripts/UI/MiniMap.cs" id="14_1phco"]
+[ext_resource type="PackedScene" uid="uid://653luevkxxg" path="res://Scenes/UI/PauseMenu.tscn" id="15_nb51f"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rfjv2"]
 texture = ExtResource("5_v158k")
@@ -11327,3 +11328,5 @@ SpawnRadius = 1000.0
 Waves = Array[ExtResource("8_1phco")]([ExtResource("9_nb51f"), ExtResource("11_ewbju"), ExtResource("10_nnt18"), ExtResource("13_iivbl"), ExtResource("12_85qyi")])
 
 [node name="LevelUpUI" parent="." unique_id=1585551123 instance=ExtResource("5_i6g32")]
+
+[node name="PauseMenu" parent="." unique_id=1224407210 instance=ExtResource("15_nb51f")]

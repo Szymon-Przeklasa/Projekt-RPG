@@ -15,7 +15,7 @@ public partial class Game : Node2D
 
 	public override void _Process(double delta)
 	{
-		if (!_timerRunning) return;
+		if (!_timerRunning || GetTree().Paused) return;
 		
 		_elapsedTime += delta;
 		int minutes = (int)_elapsedTime / 60;
