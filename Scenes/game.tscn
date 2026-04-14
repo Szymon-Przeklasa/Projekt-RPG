@@ -11284,7 +11284,6 @@ offset_bottom = 299.0139
 grow_horizontal = 0
 theme = ExtResource("3_i6g32")
 value = 100.0
-rounded = true
 show_percentage = false
 
 [node name="Timer" type="Label" parent="CanvasLayer" unique_id=711731654]
@@ -11317,12 +11316,6 @@ script = ExtResource("14_1phco")
 
 [node name="Camera2D" type="Camera2D" parent="CanvasLayer/SubViewportContainer/SubViewport" unique_id=221894687]
 zoom = Vector2(0.5, 0.5)
-
-[node name="Line2D" type="Line2D" parent="CanvasLayer/SubViewportContainer" unique_id=1362323745]
-points = PackedVector2Array(-2, -2, -2, 252, 252, 252, 252, -2)
-closed = true
-width = 5.0
-default_color = Color(0.3184363, 0.054168113, 2.4065375e-08, 1)
 
 [node name="EnemySpawns" type="Node2D" parent="." unique_id=302284075]
 z_index = 2

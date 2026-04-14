@@ -1,18 +1,32 @@
 [gd_resource type="Theme" format=3 uid="uid://disof3rnrc5mc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wowpa"]
-bg_color = Color(0, 0.20896336, 9.62615e-08, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
+bg_color = Color(0.20255673, 0.08598388, 0.013109938, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.51718444, 0.5171845, 0.5171842, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+corner_detail = 2
+shadow_color = Color(0.47843137, 0.47843137, 0.47843137, 0.5568628)
+shadow_size = 1
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i6g32"]
-bg_color = Color(0, 0.77871734, 0, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
+bg_color = Color(0.44474936, 0.123555325, 0.1028068, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.3779188, 0.37791887, 0.37791884, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+corner_detail = 2
 
 [resource]
 ProgressBar/styles/background = SubResource("StyleBoxFlat_wowpa")
