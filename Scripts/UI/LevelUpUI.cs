@@ -34,6 +34,13 @@ public partial class LevelUpUI : CanvasLayer
 	{
 		_player = player;
 
+		_player.IsInLevelUp = true;
+		GetTree().Paused = true;
+		
+		_player.SetWeaponsProcessMode(ProcessModeEnum.Disabled);
+
+		Visible = true;
+		
 		List<UpgradeData> choices = player.AvailableUpgrades
 			.Where(u => u.CanUpgrade)
 			.OrderBy(_ => GD.Randf())
@@ -54,8 +61,6 @@ public partial class LevelUpUI : CanvasLayer
 		SetupButton(_b2, choices.Count > 1 ? choices[1] : null);
 		SetupButton(_b3, choices.Count > 2 ? choices[2] : null);
 
-		GetTree().Paused = true;
-		Visible = true;
 	}
 
 	// ── Przyciski ────────────────────────────────────────────
@@ -110,7 +115,15 @@ public partial class LevelUpUI : CanvasLayer
 		ClearButton(_b2);
 		ClearButton(_b3);
 
-		Visible = false;
+		if (_player != null)
+		{
+			_player.IsInLevelUp = false;
+
+			// przywróć bronie
+			_player.SetWeaponsProcessMode(ProcessModeEnum.Pausable);
+		}
+
 		GetTree().Paused = false;
+		Visible = false;
 	}
 }

@@ -33,6 +33,8 @@ public partial class Player : CharacterBody2D
 	private ProgressBar _hpBar;
 	/// <summary>Flaga określająca czy gracz nie żyje.</summary>
 	private bool _isDead = false;
+	/// <summary>Flaga okrśelająca czy gracz jest w LevelUp UI.</summary>
+	public bool IsInLevelUp = false;
 
 	// ── Mnożniki Statystyk ───────────────────────────────────
 
@@ -132,6 +134,8 @@ public partial class Player : CharacterBody2D
 	/// <param name="damage">Liczba punktów obrażeń.</param>
 	public void TakeDamage(int damage)
 	{
+		if (IsInLevelUp) return;
+		
 		if (_invincibilityTimer > 0f || _isDead) return;
 
 		Health -= damage;
@@ -476,5 +480,10 @@ public partial class Player : CharacterBody2D
 		}
 		if (_debugLabel != null) _debugLabel.Text = lines.ToString();
 		QueueRedraw();
+	}
+	public void SetWeaponsProcessMode(ProcessModeEnum mode)
+	{
+		foreach (var weapon in Weapons)
+			weapon.ProcessMode = mode;
 	}
 }

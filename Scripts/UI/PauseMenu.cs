@@ -76,9 +76,9 @@ public partial class PauseMenu : CanvasLayer
 	/// </summary>
 	private void Pause()
 	{
-		_isPausedByThis  = true;
+		_isPausedByThis = true;
 		GetTree().Paused = true;
-		Visible          = true;
+		Visible = true;
 
 		SetWeaponsProcessMode(ProcessModeEnum.Disabled);
 	}
