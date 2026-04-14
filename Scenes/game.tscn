@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://djtc02vuy3ydt" path="res://Scenes/Environment/enemy_spawner.tscn" id="5_wowpa"]
 [ext_resource type="FontFile" uid="uid://bbv5li714o8fv" path="res://Textures/BreatheFire-65pg.ttf" id="6_nnt18"]
 [ext_resource type="Script" uid="uid://e7moyouwnt5y" path="res://Scripts/Enemies/WaveDefinition.cs" id="8_1phco"]
+[ext_resource type="PackedScene" path="res://Scenes/UI/EquipmentUI.tscn" id="8_ewbju"]
 [ext_resource type="Resource" uid="uid://xgbi5851k1vn" path="res://Data/Waves/SlimeWave.tres" id="9_nb51f"]
 [ext_resource type="Texture2D" uid="uid://byiu5fet7n20h" path="res://Textures/oryx_16bit_fantasy_world-928030668.png" id="9_rku1e"]
 [ext_resource type="Resource" uid="uid://b8vyify6e1ebu" path="res://Data/Waves/VampireWave.tres" id="10_nnt18"]
@@ -11319,6 +11320,12 @@ script = ExtResource("14_1phco")
 
 [node name="Camera2D" type="Camera2D" parent="CanvasLayer/SubViewportContainer/SubViewport" unique_id=221894687]
 zoom = Vector2(0.5, 0.5)
+
+[node name="EquipmentUI" parent="CanvasLayer" unique_id=100000001 instance=ExtResource("8_ewbju")]
+layout_mode = 3
+anchors_preset = 12
+offset_top = -29.0
+script = null
 
 [node name="EnemySpawns" type="Node2D" parent="." unique_id=302284075]
 z_index = 2

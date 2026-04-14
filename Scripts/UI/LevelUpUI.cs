@@ -5,8 +5,8 @@ using System.Linq;
 
 /// <summary>
 /// Interfejs wyboru ulepszenia po awansie.
-/// Wyświetla 3 losowe opcje (broń/pasywkę) — każda pokazuje nazwę,
-/// aktualny poziom i opis kolejnego poziomu, tak jak w Vampire Survivors.
+/// Wyświetla 3 losowe opcje (broń/pasywkę).
+/// Bronie nieodblokowane pokazują "UNLOCK" zamiast poziomu.
 /// </summary>
 public partial class LevelUpUI : CanvasLayer
 {
@@ -17,7 +17,6 @@ public partial class LevelUpUI : CanvasLayer
 
 	public override void _Ready()
 	{
-		// Always — przyciski muszą reagować podczas pauzy gry
 		ProcessMode = ProcessModeEnum.Always;
 		Visible = false;
 
@@ -26,21 +25,14 @@ public partial class LevelUpUI : CanvasLayer
 		_b3 = GetNode<Button>("Panel/VBoxContainer/Button3");
 	}
 
-	/// <summary>
-	/// Pokazuje ekran ulepszenia dla danego gracza.
-	/// Wybiera 3 losowe ulepszenia (lub mniej, jeśli dostępnych jest mniej).
-	/// </summary>
 	public void ShowUpgrades(Player player)
 	{
 		_player = player;
-
 		_player.IsInLevelUp = true;
 		GetTree().Paused = true;
-		
 		_player.SetWeaponsProcessMode(ProcessModeEnum.Disabled);
-
 		Visible = true;
-		
+
 		List<UpgradeData> choices = player.AvailableUpgrades
 			.Where(u => u.CanUpgrade)
 			.OrderBy(_ => GD.Randf())
@@ -60,10 +52,7 @@ public partial class LevelUpUI : CanvasLayer
 		SetupButton(_b1, choices.Count > 0 ? choices[0] : null);
 		SetupButton(_b2, choices.Count > 1 ? choices[1] : null);
 		SetupButton(_b3, choices.Count > 2 ? choices[2] : null);
-
 	}
-
-	// ── Przyciski ────────────────────────────────────────────
 
 	private void SetupButton(Button button, UpgradeData data)
 	{
@@ -75,11 +64,14 @@ public partial class LevelUpUI : CanvasLayer
 
 		button.Visible = true;
 
-		// Tekst przycisku: "Nazwa  [Lv X → X+1]\nOpis następnego poziomu"
-		int nextLevel = data.Level + 1;
-		string levelTag = data.Level == 0
-			? "[NEW]"
-			: $"[Lv {data.Level} → {nextLevel}]";
+		string levelTag;
+		if (data.Level == 0)
+			levelTag = "[NEW ✨]";
+		else
+		{
+			int nextLevel = data.Level + 1;
+			levelTag = $"[Lv {data.Level} → {nextLevel}]";
+		}
 
 		button.Text = $"{data.Name}  {levelTag}\n{data.NextLevelDescription}";
 
@@ -97,7 +89,6 @@ public partial class LevelUpUI : CanvasLayer
 	private void ClearButton(Button button)
 	{
 		button.Visible = true;
-
 		if (button.HasMeta("_handler"))
 		{
 			var callable = (Callable)button.GetMeta("_handler");
@@ -106,8 +97,6 @@ public partial class LevelUpUI : CanvasLayer
 			button.RemoveMeta("_handler");
 		}
 	}
-
-	// ── Zamknięcie ───────────────────────────────────────────
 
 	private void Close()
 	{
@@ -118,8 +107,6 @@ public partial class LevelUpUI : CanvasLayer
 		if (_player != null)
 		{
 			_player.IsInLevelUp = false;
-
-			// przywróć bronie
 			_player.SetWeaponsProcessMode(ProcessModeEnum.Pausable);
 		}
 

@@ -2,47 +2,40 @@ using Godot;
 
 /// <summary>
 /// Klasa reprezentująca broń typu Magnet.
-/// Zamiast zadawać obrażenia, przyciąga punkty doświadczenia (XP orby)
-/// znajdujące się w zasięgu gracza.
+/// Przyciąga XP orby w zasięgu gracza.
+/// Ulepsza się przez zwiększenie zasięgu i prędkości przyciągania.
 /// </summary>
 public partial class Magnet : Weapon
 {
-    [Export] PackedScene ProjectileScene;
+	[Export] PackedScene ProjectileScene;
 
-    /// <summary>
-    /// Metoda wywoływana przy aktywacji broni.
-    /// Przy bardzo krótkim cooldownie (0.01s) lerp był nieregularny —
-    /// przyciąganie przeniesiono do _PhysicsProcess dla płynności.
-    /// Fire() pozostaje puste, logika działa co klatkę.
-    /// </summary>
-    protected override void Fire() { }
+	/// <summary>Bazowa prędkość przyciągania (piksele/s).</summary>
+	private float _basePullSpeed = 400f;
 
-    /// <summary>
-    /// Płynne przyciąganie XP orbów co klatkę fizyki.
-    /// Działa niezależnie od timera broni.
-    /// </summary>
-    public override void _PhysicsProcess(double delta)
-    {
-        if (Player == null) return;
+	/// <summary>Bonus do prędkości przyciągania z ulepszeń.</summary>
+	public float PullSpeedBonus = 0f;
 
-        float range = Stats != null ? Stats.Range * Player.AreaMultiplier : 150f;
+	protected override void Fire() { }
 
-        // Prędkość przyciągania w pikselach/s — im bliżej, tym szybciej
-        float pullSpeed = 400f;
+	public override void _PhysicsProcess(double delta)
+	{
+		if (Player == null) return;
 
-        foreach (Node node in GetTree().GetNodesInGroup("xp"))
-        {
-            if (node is Node2D orb)
-            {
-                float dist = Player.GlobalPosition.DistanceTo(orb.GlobalPosition);
-                if (dist > range) continue;
+		float range = Stats != null ? Stats.Range * Player.AreaMultiplier : 150f;
+		float pullSpeed = (_basePullSpeed + PullSpeedBonus) * Player.ProjectileSpeedMultiplier;
 
-                // Znormalizowany kierunek do gracza
-                Vector2 dir = (Player.ShootPoint.GlobalPosition - orb.GlobalPosition).Normalized();
+		foreach (Node node in GetTree().GetNodesInGroup("xp"))
+		{
+			if (node is Node2D orb)
+			{
+				float dist = Player.GlobalPosition.DistanceTo(orb.GlobalPosition);
+				if (dist > range) continue;
 
-                // Ruch tym szybszy im orb jest bliżej centrum (opcjonalnie płaski)
-                orb.GlobalPosition += dir * pullSpeed * (float)delta;
-            }
-        }
-    }
+				// Tym szybciej ciągnie, im bliżej środka
+				float speedFactor = 1f + (1f - dist / range) * 0.5f;
+				Vector2 dir = (Player.ShootPoint.GlobalPosition - orb.GlobalPosition).Normalized();
+				orb.GlobalPosition += dir * pullSpeed * speedFactor * (float)delta;
+			}
+		}
+	}
 }

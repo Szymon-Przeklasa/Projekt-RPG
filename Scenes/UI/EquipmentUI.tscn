@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://equipment_ui_bar"]
+
+[ext_resource type="Script" path="res://Scripts/UI/EquipmentUI.cs" id="1_eqbar"]
+
+[node name="EquipmentUI" type="HBoxContainer" unique_id=100000001]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -64.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("1_eqbar")
+
+[node name="WeaponsLabel" type="Label" parent="." unique_id=100000002]
+layout_mode = 2
+text = "⚔"
+vertical_alignment = 1
+add_theme_font_size_override "font_size" = 14
+add_theme_color_override "font_color" = Color(0.8, 0.5, 0.2, 1)
+
+[node name="WeaponsGroup" type="HBoxContainer" parent="." unique_id=100000003]
+layout_mode = 2
+size_flags_horizontal = 3
+separation = 4
+
+[node name="Spacer" type="Control" parent="." unique_id=100000004]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PassivesLabel" type="Label" parent="." unique_id=100000005]
+layout_mode = 2
+text = "🛡"
+vertical_alignment = 1
+add_theme_font_size_override "font_size" = 14
+add_theme_color_override "font_color" = Color(0.4, 0.7, 1, 1)
+
+[node name="PassivesGroup" type="HBoxContainer" parent="." unique_id=100000006]
+layout_mode = 2
+size_flags_horizontal = 3
+separation = 4

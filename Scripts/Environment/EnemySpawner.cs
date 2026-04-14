@@ -3,53 +3,50 @@ using System.Collections.Generic;
 
 /// <summary>
 /// Zarządza pojawianiem się przeciwników w grze na podstawie listy fal (WaveDefinition).
-/// Interwał spawnów i liczba przeciwników w batchu rośnie z czasem gry, co powoduje progresywną trudność.
+/// Zbalansowane dla 20-minutowej sesji: łatwy start, gwałtowny wzrost trudności od ~10 minuty.
+/// Limit aktywnych przeciwników zapobiega za dużej ilości wrogów na ekranie.
 /// </summary>
 public partial class EnemySpawner : Node2D
 {
 	// ── Konfiguracja ──────────────────────────────────────────
-	
-	/// <summary>Mapa TileMap wskazująca możliwe pozycje spawnu.</summary>
+
 	[Export] public TileMapLayer SpawnMap;
-
-	/// <summary>Maksymalny promień spawnu wokół gracza.</summary>
 	[Export] public float SpawnRadius = 1200f;
-
-	/// <summary>Minimalna odległość od gracza, żeby nie spawnować wroga bezpośrednio na nim.</summary>
 	[Export] public float MinPlayerDistance = 400f;
-
-	/// <summary>Lista fal przypisana w Inspektorze (tablica WaveDefinition .tres).</summary>
 	[Export] public Godot.Collections.Array<WaveDefinition> Waves = new();
+
+	/// <summary>Maksymalna liczba aktywnych wrogów na scenie jednocześnie.</summary>
+	[Export] public int MaxEnemies = 240;
+
+	/// <summary>Maksymalna liczba XP orbów na scenie (starsze usuwane).</summary>
+	[Export] public int MaxXpOrbs = 300;
 
 	// ── Stan wewnętrzny ───────────────────────────────────────
 
 	private Player _player;
-	private float _elapsed;                     // czas gry w sekundach
-	private List<Vector2> _spawnPool = new();   // wszystkie możliwe pozycje spawnu
-	private List<Vector2> _nearbyCache = new(); // pozycje w zasięgu spawnowania od gracza
-	private float _cacheTimer = 0f;            // licznik odświeżania cache
-	private Dictionary<WaveDefinition, Timer> _waveTimers = new(); // timery dla aktywnych fal
+	private float _elapsed;
+	private List<Vector2> _spawnPool = new();
+	private List<Vector2> _nearbyCache = new();
+	private float _cacheTimer = 0f;
+	private Dictionary<WaveDefinition, Timer> _waveTimers = new();
+	private float _xpCleanupTimer = 0f;
 
 	// ── Inicjalizacja ────────────────────────────────────────
 
 	public override void _Ready()
 	{
 		_player = GetTree().GetFirstNodeInGroup("player") as Player;
-
 		BuildSpawnPool();
 
-		// Timer zarządzający aktywacją/dezaktywacją fal co sekundę
-		var managementTimer = new Timer
-		{
-			WaitTime = 1.0f,
-			Autostart = true
-		};
+		var managementTimer = new Timer { WaitTime = 1.0f, Autostart = true };
 		managementTimer.Timeout += UpdateActiveWaves;
 		AddChild(managementTimer);
 	}
 
 	public override void _Process(double delta)
 	{
+		if (GetTree().Paused) return;
+
 		_elapsed += (float)delta;
 
 		_cacheTimer += (float)delta;
@@ -58,23 +55,27 @@ public partial class EnemySpawner : Node2D
 			RebuildNearbyCache();
 			_cacheTimer = 0f;
 		}
+
+		_xpCleanupTimer += (float)delta;
+		if (_xpCleanupTimer >= 5.0f)
+		{
+			CleanupExcessXpOrbs();
+			_xpCleanupTimer = 0f;
+		}
 	}
 
 	// ── Zarządzanie falami ────────────────────────────────────
 
-	/// <summary>
-	/// Sprawdza, które fale powinny być aktywne i włącza/dezaktywuje je.
-	/// Wywoływane przez Timer co sekundę.
-	/// </summary>
 	private void UpdateActiveWaves()
 	{
+		if (GetTree().Paused) return;
+
 		float minute = _elapsed / 60f;
 
 		foreach (var wave in Waves)
 		{
 			bool shouldBeActive = minute >= wave.StartMinute
 								  && (wave.EndMinute <= 0f || minute < wave.EndMinute);
-
 			bool isActive = _waveTimers.ContainsKey(wave);
 
 			if (shouldBeActive && !isActive)
@@ -88,11 +89,7 @@ public partial class EnemySpawner : Node2D
 
 	private void ActivateWave(WaveDefinition wave)
 	{
-		var t = new Timer
-		{
-			WaitTime = GetCurrentInterval(wave),
-			OneShot = false
-		};
+		var t = new Timer { WaitTime = GetCurrentInterval(wave), OneShot = false };
 		t.Timeout += () => SpawnBatch(wave);
 		AddChild(t);
 		t.Start();
@@ -116,14 +113,25 @@ public partial class EnemySpawner : Node2D
 	}
 
 	/// <summary>
-	/// Oblicza aktualny interwał spawnu w zależności od minuty gry.
-	/// Interwał maleje wraz z upływem czasu gry.
+	/// Oblicza interwał spawnu z krzywą trudności:
+	/// - 0–5 min: łagodne skalowanie
+	/// - 5–10 min: umiarkowane
+	/// - 10–20 min: agresywne (minimum 0.2s)
 	/// </summary>
 	private float GetCurrentInterval(WaveDefinition wave)
 	{
 		float minute = _elapsed / 60f;
-		float interval = wave.BaseInterval / (1f + minute * 0.15f);
-		return Mathf.Max(0.25f, interval);
+		float multiplier;
+
+		if (minute < 5f)
+			multiplier = 1f - minute * 0.04f;           // -4% / min → 80% @ 5min
+		else if (minute < 10f)
+			multiplier = 0.8f - (minute - 5f) * 0.06f; // dodatkowe -6% / min → 50% @ 10min
+		else
+			multiplier = 0.5f - (minute - 10f) * 0.025f; // dodatkowe -2.5% / min → 25% @ 20min
+
+		multiplier = Mathf.Max(0.15f, multiplier);
+		return Mathf.Max(0.2f, wave.BaseInterval * multiplier);
 	}
 
 	// ── Spawnowanie przeciwników ──────────────────────────────
@@ -132,8 +140,16 @@ public partial class EnemySpawner : Node2D
 	{
 		if (wave.EnemyType?.Scene == null || _player == null) return;
 
-		int minute = (int)(_elapsed / 60f);
-		int batchSize = wave.BatchSize + minute / 1; // Skalowanie liczby przeciwników z czasem gry
+		// Ogranicz całkowitą liczbę wrogów
+		int currentEnemies = GetTree().GetNodesInGroup("enemies").Count;
+		if (currentEnemies >= MaxEnemies) return;
+
+		float minute = _elapsed / 60f;
+		int batchSize = CalculateBatchSize(wave, minute);
+
+		// Nie przekracz limitu
+		batchSize = Mathf.Min(batchSize, MaxEnemies - currentEnemies);
+		if (batchSize <= 0) return;
 
 		for (int i = 0; i < batchSize; i++)
 		{
@@ -144,11 +160,13 @@ public partial class EnemySpawner : Node2D
 			enemy.Stats = wave.EnemyType;
 			enemy.GlobalPosition = pos;
 
-			// Skalowanie parametrów przeciwnika z upływem czasu
 			if (enemy.Stats != null)
 			{
-				enemy.MaxHealth = Mathf.RoundToInt(wave.EnemyType.MaxHealth * (1f + minute * 0.08f));
-				enemy.XpDrop = Mathf.CeilToInt(wave.EnemyType.XpDrop * (1f + minute * 0.05f));
+				// Skalowanie HP i XP z czasem — łagodniejsza krzywa
+				float hpScale = 1f + minute * 0.06f;   // +6%/min → 2.2x @ 20min
+				float xpScale = 1f + minute * 0.04f;   // +4%/min → 1.8x @ 20min
+				enemy.MaxHealth = Mathf.RoundToInt(wave.EnemyType.MaxHealth * hpScale);
+				enemy.XpDrop = Mathf.CeilToInt(wave.EnemyType.XpDrop * xpScale);
 			}
 
 			GetTree().CurrentScene.AddChild(enemy);
@@ -156,20 +174,29 @@ public partial class EnemySpawner : Node2D
 	}
 
 	/// <summary>
-	/// Losowa pozycja spawnu z pobliskiego cache’u (odległość od gracza w [MinPlayerDistance, SpawnRadius]).
+	/// Oblicza rozmiar batcha z wyraźną eskalacją w drugiej połowie gry.
 	/// </summary>
+	private int CalculateBatchSize(WaveDefinition wave, float minute)
+	{
+		int extra;
+		if (minute < 5f)
+			extra = 0;
+		else if (minute < 10f)
+			extra = Mathf.FloorToInt((minute - 5f) * 0.4f);  // +0.4/min
+		else
+			extra = 2 + Mathf.FloorToInt((minute - 10f) * 0.8f); // +0.8/min od 10 min
+
+		return wave.BatchSize + extra;
+	}
+
 	private Vector2 GetSpawnPosition()
 	{
 		if (_spawnPool.Count == 0 || _player == null) return Vector2.Zero;
 		if (_nearbyCache.Count == 0) RebuildNearbyCache();
 		if (_nearbyCache.Count == 0) return Vector2.Zero;
-
 		return _nearbyCache[(int)(GD.Randi() % (uint)_nearbyCache.Count)];
 	}
 
-	/// <summary>
-	/// Przebudowuje cache pozycji spawnów w zasięgu gracza.
-	/// </summary>
 	private void RebuildNearbyCache()
 	{
 		_nearbyCache.Clear();
@@ -182,6 +209,37 @@ public partial class EnemySpawner : Node2D
 			if (distSq >= minSq && distSq <= maxSq)
 				_nearbyCache.Add(pos);
 		}
+	}
+
+	// ── Cleanup XP orbów ─────────────────────────────────────
+
+	/// <summary>
+	/// Usuwa nadmiarowe XP orby — te najdalej od gracza są usuwane pierwsze.
+	/// Zapobiega gromadzeniu się setek niewidocznych orbów.
+	/// </summary>
+	private void CleanupExcessXpOrbs()
+	{
+		if (_player == null) return;
+
+		var orbs = GetTree().GetNodesInGroup("xp");
+		if (orbs.Count <= MaxXpOrbs) return;
+
+		// Posortuj od najdalszych do gracza
+		var orbList = new List<(Node2D orb, float distSq)>();
+		foreach (Node node in orbs)
+		{
+			if (node is Node2D orb2d)
+			{
+				float dSq = _player.GlobalPosition.DistanceSquaredTo(orb2d.GlobalPosition);
+				orbList.Add((orb2d, dSq));
+			}
+		}
+
+		orbList.Sort((a, b) => b.distSq.CompareTo(a.distSq)); // najdalsze pierwsze
+
+		int toRemove = orbs.Count - MaxXpOrbs;
+		for (int i = 0; i < toRemove && i < orbList.Count; i++)
+			orbList[i].orb.QueueFree();
 	}
 
 	// ── Przygotowanie puli spawnu z TileMap ───────────────────
