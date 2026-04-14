@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dth1qcqxp2edf" path="res://Scenes/UI/LevelUpUI.tscn" id="5_i6g32"]
 [ext_resource type="Texture2D" uid="uid://bt1wjbh02wu82" path="res://Textures/c9_image_1(1).png" id="5_v158k"]
 [ext_resource type="PackedScene" uid="uid://djtc02vuy3ydt" path="res://Scenes/Environment/enemy_spawner.tscn" id="5_wowpa"]
+[ext_resource type="FontFile" uid="uid://bbv5li714o8fv" path="res://Textures/BreatheFire-65pg.ttf" id="6_nnt18"]
 [ext_resource type="Script" uid="uid://e7moyouwnt5y" path="res://Scripts/Enemies/WaveDefinition.cs" id="8_1phco"]
 [ext_resource type="Resource" uid="uid://xgbi5851k1vn" path="res://Data/Waves/SlimeWave.tres" id="9_nb51f"]
 [ext_resource type="Texture2D" uid="uid://byiu5fet7n20h" path="res://Textures/oryx_16bit_fantasy_world-928030668.png" id="9_rku1e"]
@@ -11239,6 +11240,7 @@ sources/1 = SubResource("TileSetAtlasSource_h4fw4")
 [sub_resource type="Theme" id="Theme_v158k"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_1phco"]
+font = ExtResource("6_nnt18")
 font_size = 25
 
 [node name="Game" type="Node2D" unique_id=581274643]
@@ -11288,10 +11290,10 @@ value = 100.0
 show_percentage = false
 
 [node name="Timer" type="Label" parent="CanvasLayer" unique_id=711731654]
-offset_left = 1079.0
-offset_top = 300.0
-offset_right = 1143.0
-offset_bottom = 335.0
+offset_left = 1066.0
+offset_top = 302.0
+offset_right = 1142.0
+offset_bottom = 337.0
 size_flags_horizontal = 8
 text = "00:00"
 label_settings = SubResource("LabelSettings_1phco")

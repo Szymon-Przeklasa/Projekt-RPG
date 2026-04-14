@@ -2,41 +2,78 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
+/// <summary>
+/// Główna klasa gracza. Obsługuje ruch, statystyki, system walki, 
+/// zarządzanie ekwipunkiem (bronie/pasywki) oraz system ulepszeń.
+/// </summary>
 public partial class Player : CharacterBody2D
 {
+	// ── Eksportowane właściwości ──────────────────────────────
+
+	/// <summary>Scena pocisku używana przez niektóre bronie.</summary>
 	[Export] public PackedScene ProjectileScene;
+	/// <summary>Podstawowe statystyki startowej broni.</summary>
 	[Export] public WeaponStats Weapon;
+	/// <summary>Bazowa prędkość ruchu gracza.</summary>
 	[Export] public int Speed = 600;
-
+	/// <summary>Maksymalna liczba punktów życia gracza.</summary>
 	[Export] public int MaxHealth = 100;
-	public int Health { get; private set; }
-
+	/// <summary>Czas niewrażliwości po otrzymaniu obrażeń.</summary>
 	[Export] public float InvincibilityTime = 0.3f;
-	private float _invincibilityTimer = 0f;
-	private ProgressBar _hpBar;
+	/// <summary>Flaga debugowania rysująca linie do przeciwników.</summary>
+	[Export] public bool DebugDrawEnemyLines = false;
 
+	// ── Statystyki i Stan ────────────────────────────────────
+
+	/// <summary>Aktualna liczba punktów życia gracza.</summary>
+	public int Health { get; private set; }
+	/// <summary>Timer odliczający czas niewrażliwości.</summary>
+	private float _invincibilityTimer = 0f;
+	/// <summary>Referencja do paska zdrowia w UI.</summary>
+	private ProgressBar _hpBar;
+	/// <summary>Flaga określająca czy gracz nie żyje.</summary>
+	private bool _isDead = false;
+
+	// ── Mnożniki Statystyk ───────────────────────────────────
+
+	/// <summary>Mnożnik zadawanych obrażeń.</summary>
 	public float DamageMultiplier = 1f;
+	/// <summary>Mnożnik szybkości przeładowania broni.</summary>
 	public float CooldownMultiplier = 1f;
+	/// <summary>Mnożnik obszaru działania broni.</summary>
 	public float AreaMultiplier = 1f;
+	/// <summary>Mnożnik prędkości ruchu gracza.</summary>
 	public float SpeedMultiplier = 1f;
+	/// <summary>Mnożnik prędkości wystrzeliwanych pocisków.</summary>
 	public float ProjectileSpeedMultiplier = 1f;
 
+	// ── Ekwipunek i Ulepszenia ───────────────────────────────
+
+	/// <summary>Maksymalna liczba broni w ekwipunku.</summary>
 	public const int MAX_WEAPONS = 5;
+	/// <summary>Maksymalna liczba przedmiotów pasywnych.</summary>
 	public const int MAX_PASSIVES = 5;
+	/// <summary>Lista aktualnie posiadanych broni.</summary>
 	public List<Weapon> Weapons = new();
+	/// <summary>Lista aktualnie posiadanych przedmiotów pasywnych.</summary>
 	public List<PassiveData> Passives = new();
+	/// <summary>Lista wszystkich dostępnych ulepszeń w grze.</summary>
 	public List<UpgradeData> AvailableUpgrades = new();
 
+	// ── Węzły i UI pomocnicze ────────────────────────────────
+
+	/// <summary>Punkt, z którego wystrzeliwane są pociski.</summary>
 	public Marker2D ShootPoint;
+	/// <summary>Referencja do paska doświadczenia w UI.</summary>
 	private ProgressBar xpBar;
-
-	[Export] public bool DebugDrawEnemyLines = false;
+	/// <summary>Etykieta tekstowa do celów debugowania.</summary>
 	private Label _debugLabel;
-
-	private bool _isDead = false;
 
 	// ── Draw ─────────────────────────────────────────────────
 
+	/// <summary>
+	/// Rysuje pomocnicze linie debugowania do aktywnych przeciwników w grupie.
+	/// </summary>
 	public override void _Draw()
 	{
 		if (!DebugDrawEnemyLines) return;
@@ -53,10 +90,11 @@ public partial class Player : CharacterBody2D
 
 	// ── Ready ────────────────────────────────────────────────
 
+	/// <summary>
+	/// Inicjalizuje statystyki, ulepszenia, UI oraz przygotowuje listę startowych broni.
+	/// </summary>
 	public override void _Ready()
 	{
-		// Gracz: Always — żeby _PhysicsProcess działał podczas pauzy (LevelUpUI).
-		// Ruch blokujemy ręcznie sprawdzając GetTree().Paused.
 		ProcessMode = ProcessModeEnum.Always;
 
 		Health = MaxHealth;
@@ -70,7 +108,6 @@ public partial class Player : CharacterBody2D
 		foreach (Weapon weapon in GetNode("Weapons").GetChildren())
 		{
 			weapon.Init(this);
-			
 			weapon.ProcessMode = ProcessModeEnum.Pausable;
 			Weapons.Add(weapon);
 		}
@@ -89,6 +126,10 @@ public partial class Player : CharacterBody2D
 
 	// ── HP ───────────────────────────────────────────────────
 
+	/// <summary>
+	/// Zadaje obrażenia graczowi, uwzględniając niewrażliwość i efekty wizualne.
+	/// </summary>
+	/// <param name="damage">Liczba punktów obrażeń.</param>
 	public void TakeDamage(int damage)
 	{
 		if (_invincibilityTimer > 0f || _isDead) return;
@@ -108,15 +149,20 @@ public partial class Player : CharacterBody2D
 		}
 	}
 
+	/// <summary>
+	/// Przywraca graczowi określoną liczbę punktów życia.
+	/// </summary>
+	/// <param name="amount">Ilość punktów do uleczenia.</param>
 	public void Heal(int amount)
 	{
 		Health = Mathf.Min(Health + amount, MaxHealth);
-
 		SoundManager.Instance?.PlayHeal();
-
 		UpdateHpBar();
 	}
 
+	/// <summary>
+	/// Aktualizuje wartości wizualne na pasku zdrowia.
+	/// </summary>
 	private void UpdateHpBar()
 	{
 		if (_hpBar == null) return;
@@ -124,6 +170,9 @@ public partial class Player : CharacterBody2D
 		_hpBar.Value = Health;
 	}
 
+	/// <summary>
+	/// Wykonuje efekt błyśnięcia kolorem podczas otrzymywania obrażeń.
+	/// </summary>
 	private void FlashDamage()
 	{
 		var tween = CreateTween();
@@ -131,34 +180,37 @@ public partial class Player : CharacterBody2D
 		tween.TweenProperty(this, "modulate", new Color(1f, 1f, 1f, 1f), 0.15f);
 	}
 
+	/// <summary>
+	/// Obsługuje śmierć gracza, zatrzymuje grę i wyświetla ekran końcowy.
+	/// </summary>
 	private void Die()
 	{
 		if (_isDead) return;
 		_isDead = true;
 
-		// Wyłącz bronie gracza
 		foreach (var weapon in Weapons)
 			weapon.ProcessMode = ProcessModeEnum.Disabled;
 
-		// Pauzuj całą grę — zatrzymuje przeciwników, spawner, XP orby
 		GetTree().Paused = true;
 
 		var deathScreen = GetTree().CurrentScene.GetNodeOrNull<CanvasLayer>("DeathScreen");
 		if (deathScreen != null)
 		{
-			// DeathScreen musi mieć ProcessMode = Always żeby działał przy pauzie
 			deathScreen.ProcessMode = ProcessModeEnum.Always;
 			deathScreen.Call("ShowDeathScreen", Level, GetKillCount());
 		}
 		else
 		{
-			// Fallback: odpauzuj żeby timer SceneTree zadziałał, potem wróć do menu
 			GetTree().Paused = false;
 			GetTree().CreateTimer(1.5f).Timeout += () =>
 				GetTree().ChangeSceneToFile("res://Scenes/main_menu.tscn");
 		}
 	}
 
+	/// <summary>
+	/// Pobiera łączną liczbę zabójstw ze wszystkich typów przeciwników.
+	/// </summary>
+	/// <returns>Suma zabójstw.</returns>
 	private int GetKillCount()
 	{
 		int total = 0;
@@ -169,6 +221,11 @@ public partial class Player : CharacterBody2D
 
 	// ── Bronie / pasywki ─────────────────────────────────────
 
+	/// <summary>
+	/// Dodaje nową broń do ekwipunku gracza, jeśli jest miejsce.
+	/// </summary>
+	/// <param name="weaponScene">Scena nowej broni.</param>
+	/// <returns>True jeśli broń została dodana, false jeśli ekwipunek jest pełny.</returns>
 	public bool AddWeapon(PackedScene weaponScene)
 	{
 		if (Weapons.Count >= MAX_WEAPONS) return false;
@@ -180,6 +237,11 @@ public partial class Player : CharacterBody2D
 		return true;
 	}
 
+	/// <summary>
+	/// Dodaje lub ulepsza przedmiot pasywny.
+	/// </summary>
+	/// <param name="passive">Dane przedmiotu pasywnego.</param>
+	/// <returns>True jeśli operacja się udała.</returns>
 	public bool AddPassive(PassiveData passive)
 	{
 		if (!passive.CanUpgrade) return false;
@@ -192,6 +254,11 @@ public partial class Player : CharacterBody2D
 		return true;
 	}
 
+	/// <summary>
+	/// Losuje zestaw dostępnych ulepszeń dla ekranu awansu (Level Up).
+	/// </summary>
+	/// <param name="count">Liczba ulepszeń do wylosowania.</param>
+	/// <returns>Lista wylosowanych danych ulepszeń.</returns>
 	public List<UpgradeData> GetUpgradeChoices(int count = 3)
 	{
 		List<UpgradeData> valid = new();
@@ -202,6 +269,9 @@ public partial class Player : CharacterBody2D
 		return valid;
 	}
 
+	/// <summary>
+	/// Przemiesza listę elementów przy użyciu generatora liczb losowych.
+	/// </summary>
 	public void Shuffle<T>(IList<T> list)
 	{
 		var rng = new RandomNumberGenerator();
@@ -212,6 +282,9 @@ public partial class Player : CharacterBody2D
 		}
 	}
 
+	/// <summary>
+	/// Wymusza odświeżenie statystyk wszystkich posiadanych broni.
+	/// </summary>
 	public void RefreshAllWeapons()
 	{
 		foreach (var weapon in Weapons)
@@ -219,6 +292,10 @@ public partial class Player : CharacterBody2D
 	}
 
 	// ── Setup ulepszeń ───────────────────────────────────────
+
+	/// <summary>
+	/// Definiuje bazową pulę ulepszeń pasywnych dostępnych w grze.
+	/// </summary>
 
 	private void SetupUpgrades()
 	{
@@ -359,6 +436,8 @@ public partial class Player : CharacterBody2D
 
 		var ui = GetTree().CurrentScene.GetNodeOrNull<LevelUpUI>("LevelUpUI");
 		ui?.ShowUpgrades(this);
+		
+		Heal(MaxHealth);
 	}
 
 	// ── Ruch ─────────────────────────────────────────────────

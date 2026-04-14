@@ -15,6 +15,14 @@ public partial class KillsUI : CanvasLayer
 	
 	private VBoxContainer _mobGroup;
 	private ScrollContainer _scrollContainer;
+	
+	private readonly string[] _orderedMobIDs = { 
+		"slime", 
+		"vampire", 
+		"skeleton", 
+		"demon", 
+        "golem" 
+	};
 
 	/// <summary>
 	/// Metoda wywoływana po dodaniu węzła do drzewa sceny.
@@ -42,8 +50,8 @@ public partial class KillsUI : CanvasLayer
 	}
 
 	/// <summary>
-	/// Wyświetla UI ze wszystkimi zabójstwami.
-	/// Tworzy wpisy dla każdego przeciwnika i pauzuje grę.
+	/// Wyświetla UI ze wszystkimi zabójstwami w określonej kolejności.
+	/// Tworzy wpisy dla każdego przeciwnika z listy _orderedMobIDs i pauzuje grę.
 	/// </summary>
 	public void ShowKills()
 	{
@@ -57,12 +65,20 @@ public partial class KillsUI : CanvasLayer
 		foreach (Node child in _mobGroup.GetChildren())
 			child.QueueFree();
 		
-		// Dodaj nowe wpisy
-		foreach (var pair in KillManager.Instance.GetAllKills())
+		// Pobierz wszystkie dane o zabójstwach
+		var allKills = KillManager.Instance.GetAllKills();
+		
+		// Dodaj nowe wpisy zgodnie ze zdefiniowaną kolejnością
+		foreach (string mobID in _orderedMobIDs)
 		{
+			// Pobierz liczbę killi lub 0, jeśli dany mob nie został jeszcze zabity
+			int killCount = allKills.ContainsKey(mobID) ? allKills[mobID] : 0;
+
 			var entry = MobEntryScene.Instantiate<MobEntry>();
-			entry.SetData(pair.Key, pair.Value);
 			_mobGroup.AddChild(entry);
+			
+			// Przekaż ID i liczbę killi (SetData zajmie się resztą: teksturą, opisem i rzymską cyfrą)
+			entry.SetData(mobID, killCount);
 		}
 	}
 

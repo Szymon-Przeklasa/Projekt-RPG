@@ -30,19 +30,15 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="Button" type="Button" parent="Panel/VBoxContainer" unique_id=223931184]
+[node name="ResumeButton" type="Button" parent="Panel/VBoxContainer" unique_id=223931184]
 layout_mode = 2
 action_mode = 0
 text = "Resume"
 
-[node name="Button2" type="Button" parent="Panel/VBoxContainer" unique_id=1000047385]
+[node name="RestartButton" type="Button" parent="Panel/VBoxContainer" unique_id=1000047385]
 layout_mode = 2
 text = "Restart"
 
-[node name="Button3" type="Button" parent="Panel/VBoxContainer" unique_id=952206727]
+[node name="QuitButton" type="Button" parent="Panel/VBoxContainer" unique_id=952206727]
 layout_mode = 2
 text = "Exit To Menu"
-
-[connection signal="pressed" from="Panel/VBoxContainer/Button" to="." method="Resume"]
-[connection signal="pressed" from="Panel/VBoxContainer/Button2" to="." method="Restart"]
-[connection signal="pressed" from="Panel/VBoxContainer/Button3" to="." method="QuitToMenu"]
