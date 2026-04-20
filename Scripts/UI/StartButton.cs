@@ -19,7 +19,7 @@ public partial class StartButton : TextureButton
 	/// </summary>
 	private void StartGame()
 	{
-		GetTree().ChangeSceneToFile("res://Scenes/game.tscn");
+		GetTree().ChangeSceneToFile("res://Scenes/UI/weapon_select.tscn");
 	}
 
 	/// <summary>
