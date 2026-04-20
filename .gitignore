@@ -19,3 +19,7 @@ mono_crash.*.json
 .vs/
 /.vs
 /.godot
+export_presets.cfg
+Mango.exe
+Mango.pck
+Mango.console.exe
