@@ -169,8 +169,21 @@ public partial class EnemySpawner : Node2D
 				enemy.XpDrop = Mathf.CeilToInt(wave.EnemyType.XpDrop * xpScale);
 			}
 
+			bool isElite = GD.Randf() < GetEliteChance();
+
+			if (isElite)
+			{
+				enemy.IsElite = true;
+			}
+
 			GetTree().CurrentScene.AddChild(enemy);
 		}
+	}
+
+	private float GetEliteChance()
+	{
+		float minute = _elapsed / 60;
+		return Mathf.Min(0.02f + (minute * 0.005f), 0.20f); // 5% od 5min, max 20%
 	}
 
 	/// <summary>

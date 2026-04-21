@@ -13,14 +13,15 @@ public partial class Enemy : CharacterBody2D
 	[Export] public PackedScene XpOrbScene;
 	[Export] public PackedScene HitParticle;
 
-	private int _health;
+	protected int _health;
 	private Player _player;
 	private float _contactCooldown;
 
 	[Export] public float Speed = 140f;
 	[Export] public int MaxHealth = 100;
 	[Export] public int XpDrop = 1;
-	[Export] public string MobID = "enemy";
+	[Export] public string MobId = "enemy";
+	[Export] public bool IsElite = false;
 
 	public override void _Ready()
 	{
@@ -29,7 +30,7 @@ public partial class Enemy : CharacterBody2D
 			Speed = Stats.Speed;
 			MaxHealth = Stats.MaxHealth;
 			XpDrop = Stats.XpDrop;
-			MobID = Stats.MobID;
+			MobId = Stats.MobID;
 			Scale = new Vector2(Stats.Scale, Stats.Scale);
 		}
 		_health = MaxHealth;
@@ -77,7 +78,7 @@ public partial class Enemy : CharacterBody2D
 
 	private void Die()
 	{
-		GetNode<KillManager>("/root/KillManager").RegisterKill(MobID);
+		GetNode<KillManager>("/root/KillManager").RegisterKill(MobId);
 		DropXp();
 		QueueFree();
 	}
