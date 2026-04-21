@@ -58,9 +58,6 @@ motion_mode = 1
 script = ExtResource("1_4flbx")
 ProjectileScene = ExtResource("2_onrkg")
 Speed = 200
-LightningBeamScene = ExtResource("7_tx1dd")
-MagicMissileProjectileScene = ExtResource("2_onrkg")
-AxeProjectileScene = ExtResource("2_onrkg")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=751756645]
 texture_filter = 1

@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://dth1qcqxp2edf"]
 
 [ext_resource type="Script" uid="uid://l6jwjbv4d8i1" path="res://Scripts/UI/LevelUpUI.cs" id="1_uuhha"]
+[ext_resource type="FontFile" uid="uid://cbbw74cjsiq82" path="res://Textures/Jersey15-Regular.ttf" id="2_k5dan"]
+[ext_resource type="Theme" uid="uid://s013hgfdbvt6" path="res://Textures/NewButton.tres" id="3_dosot"]
 
 [node name="LevelUpUI" type="CanvasLayer" unique_id=1585551123]
 process_mode = 3
@@ -32,17 +34,21 @@ alignment = 1
 
 [node name="Label" type="Label" parent="Panel/VBoxContainer" unique_id=1693275715]
 layout_mode = 2
-text = "level up"
+theme_override_fonts/font = ExtResource("2_k5dan")
+text = "LEVEL UP"
 horizontal_alignment = 1
 
 [node name="Button" type="Button" parent="Panel/VBoxContainer" unique_id=223931184]
 layout_mode = 2
+theme = ExtResource("3_dosot")
 text = "lightning"
 
 [node name="Button2" type="Button" parent="Panel/VBoxContainer" unique_id=1000047385]
 layout_mode = 2
+theme = ExtResource("3_dosot")
 text = "garlic"
 
 [node name="Button3" type="Button" parent="Panel/VBoxContainer" unique_id=952206727]
 layout_mode = 2
+theme = ExtResource("3_dosot")
 text = "attack speed"

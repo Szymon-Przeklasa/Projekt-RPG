@@ -1,12 +1,23 @@
 [gd_scene format=3 uid="uid://653luevkxxg"]
 
 [ext_resource type="Script" uid="uid://dbww58tjtsmrd" path="res://Scripts/UI/PauseMenu.cs" id="1_eod5q"]
+[ext_resource type="Theme" uid="uid://s013hgfdbvt6" path="res://Textures/NewButton.tres" id="2_n4i8v"]
+[ext_resource type="FontFile" uid="uid://cbbw74cjsiq82" path="res://Textures/Jersey15-Regular.ttf" id="3_238ko"]
+[ext_resource type="PackedScene" uid="uid://bv7yb854mjgat" path="res://Scenes/UI/StatsUI.tscn" id="4_2bpff"]
+[ext_resource type="Theme" uid="uid://cntsnfagiqg8m" path="res://Textures/NewButtonOpened.tres" id="4_gdh0q"]
+[ext_resource type="PackedScene" uid="uid://b708qd2l7igbo" path="res://Scenes/UI/CreditsUI.tscn" id="6_djuuc"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_2bpff"]
+font = ExtResource("3_238ko")
+font_size = 25
 
 [node name="PauseMenu" type="CanvasLayer" unique_id=1585551123]
 process_mode = 3
 script = ExtResource("1_eod5q")
 
 [node name="Panel" type="Panel" parent="." unique_id=1477346570]
+z_index = 1
+texture_filter = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -22,23 +33,72 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -53.5
+offset_left = -150.75
 offset_top = -64.0
-offset_right = 53.5
+offset_right = 186.0
 offset_bottom = 64.0
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="ResumeButton" type="Button" parent="Panel/VBoxContainer" unique_id=223931184]
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer" unique_id=68160571]
 layout_mode = 2
-action_mode = 0
-text = "Resume"
 
-[node name="RestartButton" type="Button" parent="Panel/VBoxContainer" unique_id=1000047385]
+[node name="RestartButton" type="Button" parent="Panel/VBoxContainer/HBoxContainer" unique_id=2125231595]
+texture_filter = 1
 layout_mode = 2
+theme = ExtResource("2_n4i8v")
 text = "Restart"
 
-[node name="QuitButton" type="Button" parent="Panel/VBoxContainer" unique_id=952206727]
+[node name="SessionLabel" type="Label" parent="Panel/VBoxContainer/HBoxContainer" unique_id=1300178932]
+texture_filter = 1
 layout_mode = 2
-text = "Exit To Menu"
+size_flags_horizontal = 6
+text = "Session: 0:00:00"
+label_settings = SubResource("LabelSettings_2bpff")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/VBoxContainer" unique_id=1286303075]
+layout_mode = 2
+alignment = 1
+
+[node name="StatsButton" type="Button" parent="Panel/VBoxContainer/HBoxContainer2" unique_id=233385275]
+texture_filter = 1
+custom_minimum_size = Vector2(104, 0)
+layout_mode = 2
+size_flags_horizontal = 2
+theme = ExtResource("4_gdh0q")
+text = "Stats"
+
+[node name="CreditsButton" type="Button" parent="Panel/VBoxContainer/HBoxContainer2" unique_id=1184878475]
+texture_filter = 1
+custom_minimum_size = Vector2(104, 0)
+layout_mode = 2
+size_flags_horizontal = 6
+theme = ExtResource("2_n4i8v")
+text = "Credits"
+
+[node name="QuitButton" type="Button" parent="Panel/VBoxContainer/HBoxContainer2" unique_id=1345791380]
+texture_filter = 1
+custom_minimum_size = Vector2(104, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+theme = ExtResource("2_n4i8v")
+text = "Exit"
+
+[node name="StatsUI" parent="Panel/VBoxContainer" unique_id=241495070 instance=ExtResource("4_2bpff")]
+layout_mode = 2
+
+[node name="CreditsUI" parent="Panel/VBoxContainer" unique_id=86404084 instance=ExtResource("6_djuuc")]
+visible = false
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1279293290]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+color = Color(0, 0, 0, 0.25490198)

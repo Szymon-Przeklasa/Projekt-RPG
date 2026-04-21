@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://b708qd2l7igbo"]
+
+[ext_resource type="FontFile" uid="uid://cbbw74cjsiq82" path="res://Textures/Jersey15-Regular.ttf" id="1_pqen0"]
+[ext_resource type="Texture2D" uid="uid://cir28nlqpuyr2" path="res://Textures/github icon.png" id="2_dxj52"]
+
+[node name="CreditsUI" type="HBoxContainer" unique_id=241495070]
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -168.375
+offset_top = -100.0
+offset_right = 255.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LeftColumn" type="HBoxContainer" parent="." unique_id=1666229417]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="DevInfo" type="VBoxContainer" parent="LeftColumn" unique_id=252684858]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
+
+[node name="Developers" type="Label" parent="LeftColumn/DevInfo" unique_id=1688239743]
+texture_filter = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_pqen0")
+theme_override_font_sizes/font_size = 25
+text = "Developers:"
+horizontal_alignment = 1
+
+[node name="Filip Kubiś" type="Label" parent="LeftColumn/DevInfo" unique_id=1826078585]
+texture_filter = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_pqen0")
+theme_override_font_sizes/font_size = 25
+text = "Filip Kubiś"
+horizontal_alignment = 1
+
+[node name="Szymon Przeklasa" type="Label" parent="LeftColumn/DevInfo" unique_id=1270098304]
+texture_filter = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_pqen0")
+theme_override_font_sizes/font_size = 25
+text = "Szymon Przeklasa"
+horizontal_alignment = 1
+
+[node name="RightColumn" type="HBoxContainer" parent="." unique_id=1087771283]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="GithubInfo" type="VBoxContainer" parent="RightColumn" unique_id=114525089]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 0
+
+[node name="Github" type="Label" parent="RightColumn/GithubInfo" unique_id=718193984]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_pqen0")
+theme_override_font_sizes/font_size = 25
+text = "Github:"
+horizontal_alignment = 1
+
+[node name="GithubIcon" type="TextureButton" parent="RightColumn/GithubInfo" unique_id=1701797498]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+texture_normal = ExtResource("2_dxj52")
+stretch_mode = 0

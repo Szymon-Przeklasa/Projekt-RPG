@@ -6,7 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://dth1qcqxp2edf" path="res://Scenes/UI/LevelUpUI.tscn" id="5_i6g32"]
 [ext_resource type="Texture2D" uid="uid://bt1wjbh02wu82" path="res://Textures/c9_image_1(1).png" id="5_v158k"]
 [ext_resource type="PackedScene" uid="uid://djtc02vuy3ydt" path="res://Scenes/Environment/enemy_spawner.tscn" id="5_wowpa"]
-[ext_resource type="FontFile" uid="uid://bbv5li714o8fv" path="res://Textures/BreatheFire-65pg.ttf" id="6_nnt18"]
+[ext_resource type="FontFile" uid="uid://cbbw74cjsiq82" path="res://Textures/Jersey15-Regular.ttf" id="6_85qyi"]
+[ext_resource type="Theme" uid="uid://c54hve0drf6on" path="res://Textures/XPBar.tres" id="7_iivbl"]
 [ext_resource type="Script" uid="uid://e7moyouwnt5y" path="res://Scripts/Enemies/WaveDefinition.cs" id="8_1phco"]
 [ext_resource type="PackedScene" path="res://Scenes/UI/EquipmentUI.tscn" id="8_ewbju"]
 [ext_resource type="Resource" uid="uid://xgbi5851k1vn" path="res://Data/Waves/SlimeWave.tres" id="9_nb51f"]
@@ -11238,10 +11239,12 @@ physics_layer_0/collision_layer = 1
 sources/6 = SubResource("TileSetAtlasSource_1phco")
 sources/1 = SubResource("TileSetAtlasSource_h4fw4")
 
-[sub_resource type="Theme" id="Theme_v158k"]
+[sub_resource type="LabelSettings" id="LabelSettings_7nbq1"]
+font = ExtResource("6_85qyi")
+font_size = 22
 
 [sub_resource type="LabelSettings" id="LabelSettings_1phco"]
-font = ExtResource("6_nnt18")
+font = ExtResource("6_85qyi")
 font_size = 25
 
 [node name="Game" type="Node2D" unique_id=581274643]
@@ -11267,15 +11270,6 @@ collision_mask = 3
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=27451881]
 
-[node name="XPBar" type="ProgressBar" parent="CanvasLayer" unique_id=893445372]
-offset_left = 8.0
-offset_top = 4.0
-offset_right = 1144.0
-offset_bottom = 16.0
-theme = SubResource("Theme_v158k")
-step = 1.0
-show_percentage = false
-
 [node name="HPBar" type="ProgressBar" parent="CanvasLayer" unique_id=1772653588]
 z_index = 2
 anchors_preset = 1
@@ -11290,11 +11284,30 @@ theme = ExtResource("3_i6g32")
 value = 100.0
 show_percentage = false
 
+[node name="Label" type="Label" parent="CanvasLayer/HPBar" unique_id=646102288]
+texture_filter = 1
+layout_mode = 0
+offset_top = -4.0
+offset_right = 259.0
+offset_bottom = 19.0
+text = "100/100"
+label_settings = SubResource("LabelSettings_7nbq1")
+horizontal_alignment = 1
+
+[node name="XPBar" type="ProgressBar" parent="CanvasLayer" unique_id=893445372]
+offset_left = 884.0
+offset_top = 301.0
+offset_right = 1143.0
+offset_bottom = 310.0
+theme = ExtResource("7_iivbl")
+step = 1.0
+show_percentage = false
+
 [node name="Timer" type="Label" parent="CanvasLayer" unique_id=711731654]
-offset_left = 1066.0
-offset_top = 302.0
-offset_right = 1142.0
-offset_bottom = 337.0
+offset_left = 1067.0
+offset_top = 312.0
+offset_right = 1143.0
+offset_bottom = 347.0
 size_flags_horizontal = 8
 text = "00:00"
 label_settings = SubResource("LabelSettings_1phco")
@@ -11321,6 +11334,13 @@ script = ExtResource("14_1phco")
 [node name="Camera2D" type="Camera2D" parent="CanvasLayer/SubViewportContainer/SubViewport" unique_id=221894687]
 zoom = Vector2(0.5, 0.5)
 
+[node name="Line2D" type="Line2D" parent="CanvasLayer/SubViewportContainer" unique_id=1105148478]
+position = Vector2(3, 0)
+points = PackedVector2Array(-2, 0, 248, 0, 248, 250, -4, 250, -4, 0)
+closed = true
+width = 3.0
+default_color = Color(0.48962224, 0.48962224, 0.48962218, 1)
+
 [node name="EquipmentUI" parent="CanvasLayer" unique_id=100000001 instance=ExtResource("8_ewbju")]
 layout_mode = 3
 anchors_preset = 12
@@ -11337,5 +11357,6 @@ SpawnRadius = 1000.0
 Waves = Array[ExtResource("8_1phco")]([ExtResource("9_nb51f"), ExtResource("11_ewbju"), ExtResource("10_nnt18"), ExtResource("13_iivbl"), ExtResource("12_85qyi")])
 
 [node name="LevelUpUI" parent="." unique_id=1585551123 instance=ExtResource("5_i6g32")]
+visible = false
 
 [node name="PauseMenu" parent="." unique_id=1224407210 instance=ExtResource("15_nb51f")]

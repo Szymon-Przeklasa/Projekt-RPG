@@ -1,0 +1,174 @@
+[gd_scene format=3 uid="uid://bv7yb854mjgat"]
+
+[ext_resource type="FontFile" uid="uid://cbbw74cjsiq82" path="res://Textures/Jersey15-Regular.ttf" id="1_7bihg"]
+[ext_resource type="Texture2D" uid="uid://d313w75h4lq3g" path="res://Textures/c9_image_1.png" id="2_4w0m6"]
+[ext_resource type="Theme" uid="uid://ds41rngcik3ng" path="res://Textures/WeaponBar.tres" id="2_5sn1j"]
+[ext_resource type="Texture2D" uid="uid://48w1q8skg11k" path="res://Textures/Sprite-Experience_Gem.png" id="3_kntte"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cor7i"]
+atlas = ExtResource("2_4w0m6")
+region = Rect2(394, 460, 22, 22)
+
+[node name="StatsUI" type="HBoxContainer" unique_id=241495070]
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -168.375
+offset_top = -100.0
+offset_right = 255.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LeftColumn" type="HBoxContainer" parent="." unique_id=1666229417]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="StatNames" type="VBoxContainer" parent="LeftColumn" unique_id=252684858]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
+
+[node name="Level" type="Label" parent="LeftColumn/StatNames" unique_id=1688239743]
+texture_filter = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_7bihg")
+theme_override_font_sizes/font_size = 25
+text = "Level:"
+
+[node name="XP" type="Label" parent="LeftColumn/StatNames" unique_id=1826078585]
+texture_filter = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_7bihg")
+theme_override_font_sizes/font_size = 25
+text = "XP:"
+
+[node name="StatValues" type="VBoxContainer" parent="LeftColumn" unique_id=985830857]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="LeftColumn/StatValues" unique_id=158877905]
+layout_mode = 2
+
+[node name="LevelValue" type="Label" parent="LeftColumn/StatValues/HBoxContainer" unique_id=1311265769]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_fonts/font = ExtResource("1_7bihg")
+theme_override_font_sizes/font_size = 25
+text = "0"
+horizontal_alignment = 2
+
+[node name="LevelIcon" type="TextureRect" parent="LeftColumn/StatValues/HBoxContainer" unique_id=907939614]
+texture_filter = 1
+layout_mode = 2
+texture = SubResource("AtlasTexture_cor7i")
+expand_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="LeftColumn/StatValues" unique_id=663656609]
+layout_mode = 2
+
+[node name="XPValue" type="Label" parent="LeftColumn/StatValues/HBoxContainer2" unique_id=893298628]
+texture_filter = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_7bihg")
+theme_override_font_sizes/font_size = 25
+text = "0/0"
+
+[node name="XPIcon" type="TextureRect" parent="LeftColumn/StatValues/HBoxContainer2" unique_id=246517881]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("3_kntte")
+expand_mode = 2
+
+[node name="RightColumn" type="VBoxContainer" parent="." unique_id=679530446]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="FireWand" type="VBoxContainer" parent="RightColumn" unique_id=340544501]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="RightColumn/FireWand" unique_id=474025980]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_7bihg")
+theme_override_font_sizes/font_size = 25
+text = "Fire Wand"
+
+[node name="ProgressBar" type="ProgressBar" parent="RightColumn/FireWand" unique_id=655275817]
+layout_mode = 2
+theme = ExtResource("2_5sn1j")
+max_value = 8.0
+step = 1.0
+show_percentage = false
+
+[node name="Lightning" type="VBoxContainer" parent="RightColumn" unique_id=1217898574]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="RightColumn/Lightning" unique_id=47961033]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_7bihg")
+theme_override_font_sizes/font_size = 25
+text = "Lightning"
+
+[node name="ProgressBar" type="ProgressBar" parent="RightColumn/Lightning" unique_id=594135344]
+layout_mode = 2
+theme = ExtResource("2_5sn1j")
+max_value = 8.0
+step = 1.0
+show_percentage = false
+
+[node name="Garlic" type="VBoxContainer" parent="RightColumn" unique_id=1622664656]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="RightColumn/Garlic" unique_id=715738174]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_7bihg")
+theme_override_font_sizes/font_size = 25
+text = "Garlic"
+
+[node name="ProgressBar" type="ProgressBar" parent="RightColumn/Garlic" unique_id=230086142]
+layout_mode = 2
+theme = ExtResource("2_5sn1j")
+max_value = 8.0
+step = 1.0
+show_percentage = false
+
+[node name="Magic Missle" type="VBoxContainer" parent="RightColumn" unique_id=97715961]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="RightColumn/Magic Missle" unique_id=999934301]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_7bihg")
+theme_override_font_sizes/font_size = 25
+text = "Magic Missle"
+
+[node name="ProgressBar" type="ProgressBar" parent="RightColumn/Magic Missle" unique_id=1673771217]
+layout_mode = 2
+theme = ExtResource("2_5sn1j")
+max_value = 8.0
+step = 1.0
+show_percentage = false
+
+[node name="Axe" type="VBoxContainer" parent="RightColumn" unique_id=259847144]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="RightColumn/Axe" unique_id=1025277946]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_7bihg")
+theme_override_font_sizes/font_size = 25
+text = "Axe"
+
+[node name="ProgressBar" type="ProgressBar" parent="RightColumn/Axe" unique_id=1431604458]
+layout_mode = 2
+theme = ExtResource("2_5sn1j")
+max_value = 8.0
+step = 1.0
+show_percentage = false

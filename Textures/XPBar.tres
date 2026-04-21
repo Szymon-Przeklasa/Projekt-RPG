@@ -1,4 +1,4 @@
-[gd_resource type="Theme" format=3 uid="uid://disof3rnrc5mc"]
+[gd_resource type="Theme" format=3 uid="uid://c54hve0drf6on"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wowpa"]
 bg_color = Color(0.37413925, 0.37413928, 0.37413922, 1)
@@ -6,19 +6,19 @@ border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color(0.2231029, 0.2231029, 0.22310287, 1)
+border_color = Color(0.22352941, 0.22352941, 0.22352941, 1)
 corner_detail = 1
 shadow_color = Color(0.47843137, 0.47843137, 0.47843137, 0.5568628)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i6g32"]
-bg_color = Color(0.8117647, 0.19607843, 0.19607843, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i8hs4"]
+bg_color = Color(0.7607843, 0.7647059, 0.7607843, 1)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color(0.3779188, 0.37791887, 0.37791884, 1)
-corner_detail = 4
+border_color = Color(0.22352941, 0.22352941, 0.22352941, 1)
+corner_detail = 1
 
 [resource]
 ProgressBar/styles/background = SubResource("StyleBoxFlat_wowpa")
-ProgressBar/styles/fill = SubResource("StyleBoxFlat_i6g32")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_i8hs4")
