@@ -7,8 +7,10 @@
 [ext_resource type="Script" uid="uid://dbo4rnc0ylwwr" path="res://Weapons/WeaponStats.cs" id="4_3smsa"]
 [ext_resource type="Script" uid="uid://b5gyq3cwvf1fv" path="res://Scripts/PlayerWeapons/Garlic.cs" id="4_fkybt"]
 [ext_resource type="Script" uid="uid://38jsvpaqn2i3" path="res://Scripts/PlayerWeapons/Lightning.cs" id="5_fkybt"]
+[ext_resource type="PackedScene" path="res://Scenes/PlayerWeapons/magic_missile_projectile.tscn" id="6_r0f3n"]
 [ext_resource type="Script" uid="uid://cm7tkql28sr1a" path="res://Scripts/PlayerWeapons/Magnet.cs" id="7_3smsa"]
 [ext_resource type="PackedScene" uid="uid://cvbewtyx8tg0k" path="res://Scenes/PlayerWeapons/lightning_beam.tscn" id="7_tx1dd"]
+[ext_resource type="PackedScene" path="res://Scenes/PlayerWeapons/axe_projectile.tscn" id="8_a1k7h"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gymyn"]
 atlas = ExtResource("3_tx1dd")
@@ -57,7 +59,10 @@ collision_mask = 2
 motion_mode = 1
 script = ExtResource("1_4flbx")
 ProjectileScene = ExtResource("2_onrkg")
-Speed = 200
+MagicMissileProjectileScene = ExtResource("6_r0f3n")
+AxeProjectileScene = ExtResource("8_a1k7h")
+Speed = 210
+InvincibilityTime = 0.28
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=751756645]
 texture_filter = 1

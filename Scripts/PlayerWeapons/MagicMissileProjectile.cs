@@ -13,6 +13,9 @@ public partial class MagicMissileProjectile : Projectile
     /// </summary>
     public Node2D Target;
 
+    public float TurnRate = 5.5f;
+    public float ReacquireRange = 180f;
+
     /// <summary>
     /// Maksymalny czas życia pocisku (w sekundach).
     /// Po jego upływie pocisk znika.
@@ -37,17 +40,42 @@ public partial class MagicMissileProjectile : Projectile
         }
 
         // Naprowadzanie na cel (jeśli istnieje i jest poprawny)
+        if (Target == null || !IsInstanceValid(Target))
+        {
+            Target = FindClosestEnemy();
+        }
+
         if (Target != null && IsInstanceValid(Target))
         {
             Vector2 toTarget = (Target.GlobalPosition - GlobalPosition).Normalized();
 
-            // Płynna zmiana kierunku (homing)
             Direction = Direction
-                .Lerp(toTarget, 3f * (float)delta)
+                .Lerp(toTarget, TurnRate * (float)delta)
                 .Normalized();
         }
 
-        // Ruch pocisku
-        GlobalPosition += Direction * RuntimeSpeed * (float)delta;
+        Rotation = Direction.Angle();
+        Advance(Direction * RuntimeSpeed * (float)delta);
+    }
+
+    private Node2D FindClosestEnemy()
+    {
+        Node2D closest = null;
+        float bestDist = ReacquireRange;
+
+        foreach (Node node in GetTree().GetNodesInGroup("enemies"))
+        {
+            if (node is not Node2D enemy)
+                continue;
+
+            float dist = GlobalPosition.DistanceTo(enemy.GlobalPosition);
+            if (dist < bestDist)
+            {
+                bestDist = dist;
+                closest = enemy;
+            }
+        }
+
+        return closest;
     }
 }

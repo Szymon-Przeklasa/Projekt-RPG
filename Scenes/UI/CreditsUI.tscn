@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://b708qd2l7igbo"]
 
+[ext_resource type="Script" path="res://Scripts/UI/CreditsUI.cs" id="1_0u50c"]
 [ext_resource type="FontFile" uid="uid://cbbw74cjsiq82" path="res://Textures/Jersey15-Regular.ttf" id="1_pqen0"]
 [ext_resource type="Texture2D" uid="uid://cir28nlqpuyr2" path="res://Textures/github icon.png" id="2_dxj52"]
 
@@ -16,6 +17,7 @@ offset_right = 255.0
 offset_bottom = 100.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_0u50c")
 
 [node name="LeftColumn" type="HBoxContainer" parent="." unique_id=1666229417]
 texture_filter = 1

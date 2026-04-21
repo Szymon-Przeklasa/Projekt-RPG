@@ -24,8 +24,8 @@ public partial class PauseMenu : CanvasLayer
 	/// <summary>Zmienna Labela czasu sesji gry.</summary>
 	private Label _sessionLabel;
 	
-	private HBoxContainer _statsUI;
-	private HBoxContainer _creditsUI;
+	private StatsUI _statsUI;
+	private CreditsUI _creditsUI;
 	private Theme _normalTheme;
 	private Theme _openedTheme;
 
@@ -54,8 +54,8 @@ public partial class PauseMenu : CanvasLayer
 		
 		_sessionLabel = GetNode<Label>("Panel/VBoxContainer/HBoxContainer/SessionLabel");
 		
-		_statsUI = GetNode<HBoxContainer>("Panel/VBoxContainer/StatsUI");
-		_creditsUI = GetNode<HBoxContainer>("Panel/VBoxContainer/CreditsUI");
+		_statsUI = GetNode<StatsUI>("Panel/VBoxContainer/StatsUI");
+		_creditsUI = GetNode<CreditsUI>("Panel/VBoxContainer/CreditsUI");
 		_normalTheme = GD.Load<Theme>("res://Textures/NewButton.tres");
 		_openedTheme = GD.Load<Theme>("res://Textures/NewButtonOpened.tres");
 		
@@ -65,6 +65,7 @@ public partial class PauseMenu : CanvasLayer
 		_quitButton.Pressed += QuitToMenu;
 
 		_player = GetTree().GetFirstNodeInGroup("player") as Player;
+		OpenStats();
 	}
 
 	// ── Obsługa klawisza ESC ──────────────────────────────────
@@ -101,6 +102,8 @@ public partial class PauseMenu : CanvasLayer
 		Visible = true;
 
 		SetWeaponsProcessMode(ProcessModeEnum.Disabled);
+		_statsUI.Refresh(_player);
+		OpenStats();
 	}
 
 	// ── Wznowienie ────────────────────────────────────────────
@@ -152,9 +155,11 @@ public partial class PauseMenu : CanvasLayer
 		_statsButton.Theme = _openedTheme;
 		_creditsButton.Theme = _normalTheme;
 
+		_statsUI.Refresh(_player);
 		_statsUI.Visible = true;
 		_creditsUI.Visible = false;
 	}
+
 	private void OpenCredits()
 	{
 		_statsButton.Theme = _normalTheme;
@@ -181,14 +186,18 @@ public partial class PauseMenu : CanvasLayer
 	public override void _Process(double delta)
 	{
 		if (_sessionLabel == null)
-		return;
+			return;
 
-		double time = Time.GetTicksMsec() / 1000.0;
+		if (!GetTree().Paused)
+			_sessionT += delta;
 
-		int hours = (int)time / 3600;
-		int minutes = ((int)time % 3600) / 60;
-		int seconds = (int)time % 60;
+		int hours = (int)_sessionT / 3600;
+		int minutes = ((int)_sessionT % 3600) / 60;
+		int seconds = (int)_sessionT % 60;
 
 		_sessionLabel.Text = $"Session: {hours:00}:{minutes:00}:{seconds:00}";
+
+		if (Visible)
+			_statsUI.Refresh(_player);
 	}
 }

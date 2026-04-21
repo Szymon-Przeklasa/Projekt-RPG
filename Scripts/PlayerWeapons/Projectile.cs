@@ -37,6 +37,13 @@ public partial class Projectile : Area2D
 	protected string SourceWeapon = "Projectile";
 
 	/// <summary>
+	/// Maksymalny dystans, jaki pocisk może przebyć.
+	/// </summary>
+	protected float MaxTravelDistance;
+
+	private float _travelledDistance;
+
+	/// <summary>
 	/// Inicjalizuje pocisk.
 	/// Pozwala nadpisać obrażenia i prędkość (np. po uwzględnieniu mnożników gracza).
 	/// </summary>
@@ -49,11 +56,13 @@ public partial class Projectile : Area2D
 	{
 		Direction = dir;
 		Stats = stats;
+		_travelledDistance = 0f;
 
 		PierceLeft = stats.Pierce;
 
 		RuntimeDamage = damage < 0 ? stats.Damage : damage;
 		RuntimeSpeed = speed < 0 ? stats.Speed : speed;
+		MaxTravelDistance = Mathf.Max(40f, stats.Range);
 
 		SourceWeapon = weaponName;
 	}
@@ -71,7 +80,21 @@ public partial class Projectile : Area2D
 	/// </summary>
 	public override void _PhysicsProcess(double delta)
 	{
-		GlobalPosition += Direction * RuntimeSpeed * (float)delta;
+		Advance(Direction * RuntimeSpeed * (float)delta);
+	}
+
+	protected bool Advance(Vector2 movement)
+	{
+		GlobalPosition += movement;
+		_travelledDistance += movement.Length();
+
+		if (_travelledDistance >= MaxTravelDistance)
+		{
+			QueueFree();
+			return false;
+		}
+
+		return true;
 	}
 
 	/// <summary>

@@ -12,11 +12,11 @@ public partial class EnemySpawner : Node2D
 
 	[Export] public TileMapLayer SpawnMap;
 	[Export] public float SpawnRadius = 1200f;
-	[Export] public float MinPlayerDistance = 400f;
+	[Export] public float MinPlayerDistance = 340f;
 	[Export] public Godot.Collections.Array<WaveDefinition> Waves = new();
 
 	/// <summary>Maksymalna liczba aktywnych wrogów na scenie jednocześnie.</summary>
-	[Export] public int MaxEnemies = 240;
+	[Export] public int MaxEnemies = 360;
 
 	/// <summary>Maksymalna liczba XP orbów na scenie (starsze usuwane).</summary>
 	[Export] public int MaxXpOrbs = 300;
@@ -124,14 +124,14 @@ public partial class EnemySpawner : Node2D
 		float multiplier;
 
 		if (minute < 5f)
-			multiplier = 1f - minute * 0.04f;           // -4% / min → 80% @ 5min
+			multiplier = 1f - minute * 0.05f;              // 75% @ 5min
 		else if (minute < 10f)
-			multiplier = 0.8f - (minute - 5f) * 0.06f; // dodatkowe -6% / min → 50% @ 10min
+			multiplier = 0.75f - (minute - 5f) * 0.05f;    // 50% @ 10min
 		else
-			multiplier = 0.5f - (minute - 10f) * 0.025f; // dodatkowe -2.5% / min → 25% @ 20min
+			multiplier = 0.50f - (minute - 10f) * 0.022f;  // 28% @ 20min
 
-		multiplier = Mathf.Max(0.15f, multiplier);
-		return Mathf.Max(0.2f, wave.BaseInterval * multiplier);
+		multiplier = Mathf.Max(0.22f, multiplier);
+		return Mathf.Max(0.25f, wave.BaseInterval * multiplier);
 	}
 
 	// ── Spawnowanie przeciwników ──────────────────────────────
@@ -163,8 +163,8 @@ public partial class EnemySpawner : Node2D
 			if (enemy.Stats != null)
 			{
 				// Skalowanie HP i XP z czasem — łagodniejsza krzywa
-				float hpScale = 1f + minute * 0.06f;   // +6%/min → 2.2x @ 20min
-				float xpScale = 1f + minute * 0.04f;   // +4%/min → 1.8x @ 20min
+				float hpScale = 1f + minute * 0.04f;   // +4%/min → 1.8x @ 20min
+				float xpScale = 1f + minute * 0.06f;   // +6%/min → 2.2x @ 20min
 				enemy.MaxHealth = Mathf.RoundToInt(wave.EnemyType.MaxHealth * hpScale);
 				enemy.XpDrop = Mathf.CeilToInt(wave.EnemyType.XpDrop * xpScale);
 			}
@@ -192,12 +192,16 @@ public partial class EnemySpawner : Node2D
 	private int CalculateBatchSize(WaveDefinition wave, float minute)
 	{
 		int extra;
-		if (minute < 5f)
+		if (minute < 2.5f)
 			extra = 0;
-		else if (minute < 10f)
-			extra = Mathf.FloorToInt((minute - 5f) * 0.4f);  // +0.4/min
+		else if (minute < 5f)
+			extra = 1;
+		else if (minute < 8f)
+			extra = 1 + Mathf.FloorToInt((minute - 5f) * 0.35f);
+		else if (minute < 14f)
+			extra = 2 + Mathf.FloorToInt((minute - 8f) * 0.5f);
 		else
-			extra = 2 + Mathf.FloorToInt((minute - 10f) * 0.8f); // +0.8/min od 10 min
+			extra = 5 + Mathf.FloorToInt((minute - 14f) * 0.65f);
 
 		return wave.BatchSize + extra;
 	}

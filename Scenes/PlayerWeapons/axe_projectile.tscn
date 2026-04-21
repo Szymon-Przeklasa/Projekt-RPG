@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://b065wksrtqxy3"]
+
+[ext_resource type="Script" uid="uid://dcl1xbilkq510" path="res://Scripts/PlayerWeapons/AxeProjectile.cs" id="1_axproj"]
+[ext_resource type="Texture2D" uid="uid://c35bg4y5ri888" path="res://Textures/c10_image_1.png" id="2_tex"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_axe"]
+atlas = ExtResource("2_tex")
+region = Rect2(721, 467, 9, 11)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_axe"]
+radius = 8.0
+
+[node name="AxeProjectile" type="Area2D" unique_id=1281026417]
+z_index = 2
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_axproj")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1393361232]
+texture_filter = 1
+rotation = 0.7853982
+scale = Vector2(0.9, 0.9)
+texture = SubResource("AtlasTexture_axe")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=452746109]
+texture_filter = 1
+shape = SubResource("CircleShape2D_axe")

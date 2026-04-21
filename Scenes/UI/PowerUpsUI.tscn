@@ -1,0 +1,101 @@
+[gd_scene format=3 uid="uid://dkce5eh22cx7n"]
+
+[ext_resource type="Script" uid="uid://bwetv2go3o2sk" path="res://Scripts/UI/PowerUpsUI.cs" id="1_ui"]
+[ext_resource type="FontFile" uid="uid://cbbw74cjsiq82" path="res://Textures/Jersey15-Regular.ttf" id="2_font"]
+[ext_resource type="Theme" uid="uid://s013hgfdbvt6" path="res://Textures/NewButton.tres" id="3_theme"]
+
+[sub_resource type="Theme" id="Theme_4ptjy"]
+default_font = ExtResource("2_font")
+
+[sub_resource type="Theme" id="Theme_wavjd"]
+default_font = ExtResource("2_font")
+
+[node name="PowerUpsUI" type="CanvasLayer" unique_id=101607333]
+process_mode = 3
+script = ExtResource("1_ui")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1727657105]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.7)
+
+[node name="Panel" type="Panel" parent="." unique_id=106939223]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -260.0
+offset_top = -220.0
+offset_right = 260.0
+offset_bottom = 220.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel" unique_id=81725403]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = 24.0
+offset_right = -24.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 12
+
+[node name="Title" type="Label" parent="Panel/VBoxContainer" unique_id=1994900527]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 28
+text = "POWER UPS"
+horizontal_alignment = 1
+
+[node name="WeaponsTitle" type="Label" parent="Panel/VBoxContainer" unique_id=1207871126]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 22
+text = "Starter Weapons"
+
+[node name="WeaponsInfo" type="RichTextLabel" parent="Panel/VBoxContainer" unique_id=852305535]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+theme = SubResource("Theme_4ptjy")
+bbcode_enabled = true
+text = "[b]Fire Wand[/b]  Homing projectile starter.
+[b]Lightning[/b]  Chain damage for groups.
+[b]Garlic[/b]  Aura damage around the player.
+[b]Magic Missile[/b]  Easy tracking projectile.
+[b]Axe[/b]  Heavy arc throw for single targets."
+fit_content = true
+scroll_active = false
+
+[node name="PassivesTitle" type="Label" parent="Panel/VBoxContainer" unique_id=1240096434]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 22
+text = "Passives"
+
+[node name="PassivesInfo" type="RichTextLabel" parent="Panel/VBoxContainer" unique_id=381167877]
+custom_minimum_size = Vector2(0, 110)
+layout_mode = 2
+theme = SubResource("Theme_wavjd")
+bbcode_enabled = true
+text = "[b]Spinach[/b]  Damage up.
+[b]Pummarola[/b]  Cooldown reduction.
+[b]Hollow Heart[/b]  Area up.
+[b]Bracer[/b]  Projectile speed up.
+[b]Wings[/b]  Movement speed up."
+fit_content = true
+scroll_active = false
+
+[node name="CloseButton" type="Button" parent="Panel/VBoxContainer" unique_id=97354566]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+theme = ExtResource("3_theme")
+text = "Close"
+
+[connection signal="gui_input" from="ColorRect" to="." method="OnBackgroundInput"]

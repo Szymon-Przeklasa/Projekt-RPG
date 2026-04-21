@@ -116,3 +116,12 @@ theme = ExtResource("3_hmnkp")
 theme_override_colors/font_color = Color(0.2, 1, 0.4, 1)
 theme_override_font_sizes/font_size = 22
 text = "▶  START"
+
+[node name="BackButton" type="Button" parent="CenterContainer" unique_id=196081034]
+texture_filter = 1
+custom_minimum_size = Vector2(400, 45)
+layout_mode = 2
+theme = ExtResource("3_hmnkp")
+theme_override_colors/font_color = Color(0.9, 0.9, 0.9, 1)
+theme_override_font_sizes/font_size = 18
+text = "◀  BACK"

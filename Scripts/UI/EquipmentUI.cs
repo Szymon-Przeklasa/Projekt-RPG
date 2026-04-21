@@ -19,7 +19,7 @@ public partial class EquipmentUI : HBoxContainer
 		{ "Garlic",       "🧄GR" },
 		{ "Magnet",       "🧲MG" },
 		{ "MagicMissile", "✨MM" },
-		{ "AxeProjectile","🪓AX" },
+		{ "Axe",          "🪓AX" },
 	};
 
 	private static readonly Dictionary<string, string> PassiveShort = new()
@@ -79,25 +79,21 @@ public partial class EquipmentUI : HBoxContainer
 	{
 		ClearChildren(_passivesContainer);
 
-		// Zbierz posiadane pasywki z ich poziomami
-		var passiveMap = new Dictionary<string, int>();
+		var ownedPassives = new List<KeyValuePair<string, int>>();
 		foreach (var upg in player.AvailableUpgrades)
 		{
 			if (upg.Type == UpgradeType.Passive && upg.Level > 0)
-				passiveMap[upg.Name] = upg.Level;
+				ownedPassives.Add(new KeyValuePair<string, int>(upg.Name, upg.Level));
 		}
 
-		int shown = 0;
 		for (int i = 0; i < Player.MAX_PASSIVES; i++)
 		{
 			var slot = MakeSlot();
-			if (shown < passiveMap.Count)
+			if (i < ownedPassives.Count)
 			{
-				var keys = new List<string>(passiveMap.Keys);
-				string name = keys[shown];
+				string name = ownedPassives[i].Key;
 				string label = PassiveShort.TryGetValue(name, out var s) ? s : name[..2];
-				SetSlotActive(slot, label, passiveMap[name]);
-				shown++;
+				SetSlotActive(slot, label, ownedPassives[i].Value);
 			}
 			_passivesContainer.AddChild(slot);
 		}

@@ -1,4 +1,5 @@
 using Godot;
+using System.Collections.Generic;
 
 /// <summary>
 /// Klasa bazowa dla wszystkich broni.
@@ -65,6 +66,55 @@ public abstract partial class Weapon : Node
 	/// Oblicza aktualną prędkość pocisków z uwzględnieniem mnożnika.
 	/// </summary>
 	protected float GetSpeed() => Stats.Speed * Player.ProjectileSpeedMultiplier;
+
+	/// <summary>
+	/// Zwraca pozycję celu dla przeciwnika. Używa markera Center jeśli istnieje.
+	/// </summary>
+	protected Vector2 GetAimPosition(Node2D target)
+	{
+		if (target == null)
+			return Vector2.Zero;
+
+		var center = target.GetNodeOrNull<Marker2D>("Center");
+		return center != null ? center.GlobalPosition : target.GlobalPosition;
+	}
+
+	/// <summary>
+	/// Zwraca kilku najbliższych przeciwników w zasięgu, posortowanych po dystansie.
+	/// </summary>
+	protected List<Node2D> GetClosestEnemies(float range, int count, Vector2? fromPosition = null)
+	{
+		var origin = fromPosition ?? Player.GlobalPosition;
+		var candidates = new List<Node2D>();
+
+		foreach (Node node in GetTree().GetNodesInGroup("enemies"))
+		{
+			if (node is not Node2D enemy)
+				continue;
+
+			if (origin.DistanceTo(GetAimPosition(enemy)) <= range)
+				candidates.Add(enemy);
+		}
+
+		candidates.Sort((a, b) =>
+			origin.DistanceSquaredTo(GetAimPosition(a)).CompareTo(origin.DistanceSquaredTo(GetAimPosition(b))));
+
+		if (count > 0 && candidates.Count > count)
+			candidates.RemoveRange(count, candidates.Count - count);
+
+		return candidates;
+	}
+
+	/// <summary>
+	/// Zwraca wycentrowane przesunięcie dla wachlarza pocisków.
+	/// </summary>
+	protected float GetCenteredOffset(int index, int total, float step)
+	{
+		if (total <= 1)
+			return 0f;
+
+		return (index - (total - 1) * 0.5f) * step;
+	}
 
 	/// <summary>
 	/// Metoda abstrakcyjna wywoływana przy każdym strzale.

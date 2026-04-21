@@ -6,35 +6,24 @@ public partial class Axe : Weapon
 
     protected override void Fire()
     {
-        var enemy = Player.GetClosestEnemy(GetRange());
-        if (enemy == null) return;
         if (ProjectileScene == null) return;
 
-        Vector2 dir = (enemy.GlobalPosition - Player.GlobalPosition).Normalized();
+        int projectileCount = Mathf.Max(1, Stats.ProjectileCount);
+        var targets = GetClosestEnemies(GetRange(), Mathf.Max(1, projectileCount), Player.ShootPoint.GlobalPosition);
+        if (targets.Count == 0) return;
 
-        for (int i = 0; i < Stats.ProjectileCount; i++)
+        for (int i = 0; i < projectileCount; i++)
         {
+            var target = targets[i % targets.Count];
+            Vector2 dir = (GetAimPosition(target) - Player.ShootPoint.GlobalPosition).Normalized();
             var p = ProjectileScene.Instantiate<AxeProjectile>();
-            p.GlobalPosition = Player.ShootPoint.GlobalPosition;
-
-            Vector2 spread = dir.Rotated(
-                Mathf.DegToRad((float)GD.RandRange(-Stats.SpreadAngle, Stats.SpreadAngle))
-            );
+            float angleOffset = GetCenteredOffset(i, projectileCount, Mathf.Max(10f, Stats.SpreadAngle));
+            Vector2 spread = dir.Rotated(Mathf.DegToRad(angleOffset));
+            Vector2 spawnOffset = spread.Orthogonal() * GetCenteredOffset(i, projectileCount, 12f);
+            p.GlobalPosition = Player.ShootPoint.GlobalPosition + spawnOffset;
 
             p.Setup(spread, Stats, GetDamage(), GetSpeed(), WeaponName);
             GetTree().CurrentScene.AddChild(p);
         }
-    }
-}
-
-public partial class AxeProjectile : Projectile
-{
-    private float time;
-
-    public override void _PhysicsProcess(double delta)
-    {
-        time += (float)delta;
-        Direction.Y -= time * 1.3f;
-        base._PhysicsProcess(delta);
     }
 }

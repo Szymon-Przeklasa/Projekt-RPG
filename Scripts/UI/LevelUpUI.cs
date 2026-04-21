@@ -42,6 +42,7 @@ public partial class LevelUpUI : CanvasLayer
 		if (choices.Count == 0)
 		{
 			GD.PrintErr("LevelUpUI: brak dostępnych ulepszeń!");
+			Close();
 			return;
 		}
 

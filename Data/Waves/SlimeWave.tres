@@ -7,4 +7,5 @@
 script = ExtResource("1_5r2vc")
 EndMinute = 20.0
 EnemyType = ExtResource("1_babfl")
-BaseInterval = 1.8
+BaseInterval = 1.0
+BatchSize = 3

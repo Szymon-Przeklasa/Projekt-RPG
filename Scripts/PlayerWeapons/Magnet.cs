@@ -10,7 +10,7 @@ public partial class Magnet : Weapon
 	[Export] PackedScene ProjectileScene;
 
 	/// <summary>Bazowa prędkość przyciągania (piksele/s).</summary>
-	private float _basePullSpeed = 400f;
+	private float _basePullSpeed = 525f;
 
 	/// <summary>Bonus do prędkości przyciągania z ulepszeń.</summary>
 	public float PullSpeedBonus = 0f;

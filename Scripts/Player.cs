@@ -6,9 +6,9 @@ public partial class Player : CharacterBody2D
 {
 	[Export] public PackedScene ProjectileScene;
 	[Export] public WeaponStats Weapon;
-	[Export] public int Speed = 600;
+	[Export] public int Speed = 210;
 	[Export] public int MaxHealth = 100;
-	[Export] public float InvincibilityTime = 0.5f;
+	[Export] public float InvincibilityTime = 0.28f;
 	[Export] public bool DebugDrawEnemyLines = false;
 
 	// Sceny pocisków — jedyne PackedScene których bronie potrzebują
@@ -141,30 +141,30 @@ public partial class Player : CharacterBody2D
 	private void AddStartingWeapon()
 	{
 		// Magnet zawsze jako darmowy starter
-		var magnetStats = new WeaponStats { Cooldown = 0.01f, Range = 40f };
+		var magnetStats = new WeaponStats { Cooldown = 0.01f, Range = 75f };
 		AddWeaponOfType<Magnet>(magnetStats);
 		MarkWeaponUnlocked("Magnet");
 
 		switch (SelectedStartWeaponIndex)
 		{
 			case 0:
-				AddWeaponOfType<FireWand>(new WeaponStats { Damage = 10, Cooldown = 1f, Speed = 200f, Knockback = 250f, SpreadAngle = 10f, Range = 150f });
+				AddWeaponOfType<FireWand>(new WeaponStats { Damage = 12, Cooldown = 0.85f, Speed = 240f, Knockback = 260f, SpreadAngle = 6f, Range = 185f, Pierce = 1 });
 				MarkWeaponUnlocked("Fire Wand");
 				break;
 			case 1:
-				AddWeaponOfType<Lightning>(new WeaponStats { Cooldown = 2f, Damage = 20, Knockback = 150f, Range = 100f, ProjectileCount = 3 });
+				AddWeaponOfType<Lightning>(new WeaponStats { Cooldown = 1.7f, Damage = 16, Knockback = 120f, Range = 125f, ProjectileCount = 2 });
 				MarkWeaponUnlocked("Lightning");
 				break;
 			case 2:
-				AddWeaponOfType<Garlic>(new WeaponStats { Cooldown = 0.4f, Damage = 4, Knockback = 40f, Range = 80f });
+				AddWeaponOfType<Garlic>(new WeaponStats { Cooldown = 0.55f, Damage = 6, Knockback = 25f, Range = 82f });
 				MarkWeaponUnlocked("Garlic");
 				break;
 			case 3:
-				AddWeaponOfType<MagicMissile>(new WeaponStats { Cooldown = 1.2f, Damage = 15, Speed = 350f, Range = 500f, ProjectileCount = 1 });
+				AddWeaponOfType<MagicMissile>(new WeaponStats { Cooldown = 1.0f, Damage = 11, Speed = 320f, Range = 235f, ProjectileCount = 1 });
 				MarkWeaponUnlocked("Magic Missile");
 				break;
 			case 4:
-				AddWeaponOfType<Axe>(new WeaponStats { Cooldown = 1.5f, Damage = 25, Speed = 400f, Knockback = 300f, Range = 200f, ProjectileCount = 1 });
+				AddWeaponOfType<Axe>(new WeaponStats { Cooldown = 1.35f, Damage = 20, Speed = 320f, Knockback = 260f, Range = 240f, ProjectileCount = 1, Pierce = 2, SpreadAngle = 18f });
 				MarkWeaponUnlocked("Axe");
 				break;
 			default:
@@ -188,7 +188,7 @@ public partial class Player : CharacterBody2D
 		if (_invincibilityTimer > 0f || _isDead) return;
 
 		Health -= damage;
-		_invincibilityTimer = 0.1f;
+		_invincibilityTimer = InvincibilityTime;
 
 		SoundManager.Instance?.PlayHurt();
 		UpdateHpBar();
@@ -332,77 +332,77 @@ public partial class Player : CharacterBody2D
 		AvailableUpgrades.Add(new UpgradeData("Fire Wand", UpgradeType.Weapon)
 			.AddLevel("UNLOCK: Strzela w najbliższego wroga.", p =>
 			{
-				p.AddWeaponOfType<FireWand>(new WeaponStats { Damage = 10, Cooldown = 1f, Speed = 200f, Knockback = 250f, SpreadAngle = 10f, Range = 150f });
+				p.AddWeaponOfType<FireWand>(new WeaponStats { Damage = 12, Cooldown = 0.85f, Speed = 240f, Knockback = 260f, SpreadAngle = 6f, Range = 185f, Pierce = 1 });
 			})
-			.AddLevel("Base Damage +4. +1 Projectile.", p => { var w = FindWeapon<FireWand>(); if (w != null) { w.Stats.Damage += 4; w.Stats.ProjectileCount += 1; } })
-			.AddLevel("Cooldown -0.15s. Base Damage +4.", p => { var w = FindWeapon<FireWand>(); if (w != null) { w.Stats.Damage += 4; w.Stats.Cooldown = Mathf.Max(0.1f, w.Stats.Cooldown - 0.15f); w.RefreshStats(); } })
-			.AddLevel("+1 Pierce. Base Damage +4.", p => { var w = FindWeapon<FireWand>(); if (w != null) { w.Stats.Damage += 4; w.Stats.Pierce += 1; } })
-			.AddLevel("Cooldown -0.15s. +1 Projectile.", p => { var w = FindWeapon<FireWand>(); if (w != null) { w.Stats.ProjectileCount += 1; w.Stats.Cooldown = Mathf.Max(0.1f, w.Stats.Cooldown - 0.15f); w.RefreshStats(); } })
-			.AddLevel("Base Damage +4. +1 Pierce.", p => { var w = FindWeapon<FireWand>(); if (w != null) { w.Stats.Damage += 4; w.Stats.Pierce += 1; } })
-			.AddLevel("Cooldown -0.15s. Base Damage +4.", p => { var w = FindWeapon<FireWand>(); if (w != null) { w.Stats.Damage += 4; w.Stats.Cooldown = Mathf.Max(0.1f, w.Stats.Cooldown - 0.15f); w.RefreshStats(); } })
-			.AddLevel("Base Damage +8. +1 Projectile. +1 Pierce.", p => { var w = FindWeapon<FireWand>(); if (w != null) { w.Stats.Damage += 8; w.Stats.ProjectileCount += 1; w.Stats.Pierce += 1; } }));
+			.AddLevel("Base Damage +3. Cooldown -0.05s.", p => { var w = FindWeapon<FireWand>(); if (w != null) { w.Stats.Damage += 3; w.Stats.Cooldown = Mathf.Max(0.2f, w.Stats.Cooldown - 0.05f); w.RefreshStats(); } })
+			.AddLevel("+1 Projectile.", p => { var w = FindWeapon<FireWand>(); if (w != null) { w.Stats.ProjectileCount += 1; } })
+			.AddLevel("+1 Pierce. Base Damage +3.", p => { var w = FindWeapon<FireWand>(); if (w != null) { w.Stats.Damage += 3; w.Stats.Pierce += 1; } })
+			.AddLevel("Cooldown -0.08s. Base Damage +3.", p => { var w = FindWeapon<FireWand>(); if (w != null) { w.Stats.Damage += 3; w.Stats.Cooldown = Mathf.Max(0.2f, w.Stats.Cooldown - 0.08f); w.RefreshStats(); } })
+			.AddLevel("+1 Projectile. Base Damage +2.", p => { var w = FindWeapon<FireWand>(); if (w != null) { w.Stats.Damage += 2; w.Stats.ProjectileCount += 1; } })
+			.AddLevel("+1 Pierce. Cooldown -0.05s.", p => { var w = FindWeapon<FireWand>(); if (w != null) { w.Stats.Pierce += 1; w.Stats.Cooldown = Mathf.Max(0.2f, w.Stats.Cooldown - 0.05f); w.RefreshStats(); } })
+			.AddLevel("Base Damage +6. +1 Projectile.", p => { var w = FindWeapon<FireWand>(); if (w != null) { w.Stats.Damage += 6; w.Stats.ProjectileCount += 1; } }));
 
 		AvailableUpgrades.Add(new UpgradeData("Lightning", UpgradeType.Weapon)
 			.AddLevel("UNLOCK: Razi najbliższego wroga, skacze po innych.", p =>
 			{
-				p.AddWeaponOfType<Lightning>(new WeaponStats { Cooldown = 2f, Damage = 20, Knockback = 150f, Range = 100f, ProjectileCount = 3 });
+				p.AddWeaponOfType<Lightning>(new WeaponStats { Cooldown = 1.7f, Damage = 16, Knockback = 120f, Range = 125f, ProjectileCount = 2 });
 			})
-			.AddLevel("Base Damage +5. +1 chain.", p => { var w = FindWeapon<Lightning>(); if (w != null) { w.Stats.Damage += 5; w.Stats.ProjectileCount += 1; } })
-			.AddLevel("Cooldown -0.1s. Base Damage +5.", p => { var w = FindWeapon<Lightning>(); if (w != null) { w.Stats.Damage += 5; w.Stats.Cooldown = Mathf.Max(0.3f, w.Stats.Cooldown - 0.1f); w.RefreshStats(); } })
-			.AddLevel("Base Range +40. +1 chain.", p => { var w = FindWeapon<Lightning>(); if (w != null) { w.Stats.Range += 40f; w.Stats.ProjectileCount += 1; } })
-			.AddLevel("Base Damage +5. Cooldown -0.1s.", p => { var w = FindWeapon<Lightning>(); if (w != null) { w.Stats.Damage += 5; w.Stats.Cooldown = Mathf.Max(0.3f, w.Stats.Cooldown - 0.1f); w.RefreshStats(); } })
-			.AddLevel("Base Range +40. +1 chain.", p => { var w = FindWeapon<Lightning>(); if (w != null) { w.Stats.Range += 40f; w.Stats.ProjectileCount += 1; } })
-			.AddLevel("Base Damage +5. Cooldown -0.1s.", p => { var w = FindWeapon<Lightning>(); if (w != null) { w.Stats.Damage += 5; w.Stats.Cooldown = Mathf.Max(0.3f, w.Stats.Cooldown - 0.1f); w.RefreshStats(); } })
-			.AddLevel("Base Damage +10. Base Range +40.", p => { var w = FindWeapon<Lightning>(); if (w != null) { w.Stats.Damage += 10; w.Stats.Range += 40f; } }));
+			.AddLevel("Base Damage +4. +1 chain.", p => { var w = FindWeapon<Lightning>(); if (w != null) { w.Stats.Damage += 4; w.Stats.ProjectileCount += 1; } })
+			.AddLevel("Cooldown -0.12s.", p => { var w = FindWeapon<Lightning>(); if (w != null) { w.Stats.Cooldown = Mathf.Max(0.4f, w.Stats.Cooldown - 0.12f); w.RefreshStats(); } })
+			.AddLevel("Base Range +25. Base Damage +4.", p => { var w = FindWeapon<Lightning>(); if (w != null) { w.Stats.Range += 25f; w.Stats.Damage += 4; } })
+			.AddLevel("+1 chain.", p => { var w = FindWeapon<Lightning>(); if (w != null) { w.Stats.ProjectileCount += 1; } })
+			.AddLevel("Cooldown -0.12s. Base Damage +4.", p => { var w = FindWeapon<Lightning>(); if (w != null) { w.Stats.Damage += 4; w.Stats.Cooldown = Mathf.Max(0.4f, w.Stats.Cooldown - 0.12f); w.RefreshStats(); } })
+			.AddLevel("Base Range +25.", p => { var w = FindWeapon<Lightning>(); if (w != null) { w.Stats.Range += 25f; } })
+			.AddLevel("Base Damage +8. +1 chain.", p => { var w = FindWeapon<Lightning>(); if (w != null) { w.Stats.Damage += 8; w.Stats.ProjectileCount += 1; } }));
 
 		AvailableUpgrades.Add(new UpgradeData("Garlic", UpgradeType.Weapon)
 			.AddLevel("UNLOCK: Zadaje obrażenia pobliskim wrogom.", p =>
 			{
-				p.AddWeaponOfType<Garlic>(new WeaponStats { Cooldown = 0.4f, Damage = 4, Knockback = 40f, Range = 80f });
+				p.AddWeaponOfType<Garlic>(new WeaponStats { Cooldown = 0.55f, Damage = 6, Knockback = 25f, Range = 82f });
 			})
-			.AddLevel("Base Area +40%. Base Damage +2.", p => { var w = FindWeapon<Garlic>(); if (w != null) { w.Stats.Range *= 1.4f; w.Stats.Damage += 2; } })
-			.AddLevel("Cooldown -0.1s. Base Damage +1.", p => { var w = FindWeapon<Garlic>(); if (w != null) { w.Stats.Damage += 1; w.Stats.Cooldown = Mathf.Max(0.3f, w.Stats.Cooldown - 0.1f); w.RefreshStats(); } })
-			.AddLevel("Base Area +20%. Base Damage +1.", p => { var w = FindWeapon<Garlic>(); if (w != null) { w.Stats.Range *= 1.2f; w.Stats.Damage += 1; } })
-			.AddLevel("Cooldown -0.1s. Base Damage +2.", p => { var w = FindWeapon<Garlic>(); if (w != null) { w.Stats.Damage += 2; w.Stats.Cooldown = Mathf.Max(0.3f, w.Stats.Cooldown - 0.1f); w.RefreshStats(); } })
-			.AddLevel("Base Area +20%. Base Damage +1.", p => { var w = FindWeapon<Garlic>(); if (w != null) { w.Stats.Range *= 1.2f; w.Stats.Damage += 1; } })
-			.AddLevel("Cooldown -0.1s. Base Damage +1.", p => { var w = FindWeapon<Garlic>(); if (w != null) { w.Stats.Damage += 1; w.Stats.Cooldown = Mathf.Max(0.3f, w.Stats.Cooldown - 0.1f); w.RefreshStats(); } })
-			.AddLevel("Base Area +20%. Base Damage +2.", p => { var w = FindWeapon<Garlic>(); if (w != null) { w.Stats.Range *= 1.2f; w.Stats.Damage += 2; } }));
+			.AddLevel("Base Area +25%. Base Damage +1.", p => { var w = FindWeapon<Garlic>(); if (w != null) { w.Stats.Range *= 1.25f; w.Stats.Damage += 1; } })
+			.AddLevel("Cooldown -0.05s. Base Damage +1.", p => { var w = FindWeapon<Garlic>(); if (w != null) { w.Stats.Damage += 1; w.Stats.Cooldown = Mathf.Max(0.25f, w.Stats.Cooldown - 0.05f); w.RefreshStats(); } })
+			.AddLevel("Base Area +20%.", p => { var w = FindWeapon<Garlic>(); if (w != null) { w.Stats.Range *= 1.2f; } })
+			.AddLevel("Base Damage +2.", p => { var w = FindWeapon<Garlic>(); if (w != null) { w.Stats.Damage += 2; } })
+			.AddLevel("Cooldown -0.05s. Base Area +20%.", p => { var w = FindWeapon<Garlic>(); if (w != null) { w.Stats.Range *= 1.2f; w.Stats.Cooldown = Mathf.Max(0.25f, w.Stats.Cooldown - 0.05f); w.RefreshStats(); } })
+			.AddLevel("Base Damage +2.", p => { var w = FindWeapon<Garlic>(); if (w != null) { w.Stats.Damage += 2; } })
+			.AddLevel("Base Area +30%. Base Damage +2.", p => { var w = FindWeapon<Garlic>(); if (w != null) { w.Stats.Range *= 1.3f; w.Stats.Damage += 2; } }));
 
 		AvailableUpgrades.Add(new UpgradeData("Magic Missile", UpgradeType.Weapon)
 			.AddLevel("UNLOCK: Samonaprowadzający pocisk.", p =>
 			{
-				p.AddWeaponOfType<MagicMissile>(new WeaponStats { Cooldown = 1.2f, Damage = 15, Speed = 350f, Range = 500f, ProjectileCount = 1 });
+				p.AddWeaponOfType<MagicMissile>(new WeaponStats { Cooldown = 1.0f, Damage = 11, Speed = 320f, Range = 235f, ProjectileCount = 1 });
 			})
-			.AddLevel("Base Damage +5. +1 Projectile.", p => { var w = FindWeapon<MagicMissile>(); if (w != null) { w.Stats.Damage += 5; w.Stats.ProjectileCount += 1; } })
-			.AddLevel("Cooldown -0.15s. Base Damage +5.", p => { var w = FindWeapon<MagicMissile>(); if (w != null) { w.Stats.Damage += 5; w.Stats.Cooldown = Mathf.Max(0.2f, w.Stats.Cooldown - 0.15f); w.RefreshStats(); } })
 			.AddLevel("+1 Projectile.", p => { var w = FindWeapon<MagicMissile>(); if (w != null) { w.Stats.ProjectileCount += 1; } })
-			.AddLevel("Base Damage +5. Cooldown -0.15s.", p => { var w = FindWeapon<MagicMissile>(); if (w != null) { w.Stats.Damage += 5; w.Stats.Cooldown = Mathf.Max(0.2f, w.Stats.Cooldown - 0.15f); w.RefreshStats(); } })
-			.AddLevel("+1 Projectile. Base Damage +5.", p => { var w = FindWeapon<MagicMissile>(); if (w != null) { w.Stats.Damage += 5; w.Stats.ProjectileCount += 1; } })
-			.AddLevel("Cooldown -0.15s.", p => { var w = FindWeapon<MagicMissile>(); if (w != null) { w.Stats.Cooldown = Mathf.Max(0.2f, w.Stats.Cooldown - 0.15f); w.RefreshStats(); } })
-			.AddLevel("Base Damage +10. +1 Projectile.", p => { var w = FindWeapon<MagicMissile>(); if (w != null) { w.Stats.Damage += 10; w.Stats.ProjectileCount += 1; } }));
+			.AddLevel("Base Damage +4.", p => { var w = FindWeapon<MagicMissile>(); if (w != null) { w.Stats.Damage += 4; } })
+			.AddLevel("Cooldown -0.12s.", p => { var w = FindWeapon<MagicMissile>(); if (w != null) { w.Stats.Cooldown = Mathf.Max(0.2f, w.Stats.Cooldown - 0.12f); w.RefreshStats(); } })
+			.AddLevel("+1 Projectile. Base Damage +3.", p => { var w = FindWeapon<MagicMissile>(); if (w != null) { w.Stats.ProjectileCount += 1; w.Stats.Damage += 3; } })
+			.AddLevel("Projectile Speed +50. Base Damage +1.", p => { var w = FindWeapon<MagicMissile>(); if (w != null) { w.Stats.Speed += 50f; w.Stats.Damage += 1; } })
+			.AddLevel("Cooldown -0.12s. Base Damage +3.", p => { var w = FindWeapon<MagicMissile>(); if (w != null) { w.Stats.Damage += 3; w.Stats.Cooldown = Mathf.Max(0.2f, w.Stats.Cooldown - 0.12f); w.RefreshStats(); } })
+			.AddLevel("+1 Projectile. Base Damage +6.", p => { var w = FindWeapon<MagicMissile>(); if (w != null) { w.Stats.Damage += 6; w.Stats.ProjectileCount += 1; } }));
 
 		AvailableUpgrades.Add(new UpgradeData("Axe", UpgradeType.Weapon)
 			.AddLevel("UNLOCK: Topór z trajektorią łukową.", p =>
 			{
-				p.AddWeaponOfType<Axe>(new WeaponStats { Cooldown = 1.5f, Damage = 25, Speed = 400f, Knockback = 300f, Range = 200f, ProjectileCount = 1 });
+				p.AddWeaponOfType<Axe>(new WeaponStats { Cooldown = 1.35f, Damage = 20, Speed = 320f, Knockback = 260f, Range = 240f, ProjectileCount = 1, Pierce = 2, SpreadAngle = 18f });
 			})
-			.AddLevel("Base Damage +6. +1 Projectile.", p => { var w = FindWeapon<Axe>(); if (w != null) { w.Stats.Damage += 6; w.Stats.ProjectileCount += 1; } })
-			.AddLevel("Cooldown -0.2s. Base Damage +6.", p => { var w = FindWeapon<Axe>(); if (w != null) { w.Stats.Damage += 6; w.Stats.Cooldown = Mathf.Max(0.3f, w.Stats.Cooldown - 0.2f); w.RefreshStats(); } })
-			.AddLevel("+1 Pierce. Base Damage +6.", p => { var w = FindWeapon<Axe>(); if (w != null) { w.Stats.Damage += 6; w.Stats.Pierce += 1; } })
-			.AddLevel("Cooldown -0.2s. +1 Projectile.", p => { var w = FindWeapon<Axe>(); if (w != null) { w.Stats.ProjectileCount += 1; w.Stats.Cooldown = Mathf.Max(0.3f, w.Stats.Cooldown - 0.2f); w.RefreshStats(); } })
-			.AddLevel("Base Damage +6. +1 Pierce.", p => { var w = FindWeapon<Axe>(); if (w != null) { w.Stats.Damage += 6; w.Stats.Pierce += 1; } })
-			.AddLevel("Cooldown -0.2s. Base Damage +6.", p => { var w = FindWeapon<Axe>(); if (w != null) { w.Stats.Damage += 6; w.Stats.Cooldown = Mathf.Max(0.3f, w.Stats.Cooldown - 0.2f); w.RefreshStats(); } })
-			.AddLevel("Base Damage +12. +1 Projectile. +1 Pierce.", p => { var w = FindWeapon<Axe>(); if (w != null) { w.Stats.Damage += 12; w.Stats.ProjectileCount += 1; w.Stats.Pierce += 1; } }));
+			.AddLevel("Base Damage +4. +1 Pierce.", p => { var w = FindWeapon<Axe>(); if (w != null) { w.Stats.Damage += 4; w.Stats.Pierce += 1; } })
+			.AddLevel("Cooldown -0.1s.", p => { var w = FindWeapon<Axe>(); if (w != null) { w.Stats.Cooldown = Mathf.Max(0.35f, w.Stats.Cooldown - 0.1f); w.RefreshStats(); } })
+			.AddLevel("+1 Projectile.", p => { var w = FindWeapon<Axe>(); if (w != null) { w.Stats.ProjectileCount += 1; } })
+			.AddLevel("Base Damage +4. Base Range +10%.", p => { var w = FindWeapon<Axe>(); if (w != null) { w.Stats.Damage += 4; w.Stats.Range *= 1.1f; } })
+			.AddLevel("Cooldown -0.1s. +1 Pierce.", p => { var w = FindWeapon<Axe>(); if (w != null) { w.Stats.Pierce += 1; w.Stats.Cooldown = Mathf.Max(0.35f, w.Stats.Cooldown - 0.1f); w.RefreshStats(); } })
+			.AddLevel("+1 Projectile. Base Damage +4.", p => { var w = FindWeapon<Axe>(); if (w != null) { w.Stats.Damage += 4; w.Stats.ProjectileCount += 1; } })
+			.AddLevel("Base Damage +8. +1 Pierce.", p => { var w = FindWeapon<Axe>(); if (w != null) { w.Stats.Damage += 8; w.Stats.Pierce += 1; } }));
 
 		AvailableUpgrades.Add(new UpgradeData("Magnet", UpgradeType.Weapon)
 			.AddLevel("UNLOCK: Przyciąga pobliskie orby XP.", p =>
 			{
-				p.AddWeaponOfType<Magnet>(new WeaponStats { Cooldown = 0.01f, Range = 40f });
+				p.AddWeaponOfType<Magnet>(new WeaponStats { Cooldown = 0.01f, Range = 75f });
 			})
-			.AddLevel("Pull range +20%.", p => { var w = FindWeapon<Magnet>(); if (w != null) { w.Stats.Range *= 1.2f; } })
-			.AddLevel("Pull range +20%.", p => { var w = FindWeapon<Magnet>(); if (w != null) { w.Stats.Range *= 1.2f; } })
-			.AddLevel("Pull range +30%.", p => { var w = FindWeapon<Magnet>(); if (w != null) { w.Stats.Range *= 1.3f; } })
-			.AddLevel("Mega range: cały ekran.", p => { var w = FindWeapon<Magnet>(); if (w != null) { w.Stats.Range = 2000f; } }));
+			.AddLevel("Pull range +25%.", p => { var w = FindWeapon<Magnet>(); if (w != null) { w.Stats.Range *= 1.25f; } })
+			.AddLevel("Pull speed +20%.", p => { var w = FindWeapon<Magnet>(); if (w != null) { w.PullSpeedBonus += 100f; } })
+			.AddLevel("Pull range +25%.", p => { var w = FindWeapon<Magnet>(); if (w != null) { w.Stats.Range *= 1.25f; } })
+			.AddLevel("Mega range + speed.", p => { var w = FindWeapon<Magnet>(); if (w != null) { w.Stats.Range = 1600f; w.PullSpeedBonus += 200f; } }));
 	}
 
 	private T FindWeapon<T>() where T : Weapon
@@ -429,7 +429,7 @@ public partial class Player : CharacterBody2D
 
 	public int Level = 1;
 	public int Xp = 0;
-	public int XpToLevel => Mathf.Max(10, (int)(15 * Mathf.Pow(Level, 1.15f)));
+	public int XpToLevel => Mathf.Max(10, Mathf.RoundToInt(13f * Mathf.Pow(Level, 1.08f)));
 
 	public void GainXp(int amount)
 	{

@@ -20,15 +20,11 @@ public partial class MobEntry : HBoxContainer
 		if (mobScene != null)
 		{
 			var mobInstance = mobScene.Instantiate<Node>();
-			var sprite = mobInstance.GetNodeOrNull<Sprite2D>("Name");
+			var sprite = FindSprite(mobInstance);
 
 			if (sprite != null)
 			{
 				GetNode<TextureRect>("MobIcon").Texture = sprite.Texture;
-			}
-			else if (mobInstance is Sprite2D rootSprite) 
-			{
-				GetNode<TextureRect>("MobIcon").Texture = rootSprite.Texture;
 			}
 
 			mobInstance.QueueFree();
@@ -37,8 +33,7 @@ public partial class MobEntry : HBoxContainer
 		int tierLevel = GetTierLevel(kills);
 		string romanTier = ToRoman(tierLevel);
 		
-		// Wyświetla nazwę z rangą rzymską (np. "Skeleton II") lub samą nazwę jeśli tier wynosi 0
-		string displayName = tierLevel == 0 ? mobID : $"{mobID.Capitalize()} {romanTier}";
+		string displayName = tierLevel == 0 ? mobID.Capitalize() : $"{mobID.Capitalize()} {romanTier}";
 		
 		GetNode<Label>("MobInfo/MobName").Text = displayName;
 		GetNode<Label>("MobInfo/KillCounter/CurrentKills").Text = kills.ToString();
@@ -62,6 +57,21 @@ public partial class MobEntry : HBoxContainer
 			progressBar.MaxValue = nextGoal;
 			progressBar.Value = kills;
 		}
+	}
+
+	private Sprite2D FindSprite(Node node)
+	{
+		if (node is Sprite2D sprite)
+			return sprite;
+
+		foreach (Node child in node.GetChildren())
+		{
+			var found = FindSprite(child);
+			if (found != null)
+				return found;
+		}
+
+		return null;
 	}
 
 	/// <summary>

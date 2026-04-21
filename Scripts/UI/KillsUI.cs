@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 /// <summary>
 /// Interfejs użytkownika wyświetlający statystyki zabójstw przeciwników.
@@ -15,6 +14,7 @@ public partial class KillsUI : CanvasLayer
 	
 	private VBoxContainer _mobGroup;
 	private ScrollContainer _scrollContainer;
+	private bool _wasPaused;
 	
 	private readonly string[] _orderedMobIDs = { 
 		"slime", 
@@ -31,8 +31,9 @@ public partial class KillsUI : CanvasLayer
 	public override void _Ready()
 	{
 		Visible = false;
-		var killManager = GetNode<KillManager>("/root/KillManager");
-		killManager.KillUpdated += OnKillUpdated;
+		var killManager = GetNodeOrNull<KillManager>("/root/KillManager");
+		if (killManager != null)
+			killManager.KillUpdated += OnKillUpdated;
 
 		_mobGroup = GetNode<VBoxContainer>("Panel/ScrollContainer/VBoxContainer/MobGroup");
 		_scrollContainer = GetNode<ScrollContainer>("Panel/ScrollContainer");
@@ -55,6 +56,10 @@ public partial class KillsUI : CanvasLayer
 	/// </summary>
 	public void ShowKills()
 	{
+		if (Visible)
+			return;
+
+		_wasPaused = GetTree().Paused;
 		Visible = true;
 		GetTree().Paused = true;
 
@@ -65,8 +70,7 @@ public partial class KillsUI : CanvasLayer
 		foreach (Node child in _mobGroup.GetChildren())
 			child.QueueFree();
 		
-		// Pobierz wszystkie dane o zabójstwach
-		var allKills = KillManager.Instance.GetAllKills();
+		var allKills = KillManager.Instance?.GetAllKills() ?? new System.Collections.Generic.Dictionary<string, int>();
 		
 		// Dodaj nowe wpisy zgodnie ze zdefiniowaną kolejnością
 		foreach (string mobID in _orderedMobIDs)
@@ -97,12 +101,16 @@ public partial class KillsUI : CanvasLayer
 		}
 	}
 
-	/// <summary>
-	/// Metoda wywoływana co klatkę.
-	/// </summary>
-	/// <param name="delta">Czas od poprzedniej klatki.</param>
-	public override void _Process(double delta)
+	public override void _UnhandledInput(InputEvent @event)
 	{
+		if (!Visible)
+			return;
+
+		if (@event.IsActionPressed("ui_cancel"))
+		{
+			Close();
+			GetViewport().SetInputAsHandled();
+		}
 	}
 
 	/// <summary>
@@ -111,6 +119,6 @@ public partial class KillsUI : CanvasLayer
 	private void Close()
 	{
 		Visible = false;
-		GetTree().Paused = false;
+		GetTree().Paused = _wasPaused;
 	}
 }

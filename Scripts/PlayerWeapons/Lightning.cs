@@ -23,8 +23,7 @@ public partial class Lightning : Weapon
 			if (hitEnemies.Contains(current)) break;
 
 			hitEnemies.Add(current);
-			var center = current.GetNode<Marker2D>("Center");
-			Vector2 toPosition = center.GlobalPosition;
+			Vector2 toPosition = GetAimPosition(current);
 
 			((Enemy)current).TakeDamage(GetDamage(), Vector2.Zero, WeaponName);
 
@@ -43,8 +42,7 @@ public partial class Lightning : Weapon
 		{
 			if (node is Node2D enemy && !hitEnemies.Contains(enemy))
 			{
-				var center = enemy.GetNode<Marker2D>("Center");
-				float dist = fromPos.DistanceTo(center.GlobalPosition);
+				float dist = fromPos.DistanceTo(GetAimPosition(enemy));
 				if (dist < closestDist && dist <= range)
 				{
 					closestDist = dist;

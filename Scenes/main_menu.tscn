@@ -4,8 +4,11 @@
 [ext_resource type="Texture2D" uid="uid://ddg32ke0itwuo" path="res://Buttons/start button.png" id="2_opfnp"]
 [ext_resource type="Script" uid="uid://clyhxj0sh8xnm" path="res://Scripts/UI/StartButton.cs" id="3_cp0ys"]
 [ext_resource type="Texture2D" uid="uid://dbr7xirci48vy" path="res://Buttons/kills button.png" id="4_yhxw7"]
+[ext_resource type="Texture2D" path="res://Buttons/powerup button.png" id="5_trj04"]
 [ext_resource type="Script" uid="uid://dojufuy8ti1kv" path="res://Scripts/UI/KillsButton.cs" id="6_yhxw7"]
+[ext_resource type="Script" path="res://Scripts/UI/PowerUpButton.cs" id="7_3a2wb"]
 [ext_resource type="PackedScene" uid="uid://vhlkfdx6q1w0" path="res://Scenes/UI/KillsUI.tscn" id="8_yhxw7"]
+[ext_resource type="PackedScene" path="res://Scenes/UI/PowerUpsUI.tscn" id="9_fw18n"]
 
 [node name="Main Menu" type="Control" unique_id=1056142175]
 layout_mode = 3
@@ -44,17 +47,30 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Kills Button" type="TextureButton" parent="." unique_id=1615316241]
 layout_mode = 0
-offset_left = 728.0
-offset_top = 701.667
-offset_right = 1904.0
-offset_bottom = 1226.667
+offset_left = 992.0
+offset_top = 704.0
+offset_right = 2168.0
+offset_bottom = 1229.0
 scale = Vector2(0.4, 0.4)
 texture_normal = ExtResource("4_yhxw7")
 script = ExtResource("6_yhxw7")
 metadata/_edit_group_ = true
 
+[node name="PowerUp Button" type="TextureButton" parent="." unique_id=2113947673]
+layout_mode = 0
+offset_left = 456.0
+offset_top = 704.0
+offset_right = 1632.0
+offset_bottom = 1229.0
+scale = Vector2(0.4, 0.4)
+texture_normal = ExtResource("5_trj04")
+script = ExtResource("7_3a2wb")
+metadata/_edit_group_ = true
+
 [node name="KillsUI" parent="." unique_id=1000854830 instance=ExtResource("8_yhxw7")]
 visible = false
+
+[node name="PowerUpsUI" parent="." instance=ExtResource("9_fw18n")]
 
 [connection signal="mouse_entered" from="Start Button" to="Start Button" method="MouseOn"]
 [connection signal="mouse_exited" from="Start Button" to="Start Button" method="MouseOff"]
@@ -62,3 +78,6 @@ visible = false
 [connection signal="mouse_entered" from="Kills Button" to="Kills Button" method="MouseOn"]
 [connection signal="mouse_exited" from="Kills Button" to="Kills Button" method="MouseOff"]
 [connection signal="pressed" from="Kills Button" to="Kills Button" method="KillsClicked"]
+[connection signal="mouse_entered" from="PowerUp Button" to="PowerUp Button" method="MouseOn"]
+[connection signal="mouse_exited" from="PowerUp Button" to="PowerUp Button" method="MouseOff"]
+[connection signal="pressed" from="PowerUp Button" to="PowerUp Button" method="ShowPowerups"]

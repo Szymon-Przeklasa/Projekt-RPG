@@ -126,6 +126,6 @@ public partial class Enemy : CharacterBody2D
 
 		int dmg = Stats != null ? Stats.ContactDamage : 1;
 		_player.TakeDamage(dmg);
-		_contactCooldown = 0.3f;
+		_contactCooldown = 0.25f;
 	}
 }

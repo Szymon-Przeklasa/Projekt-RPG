@@ -5,5 +5,8 @@
 
 [resource]
 script = ExtResource("1_81t7e")
+Speed = 115.0
+MaxHealth = 24
+XpDrop = 2
 ContactDamage = 1
 Scene = ExtResource("1_gxxou")

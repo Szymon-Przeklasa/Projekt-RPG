@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 /// <summary>
 /// Ekran wyboru broni startowej, wyświetlany przed wejściem do gry.
@@ -8,8 +7,6 @@ using System;
 /// </summary>
 public partial class WeaponSelectUI : CanvasLayer
 {
-	// ── Dane broni ────────────────────────────────────────────
-
 	private static readonly string[] WeaponNames = {
 		"Fire Wand",
 		"Lightning",
@@ -23,26 +20,23 @@ public partial class WeaponSelectUI : CanvasLayer
 		"Piorun skaczący między wrogami.\nDoskonały do tłumów.",
 		"Aura obrażeń wokół gracza.\nDobry na duże skupiska.",
 		"Samonaprowadzające pociski.\nŁatwy w użyciu.",
-        "Topór z łukową trajektorią.\nWysoke obrażenia pojedynczego celu."
+		"Topór z łukową trajektorią.\nWysokie obrażenia pojedynczego celu."
 	};
 
 	private static readonly string[] WeaponEmojis = {
 		"🔥", "⚡", "🧄", "✨", "🪓"
 	};
 
-	// ── Węzły ────────────────────────────────────────────────
-
 	private int _selectedIndex = 0;
-	// Replace BuildUI() with these getters:
-	private VBoxContainer Container => GetNode<VBoxContainer>("CenterContainer");
 	private Button[] _buttons;
 	private Label _descLabel;
+	private Button _startButton;
+	private Button _backButton;
 
 	public override void _Ready()
 	{
 		ProcessMode = ProcessModeEnum.Always;
 
-		// Cache references to buttons
 		_buttons = new Button[]
 		{
 			GetNode<Button>("CenterContainer/FireWandButton"),
@@ -53,23 +47,31 @@ public partial class WeaponSelectUI : CanvasLayer
 		};
 
 		_descLabel = GetNode<Label>("CenterContainer/DescriptionLabel");
+		_startButton = GetNode<Button>("CenterContainer/StartButton");
+		_backButton = GetNodeOrNull<Button>("CenterContainer/BackButton");
 
-		// Connect start button
-		GetNode<Button>("CenterContainer/StartButton").Pressed += StartGame;
+		for (int i = 0; i < _buttons.Length; i++)
+		{
+			int index = i;
+			_buttons[i].Pressed += () => SelectWeapon(index);
+		}
 
-		// Select first weapon
+		_startButton.Pressed += StartGame;
+		if (_backButton != null)
+			_backButton.Pressed += ReturnToMainMenu;
+
 		SelectWeapon(0);
+		_buttons[0].GrabFocus();
 	}
 
 	private void SelectWeapon(int index)
 	{
-		_selectedIndex = index;
-		Player.SelectedStartWeaponIndex = index;
+		_selectedIndex = Mathf.Wrap(index, 0, _buttons.Length);
+		Player.SelectedStartWeaponIndex = _selectedIndex;
 
-		// Aktualizuj wygląd przycisków
 		for (int i = 0; i < _buttons.Length; i++)
 		{
-			if (i == index)
+			if (i == _selectedIndex)
 			{
 				_buttons[i].AddThemeColorOverride("font_color", new Color(1f, 1f, 0.2f));
 				_buttons[i].Text = $"► {WeaponEmojis[i]}  {WeaponNames[i]}";
@@ -81,13 +83,48 @@ public partial class WeaponSelectUI : CanvasLayer
 			}
 		}
 
-		// Zaktualizuj opis
-		if (_descLabel != null)
-			_descLabel.Text = WeaponDescriptions[index];
+		_descLabel.Text = WeaponDescriptions[_selectedIndex];
+	}
+
+	public override void _UnhandledInput(InputEvent @event)
+	{
+		if (@event.IsActionPressed("ui_up"))
+		{
+			SelectWeapon(_selectedIndex - 1);
+			_buttons[_selectedIndex].GrabFocus();
+			GetViewport().SetInputAsHandled();
+			return;
+		}
+
+		if (@event.IsActionPressed("ui_down"))
+		{
+			SelectWeapon(_selectedIndex + 1);
+			_buttons[_selectedIndex].GrabFocus();
+			GetViewport().SetInputAsHandled();
+			return;
+		}
+
+		if (@event.IsActionPressed("ui_accept"))
+		{
+			StartGame();
+			GetViewport().SetInputAsHandled();
+			return;
+		}
+
+		if (@event.IsActionPressed("ui_cancel"))
+		{
+			ReturnToMainMenu();
+			GetViewport().SetInputAsHandled();
+		}
 	}
 
 	private void StartGame()
 	{
 		GetTree().ChangeSceneToFile("res://Scenes/game.tscn");
+	}
+
+	private void ReturnToMainMenu()
+	{
+		GetTree().ChangeSceneToFile("res://Scenes/main_menu.tscn");
 	}
 }

@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://bv7yb854mjgat"]
 
+[ext_resource type="Script" path="res://Scripts/UI/StatsUI.cs" id="1_0q6x0"]
 [ext_resource type="FontFile" uid="uid://cbbw74cjsiq82" path="res://Textures/Jersey15-Regular.ttf" id="1_7bihg"]
 [ext_resource type="Texture2D" uid="uid://d313w75h4lq3g" path="res://Textures/c9_image_1.png" id="2_4w0m6"]
 [ext_resource type="Theme" uid="uid://ds41rngcik3ng" path="res://Textures/WeaponBar.tres" id="2_5sn1j"]
@@ -22,6 +23,7 @@ offset_right = 255.0
 offset_bottom = 100.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_0q6x0")
 
 [node name="LeftColumn" type="HBoxContainer" parent="." unique_id=1666229417]
 texture_filter = 1

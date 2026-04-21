@@ -7,9 +7,9 @@
 script = ExtResource("1_qk78a")
 MobID = "demon"
 DisplayName = "Demon"
-Speed = 165.0
-MaxHealth = 140
-XpDrop = 5
+Speed = 160.0
+MaxHealth = 130
+XpDrop = 6
 ContactDamage = 3
 Scale = 1.1
 Scene = ExtResource("1_om2eh")
