@@ -209,7 +209,7 @@ public partial class Player : CharacterBody2D
 		if (_hpBar == null) return;
 		_hpBar.MaxValue = MaxHealth;
 		_hpBar.Value = Health;
-		_currentHp.Text = Health + "/100";
+		_currentHp.Text = Health + "/" + MaxHealth;
 	}
 
 	private void FlashDamage()

@@ -16,6 +16,8 @@ public partial class Enemy : CharacterBody2D
 	protected int _health;
 	private Player _player;
 	private float _contactCooldown;
+	
+	private Font font = GD.Load<FontFile>("res://Textures/Jersey15-Regular.ttf");
 
 	[Export] public float Speed = 140f;
 	[Export] public int MaxHealth = 100;
@@ -63,11 +65,12 @@ public partial class Enemy : CharacterBody2D
 		{
 			Text = $"{damage}",
 			ZIndex = 10,
-			Position = new Vector2(-15f, -50f)
+			Position = new Vector2(-15f, -50f),
 		};
 
 		label.AddThemeColorOverride("font_color", Colors.Yellow);
 		label.AddThemeFontSizeOverride("font_size", 14);
+		label.AddThemeFontOverride("font", font);
 		AddChild(label);
 
 		var tween = CreateTween();

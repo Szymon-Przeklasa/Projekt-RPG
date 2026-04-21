@@ -1,22 +1,22 @@
 [gd_scene format=3 uid="uid://bpd6lbnme3cik"]
 
 [ext_resource type="Script" uid="uid://cu73p4dm6615w" path="res://Scripts/UI/MobEntry.cs" id="1_2ocha"]
-[ext_resource type="FontFile" uid="uid://bbv5li714o8fv" path="res://Textures/BreatheFire-65pg.ttf" id="1_35cl5"]
+[ext_resource type="FontFile" uid="uid://cbbw74cjsiq82" path="res://Textures/Jersey15-Regular.ttf" id="2_lleum"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_2ocha"]
-font = ExtResource("1_35cl5")
+font = ExtResource("2_lleum")
 font_size = 22
 
 [sub_resource type="LabelSettings" id="LabelSettings_o0kpc"]
-font = ExtResource("1_35cl5")
+font = ExtResource("2_lleum")
 font_size = 12
 
 [sub_resource type="LabelSettings" id="LabelSettings_61au0"]
-font = ExtResource("1_35cl5")
+font = ExtResource("2_lleum")
 font_size = 12
 
 [sub_resource type="LabelSettings" id="LabelSettings_knibv"]
-font = ExtResource("1_35cl5")
+font = ExtResource("2_lleum")
 font_size = 12
 
 [node name="MobEntry" type="HBoxContainer" unique_id=606187065]

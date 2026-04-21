@@ -38,7 +38,7 @@ public partial class MobEntry : HBoxContainer
 		string romanTier = ToRoman(tierLevel);
 		
 		// Wyświetla nazwę z rangą rzymską (np. "Skeleton II") lub samą nazwę jeśli tier wynosi 0
-		string displayName = tierLevel == 0 ? mobID : $"{mobID} {romanTier}";
+		string displayName = tierLevel == 0 ? mobID : $"{mobID.Capitalize()} {romanTier}";
 		
 		GetNode<Label>("MobInfo/MobName").Text = displayName;
 		GetNode<Label>("MobInfo/KillCounter/CurrentKills").Text = kills.ToString();
