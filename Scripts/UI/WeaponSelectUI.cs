@@ -32,90 +32,32 @@ public partial class WeaponSelectUI : CanvasLayer
 
 	// ── Węzły ────────────────────────────────────────────────
 
-	private VBoxContainer _container;
 	private int _selectedIndex = 0;
+	// Replace BuildUI() with these getters:
+	private VBoxContainer Container => GetNode<VBoxContainer>("CenterContainer");
 	private Button[] _buttons;
 	private Label _descLabel;
 
 	public override void _Ready()
 	{
 		ProcessMode = ProcessModeEnum.Always;
-		BuildUI();
-	}
 
-	private void BuildUI()
-	{
-		// Tło
-		var bg = new ColorRect();
-		bg.Color = new Color(0.05f, 0.05f, 0.07f, 0.95f);
-		bg.AnchorRight = 1; bg.AnchorBottom = 1;
-		bg.OffsetRight = 0; bg.OffsetBottom = 0;
-		bg.SetAnchorsPreset(Control.LayoutPreset.FullRect);
-		AddChild(bg);
-
-		// Główny kontener wycentrowany
-		var center = new VBoxContainer();
-		center.SetAnchorsPreset(Control.LayoutPreset.Center);
-		center.GrowHorizontal = Control.GrowDirection.Both;
-		center.GrowVertical = Control.GrowDirection.Both;
-		center.CustomMinimumSize = new Vector2(500, 0);
-		center.Alignment = BoxContainer.AlignmentMode.Center;
-		AddChild(center);
-
-		// Tytuł
-		var title = new Label();
-		title.Text = "WYBIERZ BROŃ STARTOWĄ";
-		title.HorizontalAlignment = HorizontalAlignment.Center;
-		title.AddThemeFontSizeOverride("font_size", 28);
-		title.AddThemeColorOverride("font_color", new Color(1f, 0.8f, 0.2f));
-		center.AddChild(title);
-
-		// Separator
-		var sep = new Control();
-		sep.CustomMinimumSize = new Vector2(0, 20);
-		center.AddChild(sep);
-
-		// Przyciski broni
-		_buttons = new Button[WeaponNames.Length];
-		for (int i = 0; i < WeaponNames.Length; i++)
+		// Cache references to buttons
+		_buttons = new Button[]
 		{
-			int capturedIndex = i;
-			var btn = new Button();
-			btn.Text = $"{WeaponEmojis[i]}  {WeaponNames[i]}";
-			btn.CustomMinimumSize = new Vector2(400, 55);
-			btn.AddThemeFontSizeOverride("font_size", 18);
-			btn.Pressed += () => SelectWeapon(capturedIndex);
-			center.AddChild(btn);
-			_buttons[i] = btn;
-		}
+			GetNode<Button>("CenterContainer/FireWandButton"),
+			GetNode<Button>("CenterContainer/LightningButton"),
+			GetNode<Button>("CenterContainer/GarlicButton"),
+			GetNode<Button>("CenterContainer/MagicMissileButton"),
+			GetNode<Button>("CenterContainer/AxeButton")
+		};
 
-		// Opis wybranej broni
-		var sep2 = new Control();
-		sep2.CustomMinimumSize = new Vector2(0, 15);
-		center.AddChild(sep2);
+		_descLabel = GetNode<Label>("CenterContainer/DescriptionLabel");
 
-		_descLabel = new Label();
-		_descLabel.HorizontalAlignment = HorizontalAlignment.Center;
-		_descLabel.AddThemeFontSizeOverride("font_size", 15);
-		_descLabel.AddThemeColorOverride("font_color", new Color(0.8f, 0.8f, 0.8f));
-		_descLabel.AutowrapMode = TextServer.AutowrapMode.WordSmart;
-		_descLabel.CustomMinimumSize = new Vector2(400, 60);
-		center.AddChild(_descLabel);
+		// Connect start button
+		GetNode<Button>("CenterContainer/StartButton").Pressed += StartGame;
 
-		// Przycisk START
-		var sep3 = new Control();
-		sep3.CustomMinimumSize = new Vector2(0, 10);
-		center.AddChild(sep3);
-
-		var startBtn = new Button();
-		startBtn.Text = "▶  START";
-		startBtn.CustomMinimumSize = new Vector2(400, 65);
-		startBtn.AddThemeFontSizeOverride("font_size", 22);
-		startBtn.AddThemeColorOverride("font_color", new Color(0.2f, 1f, 0.4f));
-		startBtn.Pressed += StartGame;
-		center.AddChild(startBtn);
-
-		// Zaznacz domyślnie pierwszą broń
+		// Select first weapon
 		SelectWeapon(0);
 	}
 

@@ -1,7 +1,95 @@
-[gd_scene format=3 uid="uid://weapon_select_scene"]
+[gd_scene format=3 uid="uid://b687cdcbg1nn1"]
 
-[ext_resource type="Script" path="res://Scripts/UI/WeaponSelectUI.cs" id="1_wselect"]
+[ext_resource type="Script" uid="uid://bdcxuw7r2m4i4" path="res://Scripts/UI/WeaponSelectUI.cs" id="1_wselect"]
 
 [node name="WeaponSelect" type="CanvasLayer" unique_id=111111111]
 process_mode = 3
 script = ExtResource("1_wselect")
+
+[node name="Background" type="ColorRect" parent="." unique_id=1589973468]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.05, 0.05, 0.07, 0.95)
+
+[node name="CenterContainer" type="VBoxContainer" parent="." unique_id=1890676583]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -200.0
+offset_right = 250.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Title" type="Label" parent="CenterContainer" unique_id=76298501]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.8, 0.2, 1)
+theme_override_font_sizes/font_size = 28
+text = "WYBIERZ BROŃ STARTOWĄ"
+horizontal_alignment = 1
+
+[node name="Spacer1" type="Control" parent="CenterContainer" unique_id=1380652903]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="FireWandButton" type="Button" parent="CenterContainer" unique_id=1887283002]
+custom_minimum_size = Vector2(400, 55)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "🔥  Fire Wand"
+
+[node name="LightningButton" type="Button" parent="CenterContainer" unique_id=1337479623]
+custom_minimum_size = Vector2(400, 55)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "⚡  Lightning"
+
+[node name="GarlicButton" type="Button" parent="CenterContainer" unique_id=811784098]
+custom_minimum_size = Vector2(400, 55)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "🧄  Garlic"
+
+[node name="MagicMissileButton" type="Button" parent="CenterContainer" unique_id=87535555]
+custom_minimum_size = Vector2(400, 55)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "✨  Magic Missile"
+
+[node name="AxeButton" type="Button" parent="CenterContainer" unique_id=2100261635]
+custom_minimum_size = Vector2(400, 55)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "🪓  Axe"
+
+[node name="Spacer2" type="Control" parent="CenterContainer" unique_id=751973593]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="DescriptionLabel" type="Label" parent="CenterContainer" unique_id=1127215685]
+custom_minimum_size = Vector2(400, 60)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.8, 0.8, 1)
+theme_override_font_sizes/font_size = 15
+text = "Strzela pociskami w najbliższego wroga.
+Szybki, niezawodny starter."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Spacer3" type="Control" parent="CenterContainer" unique_id=1054500894]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="StartButton" type="Button" parent="CenterContainer" unique_id=1276164309]
+custom_minimum_size = Vector2(400, 65)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2, 1, 0.4, 1)
+theme_override_font_sizes/font_size = 22
+text = "▶  START"

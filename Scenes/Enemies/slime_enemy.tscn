@@ -8,6 +8,19 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iifgy"]
 size = Vector2(18, 22)
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_1u7tg"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"walk_right",
+"speed": 5.0
+}]
+
 [node name="Enemy" type="CharacterBody2D" unique_id=1707419740 groups=["enemies"]]
 z_index = 2
 collision_layer = 2
@@ -22,3 +35,7 @@ metadata/grkh = false
 shape = SubResource("RectangleShape2D_iifgy")
 
 [node name="Center" type="Marker2D" parent="." unique_id=1383007067]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1669773243]
+sprite_frames = SubResource("SpriteFrames_1u7tg")
+animation = &"walk_right"
