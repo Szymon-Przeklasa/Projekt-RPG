@@ -188,8 +188,7 @@ public partial class PauseMenu : CanvasLayer
 		if (_sessionLabel == null)
 			return;
 
-		if (!GetTree().Paused)
-			_sessionT += delta;
+		double _sessionT = Time.GetTicksMsec() / 1000.0;
 
 		int hours = (int)_sessionT / 3600;
 		int minutes = ((int)_sessionT % 3600) / 60;
