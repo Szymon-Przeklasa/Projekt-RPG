@@ -106,13 +106,38 @@ public partial class MobEntry : HBoxContainer
 	/// <param name="number">Numer poziomu do konwersji.</param>
 	/// <returns>String z reprezentacją rzymską lub numerem jako tekst dla wartości poza zakresem.</returns>
 	private string ToRoman(int number)
+{
+	if (number <= 0) return "";
+
+	var map = new (int value, string symbol)[]
 	{
-		if (number <= 0) return "";
-		string[] romans = { "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", 
-							"XI", "XII", "XIII", "XIV", "XV", "XVI", "XVII", "XVIII", "XIX", "XX" };
-		
-		return (number <= romans.Length) ? romans[number - 1] : number.ToString();
+		(1000, "M"),
+		(900, "CM"),
+		(500, "D"),
+		(400, "CD"),
+		(100, "C"),
+		(90, "XC"),
+		(50, "L"),
+		(40, "XL"),
+		(10, "X"),
+		(9, "IX"),
+		(5, "V"),
+		(4, "IV"),
+		(1, "I")
+	};
+
+	var result = "";
+	foreach (var (value, symbol) in map)
+	{
+		while (number >= value)
+		{
+			result += symbol;
+			number -= value;
+		}
 	}
+
+	return result;
+}
 	private string GetMobDescription(string mobID)
 	{
 		return mobID switch

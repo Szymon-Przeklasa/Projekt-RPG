@@ -1,45 +1,90 @@
 using Godot;
 
 /// <summary>
-/// Menu pauzy obsługiwane klawiszem ESC.
-/// Zatrzymuje: timer gry, spawner wrogów, ruch wrogów, obrażenia kontaktowe,
-/// ruch gracza oraz wszystkie bronie gracza.
+/// Interfejs menu pauzy wywoływany klawiszem ESC.
+///
+/// Menu:
+/// <list type="bullet">
+/// <item><description>zatrzymuje rozgrywkę,</description></item>
+/// <item><description>blokuje działanie broni gracza,</description></item>
+/// <item><description>umożliwia restart poziomu,</description></item>
+/// <item><description>pozwala wyświetlić statystyki i autorów,</description></item>
+/// <item><description>umożliwia powrót do menu głównego.</description></item>
+/// </list>
+///
+/// Klasa dziedziczy po <see cref="CanvasLayer"/>.
 /// </summary>
 public partial class PauseMenu : CanvasLayer
 {
-	// ── Węzły UI ─────────────────────────────────────────────
-
-	/// <summary>Główny panel tła menu pauzy.</summary>
+	/// <summary>
+	/// Główny panel tła menu pauzy.
+	/// </summary>
 	private Panel _panel;
-	/// <summary>Przycisk restartujący aktualny poziom.</summary>
-	private Button _restartButton;
-	/// <summary>Przycisk wyświetlający statystyki.</summary>
-	private Button _statsButton;
-	/// <summary>Przycisk wyświetlający dane autorów.</summary>
-	private Button _creditsButton;
-	/// <summary>Przycisk wyjścia do menu głównego.</summary>
-	private Button _quitButton;
-	/// <summary>Zmienna czasu sesji gry.</summary>
-	private double _sessionT;
-	/// <summary>Zmienna Labela czasu sesji gry.</summary>
-	private Label _sessionLabel;
-	
-	private StatsUI _statsUI;
-	private CreditsUI _creditsUI;
-	private Theme _normalTheme;
-	private Theme _openedTheme;
-
-	// ── Stan ─────────────────────────────────────────────────
-
-	/// <summary>Flaga sprawdzająca, czy pauza została wywołana przez ten skrypt.</summary>
-	private bool _isPausedByThis = false;
-	/// <summary>Referencja do obiektu gracza.</summary>
-	private Player _player;
-
-	// ── Inicjalizacja ─────────────────────────────────────────
 
 	/// <summary>
-	/// Inicjalizuje węzły UI, podłącza sygnały przycisków i znajduje gracza w grupie.
+	/// Przycisk restartujący aktualny poziom.
+	/// </summary>
+	private Button _restartButton;
+
+	/// <summary>
+	/// Przycisk otwierający panel statystyk.
+	/// </summary>
+	private Button _statsButton;
+
+	/// <summary>
+	/// Przycisk otwierający panel autorów.
+	/// </summary>
+	private Button _creditsButton;
+
+	/// <summary>
+	/// Przycisk powrotu do menu głównego.
+	/// </summary>
+	private Button _quitButton;
+
+	/// <summary>
+	/// Czas trwania aktualnej sesji gry.
+	/// </summary>
+	private double _sessionT;
+
+	/// <summary>
+	/// Etykieta wyświetlająca czas sesji.
+	/// </summary>
+	private Label _sessionLabel;
+
+	/// <summary>
+	/// Panel statystyk gracza.
+	/// </summary>
+	private StatsUI _statsUI;
+
+	/// <summary>
+	/// Panel autorów projektu.
+	/// </summary>
+	private CreditsUI _creditsUI;
+
+	/// <summary>
+	/// Domyślny motyw przycisków.
+	/// </summary>
+	private Theme _normalTheme;
+
+	/// <summary>
+	/// Motyw aktywnego przycisku.
+	/// </summary>
+	private Theme _openedTheme;
+
+	/// <summary>
+	/// Flaga określająca, czy pauza została aktywowana przez ten skrypt.
+	/// </summary>
+	private bool _isPausedByThis = false;
+
+	/// <summary>
+	/// Referencja do obiektu gracza.
+	/// </summary>
+	private Player _player;
+
+	/// <summary>
+	/// Inicjalizuje menu pauzy.
+	/// Pobiera referencje do elementów UI, ładuje motywy
+	/// oraz podłącza zdarzenia przycisków.
 	/// </summary>
 	public override void _Ready()
 	{
@@ -51,14 +96,14 @@ public partial class PauseMenu : CanvasLayer
 		_statsButton = GetNode<Button>("Panel/VBoxContainer/HBoxContainer2/StatsButton");
 		_creditsButton = GetNode<Button>("Panel/VBoxContainer/HBoxContainer2/CreditsButton");
 		_quitButton = GetNode<Button>("Panel/VBoxContainer/HBoxContainer2/QuitButton");
-		
+
 		_sessionLabel = GetNode<Label>("Panel/VBoxContainer/HBoxContainer/SessionLabel");
-		
+
 		_statsUI = GetNode<StatsUI>("Panel/VBoxContainer/StatsUI");
 		_creditsUI = GetNode<CreditsUI>("Panel/VBoxContainer/CreditsUI");
 		_normalTheme = GD.Load<Theme>("res://Textures/NewButton.tres");
 		_openedTheme = GD.Load<Theme>("res://Textures/NewButtonOpened.tres");
-		
+
 		_restartButton.Pressed += Restart;
 		_statsButton.Pressed += OpenStats;
 		_creditsButton.Pressed += OpenCredits;
@@ -68,10 +113,9 @@ public partial class PauseMenu : CanvasLayer
 		OpenStats();
 	}
 
-	// ── Obsługa klawisza ESC ──────────────────────────────────
-
 	/// <summary>
-	/// Przechwytuje wejście klawisza ESC (ui_cancel) i przełącza stan pauzy.
+	/// Obsługuje wejście użytkownika.
+	/// Klawisz <c>ESC</c> przełącza pomiędzy pauzą i wznowieniem gry.
 	/// </summary>
 	/// <param name="event">Zdarzenie wejściowe.</param>
 	public override void _UnhandledInput(InputEvent @event)
@@ -90,10 +134,10 @@ public partial class PauseMenu : CanvasLayer
 		}
 	}
 
-	// ── Pauza ─────────────────────────────────────────────────
-
 	/// <summary>
-	/// Aktywuje stan pauzy: zatrzymuje drzewo scen, pokazuje UI i wyłącza procesowanie broni.
+	/// Włącza stan pauzy.
+	/// Zatrzymuje grę, wyświetla interfejs
+	/// oraz blokuje działanie broni gracza.
 	/// </summary>
 	private void Pause()
 	{
@@ -106,10 +150,8 @@ public partial class PauseMenu : CanvasLayer
 		OpenStats();
 	}
 
-	// ── Wznowienie ────────────────────────────────────────────
-
 	/// <summary>
-	/// Wznawia grę: ukrywa UI, odblokowuje drzewo scen i przywraca procesowanie broni.
+	/// Wyłącza stan pauzy i wznawia grę.
 	/// </summary>
 	private void Resume()
 	{
@@ -120,10 +162,8 @@ public partial class PauseMenu : CanvasLayer
 		SetWeaponsProcessMode(ProcessModeEnum.Inherit);
 	}
 
-	// ── Restart ───────────────────────────────────────────────
-
 	/// <summary>
-	/// Restartuje bieżącą scenę po uprzednim odblokowaniu procesów gry.
+	/// Restartuje aktualnie załadowaną scenę.
 	/// </summary>
 	private void Restart()
 	{
@@ -135,10 +175,8 @@ public partial class PauseMenu : CanvasLayer
 		tree.ReloadCurrentScene();
 	}
 
-	// ── Powrót do menu ────────────────────────────────────────
-
 	/// <summary>
-	/// Czyści stan pauzy i zmienia scenę na menu główne.
+	/// Kończy aktualną grę i przechodzi do menu głównego.
 	/// </summary>
 	private void QuitToMenu()
 	{
@@ -149,7 +187,10 @@ public partial class PauseMenu : CanvasLayer
 		tree.Paused = false;
 		tree.ChangeSceneToFile("res://Scenes/main_menu.tscn");
 	}
-	
+
+	/// <summary>
+	/// Otwiera panel statystyk i ukrywa panel autorów.
+	/// </summary>
 	private void OpenStats()
 	{
 		_statsButton.Theme = _openedTheme;
@@ -160,6 +201,9 @@ public partial class PauseMenu : CanvasLayer
 		_creditsUI.Visible = false;
 	}
 
+	/// <summary>
+	/// Otwiera panel autorów i ukrywa panel statystyk.
+	/// </summary>
 	private void OpenCredits()
 	{
 		_statsButton.Theme = _normalTheme;
@@ -168,13 +212,11 @@ public partial class PauseMenu : CanvasLayer
 		_creditsUI.Visible = true;
 	}
 
-	// ── Helper: przełącz ProcessMode wszystkich broni ─────────
-
 	/// <summary>
-	/// Zmienia tryb procesowania dla wszystkich broni gracza.
-	/// Pozwala to na zatrzymanie broni, nawet gdy gracz ma tryb Always.
+	/// Ustawia tryb procesowania dla wszystkich broni gracza.
+	/// Pozwala na ich zatrzymanie niezależnie od stanu gracza.
 	/// </summary>
-	/// <param name="mode">Docelowy tryb ProcessMode.</param>
+	/// <param name="mode">Docelowy tryb przetwarzania.</param>
 	private void SetWeaponsProcessMode(ProcessModeEnum mode)
 	{
 		if (_player == null) return;
@@ -182,7 +224,12 @@ public partial class PauseMenu : CanvasLayer
 		foreach (var weapon in _player.Weapons)
 			weapon.ProcessMode = mode;
 	}
-	
+
+	/// <summary>
+	/// Aktualizuje czas sesji oraz odświeża statystyki
+	/// podczas wyświetlania menu pauzy.
+	/// </summary>
+	/// <param name="delta">Czas od poprzedniej klatki.</param>
 	public override void _Process(double delta)
 	{
 		if (_sessionLabel == null)

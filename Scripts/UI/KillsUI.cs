@@ -1,32 +1,53 @@
 using Godot;
 
 /// <summary>
-/// Interfejs użytkownika wyświetlający statystyki zabójstw przeciwników.
-/// Pobiera dane z KillManager i wyświetla je w formie listy.
+/// Interfejs użytkownika wyświetlający statystyki zabitych przeciwników.
+///
+/// Dane pobierane są z <see cref="KillManager"/>, a następnie
+/// prezentowane w formie przewijanej listy wpisów.
+/// Każdy wpis reprezentowany jest przez scenę <see cref="MobEntry"/>.
+///
+/// Klasa dziedziczy po <see cref="CanvasLayer"/>.
 /// </summary>
 public partial class KillsUI : CanvasLayer
 {
 	/// <summary>
-	/// Scena używana do tworzenia pojedynczego wpisu przeciwnika (MobEntry).
+	/// Scena używana do tworzenia pojedynczego wpisu przeciwnika.
 	/// </summary>
 	[Export]
 	public PackedScene MobEntryScene;
-	
+
+	/// <summary>
+	/// Kontener przechowujący listę wpisów przeciwników.
+	/// </summary>
 	private VBoxContainer _mobGroup;
+
+	/// <summary>
+	/// Kontener przewijania listy zabójstw.
+	/// </summary>
 	private ScrollContainer _scrollContainer;
+
+	/// <summary>
+	/// Zapamiętany stan pauzy gry przed otwarciem okna.
+	/// </summary>
 	private bool _wasPaused;
-	
-	private readonly string[] _orderedMobIDs = { 
-		"slime", 
-		"vampire", 
-		"skeleton", 
-		"demon", 
-        "golem" 
+
+	/// <summary>
+	/// Kolejność wyświetlania typów przeciwników na liście.
+	/// </summary>
+	private readonly string[] _orderedMobIDs =
+	{
+		"slime",
+		"vampire",
+		"skeleton",
+		"demon",
+        "golem"
 	};
 
 	/// <summary>
-	/// Metoda wywoływana po dodaniu węzła do drzewa sceny.
-	/// Inicjalizuje widoczność UI i subskrybuje sygnały KillManager.
+	/// Inicjalizuje interfejs po dodaniu do drzewa sceny.
+	/// Ustawia początkową niewidoczność panelu oraz
+	/// subskrybuje zdarzenie aktualizacji zabójstw.
 	/// </summary>
 	public override void _Ready()
 	{
@@ -40,19 +61,20 @@ public partial class KillsUI : CanvasLayer
 	}
 
 	/// <summary>
-	/// Obsługuje sygnał KillUpdated z KillManager.
-	/// W tej chwili wypisuje informacje do konsoli.
+	/// Obsługuje zdarzenie aktualizacji liczby zabójstw.
+	/// Aktualnie wypisuje informację diagnostyczną do konsoli.
 	/// </summary>
 	/// <param name="mobID">Identyfikator przeciwnika.</param>
-	/// <param name="kills">Aktualna liczba zabójstw dla danego przeciwnika.</param>
+	/// <param name="kills">Aktualna liczba zabójstw danego przeciwnika.</param>
 	private void OnKillUpdated(string mobID, int kills)
 	{
 		GD.Print($"{mobID} kills: {kills}");
 	}
 
 	/// <summary>
-	/// Wyświetla UI ze wszystkimi zabójstwami w określonej kolejności.
-	/// Tworzy wpisy dla każdego przeciwnika z listy _orderedMobIDs i pauzuje grę.
+	/// Wyświetla panel statystyk zabójstw.
+	/// Czyści poprzednią zawartość, tworzy nowe wpisy
+	/// i zatrzymuje rozgrywkę do momentu zamknięcia panelu.
 	/// </summary>
 	public void ShowKills()
 	{
@@ -63,34 +85,30 @@ public partial class KillsUI : CanvasLayer
 		Visible = true;
 		GetTree().Paused = true;
 
-		// Resetuj scroll na górę
 		_scrollContainer.ScrollVertical = 0;
-		
-		// Usuń poprzednie wpisy
+
 		foreach (Node child in _mobGroup.GetChildren())
 			child.QueueFree();
-		
-		var allKills = KillManager.Instance?.GetAllKills() ?? new System.Collections.Generic.Dictionary<string, int>();
-		
-		// Dodaj nowe wpisy zgodnie ze zdefiniowaną kolejnością
+
+		var allKills = KillManager.Instance?.GetAllKills()
+			?? new System.Collections.Generic.Dictionary<string, int>();
+
 		foreach (string mobID in _orderedMobIDs)
 		{
-			// Pobierz liczbę killi lub 0, jeśli dany mob nie został jeszcze zabity
 			int killCount = allKills.ContainsKey(mobID) ? allKills[mobID] : 0;
 
 			var entry = MobEntryScene.Instantiate<MobEntry>();
 			_mobGroup.AddChild(entry);
-			
-			// Przekaż ID i liczbę killi (SetData zajmie się resztą: teksturą, opisem i rzymską cyfrą)
+
 			entry.SetData(mobID, killCount);
 		}
 	}
 
 	/// <summary>
-	/// Obsługuje kliknięcie w tło UI.
-	/// Zamknie interfejs po kliknięciu lewym przyciskiem myszy.
+	/// Obsługuje kliknięcie w tło panelu.
+	/// Zamknięcie następuje po kliknięciu lewym przyciskiem myszy.
 	/// </summary>
-	/// <param name="event">Zdarzenie wejścia myszy.</param>
+	/// <param name="event">Zdarzenie wejściowe użytkownika.</param>
 	private void OnBackgroundClicked(InputEvent @event)
 	{
 		if (@event is InputEventMouseButton mouseEvent &&
@@ -101,6 +119,11 @@ public partial class KillsUI : CanvasLayer
 		}
 	}
 
+	/// <summary>
+	/// Obsługuje globalne wejście użytkownika,
+	/// umożliwiając zamknięcie panelu klawiszem anulowania.
+	/// </summary>
+	/// <param name="event">Zdarzenie wejściowe.</param>
 	public override void _UnhandledInput(InputEvent @event)
 	{
 		if (!Visible)
@@ -114,7 +137,7 @@ public partial class KillsUI : CanvasLayer
 	}
 
 	/// <summary>
-	/// Zamyka interfejs UI i wznawia grę.
+	/// Zamyka panel statystyk i przywraca poprzedni stan gry.
 	/// </summary>
 	private void Close()
 	{

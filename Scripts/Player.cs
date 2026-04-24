@@ -2,46 +2,134 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
+/// <summary>
+/// Główna klasa gracza. Zarządza zdrowiem, ruchem, systemem broni, pasywek i ulepszeń,
+/// a także mechaniką doświadczenia i awansowania na poziomy.
+/// Gracz jest identyfikowany w scenie przez grupę "player".
+/// </summary>
 public partial class Player : CharacterBody2D
 {
+	// ── Eksporty inspektora ───────────────────────────────────
+
+	/// <summary>Scena bazowego pocisku (używana przez FireWand).</summary>
 	[Export] public PackedScene ProjectileScene;
+
+	/// <summary>Statystyki broni (legacy — statystyki aktywnej broni są zarządzane dynamicznie).</summary>
 	[Export] public WeaponStats Weapon;
+
+	/// <summary>Bazowa prędkość ruchu gracza (jednostki/s).</summary>
 	[Export] public int Speed = 210;
+
+	/// <summary>Maksymalna liczba punktów życia gracza.</summary>
 	[Export] public int MaxHealth = 100;
+
+	/// <summary>Czas nietykalności po otrzymaniu obrażeń (sekundy).</summary>
 	[Export] public float InvincibilityTime = 0.28f;
+
+	/// <summary>
+	/// Gdy włączone, rysuje linie debugowania od gracza do każdego wroga.
+	/// Dostępne tylko w trybie deweloperskim.
+	/// </summary>
 	[Export] public bool DebugDrawEnemyLines = false;
 
-	// Sceny pocisków — jedyne PackedScene których bronie potrzebują
+	/// <summary>Scena pocisku pioruna (<see cref="LightningBeam"/>), wymagana przez broń Lightning.</summary>
 	[Export] public PackedScene LightningBeamScene;
+
+	/// <summary>Scena pocisku Magic Missile (<see cref="MagicMissileProjectile"/>).</summary>
 	[Export] public PackedScene MagicMissileProjectileScene;
+
+	/// <summary>Scena pocisku topora (<see cref="AxeProjectile"/>).</summary>
 	[Export] public PackedScene AxeProjectileScene;
 
+	// ── Stan zdrowia i nietykalności ─────────────────────────
+
+	/// <summary>Aktualna liczba punktów życia gracza.</summary>
 	public int Health { get; private set; }
+
+	/// <summary>Pozostały czas nietykalności w sekundach. 0 = gracz może być trafiony.</summary>
 	private float _invincibilityTimer = 0f;
+
+	/// <summary>Pasek postępu HP wyświetlany w UI.</summary>
 	private ProgressBar _hpBar;
+
+	/// <summary>Etykieta tekstowa wyświetlająca aktualne HP w formacie "HP/MaxHP".</summary>
 	private Label _currentHp;
+
+	/// <summary>Flaga martwego gracza — zapobiega wielokrotnemu wywołaniu <see cref="Die"/>.</summary>
 	private bool _isDead = false;
+
+	/// <summary>
+	/// Flaga aktywna podczas wyświetlania ekranu wyboru ulepszenia.
+	/// Blokuje otrzymywanie obrażeń podczas Level Up UI.
+	/// </summary>
 	public bool IsInLevelUp = false;
 
+	// ── Mnożniki statystyk ────────────────────────────────────
+
+	/// <summary>Mnożnik obrażeń ze wszystkich broni gracza. Modyfikowany przez pasywkę Spinach.</summary>
 	public float DamageMultiplier = 1f;
+
+	/// <summary>Mnożnik czasu odnowienia broni (wartości poniżej 1 skracają cooldown). Modyfikowany przez Pummarola.</summary>
 	public float CooldownMultiplier = 1f;
+
+	/// <summary>Mnożnik zasięgu/obszaru działania broni. Modyfikowany przez Hollow Heart.</summary>
 	public float AreaMultiplier = 1f;
+
+	/// <summary>Mnożnik prędkości ruchu gracza. Modyfikowany przez pasywkę Wings.</summary>
 	public float SpeedMultiplier = 1f;
+
+	/// <summary>Mnożnik prędkości pocisków. Modyfikowany przez pasywkę Bracer.</summary>
 	public float ProjectileSpeedMultiplier = 1f;
 
+	// ── Limity ekwipunku ──────────────────────────────────────
+
+	/// <summary>Maksymalna liczba broni, które gracz może posiadać jednocześnie.</summary>
 	public const int MAX_WEAPONS = 6;
+
+	/// <summary>Maksymalna liczba pasywek, które gracz może posiadać jednocześnie.</summary>
 	public const int MAX_PASSIVES = 6;
+
+	// ── Kolekcje broni i ulepszeń ─────────────────────────────
+
+	/// <summary>Lista aktywnych broni posiadanych przez gracza.</summary>
 	public List<Weapon> Weapons = new();
+
+	/// <summary>Lista aktywnych pasywek posiadanych przez gracza.</summary>
 	public List<PassiveData> Passives = new();
+
+	/// <summary>
+	/// Lista wszystkich możliwych ulepszeń (bronie i pasywki).
+	/// Każda pozycja śledzi aktualny poziom i może być aplikowana przez <see cref="LevelUpUI"/>.
+	/// </summary>
 	public List<UpgradeData> AvailableUpgrades = new();
 
+	// ── Węzły sceny ───────────────────────────────────────────
+
+	/// <summary>Marker2D wyznaczający punkt spawnu pocisków (np. koniec różdżki).</summary>
 	public Marker2D ShootPoint;
+
+	/// <summary>Pasek postępu XP wyświetlany w UI.</summary>
 	private ProgressBar xpBar;
+
+	/// <summary>Etykieta debugowania pokazująca odległości do wrogów (aktywna przy <see cref="DebugDrawEnemyLines"/>).</summary>
 	private Label _debugLabel;
+
+	/// <summary>Panel ekwipunku wyświetlający posiadane bronie i pasywki.</summary>
 	private EquipmentUI _equipmentUI;
 
+	// ── Statyczny wybór startowej broni ──────────────────────
+
+	/// <summary>
+	/// Indeks startowej broni wybrany przez gracza w <see cref="WeaponSelectUI"/>.
+	/// Utrzymywany jako statyczny, aby przetrwał zmianę sceny.
+	/// </summary>
 	public static int SelectedStartWeaponIndex = 0;
 
+	// ── Rysowanie debugowania ─────────────────────────────────
+
+	/// <summary>
+	/// Rysuje linie debugowania od gracza do każdego wroga (jeśli włączone przez <see cref="DebugDrawEnemyLines"/>).
+	/// </summary>
 	public override void _Draw()
 	{
 		if (!DebugDrawEnemyLines) return;
@@ -56,13 +144,14 @@ public partial class Player : CharacterBody2D
 		}
 	}
 
+	/// <summary>
+	/// Inicjalizacja gracza po dodaniu do sceny.
+	/// Pobiera węzły UI, inicjalizuje zdrowie, czyści predefiniowane bronie ze sceny (.tscn),
+	/// konfiguruje ulepszenia i dodaje broń startową.
+	/// </summary>
 	public override void _Ready()
 	{
 		ProcessMode = ProcessModeEnum.Always;
-
-		// Gracz: layer 1 (mapa), mask 1 (tylko mapa, nie wrogowie)
-		//CollisionLayer = 1;
-		//CollisionMask = 1;
 
 		Health = MaxHealth;
 		ShootPoint = GetNode<Marker2D>("ShootPoint");
@@ -94,8 +183,16 @@ public partial class Player : CharacterBody2D
 		RefreshEquipmentUI();
 	}
 
-	// ── Dodawanie broni przez typ (skryptowo, bez PackedScene) ──
+	// ── Zarządzanie bronią ────────────────────────────────────
 
+	/// <summary>
+	/// Dynamicznie dodaje broń podanego typu do ekwipunku gracza.
+	/// Zwraca <c>false</c> jeśli gracz osiągnął limit broni lub już posiada broń tego typu.
+	/// Automatycznie ustawia sceny pocisków, inicjalizuje broń i odświeża UI.
+	/// </summary>
+	/// <typeparam name="T">Typ broni dziedziczący po <see cref="Weapon"/>.</typeparam>
+	/// <param name="stats">Opcjonalne statystyki startowe; jeśli <c>null</c>, broń używa własnych domyślnych.</param>
+	/// <returns><c>true</c> jeśli broń została dodana; <c>false</c> w przeciwnym razie.</returns>
 	public bool AddWeaponOfType<T>(WeaponStats stats = null) where T : Weapon, new()
 	{
 		if (Weapons.Count >= MAX_WEAPONS) return false;
@@ -117,6 +214,11 @@ public partial class Player : CharacterBody2D
 		return true;
 	}
 
+	/// <summary>
+	/// Przypisuje odpowiednie sceny pocisków do broni wymagających PackedScene.
+	/// Obsługuje FireWand, Lightning, MagicMissile i Axe.
+	/// </summary>
+	/// <param name="weapon">Broń, której sceny pocisków mają być ustawione.</param>
 	private void SetWeaponProjectileScenes(Weapon weapon)
 	{
 		switch (weapon)
@@ -138,6 +240,12 @@ public partial class Player : CharacterBody2D
 		}
 	}
 
+	/// <summary>
+	/// Dodaje startowe bronie gracza na podstawie <see cref="SelectedStartWeaponIndex"/>.
+	/// Magnet jest zawsze dodawany jako darmowy starter.
+	/// Wybrana broń startowa (Fire Wand, Lightning, Garlic, Magic Missile lub Axe)
+	/// jest inicjalizowana z predefiniowanymi statystykami i oznaczana jako odblokowana.
+	/// </summary>
 	private void AddStartingWeapon()
 	{
 		// Magnet zawsze jako darmowy starter
@@ -172,6 +280,11 @@ public partial class Player : CharacterBody2D
 		}
 	}
 
+	/// <summary>
+	/// Ustawia poziom broni o podanej nazwie w <see cref="AvailableUpgrades"/> na 1,
+	/// oznaczając ją jako odblokowaną (posiadaną przez gracza).
+	/// </summary>
+	/// <param name="name">Nazwa broni zgodna z <see cref="UpgradeData.Name"/>.</param>
 	private void MarkWeaponUnlocked(string name)
 	{
 		foreach (var upg in AvailableUpgrades)
@@ -182,6 +295,15 @@ public partial class Player : CharacterBody2D
 			}
 	}
 
+	// ── Zdrowie i obrażenia ───────────────────────────────────
+
+	/// <summary>
+	/// Aplikuje obrażenia na gracza.
+	/// Nie działa podczas Level Up UI, nietykalności ani po śmierci gracza.
+	/// Obrażenia są podwajane (balansowanie trudności), po czym uruchamia
+	/// efekt wizualny i sprawdza warunek śmierci.
+	/// </summary>
+	/// <param name="damage">Bazowe obrażenia do zadania (przed podwojeniem).</param>
 	public void TakeDamage(int damage)
 	{
 		if (IsInLevelUp) return;
@@ -199,6 +321,11 @@ public partial class Player : CharacterBody2D
 		if (Health <= 0) { Health = 0; Die(); }
 	}
 
+	/// <summary>
+	/// Leczy gracza o podaną liczbę punktów życia (nie przekraczając <see cref="MaxHealth"/>).
+	/// Odgrywa dźwięk leczenia i aktualizuje pasek HP.
+	/// </summary>
+	/// <param name="amount">Liczba punktów życia do przywrócenia.</param>
 	public void Heal(int amount)
 	{
 		Health = Mathf.Min(Health + amount, MaxHealth);
@@ -206,6 +333,9 @@ public partial class Player : CharacterBody2D
 		UpdateHpBar();
 	}
 
+	/// <summary>
+	/// Aktualizuje pasek HP i etykietę tekstową UI na podstawie aktualnego zdrowia.
+	/// </summary>
 	private void UpdateHpBar()
 	{
 		if (_hpBar == null) return;
@@ -214,6 +344,10 @@ public partial class Player : CharacterBody2D
 		_currentHp.Text = Health + "/" + MaxHealth;
 	}
 
+	/// <summary>
+	/// Krótki efekt wizualny (czerwony błysk) po otrzymaniu obrażeń.
+	/// Używa Tweena do animacji koloru modulate.
+	/// </summary>
 	private void FlashDamage()
 	{
 		var tween = CreateTween();
@@ -221,6 +355,11 @@ public partial class Player : CharacterBody2D
 		tween.TweenProperty(this, "modulate", new Color(1f, 1f, 1f, 1f), 0.15f);
 	}
 
+	/// <summary>
+	/// Obsługuje śmierć gracza.
+	/// Wyłącza wszystkie bronie, pauzuje grę i wywołuje ekran śmierci.
+	/// Jeśli ekran śmierci nie istnieje w scenie, powraca do menu po 1,5 sekundy.
+	/// </summary>
 	private void Die()
 	{
 		if (_isDead) return;
@@ -245,6 +384,10 @@ public partial class Player : CharacterBody2D
 		}
 	}
 
+	/// <summary>
+	/// Zwraca całkowitą liczbę zabójstw ze wszystkich typów wrogów (z <see cref="KillManager"/>).
+	/// </summary>
+	/// <returns>Suma zabójstw ze wszystkich typów wrogów.</returns>
 	private int GetKillCount()
 	{
 		int total = 0;
@@ -253,6 +396,15 @@ public partial class Player : CharacterBody2D
 		return total;
 	}
 
+	// ── Pasywki ───────────────────────────────────────────────
+
+	/// <summary>
+	/// Dodaje lub ulepsza pasywkę gracza.
+	/// Sprawdza limit pasywek (<see cref="MAX_PASSIVES"/>), aplikuje efekt pasywki
+	/// i odświeża UI ekwipunku.
+	/// </summary>
+	/// <param name="passive">Dane pasywki do dodania lub ulepszenia.</param>
+	/// <returns><c>true</c> jeśli pasywka została zastosowana; <c>false</c> jeśli nie było to możliwe.</returns>
 	public bool AddPassive(PassiveData passive)
 	{
 		if (!passive.CanUpgrade) return false;
@@ -266,12 +418,20 @@ public partial class Player : CharacterBody2D
 		return true;
 	}
 
+	/// <summary>
+	/// Wywołuje <see cref="Weapon.RefreshStats"/> na wszystkich broniach gracza.
+	/// Powinno być wywoływane po zmianie mnożników statystyk (np. po kupieniu pasywki).
+	/// </summary>
 	public void RefreshAllWeapons()
 	{
 		foreach (var weapon in Weapons)
 			weapon.RefreshStats();
 	}
 
+	/// <summary>
+	/// Odświeża panel ekwipunku UI (<see cref="EquipmentUI"/>) odzwierciedlając aktualny stan gracza.
+	/// Jeśli referencja do UI jest <c>null</c>, próbuje ją pobrać ponownie ze sceny.
+	/// </summary>
 	public void RefreshEquipmentUI()
 	{
 		if (_equipmentUI == null)
@@ -279,6 +439,12 @@ public partial class Player : CharacterBody2D
 		_equipmentUI?.Refresh(this);
 	}
 
+	/// <summary>
+	/// Miesza listę w miejscu algorytmem Fisher-Yates.
+	/// Używana do losowania kolejności ulepszeń w <see cref="LevelUpUI"/>.
+	/// </summary>
+	/// <typeparam name="T">Typ elementów listy.</typeparam>
+	/// <param name="list">Lista do przetasowania.</param>
 	public void Shuffle<T>(IList<T> list)
 	{
 		var rng = new RandomNumberGenerator();
@@ -289,6 +455,11 @@ public partial class Player : CharacterBody2D
 		}
 	}
 
+	/// <summary>
+	/// Konfiguruje wszystkie dostępne ulepszenia (bronie i pasywki) dla systemu Level Up.
+	/// Każde ulepszenie jest definiowane za pomocą fluent API <see cref="UpgradeData.AddLevel"/>
+	/// z opisem i efektem dla każdego poziomu.
+	/// </summary>
 	private void SetupUpgrades()
 	{
 		var spinach = new PassiveData { Name = "Spinach", Type = PassiveType.Spinach, MaxLevel = 5, BonusPerLevel = 0.1f };
@@ -407,6 +578,12 @@ public partial class Player : CharacterBody2D
 			.AddLevel("Pull range +30%. Pull speed +20%.", p => { var w = FindWeapon<Magnet>(); if (w != null) { w.Stats.Range *= 1.30f; w.PullSpeedBonus += 100f; } }));
 	}
 
+	/// <summary>
+	/// Zwraca pierwszą broń podanego typu z listy <see cref="Weapons"/> gracza,
+	/// lub <c>null</c> jeśli gracz jej nie posiada.
+	/// </summary>
+	/// <typeparam name="T">Typ broni dziedziczący po <see cref="Weapon"/>.</typeparam>
+	/// <returns>Instancja broni lub <c>null</c>.</returns>
 	private T FindWeapon<T>() where T : Weapon
 	{
 		foreach (var w in Weapons)
@@ -414,6 +591,13 @@ public partial class Player : CharacterBody2D
 		return null;
 	}
 
+	// ── Wyszukiwanie wrogów ───────────────────────────────────
+
+	/// <summary>
+	/// Zwraca najbliższego wroga w podanym zasięgu od pozycji gracza.
+	/// </summary>
+	/// <param name="range">Maksymalny zasięg poszukiwania (jednostki świata).</param>
+	/// <returns>Najbliższy <see cref="Node2D"/> wroga lub <c>null</c>, jeśli brak celów w zasięgu.</returns>
 	public Node2D GetClosestEnemy(float range)
 	{
 		Node2D closest = null;
@@ -429,10 +613,25 @@ public partial class Player : CharacterBody2D
 		return closest;
 	}
 
+	// ── Doświadczenie i poziomy ───────────────────────────────
+
+	/// <summary>Aktualny poziom gracza. Zaczyna od 1.</summary>
 	public int Level = 1;
+
+	/// <summary>Aktualna liczba punktów doświadczenia w bieżącym poziomie.</summary>
 	public int Xp = 0;
+
+	/// <summary>
+	/// Liczba punktów XP wymagana do awansu na następny poziom.
+	/// Skaluje się nieliniowo z poziomem — <c>13 * Level^1.08</c>, minimum 10.
+	/// </summary>
 	public int XpToLevel => Mathf.Max(10, Mathf.RoundToInt(13f * Mathf.Pow(Level, 1.08f)));
 
+	/// <summary>
+	/// Dodaje punkty doświadczenia i obsługuje wielokrotne awanse poziomu w jednym wywołaniu.
+	/// Wywołuje <see cref="LevelUp"/> dla każdego progu przekroczonego jednorazowo.
+	/// </summary>
+	/// <param name="amount">Liczba punktów XP do dodania.</param>
 	public void GainXp(int amount)
 	{
 		if (_isDead) return;
@@ -445,6 +644,9 @@ public partial class Player : CharacterBody2D
 		UpdateXpBar();
 	}
 
+	/// <summary>
+	/// Aktualizuje pasek XP w UI do aktualnych wartości <see cref="Xp"/> i <see cref="XpToLevel"/>.
+	/// </summary>
 	private void UpdateXpBar()
 	{
 		if (xpBar == null) return;
@@ -452,6 +654,10 @@ public partial class Player : CharacterBody2D
 		xpBar.Value = Xp;
 	}
 
+	/// <summary>
+	/// Obsługuje awans na kolejny poziom: zwiększa <see cref="Level"/>,
+	/// odtwarza dźwięk, wyświetla <see cref="LevelUpUI"/> i leczy gracza o 25% maksymalnego HP.
+	/// </summary>
 	private void LevelUp()
 	{
 		Level++;
@@ -461,6 +667,13 @@ public partial class Player : CharacterBody2D
 		Heal(MaxHealth / 4);
 	}
 
+	// ── Ruch ─────────────────────────────────────────────────
+
+	/// <summary>
+	/// Pobiera wejście gracza i aktualizuje wektor <see cref="CharacterBody2D.Velocity"/>.
+	/// Gdy gra jest pauzowana lub gracz jest martwy, prędkość jest zerowana.
+	/// Prędkość skalowana jest przez <see cref="Speed"/> i <see cref="SpeedMultiplier"/>.
+	/// </summary>
 	public void GetInput()
 	{
 		if (GetTree().Paused || _isDead)
@@ -472,6 +685,10 @@ public partial class Player : CharacterBody2D
 		Velocity = inputDirection * Speed * SpeedMultiplier;
 	}
 
+	/// <summary>
+	/// Aktualizacja fizyki: zmniejsza timer nietykalności, pobiera wejście gracza i wywołuje MoveAndSlide.
+	/// </summary>
+	/// <param name="delta">Czas od poprzedniej klatki fizyki (sekundy).</param>
 	public override void _PhysicsProcess(double delta)
 	{
 		if (_invincibilityTimer > 0f)
@@ -481,6 +698,11 @@ public partial class Player : CharacterBody2D
 		MoveAndSlide();
 	}
 
+	/// <summary>
+	/// Aktualizacja logiki co klatkę: odświeża linie debugowania i wymusza przerysowanie
+	/// (tylko gdy <see cref="DebugDrawEnemyLines"/> jest włączone).
+	/// </summary>
+	/// <param name="delta">Czas od poprzedniej klatki (sekundy).</param>
 	public override void _Process(double delta)
 	{
 		if (!DebugDrawEnemyLines) return;
@@ -494,6 +716,11 @@ public partial class Player : CharacterBody2D
 		QueueRedraw();
 	}
 
+	/// <summary>
+	/// Zmienia tryb procesowania (<see cref="Node.ProcessModeEnum"/>) dla wszystkich broni gracza.
+	/// Używane do zatrzymywania broni podczas pauzy lub Level Up UI.
+	/// </summary>
+	/// <param name="mode">Docelowy tryb procesowania.</param>
 	public void SetWeaponsProcessMode(ProcessModeEnum mode)
 	{
 		foreach (var weapon in Weapons)

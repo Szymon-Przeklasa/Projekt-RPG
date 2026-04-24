@@ -3,202 +3,259 @@ using System.Collections.Generic;
 
 /// <summary>
 /// Panel statystyk wyświetlany w menu pauzy.
-/// Generuje wiersze dla broni i pasywek z kompaktowym wyświetlaniem poziomów (●○ kropki).
+/// Pokazuje poziom gracza, doświadczenie oraz rozwój:
+/// <list type="bullet">
+/// <item><description>broni (Weapons),</description></item>
+/// <item><description>pasywek (Passives).</description></item>
+/// </list>
+///
+/// Każdy element prezentowany jest w formie graficznej (● / ○),
+/// gdzie wypełnione pola oznaczają zdobyte poziomy.
 /// </summary>
 public partial class StatsUI : HBoxContainer
 {
-	private Label _levelValue;
-	private Label _xpValue;
+    /// <summary>Label wyświetlający poziom gracza.</summary>
+    private Label _levelValue;
 
-	// Dynamicznie tworzone etykiety kropek (name → label)
-	private readonly Dictionary<string, Label> _dotLabels = new();
+    /// <summary>Label wyświetlający ilość doświadczenia.</summary>
+    private Label _xpValue;
 
-	// Nazwy broni w kolejności wyświetlania (z max poziomami)
-	private static readonly (string name, int max)[] WeaponEntries =
-	{
-		("Fire Wand",     8),
-		("Lightning",     8),
-		("Garlic",        8),
-		("Magic Missile", 8),
-		("Axe",           8),
-		("Magnet",        5),
-	};
+    /// <summary>
+    /// Mapa labeli kropek (UI poziomów) przypisana do nazw przedmiotów.
+    /// </summary>
+    private readonly Dictionary<string, Label> _dotLabels = new();
 
-	// Nazwy pasywek w kolejności wyświetlania (z max poziomami)
-	private static readonly (string name, int max)[] PassiveEntries =
-	{
-		("Spinach",       5),
-		("Pummarola",     5),
-		("Hollow Heart",  5),
-		("Bracer",        5),
-		("Wings",         5),
-	};
+    /// <summary>
+    /// Lista broni wyświetlanych w panelu statystyk wraz z maksymalnym poziomem.
+    /// </summary>
+    private static readonly (string name, int max)[] WeaponEntries =
+    {
+        ("Fire Wand",     8),
+        ("Lightning",     8),
+        ("Garlic",        8),
+        ("Magic Missile", 8),
+        ("Axe",           8),
+        ("Magnet",        5),
+    };
 
-	private Font _font;
-	private VBoxContainer _weaponColumn;
-	private VBoxContainer _passiveColumn;
+    /// <summary>
+    /// Lista pasywek wyświetlanych w panelu statystyk wraz z maksymalnym poziomem.
+    /// </summary>
+    private static readonly (string name, int max)[] PassiveEntries =
+    {
+        ("Spinach",       5),
+        ("Pummarola",     5),
+        ("Hollow Heart",  5),
+        ("Bracer",        5),
+        ("Wings",         5),
+    };
 
-	public override void _Ready()
-	{
-		_levelValue = GetNode<Label>("LeftColumn/StatValues/HBoxContainer/LevelValue");
-		_xpValue    = GetNode<Label>("LeftColumn/StatValues/HBoxContainer2/XPValue");
-		_font        = GD.Load<FontFile>("res://Textures/Jersey15-Regular.ttf");
+    /// <summary>Czcionka używana w UI statystyk.</summary>
+    private Font _font;
 
-		// Use existing RightColumn for weapons, add a third column for passives
-		_weaponColumn  = GetNode<VBoxContainer>("RightColumn");
-		_passiveColumn = BuildPassiveColumn();
+    /// <summary>Kolumna UI zawierająca bronie.</summary>
+    private VBoxContainer _weaponColumn;
 
-		BuildWeaponRows();
-		BuildPassiveRows();
-	}
+    /// <summary>Kolumna UI zawierająca pasywki.</summary>
+    private VBoxContainer _passiveColumn;
 
-	// ── Build columns ─────────────────────────────────────────
+    /// <summary>
+    /// Inicjalizuje panel statystyk po dodaniu do sceny.
+    /// Pobiera referencje do UI oraz buduje kolumny broni i pasywek.
+    /// </summary>
+    public override void _Ready()
+    {
+        _levelValue = GetNode<Label>("LeftColumn/StatValues/HBoxContainer/LevelValue");
+        _xpValue = GetNode<Label>("LeftColumn/StatValues/HBoxContainer2/XPValue");
+        _font = GD.Load<FontFile>("res://Textures/Jersey15-Regular.ttf");
 
-	private VBoxContainer BuildPassiveColumn()
-	{
-		var col = new VBoxContainer();
-		col.LayoutMode = 2;
-		col.SizeFlagsHorizontal = SizeFlags.Expand;
-		AddChild(col);
-		return col;
-	}
+        _weaponColumn = GetNode<VBoxContainer>("RightColumn");
+        _passiveColumn = BuildPassiveColumn();
 
-	private void BuildWeaponRows()
-	{
-		// Remove existing children (ProgressBar rows from scene)
-		foreach (Node child in _weaponColumn.GetChildren())
-		{
-			_weaponColumn.RemoveChild(child);
-			child.Free();
-		}
+        BuildWeaponRows();
+        BuildPassiveRows();
+    }
 
-		var header = MakeLabel("WEAPONS", 18, new Color(0.7f, 0.85f, 1f));
-		_weaponColumn.AddChild(header);
+    // ─────────────────────────────────────────────────────────────
+    // Budowanie UI
+    // ─────────────────────────────────────────────────────────────
 
-		foreach (var (name, max) in WeaponEntries)
-		{
-			var row = MakeUpgradeRow(name, 0, max);
-			_weaponColumn.AddChild(row);
-		}
-	}
+    /// <summary>
+    /// Tworzy kolumnę UI dla pasywek.
+    /// </summary>
+    private VBoxContainer BuildPassiveColumn()
+    {
+        var col = new VBoxContainer();
+        col.LayoutMode = 2;
+        col.SizeFlagsHorizontal = SizeFlags.Expand;
+        AddChild(col);
+        return col;
+    }
 
-	private void BuildPassiveRows()
-	{
-		var header = MakeLabel("PASSIVES", 18, new Color(0.7f, 1f, 0.75f));
-		_passiveColumn.AddChild(header);
+    /// <summary>
+    /// Buduje listę wierszy dla broni.
+    /// </summary>
+    private void BuildWeaponRows()
+    {
+        foreach (Node child in _weaponColumn.GetChildren())
+        {
+            _weaponColumn.RemoveChild(child);
+            child.Free();
+        }
 
-		foreach (var (name, max) in PassiveEntries)
-		{
-			var row = MakeUpgradeRow(name, 0, max);
-			_passiveColumn.AddChild(row);
-		}
-	}
+        var header = MakeLabel("BRONIE", 18, new Color(0.7f, 0.85f, 1f));
+        _weaponColumn.AddChild(header);
 
-	// ── Row factory ───────────────────────────────────────────
+        foreach (var (name, max) in WeaponEntries)
+        {
+            var row = MakeUpgradeRow(name, 0, max);
+            _weaponColumn.AddChild(row);
+        }
+    }
 
-	/// <summary>Creates a compact row: "Name   ●●●○○" </summary>
-	private HBoxContainer MakeUpgradeRow(string itemName, int level, int max)
-	{
-		var row = new HBoxContainer();
-		row.LayoutMode = 2;
-		row.AddThemeConstantOverride("separation", 6);
+    /// <summary>
+    /// Buduje listę wierszy dla pasywek.
+    /// </summary>
+    private void BuildPassiveRows()
+    {
+        var header = MakeLabel("PASYWKI", 18, new Color(0.7f, 1f, 0.75f));
+        _passiveColumn.AddChild(header);
 
-		var nameLabel = MakeLabel(itemName, 18, new Color(0.85f, 0.85f, 0.85f));
-		nameLabel.SizeFlagsHorizontal = SizeFlags.Expand | SizeFlags.Fill;
-		row.AddChild(nameLabel);
+        foreach (var (name, max) in PassiveEntries)
+        {
+            var row = MakeUpgradeRow(name, 0, max);
+            _passiveColumn.AddChild(row);
+        }
+    }
 
-		var dotsLabel = MakeLabel(DotsString(level, max), 14, DotColor(level, max));
-		dotsLabel.HorizontalAlignment = HorizontalAlignment.Right;
-		_dotLabels[itemName] = dotsLabel;
-		row.AddChild(dotsLabel);
+    // ─────────────────────────────────────────────────────────────
+    // Tworzenie wierszy
+    // ─────────────────────────────────────────────────────────────
 
-		return row;
-	}
+    /// <summary>
+    /// Tworzy pojedynczy wiersz statystyki w formie:
+    /// Nazwa + graficzny pasek poziomu (■ □).
+    /// </summary>
+    /// <param name="itemName">Nazwa przedmiotu.</param>
+    /// <param name="level">Aktualny poziom.</param>
+    /// <param name="max">Maksymalny poziom.</param>
+    /// <returns>Wiersz UI.</returns>
+    private HBoxContainer MakeUpgradeRow(string itemName, int level, int max)
+    {
+        var row = new HBoxContainer();
+        row.LayoutMode = 2;
+        row.AddThemeConstantOverride("separation", 6);
 
-	// ── Refresh ───────────────────────────────────────────────
+        var nameLabel = MakeLabel(itemName, 18, new Color(0.85f, 0.85f, 0.85f));
+        nameLabel.SizeFlagsHorizontal = SizeFlags.Expand | SizeFlags.Fill;
+        row.AddChild(nameLabel);
 
-	public void Refresh(Player player)
-	{
-		if (_levelValue == null) return;
+        var dotsLabel = MakeLabel(DotsString(level, max), 14, DotColor(level, max));
+        dotsLabel.HorizontalAlignment = HorizontalAlignment.Right;
 
-		if (player == null)
-		{
-			_levelValue.Text = "-";
-			_xpValue.Text    = "-";
-			foreach (var lbl in _dotLabels.Values)
-				lbl.Text = "";
-			return;
-		}
+        _dotLabels[itemName] = dotsLabel;
+        row.AddChild(dotsLabel);
 
-		_levelValue.Text = player.Level.ToString();
-		_xpValue.Text    = $"{player.Xp}/{player.XpToLevel}";
+        return row;
+    }
 
-		// Weapons
-		foreach (var (name, max) in WeaponEntries)
-		{
-			int lvl = GetWeaponLevel(player, name);
-			SetDots(name, lvl, max);
-		}
+    // ─────────────────────────────────────────────────────────────
+    // Aktualizacja UI
+    // ─────────────────────────────────────────────────────────────
 
-		// Passives
-		foreach (var (name, max) in PassiveEntries)
-		{
-			int lvl = GetPassiveLevel(player, name);
-			SetDots(name, lvl, max);
-		}
-	}
+    /// <summary>
+    /// Odświeża panel statystyk na podstawie danych gracza.
+    /// </summary>
+    /// <param name="player">Obiekt gracza.</param>
+    public void Refresh(Player player)
+    {
+        if (_levelValue == null) return;
 
-	// ── Helpers ───────────────────────────────────────────────
+        if (player == null)
+        {
+            _levelValue.Text = "-";
+            _xpValue.Text = "-";
 
-	private void SetDots(string name, int level, int max)
-	{
-		if (!_dotLabels.TryGetValue(name, out var lbl)) return;
-		lbl.Text    = DotsString(level, max);
-		lbl.Modulate = DotColor(level, max);
-	}
+            foreach (var lbl in _dotLabels.Values)
+                lbl.Text = "";
 
-	private static string DotsString(int level, int max)
-	{
-		var sb = new System.Text.StringBuilder();
-		for (int i = 0; i < max; i++)
-		{
-			if (i > 0) sb.Append(' ');
-			sb.Append(i < level ? "\u25a0" : "\u25a1"); // ■ filled, □ empty
-		}
-		return sb.ToString();
-	}
+            return;
+        }
 
-	private static Color DotColor(int level, int max)
-	{
-		if (level == 0)        return Colors.White;
-		if (level >= max)      return new Color(1f, 0.85f, 0.2f);   // gold = maxed
-		return new Color(0.5f, 0.9f, 1f);                            // cyan = in progress
-	}
+        _levelValue.Text = player.Level.ToString();
+        _xpValue.Text = $"{player.Xp}/{player.XpToLevel}";
 
-	private static int GetWeaponLevel(Player player, string name)
-	{
-		foreach (var upg in player.AvailableUpgrades)
-			if (upg.Type == UpgradeType.Weapon && upg.Name == name)
-				return upg.Level;
-		return 0;
-	}
+        foreach (var (name, max) in WeaponEntries)
+            SetDots(name, GetWeaponLevel(player, name), max);
 
-	private static int GetPassiveLevel(Player player, string name)
-	{
-		foreach (var passive in player.Passives)
-			if (passive.Name == name)
-				return passive.CurrentLevel;
-		return 0;
-	}
+        foreach (var (name, max) in PassiveEntries)
+            SetDots(name, GetPassiveLevel(player, name), max);
+    }
 
-	private Label MakeLabel(string text, int fontSize, Color color)
-	{
-		var lbl = new Label();
-		lbl.LayoutMode = 2;
-		lbl.Text = text;
-		lbl.AddThemeFontOverride("font", _font);
-		lbl.AddThemeFontSizeOverride("font_size", fontSize);
-		lbl.AddThemeColorOverride("font_color", color);
-		return lbl;
-	}
+    // ─────────────────────────────────────────────────────────────
+    // Helpers
+    // ─────────────────────────────────────────────────────────────
+
+    /// <summary>Ustawia graficzny pasek poziomu (■ □).</summary>
+    private void SetDots(string name, int level, int max)
+    {
+        if (!_dotLabels.TryGetValue(name, out var lbl)) return;
+
+        lbl.Text = DotsString(level, max);
+        lbl.Modulate = DotColor(level, max);
+    }
+
+    /// <summary>Tworzy tekstowy pasek poziomu.</summary>
+    private static string DotsString(int level, int max)
+    {
+        var sb = new System.Text.StringBuilder();
+
+        for (int i = 0; i < max; i++)
+        {
+            if (i > 0) sb.Append(' ');
+            sb.Append(i < level ? "■" : "□");
+        }
+
+        return sb.ToString();
+    }
+
+    /// <summary>Zwraca kolor paska poziomu.</summary>
+    private static Color DotColor(int level, int max)
+    {
+        if (level == 0) return Colors.White;
+        if (level >= max) return new Color(1f, 0.85f, 0.2f);
+        return new Color(0.5f, 0.9f, 1f);
+    }
+
+    /// <summary>Pobiera poziom broni gracza.</summary>
+    private static int GetWeaponLevel(Player player, string name)
+    {
+        foreach (var upg in player.AvailableUpgrades)
+            if (upg.Type == UpgradeType.Weapon && upg.Name == name)
+                return upg.Level;
+
+        return 0;
+    }
+
+    /// <summary>Pobiera poziom pasywki gracza.</summary>
+    private static int GetPassiveLevel(Player player, string name)
+    {
+        foreach (var passive in player.Passives)
+            if (passive.Name == name)
+                return passive.CurrentLevel;
+
+        return 0;
+    }
+
+    /// <summary>Tworzy etykietę tekstową UI.</summary>
+    private Label MakeLabel(string text, int fontSize, Color color)
+    {
+        var lbl = new Label();
+        lbl.LayoutMode = 2;
+        lbl.Text = text;
+        lbl.AddThemeFontOverride("font", _font);
+        lbl.AddThemeFontSizeOverride("font_size", fontSize);
+        lbl.AddThemeColorOverride("font_color", color);
+        return lbl;
+    }
 }

@@ -1,12 +1,14 @@
 using Godot;
 
 /// <summary>
-/// Ekran wyboru broni startowej, wyświetlany przed wejściem do gry.
-/// Ustaw go jako CanvasLayer w scenie main_menu lub jako osobną scenę przejściową.
-/// Po wyborze ładuje scenę gry.
+/// Ekran wyboru broni startowej wyświetlany przed rozpoczęciem rozgrywki.
+/// Gracz może wybrać jedną z pięciu broni; wybór zapisywany jest w
+/// <see cref="Player.SelectedStartWeaponIndex"/> i utrzymywany podczas zmiany sceny.
+/// Obsługuje nawigację klawiaturą (strzałki, Enter, Escape) oraz kliknięcia myszą.
 /// </summary>
 public partial class WeaponSelectUI : CanvasLayer
 {
+	/// <summary>Nazwy broni wyświetlane na przyciskach wyboru.</summary>
 	private static readonly string[] WeaponNames = {
 		"Fire Wand",
 		"Lightning",
@@ -15,24 +17,39 @@ public partial class WeaponSelectUI : CanvasLayer
         "Axe"
 	};
 
+	/// <summary>Opisy broni wyświetlane w etykiecie po wyborze.</summary>
 	private static readonly string[] WeaponDescriptions = {
 		"Strzela pociskami w najbliższego wroga.\nSzybki, niezawodny starter.",
 		"Piorun skaczący między wrogami.\nDoskonały do tłumów.",
 		"Aura obrażeń wokół gracza.\nDobry na duże skupiska.",
 		"Samonaprowadzające pociski.\nŁatwy w użyciu.",
-		"Topór z łukową trajektorią.\nWysokie obrażenia pojedynczego celu."
+        "Topór z łukową trajektorią.\nWysokie obrażenia pojedynczego celu."
 	};
 
+	/// <summary>Emotikony broni wyświetlane na przyciskach obok nazw.</summary>
 	private static readonly string[] WeaponEmojis = {
 		"🔥", "⚡", "🧄", "✨", "🪓"
 	};
 
+	/// <summary>Aktualnie zaznaczony indeks broni (0–4).</summary>
 	private int _selectedIndex = 0;
+
+	/// <summary>Tablica przycisków wyboru broni (jeden na broń).</summary>
 	private Button[] _buttons;
+
+	/// <summary>Etykieta wyświetlająca opis aktualnie wybranej broni.</summary>
 	private Label _descLabel;
+
+	/// <summary>Przycisk potwierdzający wybór i rozpoczynający grę.</summary>
 	private Button _startButton;
+
+	/// <summary>Przycisk powrotu do menu głównego (opcjonalny — może nie istnieć w scenie).</summary>
 	private Button _backButton;
 
+	/// <summary>
+	/// Inicjalizacja UI po dodaniu do sceny.
+	/// Pobiera węzły przycisków, subskrybuje zdarzenia i domyślnie zaznacza pierwszą broń.
+	/// </summary>
 	public override void _Ready()
 	{
 		ProcessMode = ProcessModeEnum.Always;
@@ -64,6 +81,13 @@ public partial class WeaponSelectUI : CanvasLayer
 		_buttons[0].GrabFocus();
 	}
 
+	/// <summary>
+	/// Zaznacza broń o podanym indeksie.
+	/// Indeks jest zawijany modularnie, więc nie może wyjść poza zakres.
+	/// Aktualizuje styl zaznaczonego przycisku (żółty tekst + strzałka) i opis.
+	/// Zapisuje wybór w <see cref="Player.SelectedStartWeaponIndex"/>.
+	/// </summary>
+	/// <param name="index">Indeks broni do zaznaczenia (0–4, zawijany modularnie).</param>
 	private void SelectWeapon(int index)
 	{
 		_selectedIndex = Mathf.Wrap(index, 0, _buttons.Length);
@@ -86,6 +110,11 @@ public partial class WeaponSelectUI : CanvasLayer
 		_descLabel.Text = WeaponDescriptions[_selectedIndex];
 	}
 
+	/// <summary>
+	/// Obsługuje nieobsłużone zdarzenia klawiatury.
+	/// Nawigacja w górę/dół zmienia zaznaczenie; Enter potwierdza; Escape wraca do menu.
+	/// </summary>
+	/// <param name="event">Zdarzenie wejściowe do sprawdzenia.</param>
 	public override void _UnhandledInput(InputEvent @event)
 	{
 		if (@event.IsActionPressed("ui_up"))
@@ -118,11 +147,17 @@ public partial class WeaponSelectUI : CanvasLayer
 		}
 	}
 
+	/// <summary>
+	/// Ładuje główną scenę gry, kończąc ekran wyboru broni.
+	/// </summary>
 	private void StartGame()
 	{
 		GetTree().ChangeSceneToFile("res://Scenes/game.tscn");
 	}
 
+	/// <summary>
+	/// Wraca do sceny menu głównego bez rozpoczynania gry.
+	/// </summary>
 	private void ReturnToMainMenu()
 	{
 		GetTree().ChangeSceneToFile("res://Scenes/main_menu.tscn");

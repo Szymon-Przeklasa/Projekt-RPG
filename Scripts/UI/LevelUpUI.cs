@@ -4,17 +4,44 @@ using System.Collections.Generic;
 using System.Linq;
 
 /// <summary>
-/// Interfejs wyboru ulepszenia po awansie.
-/// Wyświetla 3 losowe opcje (broń/pasywkę).
-/// Bronie nieodblokowane pokazują "UNLOCK" zamiast poziomu.
+/// Interfejs użytkownika odpowiedzialny za wybór ulepszenia po awansie gracza.
+///
+/// Po osiągnięciu nowego poziomu:
+/// <list type="bullet">
+/// <item><description>zatrzymuje rozgrywkę,</description></item>
+/// <item><description>losuje maksymalnie 3 dostępne ulepszenia,</description></item>
+/// <item><description>wyświetla je jako przyciski wyboru,</description></item>
+/// <item><description>po wyborze stosuje ulepszenie i zamyka panel.</description></item>
+/// </list>
+///
+/// Klasa dziedziczy po <see cref="CanvasLayer"/>.
 /// </summary>
 public partial class LevelUpUI : CanvasLayer
 {
+	/// <summary>
+	/// Referencja do aktualnego gracza wybierającego ulepszenie.
+	/// </summary>
 	private Player _player;
+
+	/// <summary>
+	/// Pierwszy przycisk opcji ulepszenia.
+	/// </summary>
 	private Button _b1;
+
+	/// <summary>
+	/// Drugi przycisk opcji ulepszenia.
+	/// </summary>
 	private Button _b2;
+
+	/// <summary>
+	/// Trzeci przycisk opcji ulepszenia.
+	/// </summary>
 	private Button _b3;
 
+	/// <summary>
+	/// Inicjalizuje interfejs po dodaniu do drzewa sceny.
+	/// Pobiera referencje do przycisków i ustawia panel jako ukryty.
+	/// </summary>
 	public override void _Ready()
 	{
 		ProcessMode = ProcessModeEnum.Always;
@@ -25,6 +52,11 @@ public partial class LevelUpUI : CanvasLayer
 		_b3 = GetNode<Button>("Panel/VBoxContainer/Button3");
 	}
 
+	/// <summary>
+	/// Wyświetla panel wyboru ulepszeń dla wskazanego gracza.
+	/// Losuje maksymalnie 3 dostępne opcje z listy ulepszeń.
+	/// </summary>
+	/// <param name="player">Gracz otrzymujący ulepszenie.</param>
 	public void ShowUpgrades(Player player)
 	{
 		_player = player;
@@ -55,6 +87,12 @@ public partial class LevelUpUI : CanvasLayer
 		SetupButton(_b3, choices.Count > 2 ? choices[2] : null);
 	}
 
+	/// <summary>
+	/// Konfiguruje przycisk dla pojedynczego ulepszenia.
+	/// Ustawia tekst oraz przypisuje akcję wyboru.
+	/// </summary>
+	/// <param name="button">Przycisk do skonfigurowania.</param>
+	/// <param name="data">Dane ulepszenia.</param>
 	private void SetupButton(Button button, UpgradeData data)
 	{
 		if (data == null)
@@ -87,6 +125,11 @@ public partial class LevelUpUI : CanvasLayer
 		button.SetMeta("_handler", callable);
 	}
 
+	/// <summary>
+	/// Usuwa poprzednie połączenie sygnału z przycisku
+	/// i resetuje jego stan.
+	/// </summary>
+	/// <param name="button">Przycisk do wyczyszczenia.</param>
 	private void ClearButton(Button button)
 	{
 		button.Visible = true;
@@ -99,6 +142,10 @@ public partial class LevelUpUI : CanvasLayer
 		}
 	}
 
+	/// <summary>
+	/// Zamyka panel ulepszeń i przywraca stan gry.
+	/// Wznawia rozgrywkę oraz ponownie aktywuje bronie gracza.
+	/// </summary>
 	private void Close()
 	{
 		ClearButton(_b1);

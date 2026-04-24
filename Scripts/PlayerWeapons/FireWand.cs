@@ -1,9 +1,26 @@
 using Godot;
 
+/// <summary>
+/// Klasa reprezentująca broń typu Fire Wand (Różdżka Ognia).
+/// Strzela jednym lub wieloma pociskami w kierunku najbliższego wroga.
+/// Obsługuje wielokrotne pociski z rozrzutem kątowym i przesunięciem spawnu.
+/// Dziedziczy po klasie <see cref="Weapon"/>.
+/// </summary>
 public partial class FireWand : Weapon
 {
+	/// <summary>
+	/// Scena pocisku (<see cref="Projectile"/>) wystrzeliwanego przez różdżkę.
+	/// Musi być przypisana w inspektorze Godot.
+	/// </summary>
 	[Export] public PackedScene ProjectileScene;
 
+	/// <summary>
+	/// Metoda wywoływana przy każdym strzale.
+	/// Pobiera najbliższego wroga w zasięgu, oblicza kierunek strzału,
+	/// a następnie tworzy <see cref="WeaponStats.ProjectileCount"/> pocisków
+	/// z symetrycznym rozrzutem kątowym wokół celu.
+	/// Każdy pocisk jest inicjowany metodą <see cref="Projectile.Setup"/> i dodawany do sceny.
+	/// </summary>
 	protected override void Fire()
 	{
 		if (ProjectileScene == null) return;

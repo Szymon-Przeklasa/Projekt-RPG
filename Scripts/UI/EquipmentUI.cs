@@ -2,16 +2,37 @@ using Godot;
 using System.Collections.Generic;
 
 /// <summary>
-/// Pasek ekwipunku na dole ekranu.
-/// Wyświetla posiadane bronie (lewo) i pasywki (prawo) z ich poziomami.
+/// Panel interfejsu użytkownika wyświetlający aktualny ekwipunek gracza.
+///
+/// Lewa sekcja pokazuje:
+/// <list type="bullet">
+/// <item><description>posiadane bronie,</description></item>
+/// <item><description>poziom każdej broni.</description></item>
+/// </list>
+///
+/// Prawa sekcja pokazuje:
+/// <list type="bullet">
+/// <item><description>posiadane ulepszenia pasywne,</description></item>
+/// <item><description>poziom każdego ulepszenia.</description></item>
+/// </list>
+///
+/// Klasa dziedziczy po <see cref="HBoxContainer"/>.
 /// </summary>
 public partial class EquipmentUI : HBoxContainer
 {
-	// Węzły wewnętrzne
+	/// <summary>
+	/// Kontener wyświetlający bronie gracza.
+	/// </summary>
 	private HBoxContainer _weaponsContainer;
+
+	/// <summary>
+	/// Kontener wyświetlający pasywne ulepszenia gracza.
+	/// </summary>
 	private HBoxContainer _passivesContainer;
 
-	// Nazwy skrócone broni do wyświetlania
+	/// <summary>
+	/// Skrócone nazwy broni używane w interfejsie.
+	/// </summary>
 	private static readonly Dictionary<string, string> WeaponShort = new()
 	{
 		{ "FireWand",     "🔥FW" },
@@ -22,6 +43,9 @@ public partial class EquipmentUI : HBoxContainer
 		{ "Axe",          "🪓AX" },
 	};
 
+	/// <summary>
+	/// Skrócone nazwy ulepszeń pasywnych używane w interfejsie.
+	/// </summary>
 	private static readonly Dictionary<string, string> PassiveShort = new()
 	{
 		{ "Spinach",      "🌿SP" },
@@ -31,19 +55,29 @@ public partial class EquipmentUI : HBoxContainer
 		{ "Wings",        "🦅WG" },
 	};
 
+	/// <summary>
+	/// Inicjalizuje referencje do kontenerów interfejsu.
+	/// </summary>
 	public override void _Ready()
 	{
 		_weaponsContainer  = GetNode<HBoxContainer>("WeaponsGroup");
 		_passivesContainer = GetNode<HBoxContainer>("PassivesGroup");
 	}
 
-	/// <summary>Odświeża wyświetlane ikony na podstawie stanu gracza.</summary>
+	/// <summary>
+	/// Odświeża cały panel ekwipunku na podstawie aktualnego stanu gracza.
+	/// </summary>
+	/// <param name="player">Gracz, którego ekwipunek ma zostać wyświetlony.</param>
 	public void Refresh(Player player)
 	{
 		BuildWeapons(player);
 		BuildPassives(player);
 	}
 
+	/// <summary>
+	/// Tworzy listę slotów broni gracza.
+	/// </summary>
+	/// <param name="player">Gracz posiadający bronie.</param>
 	private void BuildWeapons(Player player)
 	{
 		ClearChildren(_weaponsContainer);
@@ -75,6 +109,10 @@ public partial class EquipmentUI : HBoxContainer
 		}
 	}
 
+	/// <summary>
+	/// Tworzy listę slotów ulepszeń pasywnych gracza.
+	/// </summary>
+	/// <param name="player">Gracz posiadający pasywki.</param>
 	private void BuildPassives(Player player)
 	{
 		ClearChildren(_passivesContainer);
@@ -99,8 +137,10 @@ public partial class EquipmentUI : HBoxContainer
 		}
 	}
 
-	// ── Helpers ───────────────────────────────────────────────
-
+	/// <summary>
+	/// Tworzy pusty slot ekwipunku.
+	/// </summary>
+	/// <returns>Nowy panel reprezentujący slot.</returns>
 	private Panel MakeSlot()
 	{
 		var panel = new Panel();
@@ -117,6 +157,12 @@ public partial class EquipmentUI : HBoxContainer
 		return panel;
 	}
 
+	/// <summary>
+	/// Ustawia aktywny slot ekwipunku z nazwą i poziomem.
+	/// </summary>
+	/// <param name="slot">Slot do skonfigurowania.</param>
+	/// <param name="shortName">Skrócona nazwa przedmiotu.</param>
+	/// <param name="level">Poziom przedmiotu.</param>
 	private void SetSlotActive(Panel slot, string shortName, int level)
 	{
 		// Tło aktywnego slotu
@@ -151,6 +197,10 @@ public partial class EquipmentUI : HBoxContainer
 		slot.AddChild(vbox);
 	}
 
+	/// <summary>
+	/// Usuwa wszystkie dzieci z podanego kontenera.
+	/// </summary>
+	/// <param name="container">Kontener do wyczyszczenia.</param>
 	private void ClearChildren(Control container)
 	{
 		foreach (Node child in container.GetChildren())

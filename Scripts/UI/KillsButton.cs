@@ -48,5 +48,6 @@ public partial class KillsButton : TextureButton
     /// <param name="delta">Czas, jaki upłynął od poprzedniej klatki.</param>
     public override void _Process(double delta)
     {
+
     }
 }

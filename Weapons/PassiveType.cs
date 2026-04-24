@@ -4,9 +4,28 @@
 /// </summary>
 public enum PassiveType
 {
-    Spinach,       // Zwiększa obrażenia (Damage +)
-    Pummarola,     // Skraca czas odnowienia (Cooldown -)
-    HollowHeart,   // Zwiększa obszar działania (Area +)
-    Bracer,        // Zwiększa prędkość pocisków (Speed +)
-    Wings          // Zwiększa prędkość ruchu (MoveSpeed +)
+    /// <summary>
+    /// Spinach – zwiększa obrażenia zadawane przez gracza.
+    /// </summary>
+    Spinach,
+
+    /// <summary>
+    /// Pummarola – skraca czas odnowienia ataków (cooldown).
+    /// </summary>
+    Pummarola,
+
+    /// <summary>
+    /// Hollow Heart – zwiększa obszar działania (area/rozmiar efektów).
+    /// </summary>
+    HollowHeart,
+
+    /// <summary>
+    /// Bracer – zwiększa prędkość pocisków.
+    /// </summary>
+    Bracer,
+
+    /// <summary>
+    /// Wings – zwiększa prędkość poruszania się gracza.
+    /// </summary>
+    Wings
 }
