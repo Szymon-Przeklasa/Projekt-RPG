@@ -156,7 +156,7 @@ public partial class Player : CharacterBody2D
 				MarkWeaponUnlocked("Lightning");
 				break;
 			case 2:
-				AddWeaponOfType<Garlic>(new WeaponStats { Cooldown = 0.55f, Damage = 6, Knockback = 25f, Range = 82f });
+				AddWeaponOfType<Garlic>(new WeaponStats { Cooldown = 0.55f, Damage = 6, Knockback = 25f, Range = 50f });
 				MarkWeaponUnlocked("Garlic");
 				break;
 			case 3:
@@ -186,6 +186,8 @@ public partial class Player : CharacterBody2D
 	{
 		if (IsInLevelUp) return;
 		if (_invincibilityTimer > 0f || _isDead) return;
+
+		damage *= 2;
 
 		Health -= damage;
 		_invincibilityTimer = InvincibilityTime;
@@ -305,13 +307,13 @@ public partial class Player : CharacterBody2D
 			.AddLevel("Cooldown -10%.", p => AddPassive(pummarola))
 			.AddLevel("Cooldown -10%.", p => AddPassive(pummarola)));
 
-		var hollowHeart = new PassiveData { Name = "Hollow Heart", Type = PassiveType.HollowHeart, MaxLevel = 5, BonusPerLevel = 0.1f };
+		var hollowHeart = new PassiveData { Name = "Hollow Heart", Type = PassiveType.HollowHeart, MaxLevel = 5, BonusPerLevel = 0.05f };
 		AvailableUpgrades.Add(new UpgradeData("Hollow Heart", UpgradeType.Passive)
-			.AddLevel("Area +10%.", p => AddPassive(hollowHeart))
-			.AddLevel("Area +10%.", p => AddPassive(hollowHeart))
-			.AddLevel("Area +10%.", p => AddPassive(hollowHeart))
-			.AddLevel("Area +10%.", p => AddPassive(hollowHeart))
-			.AddLevel("Area +10%.", p => AddPassive(hollowHeart)));
+			.AddLevel("Area +5%.", p => AddPassive(hollowHeart))
+			.AddLevel("Area +5%.", p => AddPassive(hollowHeart))
+			.AddLevel("Area +5%.", p => AddPassive(hollowHeart))
+			.AddLevel("Area +5%.", p => AddPassive(hollowHeart))
+			.AddLevel("Area +5%.", p => AddPassive(hollowHeart)));
 
 		var bracer = new PassiveData { Name = "Bracer", Type = PassiveType.Bracer, MaxLevel = 5, BonusPerLevel = 0.1f };
 		AvailableUpgrades.Add(new UpgradeData("Bracer", UpgradeType.Passive)
@@ -358,15 +360,15 @@ public partial class Player : CharacterBody2D
 		AvailableUpgrades.Add(new UpgradeData("Garlic", UpgradeType.Weapon)
 			.AddLevel("UNLOCK: Zadaje obrażenia pobliskim wrogom.", p =>
 			{
-				p.AddWeaponOfType<Garlic>(new WeaponStats { Cooldown = 0.55f, Damage = 6, Knockback = 25f, Range = 82f });
+				p.AddWeaponOfType<Garlic>(new WeaponStats { Cooldown = 0.55f, Damage = 6, Knockback = 25f, Range = 50f });
 			})
-			.AddLevel("Base Area +25%. Base Damage +1.", p => { var w = FindWeapon<Garlic>(); if (w != null) { w.Stats.Range *= 1.25f; w.Stats.Damage += 1; } })
+			.AddLevel("Base Area +10%. Base Damage +1.", p => { var w = FindWeapon<Garlic>(); if (w != null) { w.Stats.Range *= 1.10f; w.Stats.Damage += 1; } })
 			.AddLevel("Cooldown -0.05s. Base Damage +1.", p => { var w = FindWeapon<Garlic>(); if (w != null) { w.Stats.Damage += 1; w.Stats.Cooldown = Mathf.Max(0.25f, w.Stats.Cooldown - 0.05f); w.RefreshStats(); } })
-			.AddLevel("Base Area +20%.", p => { var w = FindWeapon<Garlic>(); if (w != null) { w.Stats.Range *= 1.2f; } })
+			.AddLevel("Base Area +5%. Base Damage +1.", p => { var w = FindWeapon<Garlic>(); if (w != null) { w.Stats.Range *= 1.05f; w.Stats.Damage += 1; } })
 			.AddLevel("Base Damage +2.", p => { var w = FindWeapon<Garlic>(); if (w != null) { w.Stats.Damage += 2; } })
-			.AddLevel("Cooldown -0.05s. Base Area +20%.", p => { var w = FindWeapon<Garlic>(); if (w != null) { w.Stats.Range *= 1.2f; w.Stats.Cooldown = Mathf.Max(0.25f, w.Stats.Cooldown - 0.05f); w.RefreshStats(); } })
+			.AddLevel("Cooldown -0.05s. Base Area +5%.", p => { var w = FindWeapon<Garlic>(); if (w != null) { w.Stats.Range *= 1.05f; w.Stats.Cooldown = Mathf.Max(0.25f, w.Stats.Cooldown - 0.05f); w.RefreshStats(); } })
 			.AddLevel("Base Damage +2.", p => { var w = FindWeapon<Garlic>(); if (w != null) { w.Stats.Damage += 2; } })
-			.AddLevel("Base Area +30%. Base Damage +2.", p => { var w = FindWeapon<Garlic>(); if (w != null) { w.Stats.Range *= 1.3f; w.Stats.Damage += 2; } }));
+			.AddLevel("Base Area +10%. Base Damage +2.", p => { var w = FindWeapon<Garlic>(); if (w != null) { w.Stats.Range *= 1.10f; w.Stats.Damage += 2; } }));
 
 		AvailableUpgrades.Add(new UpgradeData("Magic Missile", UpgradeType.Weapon)
 			.AddLevel("UNLOCK: Samonaprowadzający pocisk.", p =>
@@ -399,10 +401,10 @@ public partial class Player : CharacterBody2D
 			{
 				p.AddWeaponOfType<Magnet>(new WeaponStats { Cooldown = 0.01f, Range = 75f });
 			})
-			.AddLevel("Pull range +25%.", p => { var w = FindWeapon<Magnet>(); if (w != null) { w.Stats.Range *= 1.25f; } })
+			.AddLevel("Pull range +15%.", p => { var w = FindWeapon<Magnet>(); if (w != null) { w.Stats.Range *= 1.15f; } })
 			.AddLevel("Pull speed +20%.", p => { var w = FindWeapon<Magnet>(); if (w != null) { w.PullSpeedBonus += 100f; } })
-			.AddLevel("Pull range +25%.", p => { var w = FindWeapon<Magnet>(); if (w != null) { w.Stats.Range *= 1.25f; } })
-			.AddLevel("Mega range + speed.", p => { var w = FindWeapon<Magnet>(); if (w != null) { w.Stats.Range = 1600f; w.PullSpeedBonus += 200f; } }));
+			.AddLevel("Pull range +15%.", p => { var w = FindWeapon<Magnet>(); if (w != null) { w.Stats.Range *= 1.15f; } })
+			.AddLevel("Pull range +30%. Pull speed +20%.", p => { var w = FindWeapon<Magnet>(); if (w != null) { w.Stats.Range *= 1.30f; w.PullSpeedBonus += 100f; } }));
 	}
 
 	private T FindWeapon<T>() where T : Weapon

@@ -8,7 +8,7 @@ atlas = ExtResource("2_tex")
 region = Rect2(721, 467, 9, 11)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_axe"]
-radius = 8.0
+radius = 13.0
 
 [node name="AxeProjectile" type="Area2D" unique_id=1281026417]
 z_index = 2
@@ -19,7 +19,7 @@ script = ExtResource("1_axproj")
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1393361232]
 texture_filter = 1
 rotation = 0.7853982
-scale = Vector2(0.9, 0.9)
+scale = Vector2(2.2, 2.2)
 texture = SubResource("AtlasTexture_axe")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=452746109]

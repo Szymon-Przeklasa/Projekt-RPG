@@ -169,12 +169,12 @@ public partial class EnemySpawner : Node2D
 				enemy.XpDrop = Mathf.CeilToInt(wave.EnemyType.XpDrop * xpScale);
 			}
 
-			bool isElite = GD.Randf() < GetEliteChance();
-
-			if (isElite)
-			{
-				enemy.IsElite = true;
-			}
+			float eliteRoll  = GD.Randf();
+			float eliteChance = GetEliteChance();
+			if (eliteRoll < eliteChance * 0.08f)         // ~8% of elite slots → Legendary
+				enemy.Rank = EliteRank.Legendary;
+			else if (eliteRoll < eliteChance)
+				enemy.Rank = EliteRank.Elite;
 
 			GetTree().CurrentScene.AddChild(enemy);
 		}
