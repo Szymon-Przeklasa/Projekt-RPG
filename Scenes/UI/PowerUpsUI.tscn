@@ -3,12 +3,47 @@
 [ext_resource type="Script" uid="uid://bwetv2go3o2sk" path="res://Scripts/UI/PowerUpsUI.cs" id="1_ui"]
 [ext_resource type="FontFile" uid="uid://cbbw74cjsiq82" path="res://Textures/Jersey15-Regular.ttf" id="2_font"]
 [ext_resource type="Theme" uid="uid://s013hgfdbvt6" path="res://Textures/NewButton.tres" id="3_theme"]
+[ext_resource type="Texture2D" uid="uid://c3nfr6o4so7bw" path="res://Textures/c1_image_1.png" id="4_wavjd"]
 
 [sub_resource type="Theme" id="Theme_4ptjy"]
 default_font = ExtResource("2_font")
 
 [sub_resource type="Theme" id="Theme_wavjd"]
 default_font = ExtResource("2_font")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hcd5k"]
+texture = ExtResource("4_wavjd")
+texture_margin_left = 20.0
+texture_margin_top = 2.0
+texture_margin_right = 20.0
+texture_margin_bottom = 2.0
+region_rect = Rect2(1218, 26, 122, 26)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_op43s"]
+texture = ExtResource("4_wavjd")
+texture_margin_left = 15.0
+texture_margin_top = 5.0
+texture_margin_right = 15.0
+texture_margin_bottom = 5.0
+region_rect = Rect2(1492, 52, 74, 18)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_h2xa8"]
+texture = ExtResource("4_wavjd")
+texture_margin_left = 15.0
+texture_margin_top = 5.0
+texture_margin_right = 15.0
+texture_margin_bottom = 5.0
+region_rect = Rect2(1492, 52, 74, 18)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_h88bv"]
+texture = ExtResource("4_wavjd")
+texture_margin_left = 15.0
+texture_margin_top = 5.0
+texture_margin_right = 15.0
+texture_margin_bottom = 5.0
+region_rect = Rect2(1492, 52, 74, 18)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wavjd"]
 
 [node name="PowerUpsUI" type="CanvasLayer" unique_id=101607333]
 process_mode = 3
@@ -96,6 +131,11 @@ scroll_active = false
 custom_minimum_size = Vector2(0, 44)
 layout_mode = 2
 theme = ExtResource("3_theme")
+theme_override_styles/normal = SubResource("StyleBoxTexture_hcd5k")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_op43s")
+theme_override_styles/hover = SubResource("StyleBoxTexture_h2xa8")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_h88bv")
+theme_override_styles/focus = SubResource("StyleBoxTexture_wavjd")
 text = "Close"
 
 [connection signal="gui_input" from="ColorRect" to="." method="OnBackgroundInput"]
