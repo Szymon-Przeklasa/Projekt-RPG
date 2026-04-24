@@ -2,7 +2,7 @@
 \hypertarget{class_player}{}\label{class_player}\index{Player@{Player}}
 
 
-Klasa reprezentująca gracza w grze. Odpowiada za sterowanie ruchem, zarządzanie broniami, ulepszeniami, doświadczeniem (XP) oraz interakcją z przeciwnikami.  
+Główna klasa gracza. Zarządza zdrowiem, ruchem, systemem broni, pasywek i ulepszeń, a także mechaniką doświadczenia i awansowania na poziomy. Gracz jest identyfikowany w scenie przez grupę "{}player"{}.  
 
 
 Inheritance diagram for Player:\+\begin{figure}[H]
@@ -16,107 +16,308 @@ Inheritance diagram for Player:\+\begin{figure}[H]
 \item 
 \Hypertarget{class_player_a2bcc7da613fda0037e3d3a900e6bb21d}\label{class_player_a2bcc7da613fda0037e3d3a900e6bb21d} 
 override void {\bfseries \+\_\+\+Draw} ()
-\begin{DoxyCompactList}\small\item\em Metoda rysująca debugowe linie do przeciwników. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Rysuje linie debugowania od gracza do każdego wroga (jeśli włączone przez \doxylink{class_player_aa859697d3ad60eb1ace1199d79e6718d}{Debug\+Draw\+Enemy\+Lines}). \end{DoxyCompactList}\item 
 \Hypertarget{class_player_ae192a478a80f0e93e01339d62cdd6f6d}\label{class_player_ae192a478a80f0e93e01339d62cdd6f6d} 
 override void {\bfseries \+\_\+\+Ready} ()
-\begin{DoxyCompactList}\small\item\em Inicjalizacja gracza po załadowaniu sceny. \end{DoxyCompactList}\item 
-\Hypertarget{class_player_a99f503cdb9b18c94b48f8402c3714181}\label{class_player_a99f503cdb9b18c94b48f8402c3714181} 
-bool {\bfseries Add\+Weapon} (Packed\+Scene weapon\+Scene)
-\begin{DoxyCompactList}\small\item\em Dodaje nową broń do gracza. \end{DoxyCompactList}\item 
-\Hypertarget{class_player_aa3e49a9d513fc7d7f1ade4c8d9728c94}\label{class_player_aa3e49a9d513fc7d7f1ade4c8d9728c94} 
-bool {\bfseries Add\+Passive} (\doxymbox{\hyperlink{class_passive_data}{Passive\+Data}} passive)
-\begin{DoxyCompactList}\small\item\em Dodaje lub ulepsza pasywkę. \end{DoxyCompactList}\item 
-\Hypertarget{class_player_a4e10eded91132b45c0ea0164c671bf7d}\label{class_player_a4e10eded91132b45c0ea0164c671bf7d} 
-List$<$ \doxymbox{\hyperlink{class_upgrade_data}{Upgrade\+Data}} $>$ {\bfseries Get\+Upgrade\+Choices} (int count=3)
-\begin{DoxyCompactList}\small\item\em Zwraca losowe dostępne ulepszenia. \end{DoxyCompactList}\item 
-\Hypertarget{class_player_aef2694077ff73312537f56874215efb3}\label{class_player_aef2694077ff73312537f56874215efb3} 
-void {\bfseries Shuffle$<$ T $>$} (IList$<$ T $>$ list)
-\begin{DoxyCompactList}\small\item\em Tasuje listę elementów (Fisher-\/\+Yates). \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Inicjalizacja gracza po dodaniu do sceny. Pobiera węzły UI, inicjalizuje zdrowie, czyści predefiniowane bronie ze sceny (.tscn), konfiguruje ulepszenia i dodaje broń startową. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_player_aad121d18b77321c2f9cc78a08efcfc5f}{Add\+Weapon\+Of\+Type$<$ T $>$}} (\doxymbox{\hyperlink{class_weapon_stats}{Weapon\+Stats}} stats=null)
+\begin{DoxyCompactList}\small\item\em Dynamicznie dodaje broń podanego typu do ekwipunku gracza. Zwraca {\ttfamily false} jeśli gracz osiągnął limit broni lub już posiada broń tego typu. Automatycznie ustawia sceny pocisków, inicjalizuje broń i odświeża UI. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_player_af4c85b1c6321ca930faa4c6f17428051}{Take\+Damage}} (int damage)
+\begin{DoxyCompactList}\small\item\em Aplikuje obrażenia na gracza. Nie działa podczas Level Up UI, nietykalności ani po śmierci gracza. Obrażenia są podwajane (balansowanie trudności), po czym uruchamia efekt wizualny i sprawdza warunek śmierci. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_player_af7afcea2d9b372abfd6486a008738526}{Heal}} (int amount)
+\begin{DoxyCompactList}\small\item\em Leczy gracza o podaną liczbę punktów życia (nie przekraczając \doxylink{class_player_aa31df936a1c5641ed287c77c755eb433}{Max\+Health}). Odgrywa dźwięk leczenia i aktualizuje pasek HP. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_player_aa3e49a9d513fc7d7f1ade4c8d9728c94}{Add\+Passive}} (\doxymbox{\hyperlink{class_passive_data}{Passive\+Data}} passive)
+\begin{DoxyCompactList}\small\item\em Dodaje lub ulepsza pasywkę gracza. Sprawdza limit pasywek (\doxylink{class_player_a1efa52fe48965ad65570ab098cdd1536}{MAX\+\_\+\+PASSIVES}), aplikuje efekt pasywki i odświeża UI ekwipunku. \end{DoxyCompactList}\item 
 \Hypertarget{class_player_a20f43367b0a9f31797f95469f83645c2}\label{class_player_a20f43367b0a9f31797f95469f83645c2} 
 void {\bfseries Refresh\+All\+Weapons} ()
-\begin{DoxyCompactList}\small\item\em Odświeża wszystkie bronie po zmianie statystyk. \end{DoxyCompactList}\item 
-\Hypertarget{class_player_af4a774413c768fe7d78ac549a8d408e0}\label{class_player_af4a774413c768fe7d78ac549a8d408e0} 
-Node2D {\bfseries Get\+Closest\+Enemy} (float range)
-\begin{DoxyCompactList}\small\item\em Zwraca najbliższego przeciwnika w danym zasięgu. \end{DoxyCompactList}\item 
-\Hypertarget{class_player_af88c73f8d02da8953738ff84d1547cbd}\label{class_player_af88c73f8d02da8953738ff84d1547cbd} 
-void {\bfseries Gain\+Xp} (int amount)
-\begin{DoxyCompactList}\small\item\em Dodaje doświadczenie i obsługuje level up. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Wywołuje \doxylink{class_weapon_a3f5299789e8faaaceeafd7dc58283292}{Weapon.\+Refresh\+Stats} na wszystkich broniach gracza. Powinno być wywoływane po zmianie mnożników statystyk (np. po kupieniu pasywki). \end{DoxyCompactList}\item 
+\Hypertarget{class_player_a0b61f64fea97f604a17af04dea1e4de9}\label{class_player_a0b61f64fea97f604a17af04dea1e4de9} 
+void {\bfseries Refresh\+Equipment\+UI} ()
+\begin{DoxyCompactList}\small\item\em Odświeża panel ekwipunku UI (\doxylink{class_equipment_u_i}{Equipment\+UI}) odzwierciedlając aktualny stan gracza. Jeśli referencja do UI jest {\ttfamily null}, próbuje ją pobrać ponownie ze sceny. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_player_aef2694077ff73312537f56874215efb3}{Shuffle$<$ T $>$}} (IList$<$ T $>$ list)
+\begin{DoxyCompactList}\small\item\em Miesza listę w miejscu algorytmem Fisher-\/\+Yates. Używana do losowania kolejności ulepszeń w \doxylink{class_level_up_u_i}{Level\+Up\+UI}. \end{DoxyCompactList}\item 
+Node2D \doxymbox{\hyperlink{class_player_af4a774413c768fe7d78ac549a8d408e0}{Get\+Closest\+Enemy}} (float range)
+\begin{DoxyCompactList}\small\item\em Zwraca najbliższego wroga w podanym zasięgu od pozycji gracza. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_player_af88c73f8d02da8953738ff84d1547cbd}{Gain\+Xp}} (int amount)
+\begin{DoxyCompactList}\small\item\em Dodaje punkty doświadczenia i obsługuje wielokrotne awanse poziomu w jednym wywołaniu. Wywołuje Level\+Up dla każdego progu przekroczonego jednorazowo. \end{DoxyCompactList}\item 
 \Hypertarget{class_player_aaa08a71c33eb3d12ec47507697ae8bff}\label{class_player_aaa08a71c33eb3d12ec47507697ae8bff} 
 void {\bfseries Get\+Input} ()
-\begin{DoxyCompactList}\small\item\em Odczytuje input i ustawia prędkość gracza. \end{DoxyCompactList}\item 
-\Hypertarget{class_player_a58bb8488c42d336b1ba8b3f796ba67f0}\label{class_player_a58bb8488c42d336b1ba8b3f796ba67f0} 
-override void {\bfseries \+\_\+\+Physics\+Process} (double delta)
-\begin{DoxyCompactList}\small\item\em Obsługa fizyki (ruch gracza). \end{DoxyCompactList}\item 
-\Hypertarget{class_player_a81db5dd46c343160498d29f6fa42d611}\label{class_player_a81db5dd46c343160498d29f6fa42d611} 
-override void {\bfseries \+\_\+\+Process} (double delta)
-\begin{DoxyCompactList}\small\item\em Debug:\+ wyświetla odległości do przeciwników. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Pobiera wejście gracza i aktualizuje wektor Character\+Body2\+D.\+Velocity. Gdy gra jest pauzowana lub gracz jest martwy, prędkość jest zerowana. Prędkość skalowana jest przez \doxylink{class_player_aac3a86fcdf79b227f213afbcf88494d1}{Speed} i \doxylink{class_player_a3220205178b7b2d0a1cd5d2d59847c00}{Speed\+Multiplier}. \end{DoxyCompactList}\item 
+override void \doxymbox{\hyperlink{class_player_a58bb8488c42d336b1ba8b3f796ba67f0}{\+\_\+\+Physics\+Process}} (double delta)
+\begin{DoxyCompactList}\small\item\em Aktualizacja fizyki:\+ zmniejsza timer nietykalności, pobiera wejście gracza i wywołuje Move\+And\+Slide. \end{DoxyCompactList}\item 
+override void \doxymbox{\hyperlink{class_player_a81db5dd46c343160498d29f6fa42d611}{\+\_\+\+Process}} (double delta)
+\begin{DoxyCompactList}\small\item\em Aktualizacja logiki co klatkę:\+ odświeża linie debugowania i wymusza przerysowanie (tylko gdy \doxylink{class_player_aa859697d3ad60eb1ace1199d79e6718d}{Debug\+Draw\+Enemy\+Lines} jest włączone). \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_player_ac15b2cbec1b1fd802498a5b354d3d5a9}{Set\+Weapons\+Process\+Mode}} (Process\+Mode\+Enum mode)
+\begin{DoxyCompactList}\small\item\em Zmienia tryb procesowania (Node.\+Process\+Mode\+Enum) dla wszystkich broni gracza. Używane do zatrzymywania broni podczas pauzy lub Level Up UI. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
 \Hypertarget{class_player_a7150fb6b28e2e78f5b4f07d5e777827e}\label{class_player_a7150fb6b28e2e78f5b4f07d5e777827e} 
 Packed\+Scene {\bfseries Projectile\+Scene}
-\begin{DoxyCompactList}\small\item\em Scena pocisku wykorzystywana przez bronie gracza. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Scena bazowego pocisku (używana przez \doxylink{class_fire_wand}{Fire\+Wand}). \end{DoxyCompactList}\item 
 \Hypertarget{class_player_a2cdea0bd6e046dbda1dd221d4d033992}\label{class_player_a2cdea0bd6e046dbda1dd221d4d033992} 
 \doxymbox{\hyperlink{class_weapon_stats}{Weapon\+Stats}} {\bfseries Weapon}
-\begin{DoxyCompactList}\small\item\em Bazowe statystyki aktualnej broni (jeśli używane globalnie). \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Statystyki broni (legacy — statystyki aktywnej broni są zarządzane dynamicznie). \end{DoxyCompactList}\item 
 \Hypertarget{class_player_aac3a86fcdf79b227f213afbcf88494d1}\label{class_player_aac3a86fcdf79b227f213afbcf88494d1} 
-int {\bfseries Speed} = 600
-\begin{DoxyCompactList}\small\item\em Bazowa prędkość poruszania się gracza. \end{DoxyCompactList}\item 
-\Hypertarget{class_player_a4c65f9e64640d7a7ff5839a2d33289ce}\label{class_player_a4c65f9e64640d7a7ff5839a2d33289ce} 
-List$<$ \doxymbox{\hyperlink{class_upgrade_data}{Upgrade\+Data}} $>$ {\bfseries Available\+Upgrades} = new()
-\begin{DoxyCompactList}\small\item\em Lista wszystkich dostępnych ulepszeń (losowanych przy level upie). \end{DoxyCompactList}\item 
+int {\bfseries Speed} = 210
+\begin{DoxyCompactList}\small\item\em Bazowa prędkość ruchu gracza (jednostki/\+s). \end{DoxyCompactList}\item 
+\Hypertarget{class_player_aa31df936a1c5641ed287c77c755eb433}\label{class_player_aa31df936a1c5641ed287c77c755eb433} 
+int {\bfseries Max\+Health} = 100
+\begin{DoxyCompactList}\small\item\em Maksymalna liczba punktów życia gracza. \end{DoxyCompactList}\item 
+\Hypertarget{class_player_a5e94a2f219843a5943e1d08cbf39b266}\label{class_player_a5e94a2f219843a5943e1d08cbf39b266} 
+float {\bfseries Invincibility\+Time} = 0.\+28f
+\begin{DoxyCompactList}\small\item\em Czas nietykalności po otrzymaniu obrażeń (sekundy). \end{DoxyCompactList}\item 
+\Hypertarget{class_player_aa859697d3ad60eb1ace1199d79e6718d}\label{class_player_aa859697d3ad60eb1ace1199d79e6718d} 
+bool {\bfseries Debug\+Draw\+Enemy\+Lines} = false
+\begin{DoxyCompactList}\small\item\em Gdy włączone, rysuje linie debugowania od gracza do każdego wroga. Dostępne tylko w trybie deweloperskim. \end{DoxyCompactList}\item 
+\Hypertarget{class_player_a84a97f6e5b19a2f71024a40475583117}\label{class_player_a84a97f6e5b19a2f71024a40475583117} 
+Packed\+Scene {\bfseries Lightning\+Beam\+Scene}
+\begin{DoxyCompactList}\small\item\em Scena pocisku pioruna (\doxylink{class_lightning_beam}{Lightning\+Beam}), wymagana przez broń \doxylink{class_lightning}{Lightning}. \end{DoxyCompactList}\item 
+\Hypertarget{class_player_a1aa7a7963e93a5d7bf595334fefdcb62}\label{class_player_a1aa7a7963e93a5d7bf595334fefdcb62} 
+Packed\+Scene {\bfseries Magic\+Missile\+Projectile\+Scene}
+\begin{DoxyCompactList}\small\item\em Scena pocisku Magic Missile (\doxylink{class_magic_missile_projectile}{Magic\+Missile\+Projectile}). \end{DoxyCompactList}\item 
+\Hypertarget{class_player_a8d372e7d112b92e90d0ade9fa5808b40}\label{class_player_a8d372e7d112b92e90d0ade9fa5808b40} 
+Packed\+Scene {\bfseries Axe\+Projectile\+Scene}
+\begin{DoxyCompactList}\small\item\em Scena pocisku topora (\doxylink{class_axe_projectile}{Axe\+Projectile}). \end{DoxyCompactList}\item 
+\Hypertarget{class_player_a244c539a16ded69f3b79a483bb0a837f}\label{class_player_a244c539a16ded69f3b79a483bb0a837f} 
+bool {\bfseries Is\+In\+Level\+Up} = false
+\begin{DoxyCompactList}\small\item\em Flaga aktywna podczas wyświetlania ekranu wyboru ulepszenia. Blokuje otrzymywanie obrażeń podczas Level Up UI. \end{DoxyCompactList}\item 
 \Hypertarget{class_player_a7d53509665412fc72353f5b28fe9b8c8}\label{class_player_a7d53509665412fc72353f5b28fe9b8c8} 
 float {\bfseries Damage\+Multiplier} = 1f
-\begin{DoxyCompactList}\small\item\em Globalny mnożnik obrażeń (wpływa na wszystkie bronie). \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Mnożnik obrażeń ze wszystkich broni gracza. Modyfikowany przez pasywkę Spinach. \end{DoxyCompactList}\item 
 \Hypertarget{class_player_a4ecfa1544f4778a8269e388e48e791ae}\label{class_player_a4ecfa1544f4778a8269e388e48e791ae} 
 float {\bfseries Cooldown\+Multiplier} = 1f
-\begin{DoxyCompactList}\small\item\em Globalny mnożnik czasu odnowienia (im mniejszy, tym szybciej strzelamy). \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Mnożnik czasu odnowienia broni (wartości poniżej 1 skracają cooldown). Modyfikowany przez Pummarola. \end{DoxyCompactList}\item 
 \Hypertarget{class_player_a34cef58b9d69b05d3d70ac7d6c1741de}\label{class_player_a34cef58b9d69b05d3d70ac7d6c1741de} 
 float {\bfseries Area\+Multiplier} = 1f
-\begin{DoxyCompactList}\small\item\em Globalny mnożnik zasięgu efektów (np. aura \doxylink{class_garlic}{Garlic}). \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Mnożnik zasięgu/\+obszaru działania broni. Modyfikowany przez Hollow Heart. \end{DoxyCompactList}\item 
 \Hypertarget{class_player_a3220205178b7b2d0a1cd5d2d59847c00}\label{class_player_a3220205178b7b2d0a1cd5d2d59847c00} 
 float {\bfseries Speed\+Multiplier} = 1f
-\begin{DoxyCompactList}\small\item\em Globalny mnożnik prędkości ruchu gracza. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Mnożnik prędkości ruchu gracza. Modyfikowany przez pasywkę Wings. \end{DoxyCompactList}\item 
 \Hypertarget{class_player_a93365027e9e598af71b3037d1a5043bd}\label{class_player_a93365027e9e598af71b3037d1a5043bd} 
 float {\bfseries Projectile\+Speed\+Multiplier} = 1f
-\begin{DoxyCompactList}\small\item\em Globalny mnożnik prędkości pocisków. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Mnożnik prędkości pocisków. Modyfikowany przez pasywkę Bracer. \end{DoxyCompactList}\item 
 \Hypertarget{class_player_afd3edc315c3676eb1fb9cd6d7f5b6240}\label{class_player_afd3edc315c3676eb1fb9cd6d7f5b6240} 
 List$<$ \doxymbox{\hyperlink{class_weapon}{Weapon}} $>$ {\bfseries Weapons} = new()
-\begin{DoxyCompactList}\small\item\em Lista aktualnie posiadanych broni. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Lista aktywnych broni posiadanych przez gracza. \end{DoxyCompactList}\item 
 \Hypertarget{class_player_a01eac7f216e861d32ea6329a593849f7}\label{class_player_a01eac7f216e861d32ea6329a593849f7} 
 List$<$ \doxymbox{\hyperlink{class_passive_data}{Passive\+Data}} $>$ {\bfseries Passives} = new()
-\begin{DoxyCompactList}\small\item\em Lista aktywnych pasywnych ulepszeń. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Lista aktywnych pasywek posiadanych przez gracza. \end{DoxyCompactList}\item 
+\Hypertarget{class_player_a4c65f9e64640d7a7ff5839a2d33289ce}\label{class_player_a4c65f9e64640d7a7ff5839a2d33289ce} 
+List$<$ \doxymbox{\hyperlink{class_upgrade_data}{Upgrade\+Data}} $>$ {\bfseries Available\+Upgrades} = new()
+\begin{DoxyCompactList}\small\item\em Lista wszystkich możliwych ulepszeń (bronie i pasywki). Każda pozycja śledzi aktualny poziom i może być aplikowana przez \doxylink{class_level_up_u_i}{Level\+Up\+UI}. \end{DoxyCompactList}\item 
 \Hypertarget{class_player_aa5941029adf2b4bb90a3d95163309057}\label{class_player_aa5941029adf2b4bb90a3d95163309057} 
 Marker2D {\bfseries Shoot\+Point}
-\begin{DoxyCompactList}\small\item\em Punkt, z którego wystrzeliwane są pociski. \end{DoxyCompactList}\item 
-\Hypertarget{class_player_aa859697d3ad60eb1ace1199d79e6718d}\label{class_player_aa859697d3ad60eb1ace1199d79e6718d} 
-bool {\bfseries Debug\+Draw\+Enemy\+Lines} = true
-\begin{DoxyCompactList}\small\item\em Czy rysować debugowe linie do przeciwników. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Marker2D wyznaczający punkt spawnu pocisków (np. koniec różdżki). \end{DoxyCompactList}\item 
 \Hypertarget{class_player_ad89cb407e6df206d7a21a714006571c9}\label{class_player_ad89cb407e6df206d7a21a714006571c9} 
 int {\bfseries Level} = 1
-\begin{DoxyCompactList}\small\item\em Aktualny poziom gracza. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Aktualny poziom gracza. Zaczyna od 1. \end{DoxyCompactList}\item 
 \Hypertarget{class_player_a67cf69da2bb1c6e1243b130c49d4fc23}\label{class_player_a67cf69da2bb1c6e1243b130c49d4fc23} 
 int {\bfseries Xp} = 0
-\begin{DoxyCompactList}\small\item\em Aktualna ilość doświadczenia. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Aktualna liczba punktów doświadczenia w bieżącym poziomie. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Static Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
 \Hypertarget{class_player_af02b9a53ed47fce9495840522dcb2e70}\label{class_player_af02b9a53ed47fce9495840522dcb2e70} 
-const int {\bfseries MAX\+\_\+\+WEAPONS} = 5
-\begin{DoxyCompactList}\small\item\em Maksymalna liczba posiadanych broni. \end{DoxyCompactList}\item 
+const int {\bfseries MAX\+\_\+\+WEAPONS} = 6
+\begin{DoxyCompactList}\small\item\em Maksymalna liczba broni, które gracz może posiadać jednocześnie. \end{DoxyCompactList}\item 
 \Hypertarget{class_player_a1efa52fe48965ad65570ab098cdd1536}\label{class_player_a1efa52fe48965ad65570ab098cdd1536} 
-const int {\bfseries MAX\+\_\+\+PASSIVES} = 5
-\begin{DoxyCompactList}\small\item\em Maksymalna liczba pasywnych ulepszeń. \end{DoxyCompactList}\end{DoxyCompactItemize}
+const int {\bfseries MAX\+\_\+\+PASSIVES} = 6
+\begin{DoxyCompactList}\small\item\em Maksymalna liczba pasywek, które gracz może posiadać jednocześnie. \end{DoxyCompactList}\item 
+\Hypertarget{class_player_a8a5ba774d030de41af4016057d9e12a9}\label{class_player_a8a5ba774d030de41af4016057d9e12a9} 
+static int {\bfseries Selected\+Start\+Weapon\+Index} = 0
+\begin{DoxyCompactList}\small\item\em Indeks startowej broni wybrany przez gracza w \doxylink{class_weapon_select_u_i}{Weapon\+Select\+UI}. Utrzymywany jako statyczny, aby przetrwał zmianę sceny. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Properties}
 \begin{DoxyCompactItemize}
 \item 
+\Hypertarget{class_player_a129d77184feb05c2743ef38726dc23da}\label{class_player_a129d77184feb05c2743ef38726dc23da} 
+int {\bfseries Health}\hspace{0.3cm}{\ttfamily  \+[get]\+}
+\begin{DoxyCompactList}\small\item\em Aktualna liczba punktów życia gracza. \end{DoxyCompactList}\item 
 \Hypertarget{class_player_a246df04ece36765ef096d281c2062f4a}\label{class_player_a246df04ece36765ef096d281c2062f4a} 
 int {\bfseries Xp\+To\+Level}\hspace{0.3cm}{\ttfamily  \+[get]\+}
-\begin{DoxyCompactList}\small\item\em Ilość XP potrzebna do kolejnego poziomu. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Liczba punktów XP wymagana do awansu na następny poziom. Skaluje się nieliniowo z poziomem — {\ttfamily 13 \texorpdfstring{$\ast$}{*} Level\texorpdfstring{$^\wedge$}{\string^}1.08}, minimum 10. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-Klasa reprezentująca gracza w grze. Odpowiada za sterowanie ruchem, zarządzanie broniami, ulepszeniami, doświadczeniem (XP) oraz interakcją z przeciwnikami. 
+Główna klasa gracza. Zarządza zdrowiem, ruchem, systemem broni, pasywek i ulepszeń, a także mechaniką doświadczenia i awansowania na poziomy. Gracz jest identyfikowany w scenie przez grupę "{}player"{}. 
+
+\label{doc-func-members}
+\Hypertarget{class_player_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_player_a58bb8488c42d336b1ba8b3f796ba67f0}\index{Player@{Player}!\_PhysicsProcess@{\_PhysicsProcess}}
+\index{\_PhysicsProcess@{\_PhysicsProcess}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{\_PhysicsProcess()}{\_PhysicsProcess()}}
+{\footnotesize\ttfamily \label{class_player_a58bb8488c42d336b1ba8b3f796ba67f0} 
+override void Player.\+\_\+\+Physics\+Process (\begin{DoxyParamCaption}\item[{double}]{delta}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Aktualizacja fizyki:\+ zmniejsza timer nietykalności, pobiera wejście gracza i wywołuje Move\+And\+Slide. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em delta} & Czas od poprzedniej klatki fizyki (sekundy).\\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_player_a81db5dd46c343160498d29f6fa42d611}\index{Player@{Player}!\_Process@{\_Process}}
+\index{\_Process@{\_Process}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{\_Process()}{\_Process()}}
+{\footnotesize\ttfamily \label{class_player_a81db5dd46c343160498d29f6fa42d611} 
+override void Player.\+\_\+\+Process (\begin{DoxyParamCaption}\item[{double}]{delta}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Aktualizacja logiki co klatkę:\+ odświeża linie debugowania i wymusza przerysowanie (tylko gdy \doxylink{class_player_aa859697d3ad60eb1ace1199d79e6718d}{Debug\+Draw\+Enemy\+Lines} jest włączone). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em delta} & Czas od poprzedniej klatki (sekundy).\\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_player_aa3e49a9d513fc7d7f1ade4c8d9728c94}\index{Player@{Player}!AddPassive@{AddPassive}}
+\index{AddPassive@{AddPassive}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{AddPassive()}{AddPassive()}}
+{\footnotesize\ttfamily \label{class_player_aa3e49a9d513fc7d7f1ade4c8d9728c94} 
+bool Player.\+Add\+Passive (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_passive_data}{Passive\+Data}}}]{passive}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Dodaje lub ulepsza pasywkę gracza. Sprawdza limit pasywek (\doxylink{class_player_a1efa52fe48965ad65570ab098cdd1536}{MAX\+\_\+\+PASSIVES}), aplikuje efekt pasywki i odświeża UI ekwipunku. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em passive} & Dane pasywki do dodania lub ulepszenia.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} jeśli pasywka została zastosowana; {\ttfamily false} jeśli nie było to możliwe.
+\end{DoxyReturn}
+\Hypertarget{class_player_aad121d18b77321c2f9cc78a08efcfc5f}\index{Player@{Player}!AddWeaponOfType$<$ T $>$@{AddWeaponOfType$<$ T $>$}}
+\index{AddWeaponOfType$<$ T $>$@{AddWeaponOfType$<$ T $>$}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{AddWeaponOfType$<$ T $>$()}{AddWeaponOfType< T >()}}
+{\footnotesize\ttfamily \label{class_player_aad121d18b77321c2f9cc78a08efcfc5f} 
+bool Player.\+Add\+Weapon\+Of\+Type$<$ T $>$ (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_weapon_stats}{Weapon\+Stats}}}]{stats}{ = {\ttfamily null}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Dynamicznie dodaje broń podanego typu do ekwipunku gracza. Zwraca {\ttfamily false} jeśli gracz osiągnął limit broni lub już posiada broń tego typu. Automatycznie ustawia sceny pocisków, inicjalizuje broń i odświeża UI. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Typ broni dziedziczący po \doxylink{class_weapon}{Weapon}.\\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em stats} & Opcjonalne statystyki startowe; jeśli {\ttfamily null}, broń używa własnych domyślnych.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} jeśli broń została dodana; {\ttfamily false} w przeciwnym razie.
+\end{DoxyReturn}
+\begin{Desc}
+\item[Type Constraints]\begin{description}
+\item[{\em T} : {\em \doxymbox{\hyperlink{class_weapon}{Weapon}}}]\item[{\em T} : {\em new()}]\end{description}
+\end{Desc}
+\Hypertarget{class_player_af88c73f8d02da8953738ff84d1547cbd}\index{Player@{Player}!GainXp@{GainXp}}
+\index{GainXp@{GainXp}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{GainXp()}{GainXp()}}
+{\footnotesize\ttfamily \label{class_player_af88c73f8d02da8953738ff84d1547cbd} 
+void Player.\+Gain\+Xp (\begin{DoxyParamCaption}\item[{int}]{amount}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Dodaje punkty doświadczenia i obsługuje wielokrotne awanse poziomu w jednym wywołaniu. Wywołuje Level\+Up dla każdego progu przekroczonego jednorazowo. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em amount} & Liczba punktów XP do dodania.\\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_player_af4a774413c768fe7d78ac549a8d408e0}\index{Player@{Player}!GetClosestEnemy@{GetClosestEnemy}}
+\index{GetClosestEnemy@{GetClosestEnemy}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{GetClosestEnemy()}{GetClosestEnemy()}}
+{\footnotesize\ttfamily \label{class_player_af4a774413c768fe7d78ac549a8d408e0} 
+Node2D Player.\+Get\+Closest\+Enemy (\begin{DoxyParamCaption}\item[{float}]{range}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Zwraca najbliższego wroga w podanym zasięgu od pozycji gracza. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em range} & Maksymalny zasięg poszukiwania (jednostki świata).\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Najbliższy Node2D wroga lub {\ttfamily null}, jeśli brak celów w zasięgu.
+\end{DoxyReturn}
+\Hypertarget{class_player_af7afcea2d9b372abfd6486a008738526}\index{Player@{Player}!Heal@{Heal}}
+\index{Heal@{Heal}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{Heal()}{Heal()}}
+{\footnotesize\ttfamily \label{class_player_af7afcea2d9b372abfd6486a008738526} 
+void Player.\+Heal (\begin{DoxyParamCaption}\item[{int}]{amount}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Leczy gracza o podaną liczbę punktów życia (nie przekraczając \doxylink{class_player_aa31df936a1c5641ed287c77c755eb433}{Max\+Health}). Odgrywa dźwięk leczenia i aktualizuje pasek HP. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em amount} & Liczba punktów życia do przywrócenia.\\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_player_ac15b2cbec1b1fd802498a5b354d3d5a9}\index{Player@{Player}!SetWeaponsProcessMode@{SetWeaponsProcessMode}}
+\index{SetWeaponsProcessMode@{SetWeaponsProcessMode}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{SetWeaponsProcessMode()}{SetWeaponsProcessMode()}}
+{\footnotesize\ttfamily \label{class_player_ac15b2cbec1b1fd802498a5b354d3d5a9} 
+void Player.\+Set\+Weapons\+Process\+Mode (\begin{DoxyParamCaption}\item[{Process\+Mode\+Enum}]{mode}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Zmienia tryb procesowania (Node.\+Process\+Mode\+Enum) dla wszystkich broni gracza. Używane do zatrzymywania broni podczas pauzy lub Level Up UI. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mode} & Docelowy tryb procesowania.\\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_player_aef2694077ff73312537f56874215efb3}\index{Player@{Player}!Shuffle$<$ T $>$@{Shuffle$<$ T $>$}}
+\index{Shuffle$<$ T $>$@{Shuffle$<$ T $>$}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{Shuffle$<$ T $>$()}{Shuffle< T >()}}
+{\footnotesize\ttfamily \label{class_player_aef2694077ff73312537f56874215efb3} 
+void Player.\+Shuffle$<$ T $>$ (\begin{DoxyParamCaption}\item[{IList$<$ T $>$}]{list}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Miesza listę w miejscu algorytmem Fisher-\/\+Yates. Używana do losowania kolejności ulepszeń w \doxylink{class_level_up_u_i}{Level\+Up\+UI}. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Typ elementów listy.\\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em list} & Lista do przetasowania.\\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_player_af4c85b1c6321ca930faa4c6f17428051}\index{Player@{Player}!TakeDamage@{TakeDamage}}
+\index{TakeDamage@{TakeDamage}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{TakeDamage()}{TakeDamage()}}
+{\footnotesize\ttfamily \label{class_player_af4c85b1c6321ca930faa4c6f17428051} 
+void Player.\+Take\+Damage (\begin{DoxyParamCaption}\item[{int}]{damage}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Aplikuje obrażenia na gracza. Nie działa podczas Level Up UI, nietykalności ani po śmierci gracza. Obrażenia są podwajane (balansowanie trudności), po czym uruchamia efekt wizualny i sprawdza warunek śmierci. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em damage} & Bazowe obrażenia do zadania (przed podwojeniem).\\
+\hline
+\end{DoxyParams}
+
 
 The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
 \item 

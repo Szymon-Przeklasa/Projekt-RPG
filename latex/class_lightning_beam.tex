@@ -2,7 +2,7 @@
 \hypertarget{class_lightning_beam}{}\label{class_lightning_beam}\index{LightningBeam@{LightningBeam}}
 
 
-Klasa odpowiedzialna za wizualny efekt pioruna (beam). Tworzy dynamiczną, "{}poszarpaną"{} linię między dwoma punktami oraz krótką animację migotania.  
+Klasa odpowiedzialna za wizualny efekt błyskawicy. Generuje dynamiczną, nieregularną linię pomiędzy dwoma punktami, imitującą elektryczny łuk.  
 
 
 Inheritance diagram for Lightning\+Beam:\+\begin{figure}[H]
@@ -16,13 +16,22 @@ Inheritance diagram for Lightning\+Beam:\+\begin{figure}[H]
 \item 
 \Hypertarget{class_lightning_beam_ad94d4295e4854081e0317f8f8db0e1a0}\label{class_lightning_beam_ad94d4295e4854081e0317f8f8db0e1a0} 
 override void {\bfseries \+\_\+\+Ready} ()
-\begin{DoxyCompactList}\small\item\em Inicjalizacja węzła po dodaniu do sceny. Pobiera referencję do Line2D. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Metoda wywoływana po dodaniu obiektu do sceny. Pobiera referencję do komponentu Line2D. \end{DoxyCompactList}\item 
 void \doxymbox{\hyperlink{class_lightning_beam_a949c4cbd382f419694fd0437866d81a7}{Setup}} (Vector2 from, Vector2 to)
-\begin{DoxyCompactList}\small\item\em Konfiguruje efekt pioruna pomiędzy dwoma punktami. Generuje segmenty z losowym odchyleniem, aby uzyskać efekt elektrycznego łuku. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Konfiguruje efekt błyskawicy pomiędzy dwoma punktami. Generuje serię segmentów z losowym odchyleniem, aby uzyskać naturalny wygląd elektrycznego wyładowania. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-Klasa odpowiedzialna za wizualny efekt pioruna (beam). Tworzy dynamiczną, "{}poszarpaną"{} linię między dwoma punktami oraz krótką animację migotania. 
+Klasa odpowiedzialna za wizualny efekt błyskawicy. Generuje dynamiczną, nieregularną linię pomiędzy dwoma punktami, imitującą elektryczny łuk. 
+
+Efekt:\+ 
+\begin{DoxyItemize}
+\item tworzy poszarpaną linię między źródłem a celem, 
+\item losowo zmienia grubość linii dla efektu migotania, 
+\item automatycznie usuwa się po zakończeniu animacji. 
+\end{DoxyItemize}
+
+Klasa dziedziczy po Node2D. 
 
 \label{doc-func-members}
 \Hypertarget{class_lightning_beam_doc-func-members}
@@ -31,17 +40,17 @@ Klasa odpowiedzialna za wizualny efekt pioruna (beam). Tworzy dynamiczną, "{}po
 \index{Setup@{Setup}!LightningBeam@{LightningBeam}}
 \doxysubsubsection{\texorpdfstring{Setup()}{Setup()}}
 {\footnotesize\ttfamily \label{class_lightning_beam_a949c4cbd382f419694fd0437866d81a7} 
-void Lightning\+Beam.\+Setup (\begin{DoxyParamCaption}\item[{Vector2}]{from}{, }\item[{Vector2}]{to}{}\end{DoxyParamCaption})}
+void Lightning\+Beam.\+Setup (\begin{DoxyParamCaption}\item[{Vector2}]{from}{, }\item[{Vector2}]{to}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
-Konfiguruje efekt pioruna pomiędzy dwoma punktami. Generuje segmenty z losowym odchyleniem, aby uzyskać efekt elektrycznego łuku. 
+Konfiguruje efekt błyskawicy pomiędzy dwoma punktami. Generuje serię segmentów z losowym odchyleniem, aby uzyskać naturalny wygląd elektrycznego wyładowania. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em from} & Punkt początkowy (źródło pioruna).\\
+{\em from} & Punkt początkowy efektu.\\
 \hline
-{\em to} & Punkt końcowy (cel pioruna).\\
+{\em to} & Punkt końcowy efektu.\\
 \hline
 \end{DoxyParams}
 

@@ -92,7 +92,7 @@ $(function(){initNavTree('class_lightning_chain.html','','class_lightning_chain-
 </div><!--header-->
 <div class="contents">
 
-<p>Klasa reprezentująca pojedynczy segment wizualny łańcucha pioruna. Odpowiada za efekt graficzny między dwoma punktami (np. między wrogami). Dziedziczy po GpuParticles2D.  
+<p>Klasa reprezentująca pojedynczy segment wizualnego łańcucha błyskawicy. Odpowiada za wyświetlenie efektu pomiędzy dwoma punktami, na przykład pomiędzy graczem a przeciwnikiem lub pomiędzy kolejnymi celami.  
  <a href="#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for LightningChain:</div>
@@ -104,19 +104,33 @@ Inheritance diagram for LightningChain:</div>
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a6dc3d69175a59364aad6a2a06fd43fcb" id="r_a6dc3d69175a59364aad6a2a06fd43fcb"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a6dc3d69175a59364aad6a2a06fd43fcb">Setup</a> (Vector2 from, Vector2 to)</td></tr>
-<tr class="memdesc:a6dc3d69175a59364aad6a2a06fd43fcb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Konfiguruje segment pioruna między dwoma punktami w świecie gry. Ustawia pozycję, rotację oraz skalę efektu cząsteczkowego.  <br /></td></tr>
+<tr class="memdesc:a6dc3d69175a59364aad6a2a06fd43fcb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Konfiguruje segment błyskawicy pomiędzy dwoma punktami. Ustawia pozycję, rotację oraz skalę efektu cząsteczkowego tak, aby wizualnie połączyć oba punkty.  <br /></td></tr>
 <tr class="memitem:abdbe944f4a5d971c3a0439d2ff31243d" id="r_abdbe944f4a5d971c3a0439d2ff31243d"><td class="memItemLeft"><a id="abdbe944f4a5d971c3a0439d2ff31243d" name="abdbe944f4a5d971c3a0439d2ff31243d"></a>
 override async void&#160;</td><td class="memItemRight"><b>_Ready</b> ()</td></tr>
-<tr class="memdesc:abdbe944f4a5d971c3a0439d2ff31243d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wywoływana po dodaniu węzła do sceny. Automatycznie uruchamia emisję i usuwa efekt po czasie życia (Lifetime). <br /></td></tr>
+<tr class="memdesc:abdbe944f4a5d971c3a0439d2ff31243d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metoda wywoływana po dodaniu efektu do sceny. Uruchamia emisję cząsteczek, odczekuje czas życia efektu, a następnie usuwa obiekt ze sceny. <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Klasa reprezentująca pojedynczy segment wizualny łańcucha pioruna. Odpowiada za efekt graficzny między dwoma punktami (np. między wrogami). Dziedziczy po GpuParticles2D. </p>
+<div class="textblock"><p>Klasa reprezentująca pojedynczy segment wizualnego łańcucha błyskawicy. Odpowiada za wyświetlenie efektu pomiędzy dwoma punktami, na przykład pomiędzy graczem a przeciwnikiem lub pomiędzy kolejnymi celami. </p>
+<p>Efekt: </p><ul>
+<li>
+ustawia pozycję początkową segmentu, </li>
+<li>
+obraca efekt w kierunku celu, </li>
+<li>
+skaluje długość efektu do dystansu między punktami, </li>
+<li>
+automatycznie usuwa się po zakończeniu emisji. </li>
+</ul>
+<p>Klasa dziedziczy po GpuParticles2D. </p>
 </div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
 <a id="a6dc3d69175a59364aad6a2a06fd43fcb" name="a6dc3d69175a59364aad6a2a06fd43fcb"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6dc3d69175a59364aad6a2a06fd43fcb">&#9670;&#160;</a></span>Setup()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void LightningChain.Setup </td>
@@ -129,13 +143,18 @@ override async void&#160;</td><td class="memItemRight"><b>_Ready</b> ()</td></tr
           <td class="paramtype">Vector2</td>          <td class="paramname"><span class="paramname"><em>to</em></span>&#160;)</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p>Konfiguruje segment pioruna między dwoma punktami w świecie gry. Ustawia pozycję, rotację oraz skalę efektu cząsteczkowego. </p>
+<p>Konfiguruje segment błyskawicy pomiędzy dwoma punktami. Ustawia pozycję, rotację oraz skalę efektu cząsteczkowego tak, aby wizualnie połączyć oba punkty. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">from</td><td>Punkt początkowy (np. źródło ataku).</td></tr>
-    <tr><td class="paramname">to</td><td>Punkt końcowy (np. trafiony przeciwnik).</td></tr>
+    <tr><td class="paramname">from</td><td>Punkt początkowy segmentu.</td></tr>
+    <tr><td class="paramname">to</td><td>Punkt końcowy segmentu.</td></tr>
   </table>
   </dd>
 </dl>

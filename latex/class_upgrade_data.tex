@@ -2,54 +2,66 @@
 \hypertarget{class_upgrade_data}{}\label{class_upgrade_data}\index{UpgradeData@{UpgradeData}}
 
 
-Klasa reprezentująca pojedyncze ulepszenie dostępne dla gracza. Przechowuje dane o nazwie, typie, poziomie oraz logikę aplikowania efektu.  
+Reprezentuje dane ulepszenia (broń, pasywka lub statystyka).  
 
 
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\doxymbox{\hyperlink{class_upgrade_data_ab09eafbff0dcad671060be4c1caeb7a2}{Upgrade\+Data}} (string name, Upgrade\+Type type, Action$<$ \doxymbox{\hyperlink{class_player}{Player}} $>$ apply\+Effect, int max\+Level=5)
-\begin{DoxyCompactList}\small\item\em Tworzy nowe ulepszenie. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_upgrade_data_af6d9df7c8f8469e92b029358874d11a5}{Upgrade\+Data}} (string name, Upgrade\+Type type)
+\begin{DoxyCompactList}\small\item\em Tworzy nowe ulepszenie o podanej nazwie i typie. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_upgrade_data}{Upgrade\+Data}} \doxymbox{\hyperlink{class_upgrade_data_a3be9a861f48fb322395388978940e1a0}{Add\+Level}} (string description, Action$<$ \doxymbox{\hyperlink{class_player}{Player}} $>$ effect)
+\begin{DoxyCompactList}\small\item\em Dodaje nowy poziom ulepszenia. Umożliwia budowanie systemu w stylu fluent API. \end{DoxyCompactList}\item 
 void \doxymbox{\hyperlink{class_upgrade_data_abfa2f0160b03db1f201a6b53acc58915}{Apply}} (\doxymbox{\hyperlink{class_player}{Player}} player)
-\begin{DoxyCompactList}\small\item\em Aplikuje ulepszenie na podanego gracza. Jeśli ulepszenie nie osiągnęło maksymalnego poziomu, zwiększa jego poziom i wywołuje przypisany efekt. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Aplikuje efekt aktualnego poziomu ulepszenia i zwiększa poziom. Jeśli osiągnięto maksymalny poziom, metoda nie wykonuje żadnej akcji. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
 \Hypertarget{class_upgrade_data_a25a0abd3e1d618f4659eb19f01529778}\label{class_upgrade_data_a25a0abd3e1d618f4659eb19f01529778} 
 string {\bfseries Name}
-\begin{DoxyCompactList}\small\item\em Nazwa ulepszenia wyświetlana w grze. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Nazwa ulepszenia (np. "{}\+Garlic"{}). \end{DoxyCompactList}\item 
 \Hypertarget{class_upgrade_data_afc19abbce2c20b4e78d4998811e871d7}\label{class_upgrade_data_afc19abbce2c20b4e78d4998811e871d7} 
 Upgrade\+Type {\bfseries Type}
-\begin{DoxyCompactList}\small\item\em Typ ulepszenia określający jego kategorię. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Typ ulepszenia (\doxylink{class_weapon}{Weapon} /\+ Passive /\+ Stat). \end{DoxyCompactList}\item 
 \Hypertarget{class_upgrade_data_afbed250af121eb15ea309b61b7f01ff7}\label{class_upgrade_data_afbed250af121eb15ea309b61b7f01ff7} 
 int {\bfseries Level} = 0
-\begin{DoxyCompactList}\small\item\em Aktualny poziom ulepszenia. \end{DoxyCompactList}\item 
-\Hypertarget{class_upgrade_data_abb384bfb2ee3d951cb89a6c09dbe776d}\label{class_upgrade_data_abb384bfb2ee3d951cb89a6c09dbe776d} 
-int {\bfseries Max\+Level} = 5
-\begin{DoxyCompactList}\small\item\em Maksymalny możliwy poziom ulepszenia. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Aktualny poziom ulepszenia (0 = brak ulepszenia). \end{DoxyCompactList}\item 
+\Hypertarget{class_upgrade_data_a0ca8777087dd3b0195057bb67b501150}\label{class_upgrade_data_a0ca8777087dd3b0195057bb67b501150} 
+List$<$ \doxymbox{\hyperlink{class_upgrade_level}{Upgrade\+Level}} $>$ {\bfseries Levels} = new()
+\begin{DoxyCompactList}\small\item\em Lista wszystkich poziomów ulepszenia. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Properties}
 \begin{DoxyCompactItemize}
 \item 
+\Hypertarget{class_upgrade_data_abb384bfb2ee3d951cb89a6c09dbe776d}\label{class_upgrade_data_abb384bfb2ee3d951cb89a6c09dbe776d} 
+int {\bfseries Max\+Level}\hspace{0.3cm}{\ttfamily  \+[get]\+}
+\begin{DoxyCompactList}\small\item\em Maksymalny poziom ulepszenia. \end{DoxyCompactList}\item 
 \Hypertarget{class_upgrade_data_a36647ed59d50c73689570e01e88b9eb7}\label{class_upgrade_data_a36647ed59d50c73689570e01e88b9eb7} 
 bool {\bfseries Can\+Upgrade}\hspace{0.3cm}{\ttfamily  \+[get]\+}
-\begin{DoxyCompactList}\small\item\em Określa, czy ulepszenie może zostać jeszcze rozwinięte. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Określa czy ulepszenie może być jeszcze rozwijane. \end{DoxyCompactList}\item 
+\Hypertarget{class_upgrade_data_af49a90ff23dab452be9f35f046f5bb4f}\label{class_upgrade_data_af49a90ff23dab452be9f35f046f5bb4f} 
+string {\bfseries Next\+Level\+Description}\hspace{0.3cm}{\ttfamily  \+[get]\+}
+\begin{DoxyCompactList}\small\item\em Opis następnego poziomu ulepszenia. Jeśli osiągnięto maksymalny poziom, zwraca "{}\+MAX"{}. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-Klasa reprezentująca pojedyncze ulepszenie dostępne dla gracza. Przechowuje dane o nazwie, typie, poziomie oraz logikę aplikowania efektu. 
+Reprezentuje dane ulepszenia (broń, pasywka lub statystyka). 
+
+Każde ulepszenie składa się z wielu poziomów, z których każdy posiada własny opis i efekt.
+
+System działa w stylu Vampire Survivors:\+ gracz wybiera ulepszenie, a system automatycznie aplikuje odpowiedni poziom. 
 
 \label{doc-constructors}
 \Hypertarget{class_upgrade_data_doc-constructors}
 \doxysubsection{Constructor \& Destructor Documentation}
-\Hypertarget{class_upgrade_data_ab09eafbff0dcad671060be4c1caeb7a2}\index{UpgradeData@{UpgradeData}!UpgradeData@{UpgradeData}}
+\Hypertarget{class_upgrade_data_af6d9df7c8f8469e92b029358874d11a5}\index{UpgradeData@{UpgradeData}!UpgradeData@{UpgradeData}}
 \index{UpgradeData@{UpgradeData}!UpgradeData@{UpgradeData}}
 \doxysubsubsection{\texorpdfstring{UpgradeData()}{UpgradeData()}}
-{\footnotesize\ttfamily \label{class_upgrade_data_ab09eafbff0dcad671060be4c1caeb7a2} 
-Upgrade\+Data.\+Upgrade\+Data (\begin{DoxyParamCaption}\item[{string}]{name}{, }\item[{Upgrade\+Type}]{type}{, }\item[{Action$<$ \doxymbox{\hyperlink{class_player}{Player}} $>$}]{apply\+Effect}{, }\item[{int}]{max\+Level}{ = {\ttfamily 5}}\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{class_upgrade_data_af6d9df7c8f8469e92b029358874d11a5} 
+Upgrade\+Data.\+Upgrade\+Data (\begin{DoxyParamCaption}\item[{string}]{name}{, }\item[{Upgrade\+Type}]{type}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
-Tworzy nowe ulepszenie. 
+Tworzy nowe ulepszenie o podanej nazwie i typie. 
 
 
 \begin{DoxyParams}{Parameters}
@@ -57,29 +69,45 @@ Tworzy nowe ulepszenie.
 \hline
 {\em type} & Typ ulepszenia.\\
 \hline
-{\em apply\+Effect} & Funkcja definiująca efekt ulepszenia (np. modyfikacja statystyk gracza). \\
-\hline
-{\em max\+Level} & Maksymalny poziom ulepszenia (domyślnie 5).\\
-\hline
 \end{DoxyParams}
 
 
 \label{doc-func-members}
 \Hypertarget{class_upgrade_data_doc-func-members}
 \doxysubsection{Member Function Documentation}
+\Hypertarget{class_upgrade_data_a3be9a861f48fb322395388978940e1a0}\index{UpgradeData@{UpgradeData}!AddLevel@{AddLevel}}
+\index{AddLevel@{AddLevel}!UpgradeData@{UpgradeData}}
+\doxysubsubsection{\texorpdfstring{AddLevel()}{AddLevel()}}
+{\footnotesize\ttfamily \label{class_upgrade_data_a3be9a861f48fb322395388978940e1a0} 
+\doxymbox{\hyperlink{class_upgrade_data}{Upgrade\+Data}} Upgrade\+Data.\+Add\+Level (\begin{DoxyParamCaption}\item[{string}]{description}{, }\item[{Action$<$ \doxymbox{\hyperlink{class_player}{Player}} $>$}]{effect}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Dodaje nowy poziom ulepszenia. Umożliwia budowanie systemu w stylu fluent API. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em description} & Opis poziomu.\\
+\hline
+{\em effect} & Efekt aplikowany na gracza.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Referencja do obiektu \doxylink{class_upgrade_data}{Upgrade\+Data}.
+\end{DoxyReturn}
 \Hypertarget{class_upgrade_data_abfa2f0160b03db1f201a6b53acc58915}\index{UpgradeData@{UpgradeData}!Apply@{Apply}}
 \index{Apply@{Apply}!UpgradeData@{UpgradeData}}
 \doxysubsubsection{\texorpdfstring{Apply()}{Apply()}}
 {\footnotesize\ttfamily \label{class_upgrade_data_abfa2f0160b03db1f201a6b53acc58915} 
-void Upgrade\+Data.\+Apply (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_player}{Player}}}]{player}{}\end{DoxyParamCaption})}
+void Upgrade\+Data.\+Apply (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_player}{Player}}}]{player}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
-Aplikuje ulepszenie na podanego gracza. Jeśli ulepszenie nie osiągnęło maksymalnego poziomu, zwiększa jego poziom i wywołuje przypisany efekt. 
+Aplikuje efekt aktualnego poziomu ulepszenia i zwiększa poziom. Jeśli osiągnięto maksymalny poziom, metoda nie wykonuje żadnej akcji. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em player} & Obiekt gracza, na którym zostanie zastosowane ulepszenie.\\
+{\em player} & Gracz, na którego działa ulepszenie.\\
 \hline
 \end{DoxyParams}
 

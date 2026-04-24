@@ -92,7 +92,7 @@ $(function(){initNavTree('class_magnet.html','','class_magnet-members'); });
 </div><!--header-->
 <div class="contents">
 
-<p>Klasa reprezentująca broń typu <a class="el" href="class_magnet.html" title="Klasa reprezentująca broń typu Magnet. Zamiast zadawać obrażenia, przyciąga punkty doświadczenia (XP ...">Magnet</a>. Zamiast zadawać obrażenia, przyciąga punkty doświadczenia (XP orby) znajdujące się w zasięgu gracza.  
+<p>Klasa reprezentująca broń typu <a class="el" href="class_magnet.html" title="Klasa reprezentująca broń typu Magnet (Magnes). Pasywnie przyciąga orby doświadczenia (XP) w zasięgu ...">Magnet</a> (Magnes). Pasywnie przyciąga orby doświadczenia (XP) w zasięgu gracza każdą klatkę fizyki. Prędkość i zasięg przyciągania skalują się przez mnożniki gracza oraz ulepszenia pasywne. Broń nie posiada aktywnego strzału — metoda <a class="el" href="#aaa77d47afe2b59f278ee89a557596b98" title="Metoda strzału — celowo pusta, ponieważ Magnet działa pasywnie przez _PhysicsProcess.">Fire</a> jest pusta. Dziedziczy po klasie <a class="el" href="class_weapon.html" title="Klasa bazowa dla wszystkich broni w grze. Odpowiada za zarządzanie statystykami, timerem ataku oraz d...">Weapon</a>.  
  <a href="#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for Magnet:</div>
@@ -100,55 +100,108 @@ Inheritance diagram for Magnet:</div>
  <div class="center">
   <img src="class_magnet.png" usemap="#Magnet_map" alt=""/>
   <map id="Magnet_map" name="Magnet_map">
-<area href="class_weapon.html" title="Klasa bazowa dla wszystkich broni. Zarządza statystykami broni, czasem odnowienia oraz inicjalizacją...." alt="Weapon" shape="rect" coords="0,56,58,80"/>
+<area href="class_weapon.html" title="Klasa bazowa dla wszystkich broni w grze. Odpowiada za zarządzanie statystykami, timerem ataku oraz d..." alt="Weapon" shape="rect" coords="0,56,58,80"/>
   </map>
 </div></div>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:ae044eed0dc2e84f2ec788e62e33894ad" id="r_ae044eed0dc2e84f2ec788e62e33894ad"><td class="memItemLeft">override void&#160;</td><td class="memItemRight"><a class="el" href="#ae044eed0dc2e84f2ec788e62e33894ad">_PhysicsProcess</a> (double delta)</td></tr>
+<tr class="memdesc:ae044eed0dc2e84f2ec788e62e33894ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Aktualizacja fizyki wywoływana każdą klatką. Dla każdego orba XP w grupie "xp" oblicza dystans do gracza. Jeśli orb jest w zasięgu, przesuwa go w kierunku gracza z prędkością skalowaną przez bliskość do centrum (<code>speedFactor</code>). Im bliżej środka, tym orb jest szybciej wciągany.  <br /></td></tr>
+<tr class="inherit_header pub_methods_class_weapon"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_class_weapon')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Member Functions inherited from <a class="el" href="class_weapon.html">Weapon</a></td></tr>
+<tr class="memitem:a33d626e47c4808639ffd14de099228ed inherit pub_methods_class_weapon" id="r_a33d626e47c4808639ffd14de099228ed"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="class_weapon.html#a33d626e47c4808639ffd14de099228ed">Init</a> (<a class="el" href="class_player.html">Player</a> player)</td></tr>
+<tr class="memdesc:a33d626e47c4808639ffd14de099228ed inherit pub_methods_class_weapon"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inicjalizuje broń i podłącza timer ataku. Ustawia czas odnowienia na podstawie statystyk i modyfikatorów gracza.  <br /></td></tr>
+<tr class="memitem:a3f5299789e8faaaceeafd7dc58283292 inherit pub_methods_class_weapon" id="r_a3f5299789e8faaaceeafd7dc58283292"><td class="memItemLeft">
+virtual void&#160;</td><td class="memItemRight"><b>RefreshStats</b> ()</td></tr>
+<tr class="memdesc:a3f5299789e8faaaceeafd7dc58283292 inherit pub_methods_class_weapon"><td class="mdescLeft">&#160;</td><td class="mdescRight">Aktualizuje parametry broni po zmianie statystyk lub modyfikatorów gracza. W szczególności odświeża czas odnowienia ataku. <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:a576d0e774b0d40b370b941971303bed4" id="r_a576d0e774b0d40b370b941971303bed4"><td class="memItemLeft"><a id="a576d0e774b0d40b370b941971303bed4" name="a576d0e774b0d40b370b941971303bed4"></a>
+float&#160;</td><td class="memItemRight"><b>PullSpeedBonus</b> = 0f</td></tr>
+<tr class="memdesc:a576d0e774b0d40b370b941971303bed4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dodatkowy bonus do prędkości przyciągania, dodawany przez ulepszenia pasywne magnesu. Kumuluje się z każdym zakupionym ulepszeniem. <br /></td></tr>
+<tr class="inherit_header pub_attribs_class_weapon"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_attribs_class_weapon')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Attributes inherited from <a class="el" href="class_weapon.html">Weapon</a></td></tr>
+<tr class="memitem:a0f4c970f65c3e7d77d4cdd9bff525f4d inherit pub_attribs_class_weapon" id="r_a0f4c970f65c3e7d77d4cdd9bff525f4d"><td class="memItemLeft">
+<a class="el" href="class_weapon_stats.html">WeaponStats</a>&#160;</td><td class="memItemRight"><b>Stats</b></td></tr>
+<tr class="memdesc:a0f4c970f65c3e7d77d4cdd9bff525f4d inherit pub_attribs_class_weapon"><td class="mdescLeft">&#160;</td><td class="mdescRight">Statystyki broni (obrażenia, cooldown, zasięg, liczba pocisków itd.). <br /></td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pro-methods" class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
 <tr class="memitem:aaa77d47afe2b59f278ee89a557596b98" id="r_aaa77d47afe2b59f278ee89a557596b98"><td class="memItemLeft"><a id="aaa77d47afe2b59f278ee89a557596b98" name="aaa77d47afe2b59f278ee89a557596b98"></a>
 override void&#160;</td><td class="memItemRight"><b>Fire</b> ()</td></tr>
-<tr class="memdesc:aaa77d47afe2b59f278ee89a557596b98"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metoda wywoływana przy aktywacji broni (strzale). Wyszukuje wszystkie orb-y XP i przyciąga te znajdujące się w zasięgu gracza. <br /></td></tr>
+<tr class="memdesc:aaa77d47afe2b59f278ee89a557596b98"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metoda strzału — celowo pusta, ponieważ <a class="el" href="class_magnet.html" title="Klasa reprezentująca broń typu Magnet (Magnes). Pasywnie przyciąga orby doświadczenia (XP) w zasięgu ...">Magnet</a> działa pasywnie przez <a class="el" href="#ae044eed0dc2e84f2ec788e62e33894ad" title="Aktualizacja fizyki wywoływana każdą klatką. Dla każdego orba XP w grupie &quot;xp&quot; oblicza dystans do gra...">_PhysicsProcess</a>. <br /></td></tr>
 <tr class="inherit_header pro_methods_class_weapon"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_methods_class_weapon')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Protected Member Functions inherited from <a class="el" href="class_weapon.html">Weapon</a></td></tr>
 <tr class="memitem:a6dbcb22cf61c8160e4543ddcab0435ff inherit pro_methods_class_weapon" id="r_a6dbcb22cf61c8160e4543ddcab0435ff"><td class="memItemLeft">
 int&#160;</td><td class="memItemRight"><b>GetDamage</b> ()</td></tr>
-<tr class="memdesc:a6dbcb22cf61c8160e4543ddcab0435ff inherit pro_methods_class_weapon"><td class="mdescLeft">&#160;</td><td class="mdescRight">Oblicza aktualne obrażenia z uwzględnieniem mnożnika gracza. <br /></td></tr>
+<tr class="memdesc:a6dbcb22cf61c8160e4543ddcab0435ff inherit pro_methods_class_weapon"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zwraca aktualne obrażenia broni z uwzględnieniem mnożnika gracza. <br /></td></tr>
 <tr class="memitem:a80270d3f3afc971b05973f7d1efd310d inherit pro_methods_class_weapon" id="r_a80270d3f3afc971b05973f7d1efd310d"><td class="memItemLeft">
 float&#160;</td><td class="memItemRight"><b>GetRange</b> ()</td></tr>
-<tr class="memdesc:a80270d3f3afc971b05973f7d1efd310d inherit pro_methods_class_weapon"><td class="mdescLeft">&#160;</td><td class="mdescRight">Oblicza aktualny zasięg z uwzględnieniem mnożnika obszaru gracza. <br /></td></tr>
+<tr class="memdesc:a80270d3f3afc971b05973f7d1efd310d inherit pro_methods_class_weapon"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zwraca aktualny zasięg broni z uwzględnieniem bonusów gracza. <br /></td></tr>
 <tr class="memitem:a601c3a5b380968ecd954cceca8b7b98f inherit pro_methods_class_weapon" id="r_a601c3a5b380968ecd954cceca8b7b98f"><td class="memItemLeft">
 float&#160;</td><td class="memItemRight"><b>GetSpeed</b> ()</td></tr>
-<tr class="memdesc:a601c3a5b380968ecd954cceca8b7b98f inherit pro_methods_class_weapon"><td class="mdescLeft">&#160;</td><td class="mdescRight">Oblicza aktualną prędkość pocisków z uwzględnieniem mnożnika. <br /></td></tr>
+<tr class="memdesc:a601c3a5b380968ecd954cceca8b7b98f inherit pro_methods_class_weapon"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zwraca aktualną prędkość pocisków z uwzględnieniem modyfikatorów gracza. <br /></td></tr>
+<tr class="memitem:a321cf1b236dc6d83fe60390bb4e27ed7 inherit pro_methods_class_weapon" id="r_a321cf1b236dc6d83fe60390bb4e27ed7"><td class="memItemLeft">
+Vector2&#160;</td><td class="memItemRight"><b>GetAimPosition</b> (Node2D target)</td></tr>
+<tr class="memdesc:a321cf1b236dc6d83fe60390bb4e27ed7 inherit pro_methods_class_weapon"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zwraca pozycję trafienia dla przeciwnika. Preferuje marker "Center", jeśli istnieje. <br /></td></tr>
+<tr class="memitem:ae99c6686d911ab38f62ba2c1a582828e inherit pro_methods_class_weapon" id="r_ae99c6686d911ab38f62ba2c1a582828e"><td class="memItemLeft">List&lt; Node2D &gt;&#160;</td><td class="memItemRight"><a class="el" href="class_weapon.html#ae99c6686d911ab38f62ba2c1a582828e">GetClosestEnemies</a> (float range, int count, Vector2? fromPosition=null)</td></tr>
+<tr class="memdesc:ae99c6686d911ab38f62ba2c1a582828e inherit pro_methods_class_weapon"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zwraca listę najbliższych przeciwników w zadanym zasięgu. Wynik jest posortowany według odległości od punktu odniesienia.  <br /></td></tr>
+<tr class="memitem:aa06741321d4ac42e45542c96de14f1d4 inherit pro_methods_class_weapon" id="r_aa06741321d4ac42e45542c96de14f1d4"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="class_weapon.html#aa06741321d4ac42e45542c96de14f1d4">GetCenteredOffset</a> (int index, int total, float step)</td></tr>
+<tr class="memdesc:aa06741321d4ac42e45542c96de14f1d4 inherit pro_methods_class_weapon"><td class="mdescLeft">&#160;</td><td class="mdescRight">Oblicza wycentrowane przesunięcie dla rozrzutu pocisków.  <br /></td></tr>
 <tr class="memitem:a4d7034c6c517d5f3a505f648e450e62d inherit pro_methods_class_weapon" id="r_a4d7034c6c517d5f3a505f648e450e62d"><td class="memItemLeft">
 void&#160;</td><td class="memItemRight"><b>Fire</b> ()</td></tr>
-<tr class="memdesc:a4d7034c6c517d5f3a505f648e450e62d inherit pro_methods_class_weapon"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metoda abstrakcyjna wywoływana przy każdym strzale. Każda broń powinna nadpisać tę metodę, implementując własną logikę strzału. <br /></td></tr>
+<tr class="memdesc:a4d7034c6c517d5f3a505f648e450e62d inherit pro_methods_class_weapon"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metoda abstrakcyjna wywoływana przy każdym ataku. Każda broń musi implementować własną logikę strzału. <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-inherited" class="groupheader"><a id="inherited" name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
-<tr class="inherit_header pub_methods_class_weapon"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_class_weapon')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Member Functions inherited from <a class="el" href="class_weapon.html">Weapon</a></td></tr>
-<tr class="memitem:a33d626e47c4808639ffd14de099228ed inherit pub_methods_class_weapon" id="r_a33d626e47c4808639ffd14de099228ed"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="class_weapon.html#a33d626e47c4808639ffd14de099228ed">Init</a> (<a class="el" href="class_player.html">Player</a> player)</td></tr>
-<tr class="memdesc:a33d626e47c4808639ffd14de099228ed inherit pub_methods_class_weapon"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inicjalizuje broń dla danego gracza. Ustawia timer na podstawie czasu odnowienia i mnożnika gracza.  <br /></td></tr>
-<tr class="memitem:a3f5299789e8faaaceeafd7dc58283292 inherit pub_methods_class_weapon" id="r_a3f5299789e8faaaceeafd7dc58283292"><td class="memItemLeft">
-virtual void&#160;</td><td class="memItemRight"><b>RefreshStats</b> ()</td></tr>
-<tr class="memdesc:a3f5299789e8faaaceeafd7dc58283292 inherit pub_methods_class_weapon"><td class="mdescLeft">&#160;</td><td class="mdescRight">Odświeża statystyki broni, aktualizując czas odnowienia w timerze. Powinno być wywoływane po zmianie Stats.Cooldown lub <a class="el" href="class_player.html#a4ecfa1544f4778a8269e388e48e791ae" title="Globalny mnożnik czasu odnowienia (im mniejszy, tym szybciej strzelamy).">Player.CooldownMultiplier</a>. <br /></td></tr>
-<tr class="inherit_header pub_attribs_class_weapon"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_attribs_class_weapon')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Attributes inherited from <a class="el" href="class_weapon.html">Weapon</a></td></tr>
-<tr class="memitem:a0f4c970f65c3e7d77d4cdd9bff525f4d inherit pub_attribs_class_weapon" id="r_a0f4c970f65c3e7d77d4cdd9bff525f4d"><td class="memItemLeft">
-<a class="el" href="class_weapon_stats.html">WeaponStats</a>&#160;</td><td class="memItemRight"><b>Stats</b></td></tr>
-<tr class="memdesc:a0f4c970f65c3e7d77d4cdd9bff525f4d inherit pub_attribs_class_weapon"><td class="mdescLeft">&#160;</td><td class="mdescRight">Statystyki broni (obrażenia, zasięg, liczba pocisków, czas odnowienia itd.). <br /></td></tr>
 <tr class="inherit_header pro_attribs_class_weapon"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_attribs_class_weapon')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Protected Attributes inherited from <a class="el" href="class_weapon.html">Weapon</a></td></tr>
 <tr class="memitem:ab998a5554d2a9aedc15dc42c72ea91ab inherit pro_attribs_class_weapon" id="r_ab998a5554d2a9aedc15dc42c72ea91ab"><td class="memItemLeft">
 <a class="el" href="class_player.html">Player</a>&#160;</td><td class="memItemRight"><b>Player</b></td></tr>
-<tr class="memdesc:ab998a5554d2a9aedc15dc42c72ea91ab inherit pro_attribs_class_weapon"><td class="mdescLeft">&#160;</td><td class="mdescRight">Odniesienie do gracza, który używa broni. <br /></td></tr>
+<tr class="memdesc:ab998a5554d2a9aedc15dc42c72ea91ab inherit pro_attribs_class_weapon"><td class="mdescLeft">&#160;</td><td class="mdescRight">Referencja do gracza, który korzysta z broni. <br /></td></tr>
 <tr class="memitem:a9666761200f5ea34e62b0c9b17d28903 inherit pro_attribs_class_weapon" id="r_a9666761200f5ea34e62b0c9b17d28903"><td class="memItemLeft">
 Timer&#160;</td><td class="memItemRight"><b>timer</b></td></tr>
-<tr class="memdesc:a9666761200f5ea34e62b0c9b17d28903 inherit pro_attribs_class_weapon"><td class="mdescLeft">&#160;</td><td class="mdescRight">Timer odpowiadający za wywoływanie strzałów co określony czas. <br /></td></tr>
+<tr class="memdesc:a9666761200f5ea34e62b0c9b17d28903 inherit pro_attribs_class_weapon"><td class="mdescLeft">&#160;</td><td class="mdescRight">Timer odpowiedzialny za cykliczne wywoływanie ataku. <br /></td></tr>
 <tr class="inherit_header properties_class_weapon"><td colspan="2" onclick="javascript:dynsection.toggleInherit('properties_class_weapon')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Properties inherited from <a class="el" href="class_weapon.html">Weapon</a></td></tr>
 <tr class="memitem:a1e650e3cd02f2b6114df0ac4b5116d85 inherit properties_class_weapon" id="r_a1e650e3cd02f2b6114df0ac4b5116d85"><td class="memItemLeft">
 virtual string&#160;</td><td class="memItemRight"><b>WeaponName</b><code> [get]</code></td></tr>
+<tr class="memdesc:a1e650e3cd02f2b6114df0ac4b5116d85 inherit properties_class_weapon"><td class="mdescLeft">&#160;</td><td class="mdescRight">Nazwa broni (domyślnie nazwa klasy). <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Klasa reprezentująca broń typu <a class="el" href="class_magnet.html" title="Klasa reprezentująca broń typu Magnet. Zamiast zadawać obrażenia, przyciąga punkty doświadczenia (XP ...">Magnet</a>. Zamiast zadawać obrażenia, przyciąga punkty doświadczenia (XP orby) znajdujące się w zasięgu gracza. </p>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
+<div class="textblock"><p>Klasa reprezentująca broń typu <a class="el" href="class_magnet.html" title="Klasa reprezentująca broń typu Magnet (Magnes). Pasywnie przyciąga orby doświadczenia (XP) w zasięgu ...">Magnet</a> (Magnes). Pasywnie przyciąga orby doświadczenia (XP) w zasięgu gracza każdą klatkę fizyki. Prędkość i zasięg przyciągania skalują się przez mnożniki gracza oraz ulepszenia pasywne. Broń nie posiada aktywnego strzału — metoda <a class="el" href="#aaa77d47afe2b59f278ee89a557596b98" title="Metoda strzału — celowo pusta, ponieważ Magnet działa pasywnie przez _PhysicsProcess.">Fire</a> jest pusta. Dziedziczy po klasie <a class="el" href="class_weapon.html" title="Klasa bazowa dla wszystkich broni w grze. Odpowiada za zarządzanie statystykami, timerem ataku oraz d...">Weapon</a>. </p>
+</div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="ae044eed0dc2e84f2ec788e62e33894ad" name="ae044eed0dc2e84f2ec788e62e33894ad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae044eed0dc2e84f2ec788e62e33894ad">&#9670;&#160;</a></span>_PhysicsProcess()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">override void Magnet._PhysicsProcess </td>
+          <td>(</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>delta</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Aktualizacja fizyki wywoływana każdą klatką. Dla każdego orba XP w grupie "xp" oblicza dystans do gracza. Jeśli orb jest w zasięgu, przesuwa go w kierunku gracza z prędkością skalowaną przez bliskość do centrum (<code>speedFactor</code>). Im bliżej środka, tym orb jest szybciej wciągany. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">delta</td><td>Czas od poprzedniej klatki fizyki (sekundy).</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>Scripts/PlayerWeapons/<b>Magnet.cs</b></li>
 </ul>
 </div><!-- contents -->

@@ -1,7 +1,9 @@
 var searchData=
 [
-  ['passivedata_0',['PassiveData',['../class_passive_data.html',1,'']]],
-  ['player_1',['Player',['../class_player.html',1,'']]],
-  ['powerupbutton_2',['PowerUpButton',['../class_power_up_button.html',1,'']]],
-  ['projectile_3',['Projectile',['../class_projectile.html',1,'']]]
+  ['magicmissile_0',['MagicMissile',['../class_magic_missile.html',1,'']]],
+  ['magicmissileprojectile_1',['MagicMissileProjectile',['../class_magic_missile_projectile.html',1,'']]],
+  ['magnet_2',['Magnet',['../class_magnet.html',1,'']]],
+  ['mainmenu_3',['MainMenu',['../class_main_menu.html',1,'']]],
+  ['minimap_4',['MiniMap',['../class_mini_map.html',1,'']]],
+  ['mobentry_5',['MobEntry',['../class_mob_entry.html',1,'']]]
 ];

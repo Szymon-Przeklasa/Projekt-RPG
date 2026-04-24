@@ -92,7 +92,7 @@ $(function(){initNavTree('class_enemy_spawner.html','','class_enemy_spawner-memb
 </div><!--header-->
 <div class="contents">
 
-<p>Zarządza pojawianiem się przeciwników w grze na podstawie listy fal (<a class="el" href="class_wave_definition.html" title="Definicja pojedynczej fali przeciwników w grze. Dziedziczy po Resource, dzięki czemu można tworzyć in...">WaveDefinition</a>). Interwał spawnów i liczba przeciwników w batchu rośnie z czasem gry, co powoduje progresywną trudność.  
+<p>Klasa odpowiedzialna za zarządzanie pojawianiem się przeciwników w grze. Na podstawie zdefiniowanych fal (<a class="el" href="class_wave_definition.html" title="Definicja pojedynczej fali przeciwników w grze. Dziedziczy po Resource, dzięki czemu można tworzyć in...">WaveDefinition</a>) aktywuje odpowiednie typy wrogów w określonym czasie rozgrywki.  
  <a href="#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for EnemySpawner:</div>
@@ -105,27 +105,95 @@ Inheritance diagram for EnemySpawner:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a208d31d0bf33a87befcc234bed3446eb" id="r_a208d31d0bf33a87befcc234bed3446eb"><td class="memItemLeft"><a id="a208d31d0bf33a87befcc234bed3446eb" name="a208d31d0bf33a87befcc234bed3446eb"></a>
 override void&#160;</td><td class="memItemRight"><b>_Ready</b> ()</td></tr>
-<tr class="memitem:ae04a5bac81becbbe1617177159068c4e" id="r_ae04a5bac81becbbe1617177159068c4e"><td class="memItemLeft"><a id="ae04a5bac81becbbe1617177159068c4e" name="ae04a5bac81becbbe1617177159068c4e"></a>
-override void&#160;</td><td class="memItemRight"><b>_Process</b> (double delta)</td></tr>
+<tr class="memdesc:a208d31d0bf33a87befcc234bed3446eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inicjalizuje system spawnów. Wyszukuje gracza, buduje pulę punktów spawnu oraz uruchamia timer odpowiedzialny za aktualizację aktywnych fal przeciwników. <br /></td></tr>
+<tr class="memitem:ae04a5bac81becbbe1617177159068c4e" id="r_ae04a5bac81becbbe1617177159068c4e"><td class="memItemLeft">override void&#160;</td><td class="memItemRight"><a class="el" href="#ae04a5bac81becbbe1617177159068c4e">_Process</a> (double delta)</td></tr>
+<tr class="memdesc:ae04a5bac81becbbe1617177159068c4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Aktualizowana co klatkę metoda kontrolująca: </p><ul>
+<li>
+czas rozgrywki, </li>
+<li>
+odświeżanie cache punktów spawnu, </li>
+<li>
+czyszczenie nadmiarowych orbów XP. </li>
+</ul>
+<p>.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:ab3fa82e16b2d973a01c248b25f39bcaf" id="r_ab3fa82e16b2d973a01c248b25f39bcaf"><td class="memItemLeft"><a id="ab3fa82e16b2d973a01c248b25f39bcaf" name="ab3fa82e16b2d973a01c248b25f39bcaf"></a>
 TileMapLayer&#160;</td><td class="memItemRight"><b>SpawnMap</b></td></tr>
-<tr class="memdesc:ab3fa82e16b2d973a01c248b25f39bcaf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mapa TileMap wskazująca możliwe pozycje spawnu. <br /></td></tr>
+<tr class="memdesc:ab3fa82e16b2d973a01c248b25f39bcaf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Warstwa mapy zawierająca komórki możliwego spawnu przeciwników. Każda użyta komórka zostaje przekształcona na globalny punkt spawnu. <br /></td></tr>
 <tr class="memitem:adbddf6cf35dffd6514463eb0f386af3c" id="r_adbddf6cf35dffd6514463eb0f386af3c"><td class="memItemLeft"><a id="adbddf6cf35dffd6514463eb0f386af3c" name="adbddf6cf35dffd6514463eb0f386af3c"></a>
 float&#160;</td><td class="memItemRight"><b>SpawnRadius</b> = 1200f</td></tr>
-<tr class="memdesc:adbddf6cf35dffd6514463eb0f386af3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maksymalny promień spawnu wokół gracza. <br /></td></tr>
+<tr class="memdesc:adbddf6cf35dffd6514463eb0f386af3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maksymalny promień od gracza, w którym przeciwnicy mogą się pojawić. <br /></td></tr>
 <tr class="memitem:a96f43fba2b8920e4cf23716696f38172" id="r_a96f43fba2b8920e4cf23716696f38172"><td class="memItemLeft"><a id="a96f43fba2b8920e4cf23716696f38172" name="a96f43fba2b8920e4cf23716696f38172"></a>
-float&#160;</td><td class="memItemRight"><b>MinPlayerDistance</b> = 400f</td></tr>
-<tr class="memdesc:a96f43fba2b8920e4cf23716696f38172"><td class="mdescLeft">&#160;</td><td class="mdescRight">Minimalna odległość od gracza, żeby nie spawnować wroga bezpośrednio na nim. <br /></td></tr>
+float&#160;</td><td class="memItemRight"><b>MinPlayerDistance</b> = 340f</td></tr>
+<tr class="memdesc:a96f43fba2b8920e4cf23716696f38172"><td class="mdescLeft">&#160;</td><td class="mdescRight">Minimalna odległość od gracza, w której przeciwnik może zostać zrespiony. Zapobiega pojawianiu się wrogów bezpośrednio obok gracza. <br /></td></tr>
 <tr class="memitem:a2ca514152b5179bb66e87784daa42c8f" id="r_a2ca514152b5179bb66e87784daa42c8f"><td class="memItemLeft"><a id="a2ca514152b5179bb66e87784daa42c8f" name="a2ca514152b5179bb66e87784daa42c8f"></a>
 Godot.Collections.Array&lt; <a class="el" href="class_wave_definition.html">WaveDefinition</a> &gt;&#160;</td><td class="memItemRight"><b>Waves</b> = new()</td></tr>
-<tr class="memdesc:a2ca514152b5179bb66e87784daa42c8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lista fal przypisana w Inspektorze (tablica <a class="el" href="class_wave_definition.html" title="Definicja pojedynczej fali przeciwników w grze. Dziedziczy po Resource, dzięki czemu można tworzyć in...">WaveDefinition</a> .tres). <br /></td></tr>
+<tr class="memdesc:a2ca514152b5179bb66e87784daa42c8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lista wszystkich fal przeciwników aktywowanych podczas gry. <br /></td></tr>
+<tr class="memitem:a486a1e5a5cecc5c2932b56f915e76272" id="r_a486a1e5a5cecc5c2932b56f915e76272"><td class="memItemLeft"><a id="a486a1e5a5cecc5c2932b56f915e76272" name="a486a1e5a5cecc5c2932b56f915e76272"></a>
+int&#160;</td><td class="memItemRight"><b>MaxEnemies</b> = 360</td></tr>
+<tr class="memdesc:a486a1e5a5cecc5c2932b56f915e76272"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maksymalna liczba aktywnych przeciwników na scenie jednocześnie. <br /></td></tr>
+<tr class="memitem:ac74d0595ddf6441bdc8c755647419521" id="r_ac74d0595ddf6441bdc8c755647419521"><td class="memItemLeft"><a id="ac74d0595ddf6441bdc8c755647419521" name="ac74d0595ddf6441bdc8c755647419521"></a>
+int&#160;</td><td class="memItemRight"><b>MaxXpOrbs</b> = 300</td></tr>
+<tr class="memdesc:ac74d0595ddf6441bdc8c755647419521"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maksymalna liczba orbów doświadczenia na scenie. Po przekroczeniu starsze i najdalsze orby są usuwane. <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Zarządza pojawianiem się przeciwników w grze na podstawie listy fal (<a class="el" href="class_wave_definition.html" title="Definicja pojedynczej fali przeciwników w grze. Dziedziczy po Resource, dzięki czemu można tworzyć in...">WaveDefinition</a>). Interwał spawnów i liczba przeciwników w batchu rośnie z czasem gry, co powoduje progresywną trudność. </p>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
+<div class="textblock"><p>Klasa odpowiedzialna za zarządzanie pojawianiem się przeciwników w grze. Na podstawie zdefiniowanych fal (<a class="el" href="class_wave_definition.html" title="Definicja pojedynczej fali przeciwników w grze. Dziedziczy po Resource, dzięki czemu można tworzyć in...">WaveDefinition</a>) aktywuje odpowiednie typy wrogów w określonym czasie rozgrywki. </p>
+<p>System zawiera: </p><ul>
+<li>
+dynamiczne skalowanie trudności wraz z czasem gry, </li>
+<li>
+limit aktywnych przeciwników na scenie, </li>
+<li>
+automatyczne usuwanie nadmiarowych orbów doświadczenia, </li>
+<li>
+buforowanie punktów spawnu w pobliżu gracza. </li>
+</ul>
+<p>Klasa dziedziczy po Node2D. </p>
+</div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="ae04a5bac81becbbe1617177159068c4e" name="ae04a5bac81becbbe1617177159068c4e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae04a5bac81becbbe1617177159068c4e">&#9670;&#160;</a></span>_Process()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">override void EnemySpawner._Process </td>
+          <td>(</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>delta</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Aktualizowana co klatkę metoda kontrolująca: </p><ul>
+<li>
+czas rozgrywki, </li>
+<li>
+odświeżanie cache punktów spawnu, </li>
+<li>
+czyszczenie nadmiarowych orbów XP. </li>
+</ul>
+<p>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">delta</td><td>Czas od poprzedniej klatki.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>Scripts/Environment/<b>EnemySpawner.cs</b></li>
 </ul>
 </div><!-- contents -->

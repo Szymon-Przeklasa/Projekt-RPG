@@ -2,7 +2,7 @@
 \hypertarget{class_lightning_chain}{}\label{class_lightning_chain}\index{LightningChain@{LightningChain}}
 
 
-Klasa reprezentująca pojedynczy segment wizualny łańcucha pioruna. Odpowiada za efekt graficzny między dwoma punktami (np. między wrogami). Dziedziczy po Gpu\+Particles2D.  
+Klasa reprezentująca pojedynczy segment wizualnego łańcucha błyskawicy. Odpowiada za wyświetlenie efektu pomiędzy dwoma punktami, na przykład pomiędzy graczem a przeciwnikiem lub pomiędzy kolejnymi celami.  
 
 
 Inheritance diagram for Lightning\+Chain:\+\begin{figure}[H]
@@ -15,14 +15,24 @@ Inheritance diagram for Lightning\+Chain:\+\begin{figure}[H]
 \begin{DoxyCompactItemize}
 \item 
 void \doxymbox{\hyperlink{class_lightning_chain_a6dc3d69175a59364aad6a2a06fd43fcb}{Setup}} (Vector2 from, Vector2 to)
-\begin{DoxyCompactList}\small\item\em Konfiguruje segment pioruna między dwoma punktami w świecie gry. Ustawia pozycję, rotację oraz skalę efektu cząsteczkowego. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Konfiguruje segment błyskawicy pomiędzy dwoma punktami. Ustawia pozycję, rotację oraz skalę efektu cząsteczkowego tak, aby wizualnie połączyć oba punkty. \end{DoxyCompactList}\item 
 \Hypertarget{class_lightning_chain_abdbe944f4a5d971c3a0439d2ff31243d}\label{class_lightning_chain_abdbe944f4a5d971c3a0439d2ff31243d} 
 override async void {\bfseries \+\_\+\+Ready} ()
-\begin{DoxyCompactList}\small\item\em Wywoływana po dodaniu węzła do sceny. Automatycznie uruchamia emisję i usuwa efekt po czasie życia (Lifetime). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Metoda wywoływana po dodaniu efektu do sceny. Uruchamia emisję cząsteczek, odczekuje czas życia efektu, a następnie usuwa obiekt ze sceny. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-Klasa reprezentująca pojedynczy segment wizualny łańcucha pioruna. Odpowiada za efekt graficzny między dwoma punktami (np. między wrogami). Dziedziczy po Gpu\+Particles2D. 
+Klasa reprezentująca pojedynczy segment wizualnego łańcucha błyskawicy. Odpowiada za wyświetlenie efektu pomiędzy dwoma punktami, na przykład pomiędzy graczem a przeciwnikiem lub pomiędzy kolejnymi celami. 
+
+Efekt:\+ 
+\begin{DoxyItemize}
+\item ustawia pozycję początkową segmentu, 
+\item obraca efekt w kierunku celu, 
+\item skaluje długość efektu do dystansu między punktami, 
+\item automatycznie usuwa się po zakończeniu emisji. 
+\end{DoxyItemize}
+
+Klasa dziedziczy po Gpu\+Particles2D. 
 
 \label{doc-func-members}
 \Hypertarget{class_lightning_chain_doc-func-members}
@@ -31,17 +41,17 @@ Klasa reprezentująca pojedynczy segment wizualny łańcucha pioruna. Odpowiada 
 \index{Setup@{Setup}!LightningChain@{LightningChain}}
 \doxysubsubsection{\texorpdfstring{Setup()}{Setup()}}
 {\footnotesize\ttfamily \label{class_lightning_chain_a6dc3d69175a59364aad6a2a06fd43fcb} 
-void Lightning\+Chain.\+Setup (\begin{DoxyParamCaption}\item[{Vector2}]{from}{, }\item[{Vector2}]{to}{}\end{DoxyParamCaption})}
+void Lightning\+Chain.\+Setup (\begin{DoxyParamCaption}\item[{Vector2}]{from}{, }\item[{Vector2}]{to}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
-Konfiguruje segment pioruna między dwoma punktami w świecie gry. Ustawia pozycję, rotację oraz skalę efektu cząsteczkowego. 
+Konfiguruje segment błyskawicy pomiędzy dwoma punktami. Ustawia pozycję, rotację oraz skalę efektu cząsteczkowego tak, aby wizualnie połączyć oba punkty. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em from} & Punkt początkowy (np. źródło ataku).\\
+{\em from} & Punkt początkowy segmentu.\\
 \hline
-{\em to} & Punkt końcowy (np. trafiony przeciwnik).\\
+{\em to} & Punkt końcowy segmentu.\\
 \hline
 \end{DoxyParams}
 

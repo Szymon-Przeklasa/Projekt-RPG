@@ -1,12 +1,16 @@
 var searchData=
 [
   ['gainxp_0',['GainXp',['../class_player.html#af88c73f8d02da8953738ff84d1547cbd',1,'Player']]],
-  ['getallkills_1',['GetAllKills',['../class_kill_manager.html#afe50e12f01d171f98f2624966a5dfda2',1,'KillManager']]],
-  ['getclosestenemy_2',['GetClosestEnemy',['../class_player.html#af4a774413c768fe7d78ac549a8d408e0',1,'Player']]],
-  ['getdamage_3',['GetDamage',['../class_weapon.html#a6dbcb22cf61c8160e4543ddcab0435ff',1,'Weapon']]],
-  ['getinput_4',['GetInput',['../class_player.html#aaa08a71c33eb3d12ec47507697ae8bff',1,'Player']]],
-  ['getkills_5',['GetKills',['../class_kill_manager.html#abbbb8879e05292d8c8bedbc37c16c03f',1,'KillManager']]],
-  ['getrange_6',['GetRange',['../class_weapon.html#a80270d3f3afc971b05973f7d1efd310d',1,'Weapon']]],
-  ['getspeed_7',['GetSpeed',['../class_weapon.html#a601c3a5b380968ecd954cceca8b7b98f',1,'Weapon']]],
-  ['getupgradechoices_8',['GetUpgradeChoices',['../class_player.html#a4e10eded91132b45c0ea0164c671bf7d',1,'Player']]]
+  ['getaimposition_1',['GetAimPosition',['../class_weapon.html#a321cf1b236dc6d83fe60390bb4e27ed7',1,'Weapon']]],
+  ['getallkills_2',['GetAllKills',['../class_kill_manager.html#afe50e12f01d171f98f2624966a5dfda2',1,'KillManager']]],
+  ['getcenteredoffset_3',['GetCenteredOffset',['../class_weapon.html#aa06741321d4ac42e45542c96de14f1d4',1,'Weapon']]],
+  ['getclosestenemies_4',['GetClosestEnemies',['../class_weapon.html#ae99c6686d911ab38f62ba2c1a582828e',1,'Weapon']]],
+  ['getclosestenemy_5',['GetClosestEnemy',['../class_player.html#af4a774413c768fe7d78ac549a8d408e0',1,'Player']]],
+  ['getdamage_6',['GetDamage',['../class_weapon.html#a6dbcb22cf61c8160e4543ddcab0435ff',1,'Weapon']]],
+  ['getinput_7',['GetInput',['../class_player.html#aaa08a71c33eb3d12ec47507697ae8bff',1,'Player']]],
+  ['getkills_8',['GetKills',['../class_kill_manager.html#abbbb8879e05292d8c8bedbc37c16c03f',1,'KillManager']]],
+  ['getrange_9',['GetRange',['../class_weapon.html#a80270d3f3afc971b05973f7d1efd310d',1,'Weapon']]],
+  ['getsessionkills_10',['GetSessionKills',['../class_kill_manager.html#abf69783b34fc0809653434fad5a3f97a',1,'KillManager']]],
+  ['getsessiontotalkills_11',['GetSessionTotalKills',['../class_kill_manager.html#ae9219f8ba1e492e83bc348ee3c5ad051',1,'KillManager']]],
+  ['getspeed_12',['GetSpeed',['../class_weapon.html#a601c3a5b380968ecd954cceca8b7b98f',1,'Weapon']]]
 ];

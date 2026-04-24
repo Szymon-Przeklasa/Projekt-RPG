@@ -1,8 +1,8 @@
 var searchData=
 [
-  ['setdata_0',['SetData',['../class_mob_entry.html#aab8ef8ae5f444d47538880ffbbf1137f',1,'MobEntry']]],
-  ['setup_1',['Setup',['../class_lightning_beam.html#a949c4cbd382f419694fd0437866d81a7',1,'LightningBeam.Setup()'],['../class_lightning_chain.html#a6dc3d69175a59364aad6a2a06fd43fcb',1,'LightningChain.Setup()'],['../class_projectile.html#afe18a73081ae164186fd3bdfcbe62055',1,'Projectile.Setup()']]],
-  ['showkills_2',['ShowKills',['../class_kills_u_i.html#ac37f620590e44ea580e08b7f52cebe71',1,'KillsUI']]],
-  ['showupgrades_3',['ShowUpgrades',['../class_level_up_u_i.html#aeff85e35667fa1a230e4e09311974b50',1,'LevelUpUI']]],
-  ['shuffle_3c_20t_20_3e_4',['Shuffle&lt; T &gt;',['../class_player.html#aef2694077ff73312537f56874215efb3',1,'Player']]]
+  ['refresh_0',['Refresh',['../class_equipment_u_i.html#ab685b8cbe1b3b589dd8d18eb3da02458',1,'EquipmentUI.Refresh()'],['../class_stats_u_i.html#a2124c876df877096e95467145f86e6af',1,'StatsUI.Refresh()']]],
+  ['refreshallweapons_1',['RefreshAllWeapons',['../class_player.html#a20f43367b0a9f31797f95469f83645c2',1,'Player']]],
+  ['refreshequipmentui_2',['RefreshEquipmentUI',['../class_player.html#a0b61f64fea97f604a17af04dea1e4de9',1,'Player']]],
+  ['refreshstats_3',['RefreshStats',['../class_weapon.html#a3f5299789e8faaaceeafd7dc58283292',1,'Weapon']]],
+  ['registerkill_4',['RegisterKill',['../class_kill_manager.html#a72e2ecaa626b1cc025df558fac7c4230',1,'KillManager']]]
 ];

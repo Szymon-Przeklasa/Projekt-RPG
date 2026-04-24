@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['axeprojectile_0',['AxeProjectile',['../class_axe_projectile.html',1,'']]]
+  ['axe_0',['Axe',['../class_axe.html',1,'']]],
+  ['axeprojectile_1',['AxeProjectile',['../class_axe_projectile.html',1,'']]]
 ];

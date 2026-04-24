@@ -2,9 +2,11 @@ var class_projectile =
 [
     [ "_PhysicsProcess", "class_projectile.html#a161180282124b67b393d1a3280988235", null ],
     [ "_Ready", "class_projectile.html#aa76ea7837cff1014bad0d4cb94016f26", null ],
+    [ "Advance", "class_projectile.html#a9a507a31486b1418205e7c271442e157", null ],
     [ "OnHit", "class_projectile.html#a855a6909fb83e7cc586c64d9ceb5c454", null ],
     [ "Setup", "class_projectile.html#afe18a73081ae164186fd3bdfcbe62055", null ],
     [ "Direction", "class_projectile.html#a117a5b2f9a9e05cd541a949d47f8d83c", null ],
+    [ "MaxTravelDistance", "class_projectile.html#ab275d685aaf5c4795e2ef518fb7ae3c9", null ],
     [ "PierceLeft", "class_projectile.html#af9e81cb0e0caf1dc4e948bbaf513169a", null ],
     [ "RuntimeDamage", "class_projectile.html#a35ef499c35e995e5fcae33aeac9882de", null ],
     [ "RuntimeSpeed", "class_projectile.html#a751224ba507867b5593a35ea08efa250", null ],

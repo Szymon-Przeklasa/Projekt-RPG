@@ -1,5 +1,9 @@
 var searchData=
 [
-  ['endminute_0',['EndMinute',['../class_wave_definition.html#a3ff4095806b9f23aa77c7ad61349f4c6',1,'WaveDefinition']]],
-  ['enemytype_1',['EnemyType',['../class_wave_definition.html#ae6074141fdb537e58990db8f162d34a4',1,'WaveDefinition']]]
+  ['damage_0',['Damage',['../class_weapon_stats.html#aad765447589b2b9747837024817f4963',1,'WeaponStats']]],
+  ['damagemultiplier_1',['DamageMultiplier',['../class_player.html#a7d53509665412fc72353f5b28fe9b8c8',1,'Player']]],
+  ['debugdrawenemylines_2',['DebugDrawEnemyLines',['../class_player.html#aa859697d3ad60eb1ace1199d79e6718d',1,'Player']]],
+  ['description_3',['Description',['../class_upgrade_level.html#a9a520093ab118b92297bb859f82d3899',1,'UpgradeLevel.Description'],['../class_passive_data.html#a94859c824a045da7b9005c648c6840af',1,'PassiveData.Description']]],
+  ['direction_4',['Direction',['../class_projectile.html#a117a5b2f9a9e05cd541a949d47f8d83c',1,'Projectile']]],
+  ['displayname_5',['DisplayName',['../class_enemy_stats.html#a669aef62579a1d19cecdca4b66aaab3f',1,'EnemyStats']]]
 ];

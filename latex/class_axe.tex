@@ -1,0 +1,75 @@
+\doxysection{Axe Class Reference}
+\hypertarget{class_axe}{}\label{class_axe}\index{Axe@{Axe}}
+
+
+Klasa reprezentująca broń typu \doxylink{class_axe}{Axe} (Topór). Wystrzeliwuje pociski (\doxylink{class_axe_projectile}{Axe\+Projectile}) z łukową trajektorią w kierunku wrogów. Obsługuje wielokrotne pociski z kątowym rozrzutem i przesunięciem bocznym przy spawnie. Dziedziczy po klasie \doxylink{class_weapon}{Weapon}.  
+
+
+Inheritance diagram for Axe:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_axe}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_axe_a046c5ff050af1ab7700e36f687c9866a}\label{class_axe_a046c5ff050af1ab7700e36f687c9866a} 
+Packed\+Scene {\bfseries Projectile\+Scene}
+\begin{DoxyCompactList}\small\item\em Scena pocisku (\doxylink{class_axe_projectile}{Axe\+Projectile}) wystrzeliwanego przez topór. Musi być przypisana w inspektorze Godot. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \doxymbox{\hyperlink{class_weapon}{Weapon}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_weapon_stats}{Weapon\+Stats}} {\bfseries Stats}
+\begin{DoxyCompactList}\small\item\em Statystyki broni (obrażenia, cooldown, zasięg, liczba pocisków itd.). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_axe_a99822b5b9e7295abe0944edeaaecd54d}\label{class_axe_a99822b5b9e7295abe0944edeaaecd54d} 
+override void {\bfseries Fire} ()
+\begin{DoxyCompactList}\small\item\em Metoda wywoływana przy każdym strzale. Pobiera listę najbliższych wrogów, a następnie dla każdego pocisku wyznacza cel, oblicza kierunek i rozrzut kątowy, a następnie tworzy instancję \doxylink{class_axe_projectile}{Axe\+Projectile} z odpowiednim przesunięciem spawnu. Każdy pocisk jest inicjowany metodą \doxylink{class_projectile_afe18a73081ae164186fd3bdfcbe62055}{Projectile.\+Setup} i dodawany do sceny. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \doxymbox{\hyperlink{class_weapon}{Weapon}}}
+\begin{DoxyCompactItemize}
+\item 
+int {\bfseries Get\+Damage} ()
+\begin{DoxyCompactList}\small\item\em Zwraca aktualne obrażenia broni z uwzględnieniem mnożnika gracza. \end{DoxyCompactList}\item 
+float {\bfseries Get\+Range} ()
+\begin{DoxyCompactList}\small\item\em Zwraca aktualny zasięg broni z uwzględnieniem bonusów gracza. \end{DoxyCompactList}\item 
+float {\bfseries Get\+Speed} ()
+\begin{DoxyCompactList}\small\item\em Zwraca aktualną prędkość pocisków z uwzględnieniem modyfikatorów gracza. \end{DoxyCompactList}\item 
+Vector2 {\bfseries Get\+Aim\+Position} (Node2D target)
+\begin{DoxyCompactList}\small\item\em Zwraca pozycję trafienia dla przeciwnika. Preferuje marker "{}\+Center"{}, jeśli istnieje. \end{DoxyCompactList}\item 
+List$<$ Node2D $>$ \doxymbox{\hyperlink{class_weapon_ae99c6686d911ab38f62ba2c1a582828e}{Get\+Closest\+Enemies}} (float range, int count, Vector2? from\+Position=null)
+\begin{DoxyCompactList}\small\item\em Zwraca listę najbliższych przeciwników w zadanym zasięgu. Wynik jest posortowany według odległości od punktu odniesienia. \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_weapon_aa06741321d4ac42e45542c96de14f1d4}{Get\+Centered\+Offset}} (int index, int total, float step)
+\begin{DoxyCompactList}\small\item\em Oblicza wycentrowane przesunięcie dla rozrzutu pocisków. \end{DoxyCompactList}\item 
+void {\bfseries Fire} ()
+\begin{DoxyCompactList}\small\item\em Metoda abstrakcyjna wywoływana przy każdym ataku. Każda broń musi implementować własną logikę strzału. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{class_weapon}{Weapon}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \doxymbox{\hyperlink{class_weapon_a33d626e47c4808639ffd14de099228ed}{Init}} (\doxymbox{\hyperlink{class_player}{Player}} player)
+\begin{DoxyCompactList}\small\item\em Inicjalizuje broń i podłącza timer ataku. Ustawia czas odnowienia na podstawie statystyk i modyfikatorów gracza. \end{DoxyCompactList}\item 
+virtual void {\bfseries Refresh\+Stats} ()
+\begin{DoxyCompactList}\small\item\em Aktualizuje parametry broni po zmianie statystyk lub modyfikatorów gracza. W szczególności odświeża czas odnowienia ataku. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \doxymbox{\hyperlink{class_weapon}{Weapon}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_player}{Player}} {\bfseries Player}
+\begin{DoxyCompactList}\small\item\em Referencja do gracza, który korzysta z broni. \end{DoxyCompactList}\item 
+Timer {\bfseries timer}
+\begin{DoxyCompactList}\small\item\em Timer odpowiedzialny za cykliczne wywoływanie ataku. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Properties inherited from \doxymbox{\hyperlink{class_weapon}{Weapon}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual string {\bfseries Weapon\+Name}\hspace{0.3cm}{\ttfamily  \+[get]\+}
+\begin{DoxyCompactList}\small\item\em Nazwa broni (domyślnie nazwa klasy). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Klasa reprezentująca broń typu \doxylink{class_axe}{Axe} (Topór). Wystrzeliwuje pociski (\doxylink{class_axe_projectile}{Axe\+Projectile}) z łukową trajektorią w kierunku wrogów. Obsługuje wielokrotne pociski z kątowym rozrzutem i przesunięciem bocznym przy spawnie. Dziedziczy po klasie \doxylink{class_weapon}{Weapon}. 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+Scripts/\+\+Player\+Weapons/\+Axe.\+cs\end{DoxyCompactItemize}

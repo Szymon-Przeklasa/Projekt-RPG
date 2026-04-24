@@ -2,7 +2,7 @@
 \hypertarget{class_enemy}{}\label{class_enemy}\index{Enemy@{Enemy}}
 
 
-Klasa reprezentująca przeciwnika (\doxylink{class_enemy}{Enemy}) w grze. Obsługuje ruch w kierunku gracza, otrzymywanie obrażeń, śmierć i drop doświadczenia. Dziedziczy po Character\+Body2D.  
+Klasa bazowa wszystkich przeciwników w grze. Zarządza ruchem w kierunku gracza, zadawaniem obrażeń kontaktowych, otrzymywaniem obrażeń, efektami wizualnymi trafień oraz śmiercią i dropem XP. Przeciwnicy NIE kolidują fizycznie z graczem (nie blokują ruchu); obrażenia kontaktowe są sprawdzane przez odległość w Handle\+Contact\+Damage.  
 
 
 Inheritance diagram for Enemy:\+\begin{figure}[H]
@@ -16,61 +16,90 @@ Inheritance diagram for Enemy:\+\begin{figure}[H]
 \item 
 \Hypertarget{class_enemy_a637bd267c02af30ad5af52c55dbf1439}\label{class_enemy_a637bd267c02af30ad5af52c55dbf1439} 
 override void {\bfseries \+\_\+\+Ready} ()
-\begin{DoxyCompactList}\small\item\em Metoda wywoływana po dodaniu wroga do sceny. Inicjalizuje statystyki, zdrowie i skalę wroga. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Inicjalizacja po dodaniu do sceny. Kopiuje statystyki z \doxylink{class_enemy_ae0eff91f1a58c639486eec142f2a45e0}{Stats} (jeśli przypisane), stosuje modyfikatory rangi i ustawia bazowe HP. \end{DoxyCompactList}\item 
 void \doxymbox{\hyperlink{class_enemy_ad2dc81da9768c7b919c9ed2a588e2031}{Take\+Damage}} (int damage, Vector2 knockback, string weapon\+Name="{}unknown"{})
-\begin{DoxyCompactList}\small\item\em Zadaje obrażenia wrogowi. Tworzy efekt trafienia i wyświetla etykietę obrażeń. \end{DoxyCompactList}\item 
-\Hypertarget{class_enemy_aa1df6763ae3a612f36447340577dcb8e}\label{class_enemy_aa1df6763ae3a612f36447340577dcb8e} 
-override void {\bfseries \+\_\+\+Physics\+Process} (double delta)
-\begin{DoxyCompactList}\small\item\em Metoda fizyczna wywoływana co klatkę. Obsługuje ruch w kierunku gracza i zadawanie obrażeń kontaktowych. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Zadaje obrażenia przeciwnikowi, stosuje odrzut, odtwarza dźwięk trafienia, tworzy efekt cząsteczkowy i pływającą etykietę obrażeń. Jeśli HP spadnie do zera lub poniżej, wywołuje Die. \end{DoxyCompactList}\item 
+override void \doxymbox{\hyperlink{class_enemy_aa1df6763ae3a612f36447340577dcb8e}{\+\_\+\+Physics\+Process}} (double delta)
+\begin{DoxyCompactList}\small\item\em Aktualizacja fizyki wywoływana każdą klatką. Pobiera referencję do gracza (jeśli brak), oblicza kierunek ruchu, spowalnia przeciwnika gdy nachodził na gracza (zapobiega "{}przyklejaniu"{}), absorbuje nadmiarowy odrzut i wywołuje Character\+Body2\+D.\+Move\+And\+Slide. Na końcu sprawdza obrażenia kontaktowe z graczem. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
 \Hypertarget{class_enemy_ae0eff91f1a58c639486eec142f2a45e0}\label{class_enemy_ae0eff91f1a58c639486eec142f2a45e0} 
 \doxymbox{\hyperlink{class_enemy_stats}{Enemy\+Stats}} {\bfseries Stats}
-\begin{DoxyCompactList}\small\item\em Statystyki wroga przechowywane w \doxylink{class_enemy_stats}{Enemy\+Stats}. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Statystyki przeciwnika ładowane z zasobu \doxylink{class_enemy_stats}{Enemy\+Stats}. \end{DoxyCompactList}\item 
 \Hypertarget{class_enemy_aee332cdb5ee5923ac80e56ac28d5229e}\label{class_enemy_aee332cdb5ee5923ac80e56ac28d5229e} 
 Packed\+Scene {\bfseries Xp\+Orb\+Scene}
-\begin{DoxyCompactList}\small\item\em Scena orb-\/u XP, który zostaje upuszczony po śmierci wroga. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Scena orb XP (\doxylink{class_xp_orb}{Xp\+Orb}) dropowana po śmierci. \end{DoxyCompactList}\item 
 \Hypertarget{class_enemy_a1bd5557ad866dea773b349fb66178260}\label{class_enemy_a1bd5557ad866dea773b349fb66178260} 
 Packed\+Scene {\bfseries Hit\+Particle}
-\begin{DoxyCompactList}\small\item\em Scena cząsteczek przy trafieniu wroga. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Scena efektu cząsteczkowego trafienia (\doxylink{class_enemybleed}{Enemybleed}). \end{DoxyCompactList}\item 
 \Hypertarget{class_enemy_afd0a97a8f0772bd9f598c8e273bdad47}\label{class_enemy_afd0a97a8f0772bd9f598c8e273bdad47} 
 float {\bfseries Speed} = 140f
-\begin{DoxyCompactList}\small\item\em Prędkość wroga, może być nadpisana przez Stats. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Prędkość ruchu przeciwnika (jednostki/\+s). Nadpisywana przez \doxylink{class_enemy_ae0eff91f1a58c639486eec142f2a45e0}{Stats}. \end{DoxyCompactList}\item 
 \Hypertarget{class_enemy_a20628488c5d12840d152e484b16682c9}\label{class_enemy_a20628488c5d12840d152e484b16682c9} 
 int {\bfseries Max\+Health} = 100
-\begin{DoxyCompactList}\small\item\em Maksymalne zdrowie wroga, nadpisywane przez Stats. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Maksymalne punkty życia. Nadpisywane przez \doxylink{class_enemy_ae0eff91f1a58c639486eec142f2a45e0}{Stats} i rangę. \end{DoxyCompactList}\item 
 \Hypertarget{class_enemy_ac3a29dd57db6581f594c85257e1cbd25}\label{class_enemy_ac3a29dd57db6581f594c85257e1cbd25} 
 int {\bfseries Xp\+Drop} = 1
-\begin{DoxyCompactList}\small\item\em Ilość doświadczenia przyznawana po zabiciu wroga. \end{DoxyCompactList}\item 
-\Hypertarget{class_enemy_a8f6bd48a3cd79c56bf7b8a2a72eb4723}\label{class_enemy_a8f6bd48a3cd79c56bf7b8a2a72eb4723} 
-string {\bfseries Mob\+ID} = "{}enemy"{}
-\begin{DoxyCompactList}\small\item\em ID wroga, np. "{}goblin"{}, "{}skeleton"{}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Liczba XP dropowana po śmierci. Skaluje się z rangą i czasem rozgrywki. \end{DoxyCompactList}\item 
+\Hypertarget{class_enemy_ad2fbd9e25ee93eaa545612a3cd9ecd60}\label{class_enemy_ad2fbd9e25ee93eaa545612a3cd9ecd60} 
+string {\bfseries Mob\+Id} = "{}enemy"{}
+\begin{DoxyCompactList}\small\item\em Identyfikator typu wroga zgodny z \doxylink{class_enemy_stats_a959cb816fce08121e67a5b975fa42a15}{Enemy\+Stats.\+Mob\+ID} (np. "{}slime"{}). \end{DoxyCompactList}\item 
+\Hypertarget{class_enemy_adf5e23492cff2897cf50f95e16499f5c}\label{class_enemy_adf5e23492cff2897cf50f95e16499f5c} 
+Elite\+Rank {\bfseries Rank} = Elite\+Rank.\+Normal
+\begin{DoxyCompactList}\small\item\em Ranga elitarności ustawiana przez \doxylink{class_enemy_spawner}{Enemy\+Spawner} przed \doxylink{class_enemy_a637bd267c02af30ad5af52c55dbf1439}{\+\_\+\+Ready}. Wpływa na statystyki, rozmiar i efekt wizualny obrysu. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_enemy_a825854569f1a553d6c566fe9d5d8c1b7}\label{class_enemy_a825854569f1a553d6c566fe9d5d8c1b7} 
+int {\bfseries \+\_\+health}
+\begin{DoxyCompactList}\small\item\em Aktualna liczba punktów życia przeciwnika. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_enemy_ae8245b7e0ea8d7a8f7df7f6b7f0e210f}\label{class_enemy_ae8245b7e0ea8d7a8f7df7f6b7f0e210f} 
+bool {\bfseries Is\+Elite}\hspace{0.3cm}{\ttfamily  \+[get, set]\+}
+\begin{DoxyCompactList}\small\item\em Kompatybilny eksport bool dla starszych scen. Odczytanie zwraca {\ttfamily true} jeśli ranga to Elite lub Legendary. Ustawienie na {\ttfamily true} promuje rangę Normal → Elite (nie wpływa na Legendary). \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-Klasa reprezentująca przeciwnika (\doxylink{class_enemy}{Enemy}) w grze. Obsługuje ruch w kierunku gracza, otrzymywanie obrażeń, śmierć i drop doświadczenia. Dziedziczy po Character\+Body2D. 
+Klasa bazowa wszystkich przeciwników w grze. Zarządza ruchem w kierunku gracza, zadawaniem obrażeń kontaktowych, otrzymywaniem obrażeń, efektami wizualnymi trafień oraz śmiercią i dropem XP. Przeciwnicy NIE kolidują fizycznie z graczem (nie blokują ruchu); obrażenia kontaktowe są sprawdzane przez odległość w Handle\+Contact\+Damage. 
 
 \label{doc-func-members}
 \Hypertarget{class_enemy_doc-func-members}
 \doxysubsection{Member Function Documentation}
+\Hypertarget{class_enemy_aa1df6763ae3a612f36447340577dcb8e}\index{Enemy@{Enemy}!\_PhysicsProcess@{\_PhysicsProcess}}
+\index{\_PhysicsProcess@{\_PhysicsProcess}!Enemy@{Enemy}}
+\doxysubsubsection{\texorpdfstring{\_PhysicsProcess()}{\_PhysicsProcess()}}
+{\footnotesize\ttfamily \label{class_enemy_aa1df6763ae3a612f36447340577dcb8e} 
+override void Enemy.\+\_\+\+Physics\+Process (\begin{DoxyParamCaption}\item[{double}]{delta}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Aktualizacja fizyki wywoływana każdą klatką. Pobiera referencję do gracza (jeśli brak), oblicza kierunek ruchu, spowalnia przeciwnika gdy nachodził na gracza (zapobiega "{}przyklejaniu"{}), absorbuje nadmiarowy odrzut i wywołuje Character\+Body2\+D.\+Move\+And\+Slide. Na końcu sprawdza obrażenia kontaktowe z graczem. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em delta} & Czas od poprzedniej klatki fizyki (sekundy).\\
+\hline
+\end{DoxyParams}
 \Hypertarget{class_enemy_ad2dc81da9768c7b919c9ed2a588e2031}\index{Enemy@{Enemy}!TakeDamage@{TakeDamage}}
 \index{TakeDamage@{TakeDamage}!Enemy@{Enemy}}
 \doxysubsubsection{\texorpdfstring{TakeDamage()}{TakeDamage()}}
 {\footnotesize\ttfamily \label{class_enemy_ad2dc81da9768c7b919c9ed2a588e2031} 
-void Enemy.\+Take\+Damage (\begin{DoxyParamCaption}\item[{int}]{damage}{, }\item[{Vector2}]{knockback}{, }\item[{string}]{weapon\+Name}{ = {\ttfamily "{}unknown"{}}}\end{DoxyParamCaption})}
+void Enemy.\+Take\+Damage (\begin{DoxyParamCaption}\item[{int}]{damage}{, }\item[{Vector2}]{knockback}{, }\item[{string}]{weapon\+Name}{ = {\ttfamily "{}unknown"{}}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
-Zadaje obrażenia wrogowi. Tworzy efekt trafienia i wyświetla etykietę obrażeń. 
+Zadaje obrażenia przeciwnikowi, stosuje odrzut, odtwarza dźwięk trafienia, tworzy efekt cząsteczkowy i pływającą etykietę obrażeń. Jeśli HP spadnie do zera lub poniżej, wywołuje Die. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em damage} & Ilość obrażeń.\\
+{\em damage} & Liczba obrażeń do odjęcia od HP.\\
 \hline
-{\em knockback} & Wektor odrzutu.\\
+{\em knockback} & Wektor odrzutu dodawany do prędkości przeciwnika.\\
 \hline
-{\em weapon\+Name} & Nazwa źródła obrażeń.\\
+{\em weapon\+Name} & Nazwa broni źródłowej (do logowania).\\
 \hline
 \end{DoxyParams}
 

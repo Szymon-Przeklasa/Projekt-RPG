@@ -92,7 +92,7 @@ $(function(){initNavTree('class_projectile.html','','class_projectile-members');
 </div><!--header-->
 <div class="contents">
 
-<p>Klasa bazowa pocisku w grze. Odpowiada za ruch, kolizję oraz zadawanie obrażeń przeciwnikom.  
+<p>Klasa bazowa pocisku w grze. Odpowiada za ruch liniowy, wykrywanie kolizji z wrogami oraz zadawanie obrażeń. Pocisk usuwa się automatycznie po przebyciu odległości równej <a class="el" href="#ab275d685aaf5c4795e2ef518fb7ae3c9" title="Maksymalna odległość (w jednostkach świata), jaką pocisk może przebyć przed usunięciem....">MaxTravelDistance</a> lub po wyczerpaniu <a class="el" href="#af9e81cb0e0caf1dc4e948bbaf513169a" title="Pozostała liczba wrogów, przez których pocisk może jeszcze przejść (przebicie). Zmniejszana przy każd...">PierceLeft</a> trafień. Klasy pochodne (np. <a class="el" href="class_magic_missile_projectile.html" title="Klasa reprezentująca samonaprowadzający się pocisk broni Magic Missile. Pocisk automatycznie śledzi p...">MagicMissileProjectile</a>, <a class="el" href="class_axe_projectile.html" title="Klasa reprezentująca pocisk topora (Axe) z łukową trajektorią lotu. Symuluje grawitację oraz unoszeni...">AxeProjectile</a>) mogą nadpisać <a class="el" href="#a161180282124b67b393d1a3280988235" title="Aktualizacja fizyki wywoływana każdą klatką. Przesuwa pocisk liniowo w kierunku Direction z prędkości...">_PhysicsProcess</a> w celu implementacji niestandardowej trajektorii.  
  <a href="#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for Projectile:</div>
@@ -100,51 +100,130 @@ Inheritance diagram for Projectile:</div>
  <div class="center">
   <img src="class_projectile.png" usemap="#Projectile_map" alt=""/>
   <map id="Projectile_map" name="Projectile_map">
-<area href="class_axe_projectile.html" title="Klasa reprezentująca pocisk topora (AxeProjectile). Dziedziczy po klasie Projectile i dodaje efekt op..." alt="AxeProjectile" shape="rect" coords="0,112,139,136"/>
-<area href="class_magic_missile_projectile.html" title="Specjalny typ pocisku Magic Missile. Pocisk automatycznie naprowadza się na wyznaczony cel (Target) o..." alt="MagicMissileProjectile" shape="rect" coords="149,112,288,136"/>
+<area href="class_axe_projectile.html" title="Klasa reprezentująca pocisk topora (Axe) z łukową trajektorią lotu. Symuluje grawitację oraz unoszeni..." alt="AxeProjectile" shape="rect" coords="0,112,139,136"/>
+<area href="class_magic_missile_projectile.html" title="Klasa reprezentująca samonaprowadzający się pocisk broni Magic Missile. Pocisk automatycznie śledzi p..." alt="MagicMissileProjectile" shape="rect" coords="149,112,288,136"/>
   </map>
 </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:afe18a73081ae164186fd3bdfcbe62055" id="r_afe18a73081ae164186fd3bdfcbe62055"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#afe18a73081ae164186fd3bdfcbe62055">Setup</a> (Vector2 dir, <a class="el" href="class_weapon_stats.html">WeaponStats</a> stats, int damage=-1, float speed=-1, string weaponName=&quot;Projectile&quot;)</td></tr>
-<tr class="memdesc:afe18a73081ae164186fd3bdfcbe62055"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inicjalizuje pocisk. Pozwala nadpisać obrażenia i prędkość (np. po uwzględnieniu mnożników gracza).  <br /></td></tr>
+<tr class="memdesc:afe18a73081ae164186fd3bdfcbe62055"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inicjalizuje pocisk z podanymi parametrami. Powinno być wywoływane bezpośrednio po zainstancjonowaniu, przed dodaniem do sceny. Umożliwia nadpisanie obrażeń i prędkości (np. po zastosowaniu mnożników gracza).  <br /></td></tr>
 <tr class="memitem:aa76ea7837cff1014bad0d4cb94016f26" id="r_aa76ea7837cff1014bad0d4cb94016f26"><td class="memItemLeft"><a id="aa76ea7837cff1014bad0d4cb94016f26" name="aa76ea7837cff1014bad0d4cb94016f26"></a>
 override void&#160;</td><td class="memItemRight"><b>_Ready</b> ()</td></tr>
-<tr class="memdesc:aa76ea7837cff1014bad0d4cb94016f26"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rejestruje zdarzenie kolizji po utworzeniu pocisku. <br /></td></tr>
-<tr class="memitem:a161180282124b67b393d1a3280988235" id="r_a161180282124b67b393d1a3280988235"><td class="memItemLeft"><a id="a161180282124b67b393d1a3280988235" name="a161180282124b67b393d1a3280988235"></a>
-override void&#160;</td><td class="memItemRight"><b>_PhysicsProcess</b> (double delta)</td></tr>
-<tr class="memdesc:a161180282124b67b393d1a3280988235"><td class="mdescLeft">&#160;</td><td class="mdescRight">Aktualizuje pozycję pocisku w każdej klatce fizyki. <br /></td></tr>
+<tr class="memdesc:aa76ea7837cff1014bad0d4cb94016f26"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wywoływana po dodaniu węzła do drzewa sceny. Subskrybuje sygnał <code>BodyEntered</code>, aby reagować na kolizje z wrogami. <br /></td></tr>
+<tr class="memitem:a161180282124b67b393d1a3280988235" id="r_a161180282124b67b393d1a3280988235"><td class="memItemLeft">override void&#160;</td><td class="memItemRight"><a class="el" href="#a161180282124b67b393d1a3280988235">_PhysicsProcess</a> (double delta)</td></tr>
+<tr class="memdesc:a161180282124b67b393d1a3280988235"><td class="mdescLeft">&#160;</td><td class="mdescRight">Aktualizacja fizyki wywoływana każdą klatką. Przesuwa pocisk liniowo w kierunku <a class="el" href="#a117a5b2f9a9e05cd541a949d47f8d83c" title="Znormalizowany kierunek ruchu pocisku. Może być modyfikowany przez klasy pochodne (np....">Direction</a> z prędkością <a class="el" href="#a751224ba507867b5593a35ea08efa250" title="Prędkość pocisku obliczona w momencie wystrzału z uwzględnieniem mnożników gracza (piksele/s).">RuntimeSpeed</a>. Klasy pochodne mogą nadpisać tę metodę, aby implementować niestandardową trajektorię.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pro-methods" class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
+<tr class="memitem:a9a507a31486b1418205e7c271442e157" id="r_a9a507a31486b1418205e7c271442e157"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a9a507a31486b1418205e7c271442e157">Advance</a> (Vector2 movement)</td></tr>
+<tr class="memdesc:a9a507a31486b1418205e7c271442e157"><td class="mdescLeft">&#160;</td><td class="mdescRight">Przesuwa pocisk o podany wektor i aktualizuje przebyty dystans. Jeśli dystans przekroczy <a class="el" href="#ab275d685aaf5c4795e2ef518fb7ae3c9" title="Maksymalna odległość (w jednostkach świata), jaką pocisk może przebyć przed usunięciem....">MaxTravelDistance</a>, pocisk się usuwa.  <br /></td></tr>
 <tr class="memitem:a855a6909fb83e7cc586c64d9ceb5c454" id="r_a855a6909fb83e7cc586c64d9ceb5c454"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#a855a6909fb83e7cc586c64d9ceb5c454">OnHit</a> (Node body)</td></tr>
-<tr class="memdesc:a855a6909fb83e7cc586c64d9ceb5c454"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obsługuje trafienie w obiekt. Jeśli trafiony obiekt to przeciwnik:  <br /></td></tr>
+<tr class="memdesc:a855a6909fb83e7cc586c64d9ceb5c454"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obsługuje kolizję pocisku z innym ciałem. Jeśli trafiony obiekt to <a class="el" href="class_enemy.html" title="Klasa bazowa wszystkich przeciwników w grze. Zarządza ruchem w kierunku gracza, zadawaniem obrażeń ko...">Enemy</a>: </p><ul>
+<li>
+Zadaje obrażenia (<a class="el" href="#a35ef499c35e995e5fcae33aeac9882de" title="Obrażenia obliczone w momencie wystrzału z uwzględnieniem mnożników gracza. Przekazywane do Enemy....">RuntimeDamage</a>) z odrzutem w kierunku lotu. </li>
+<li>
+Zmniejsza <a class="el" href="#af9e81cb0e0caf1dc4e948bbaf513169a" title="Pozostała liczba wrogów, przez których pocisk może jeszcze przejść (przebicie). Zmniejszana przy każd...">PierceLeft</a> o 1. </li>
+<li>
+Usuwa pocisk, gdy <a class="el" href="#af9e81cb0e0caf1dc4e948bbaf513169a" title="Pozostała liczba wrogów, przez których pocisk może jeszcze przejść (przebicie). Zmniejszana przy każd...">PierceLeft</a> osiągnie 0. </li>
+</ul>
+<p>Klasy pochodne mogą nadpisać tę metodę, aby dodać specjalne efekty przy trafieniu.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pro-attribs" class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr class="memitem:a117a5b2f9a9e05cd541a949d47f8d83c" id="r_a117a5b2f9a9e05cd541a949d47f8d83c"><td class="memItemLeft"><a id="a117a5b2f9a9e05cd541a949d47f8d83c" name="a117a5b2f9a9e05cd541a949d47f8d83c"></a>
 Vector2&#160;</td><td class="memItemRight"><b>Direction</b></td></tr>
-<tr class="memdesc:a117a5b2f9a9e05cd541a949d47f8d83c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kierunek ruchu pocisku (znormalizowany wektor). <br /></td></tr>
+<tr class="memdesc:a117a5b2f9a9e05cd541a949d47f8d83c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Znormalizowany kierunek ruchu pocisku. Może być modyfikowany przez klasy pochodne (np. naprowadzanie). <br /></td></tr>
 <tr class="memitem:a2791c8f20931d7bc909f3591d381f9b6" id="r_a2791c8f20931d7bc909f3591d381f9b6"><td class="memItemLeft"><a id="a2791c8f20931d7bc909f3591d381f9b6" name="a2791c8f20931d7bc909f3591d381f9b6"></a>
 <a class="el" href="class_weapon_stats.html">WeaponStats</a>&#160;</td><td class="memItemRight"><b>Stats</b></td></tr>
-<tr class="memdesc:a2791c8f20931d7bc909f3591d381f9b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Referencja do statystyk broni, z której pochodzi pocisk. <br /></td></tr>
+<tr class="memdesc:a2791c8f20931d7bc909f3591d381f9b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Referencja do statystyk broni, z której pochodzi pocisk. Używana do odczytu siły odrzutu (<a class="el" href="class_weapon_stats.html#a1e68670f351638c1e19b3390ea5cd761" title="Siła odrzutu (knockback) nakładana na trafionych przeciwników.">WeaponStats.Knockback</a>) i zasięgu (<a class="el" href="class_weapon_stats.html#a940e4c47b9a90a3fa9e7e8f6b4304b3e" title="Zasięg działania broni w jednostkach świata gry.">WeaponStats.Range</a>). <br /></td></tr>
 <tr class="memitem:af9e81cb0e0caf1dc4e948bbaf513169a" id="r_af9e81cb0e0caf1dc4e948bbaf513169a"><td class="memItemLeft"><a id="af9e81cb0e0caf1dc4e948bbaf513169a" name="af9e81cb0e0caf1dc4e948bbaf513169a"></a>
 int&#160;</td><td class="memItemRight"><b>PierceLeft</b></td></tr>
-<tr class="memdesc:af9e81cb0e0caf1dc4e948bbaf513169a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Liczba przeciwników, przez których pocisk może jeszcze przejść. <br /></td></tr>
+<tr class="memdesc:af9e81cb0e0caf1dc4e948bbaf513169a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pozostała liczba wrogów, przez których pocisk może jeszcze przejść (przebicie). Zmniejszana przy każdym trafieniu; po osiągnięciu 0 pocisk się usuwa. <br /></td></tr>
 <tr class="memitem:a35ef499c35e995e5fcae33aeac9882de" id="r_a35ef499c35e995e5fcae33aeac9882de"><td class="memItemLeft"><a id="a35ef499c35e995e5fcae33aeac9882de" name="a35ef499c35e995e5fcae33aeac9882de"></a>
 int&#160;</td><td class="memItemRight"><b>RuntimeDamage</b></td></tr>
-<tr class="memdesc:a35ef499c35e995e5fcae33aeac9882de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obrażenia obliczone w momencie wystrzału (runtime). <br /></td></tr>
+<tr class="memdesc:a35ef499c35e995e5fcae33aeac9882de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obrażenia obliczone w momencie wystrzału z uwzględnieniem mnożników gracza. Przekazywane do <a class="el" href="class_enemy.html#ad2dc81da9768c7b919c9ed2a588e2031" title="Zadaje obrażenia przeciwnikowi, stosuje odrzut, odtwarza dźwięk trafienia, tworzy efekt cząsteczkowy ...">Enemy.TakeDamage</a> przy każdym trafieniu. <br /></td></tr>
 <tr class="memitem:a751224ba507867b5593a35ea08efa250" id="r_a751224ba507867b5593a35ea08efa250"><td class="memItemLeft"><a id="a751224ba507867b5593a35ea08efa250" name="a751224ba507867b5593a35ea08efa250"></a>
 float&#160;</td><td class="memItemRight"><b>RuntimeSpeed</b></td></tr>
-<tr class="memdesc:a751224ba507867b5593a35ea08efa250"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prędkość pocisku obliczona w momencie wystrzału (runtime). <br /></td></tr>
+<tr class="memdesc:a751224ba507867b5593a35ea08efa250"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prędkość pocisku obliczona w momencie wystrzału z uwzględnieniem mnożników gracza (piksele/s). <br /></td></tr>
 <tr class="memitem:aa39a23a2201e9a06be9787bb2eb6b608" id="r_aa39a23a2201e9a06be9787bb2eb6b608"><td class="memItemLeft"><a id="aa39a23a2201e9a06be9787bb2eb6b608" name="aa39a23a2201e9a06be9787bb2eb6b608"></a>
 string&#160;</td><td class="memItemRight"><b>SourceWeapon</b> = &quot;Projectile&quot;</td></tr>
-<tr class="memdesc:aa39a23a2201e9a06be9787bb2eb6b608"><td class="mdescLeft">&#160;</td><td class="mdescRight">Nazwa broni, która wystrzeliła pocisk (do debugowania / logów). <br /></td></tr>
+<tr class="memdesc:aa39a23a2201e9a06be9787bb2eb6b608"><td class="mdescLeft">&#160;</td><td class="mdescRight">Nazwa broni, która wystrzeliła pocisk. Przekazywana do <a class="el" href="class_enemy.html#ad2dc81da9768c7b919c9ed2a588e2031" title="Zadaje obrażenia przeciwnikowi, stosuje odrzut, odtwarza dźwięk trafienia, tworzy efekt cząsteczkowy ...">Enemy.TakeDamage</a> w celach logowania i debugowania. <br /></td></tr>
+<tr class="memitem:ab275d685aaf5c4795e2ef518fb7ae3c9" id="r_ab275d685aaf5c4795e2ef518fb7ae3c9"><td class="memItemLeft"><a id="ab275d685aaf5c4795e2ef518fb7ae3c9" name="ab275d685aaf5c4795e2ef518fb7ae3c9"></a>
+float&#160;</td><td class="memItemRight"><b>MaxTravelDistance</b></td></tr>
+<tr class="memdesc:ab275d685aaf5c4795e2ef518fb7ae3c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maksymalna odległość (w jednostkach świata), jaką pocisk może przebyć przed usunięciem. Wyznaczana na podstawie <a class="el" href="class_weapon_stats.html#a940e4c47b9a90a3fa9e7e8f6b4304b3e" title="Zasięg działania broni w jednostkach świata gry.">WeaponStats.Range</a> przy wywołaniu <a class="el" href="#afe18a73081ae164186fd3bdfcbe62055" title="Inicjalizuje pocisk z podanymi parametrami. Powinno być wywoływane bezpośrednio po zainstancjonowaniu...">Setup</a>. <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Klasa bazowa pocisku w grze. Odpowiada za ruch, kolizję oraz zadawanie obrażeń przeciwnikom. </p>
+<div class="textblock"><p>Klasa bazowa pocisku w grze. Odpowiada za ruch liniowy, wykrywanie kolizji z wrogami oraz zadawanie obrażeń. Pocisk usuwa się automatycznie po przebyciu odległości równej <a class="el" href="#ab275d685aaf5c4795e2ef518fb7ae3c9" title="Maksymalna odległość (w jednostkach świata), jaką pocisk może przebyć przed usunięciem....">MaxTravelDistance</a> lub po wyczerpaniu <a class="el" href="#af9e81cb0e0caf1dc4e948bbaf513169a" title="Pozostała liczba wrogów, przez których pocisk może jeszcze przejść (przebicie). Zmniejszana przy każd...">PierceLeft</a> trafień. Klasy pochodne (np. <a class="el" href="class_magic_missile_projectile.html" title="Klasa reprezentująca samonaprowadzający się pocisk broni Magic Missile. Pocisk automatycznie śledzi p...">MagicMissileProjectile</a>, <a class="el" href="class_axe_projectile.html" title="Klasa reprezentująca pocisk topora (Axe) z łukową trajektorią lotu. Symuluje grawitację oraz unoszeni...">AxeProjectile</a>) mogą nadpisać <a class="el" href="#a161180282124b67b393d1a3280988235" title="Aktualizacja fizyki wywoływana każdą klatką. Przesuwa pocisk liniowo w kierunku Direction z prędkości...">_PhysicsProcess</a> w celu implementacji niestandardowej trajektorii. </p>
 </div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="a161180282124b67b393d1a3280988235" name="a161180282124b67b393d1a3280988235"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a161180282124b67b393d1a3280988235">&#9670;&#160;</a></span>_PhysicsProcess()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">override void Projectile._PhysicsProcess </td>
+          <td>(</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>delta</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Aktualizacja fizyki wywoływana każdą klatką. Przesuwa pocisk liniowo w kierunku <a class="el" href="#a117a5b2f9a9e05cd541a949d47f8d83c" title="Znormalizowany kierunek ruchu pocisku. Może być modyfikowany przez klasy pochodne (np....">Direction</a> z prędkością <a class="el" href="#a751224ba507867b5593a35ea08efa250" title="Prędkość pocisku obliczona w momencie wystrzału z uwzględnieniem mnożników gracza (piksele/s).">RuntimeSpeed</a>. Klasy pochodne mogą nadpisać tę metodę, aby implementować niestandardową trajektorię. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">delta</td><td>Czas od poprzedniej klatki fizyki (sekundy).</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a9a507a31486b1418205e7c271442e157" name="a9a507a31486b1418205e7c271442e157"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a507a31486b1418205e7c271442e157">&#9670;&#160;</a></span>Advance()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Projectile.Advance </td>
+          <td>(</td>
+          <td class="paramtype">Vector2</td>          <td class="paramname"><span class="paramname"><em>movement</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Przesuwa pocisk o podany wektor i aktualizuje przebyty dystans. Jeśli dystans przekroczy <a class="el" href="#ab275d685aaf5c4795e2ef518fb7ae3c9" title="Maksymalna odległość (w jednostkach świata), jaką pocisk może przebyć przed usunięciem....">MaxTravelDistance</a>, pocisk się usuwa. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">movement</td><td>Wektor przemieszczenia do zastosowania w bieżącej klatce.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>true</code> jeśli pocisk nadal istnieje; <code>false</code> jeśli został usunięty.</dd></dl>
+
+</div>
+</div>
 <a id="a855a6909fb83e7cc586c64d9ceb5c454" name="a855a6909fb83e7cc586c64d9ceb5c454"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a855a6909fb83e7cc586c64d9ceb5c454">&#9670;&#160;</a></span>OnHit()</h2>
 
@@ -163,21 +242,23 @@ string&#160;</td><td class="memItemRight"><b>SourceWeapon</b> = &quot;Projectile
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel protected">protected</span><span class="mlabel virtual">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel protected">protected</span><span class="mlabel virtual">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Obsługuje trafienie w obiekt. Jeśli trafiony obiekt to przeciwnik: </p>
-<ul>
-<li>zadaje obrażenia,</li>
-<li>aplikuje knockback,</li>
-<li>zmniejsza liczbę przebić (pierce),</li>
-<li>usuwa pocisk, jeśli nie ma już przebić.</li>
+<p>Obsługuje kolizję pocisku z innym ciałem. Jeśli trafiony obiekt to <a class="el" href="class_enemy.html" title="Klasa bazowa wszystkich przeciwników w grze. Zarządza ruchem w kierunku gracza, zadawaniem obrażeń ko...">Enemy</a>: </p><ul>
+<li>
+Zadaje obrażenia (<a class="el" href="#a35ef499c35e995e5fcae33aeac9882de" title="Obrażenia obliczone w momencie wystrzału z uwzględnieniem mnożników gracza. Przekazywane do Enemy....">RuntimeDamage</a>) z odrzutem w kierunku lotu. </li>
+<li>
+Zmniejsza <a class="el" href="#af9e81cb0e0caf1dc4e948bbaf513169a" title="Pozostała liczba wrogów, przez których pocisk może jeszcze przejść (przebicie). Zmniejszana przy każd...">PierceLeft</a> o 1. </li>
+<li>
+Usuwa pocisk, gdy <a class="el" href="#af9e81cb0e0caf1dc4e948bbaf513169a" title="Pozostała liczba wrogów, przez których pocisk może jeszcze przejść (przebicie). Zmniejszana przy każd...">PierceLeft</a> osiągnie 0. </li>
 </ul>
+<p>Klasy pochodne mogą nadpisać tę metodę, aby dodać specjalne efekty przy trafieniu. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">body</td><td>Obiekt, z którym nastąpiła kolizja.</td></tr>
+    <tr><td class="paramname">body</td><td>Węzeł, z którym nastąpiła kolizja fizyczna.</td></tr>
   </table>
   </dd>
 </dl>
@@ -189,6 +270,9 @@ string&#160;</td><td class="memItemRight"><b>SourceWeapon</b> = &quot;Projectile
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void Projectile.Setup </td>
@@ -216,16 +300,21 @@ string&#160;</td><td class="memItemRight"><b>SourceWeapon</b> = &quot;Projectile
           <td class="paramtype">string</td>          <td class="paramname"><span class="paramname"><em>weaponName</em></span><span class="paramdefsep"> = </span><span class="paramdefval">&quot;Projectile&quot;</span>&#160;)</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p>Inicjalizuje pocisk. Pozwala nadpisać obrażenia i prędkość (np. po uwzględnieniu mnożników gracza). </p>
+<p>Inicjalizuje pocisk z podanymi parametrami. Powinno być wywoływane bezpośrednio po zainstancjonowaniu, przed dodaniem do sceny. Umożliwia nadpisanie obrażeń i prędkości (np. po zastosowaniu mnożników gracza). </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">dir</td><td>Kierunek ruchu pocisku.</td></tr>
-    <tr><td class="paramname">stats</td><td>Statystyki broni.</td></tr>
-    <tr><td class="paramname">damage</td><td>Opcjonalne obrażenia (jeśli -1 → użyj bazowych).</td></tr>
-    <tr><td class="paramname">speed</td><td>Opcjonalna prędkość (jeśli -1 → użyj bazowej).</td></tr>
-    <tr><td class="paramname">weaponName</td><td>Nazwa źródłowej broni.</td></tr>
+    <tr><td class="paramname">dir</td><td>Znormalizowany kierunek początkowy ruchu pocisku.</td></tr>
+    <tr><td class="paramname">stats</td><td>Statystyki broni zawierające bazowe parametry pocisku.</td></tr>
+    <tr><td class="paramname">damage</td><td>Obrażenia do użycia; jeśli -1, używane są <a class="el" href="class_weapon_stats.html#aad765447589b2b9747837024817f4963" title="Końcowe obrażenia zadawane przez broń lub pocisk.">WeaponStats.Damage</a>.</td></tr>
+    <tr><td class="paramname">speed</td><td>Prędkość do użycia; jeśli -1, używana jest <a class="el" href="class_weapon_stats.html#a61e3b38f8b32e39cc396cf3fe7a95501" title="Prędkość poruszania się pocisku lub efektu broni.">WeaponStats.Speed</a>.</td></tr>
+    <tr><td class="paramname">weaponName</td><td>Nazwa broni źródłowej (do logów i identyfikacji).</td></tr>
   </table>
   </dd>
 </dl>

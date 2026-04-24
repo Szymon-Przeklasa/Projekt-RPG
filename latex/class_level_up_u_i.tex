@@ -2,7 +2,7 @@
 \hypertarget{class_level_up_u_i}{}\label{class_level_up_u_i}\index{LevelUpUI@{LevelUpUI}}
 
 
-Klasa odpowiedzialna za interfejs użytkownika poziomu ulepszeń (Level Up UI). Dziedziczy po Canvas\+Layer. Pozwala wybrać do 3 dostępnych ulepszeń dla gracza i wstrzymuje grę podczas wyboru.  
+Interfejs użytkownika odpowiedzialny za wybór ulepszenia po awansie gracza.  
 
 
 Inheritance diagram for Level\+Up\+UI:\+\begin{figure}[H]
@@ -16,30 +16,40 @@ Inheritance diagram for Level\+Up\+UI:\+\begin{figure}[H]
 \item 
 \Hypertarget{class_level_up_u_i_a785f9b79a2a6dd4501c258affe56edd6}\label{class_level_up_u_i_a785f9b79a2a6dd4501c258affe56edd6} 
 override void {\bfseries \+\_\+\+Ready} ()
-\begin{DoxyCompactList}\small\item\em Metoda wywoływana po załadowaniu sceny. Inicjalizuje przyciski i ustawia widoczność interfejsu na false. \end{DoxyCompactList}\item 
-void \doxymbox{\hyperlink{class_level_up_u_i_aeff85e35667fa1a230e4e09311974b50}{Show\+Upgrades}} (\doxymbox{\hyperlink{class_player}{Player}} p)
-\begin{DoxyCompactList}\small\item\em Wyświetla interfejs wyboru ulepszeń dla danego gracza. Losuje do 3 ulepszeń, które gracz może aktualnie odblokować. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Inicjalizuje interfejs po dodaniu do drzewa sceny. Pobiera referencje do przycisków i ustawia panel jako ukryty. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_level_up_u_i_a0bf6ee1f5e6a83cee6262ec9d1e4e755}{Show\+Upgrades}} (\doxymbox{\hyperlink{class_player}{Player}} player)
+\begin{DoxyCompactList}\small\item\em Wyświetla panel wyboru ulepszeń dla wskazanego gracza. Losuje maksymalnie 3 dostępne opcje z listy ulepszeń. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-Klasa odpowiedzialna za interfejs użytkownika poziomu ulepszeń (Level Up UI). Dziedziczy po Canvas\+Layer. Pozwala wybrać do 3 dostępnych ulepszeń dla gracza i wstrzymuje grę podczas wyboru. 
+Interfejs użytkownika odpowiedzialny za wybór ulepszenia po awansie gracza. 
+
+Po osiągnięciu nowego poziomu:\+ 
+\begin{DoxyItemize}
+\item zatrzymuje rozgrywkę, 
+\item losuje maksymalnie 3 dostępne ulepszenia, 
+\item wyświetla je jako przyciski wyboru, 
+\item po wyborze stosuje ulepszenie i zamyka panel. 
+\end{DoxyItemize}
+
+Klasa dziedziczy po Canvas\+Layer. 
 
 \label{doc-func-members}
 \Hypertarget{class_level_up_u_i_doc-func-members}
 \doxysubsection{Member Function Documentation}
-\Hypertarget{class_level_up_u_i_aeff85e35667fa1a230e4e09311974b50}\index{LevelUpUI@{LevelUpUI}!ShowUpgrades@{ShowUpgrades}}
+\Hypertarget{class_level_up_u_i_a0bf6ee1f5e6a83cee6262ec9d1e4e755}\index{LevelUpUI@{LevelUpUI}!ShowUpgrades@{ShowUpgrades}}
 \index{ShowUpgrades@{ShowUpgrades}!LevelUpUI@{LevelUpUI}}
 \doxysubsubsection{\texorpdfstring{ShowUpgrades()}{ShowUpgrades()}}
-{\footnotesize\ttfamily \label{class_level_up_u_i_aeff85e35667fa1a230e4e09311974b50} 
-void Level\+Up\+UI.\+Show\+Upgrades (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_player}{Player}}}]{p}{}\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{class_level_up_u_i_a0bf6ee1f5e6a83cee6262ec9d1e4e755} 
+void Level\+Up\+UI.\+Show\+Upgrades (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_player}{Player}}}]{player}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
-Wyświetla interfejs wyboru ulepszeń dla danego gracza. Losuje do 3 ulepszeń, które gracz może aktualnie odblokować. 
+Wyświetla panel wyboru ulepszeń dla wskazanego gracza. Losuje maksymalnie 3 dostępne opcje z listy ulepszeń. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em p} & Gracz, dla którego wyświetlamy dostępne ulepszenia.\\
+{\em player} & Gracz otrzymujący ulepszenie.\\
 \hline
 \end{DoxyParams}
 

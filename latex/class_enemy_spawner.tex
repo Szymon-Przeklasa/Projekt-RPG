@@ -2,7 +2,7 @@
 \hypertarget{class_enemy_spawner}{}\label{class_enemy_spawner}\index{EnemySpawner@{EnemySpawner}}
 
 
-Zarządza pojawianiem się przeciwników w grze na podstawie listy fal (\doxylink{class_wave_definition}{Wave\+Definition}). Interwał spawnów i liczba przeciwników w batchu rośnie z czasem gry, co powoduje progresywną trudność.  
+Klasa odpowiedzialna za zarządzanie pojawianiem się przeciwników w grze. Na podstawie zdefiniowanych fal (\doxylink{class_wave_definition}{Wave\+Definition}) aktywuje odpowiednie typy wrogów w określonym czasie rozgrywki.  
 
 
 Inheritance diagram for Enemy\+Spawner:\+\begin{figure}[H]
@@ -16,29 +16,74 @@ Inheritance diagram for Enemy\+Spawner:\+\begin{figure}[H]
 \item 
 \Hypertarget{class_enemy_spawner_a208d31d0bf33a87befcc234bed3446eb}\label{class_enemy_spawner_a208d31d0bf33a87befcc234bed3446eb} 
 override void {\bfseries \+\_\+\+Ready} ()
-\item 
-\Hypertarget{class_enemy_spawner_ae04a5bac81becbbe1617177159068c4e}\label{class_enemy_spawner_ae04a5bac81becbbe1617177159068c4e} 
-override void {\bfseries \+\_\+\+Process} (double delta)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Inicjalizuje system spawnów. Wyszukuje gracza, buduje pulę punktów spawnu oraz uruchamia timer odpowiedzialny za aktualizację aktywnych fal przeciwników. \end{DoxyCompactList}\item 
+override void \doxymbox{\hyperlink{class_enemy_spawner_ae04a5bac81becbbe1617177159068c4e}{\+\_\+\+Process}} (double delta)
+\begin{DoxyCompactList}\small\item\em Aktualizowana co klatkę metoda kontrolująca:\+ 
+\begin{DoxyItemize}
+\item czas rozgrywki, 
+\item odświeżanie cache punktów spawnu, 
+\item czyszczenie nadmiarowych orbów XP. 
+\end{DoxyItemize}. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
 \Hypertarget{class_enemy_spawner_ab3fa82e16b2d973a01c248b25f39bcaf}\label{class_enemy_spawner_ab3fa82e16b2d973a01c248b25f39bcaf} 
 Tile\+Map\+Layer {\bfseries Spawn\+Map}
-\begin{DoxyCompactList}\small\item\em Mapa Tile\+Map wskazująca możliwe pozycje spawnu. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Warstwa mapy zawierająca komórki możliwego spawnu przeciwników. Każda użyta komórka zostaje przekształcona na globalny punkt spawnu. \end{DoxyCompactList}\item 
 \Hypertarget{class_enemy_spawner_adbddf6cf35dffd6514463eb0f386af3c}\label{class_enemy_spawner_adbddf6cf35dffd6514463eb0f386af3c} 
 float {\bfseries Spawn\+Radius} = 1200f
-\begin{DoxyCompactList}\small\item\em Maksymalny promień spawnu wokół gracza. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Maksymalny promień od gracza, w którym przeciwnicy mogą się pojawić. \end{DoxyCompactList}\item 
 \Hypertarget{class_enemy_spawner_a96f43fba2b8920e4cf23716696f38172}\label{class_enemy_spawner_a96f43fba2b8920e4cf23716696f38172} 
-float {\bfseries Min\+Player\+Distance} = 400f
-\begin{DoxyCompactList}\small\item\em Minimalna odległość od gracza, żeby nie spawnować wroga bezpośrednio na nim. \end{DoxyCompactList}\item 
+float {\bfseries Min\+Player\+Distance} = 340f
+\begin{DoxyCompactList}\small\item\em Minimalna odległość od gracza, w której przeciwnik może zostać zrespiony. Zapobiega pojawianiu się wrogów bezpośrednio obok gracza. \end{DoxyCompactList}\item 
 \Hypertarget{class_enemy_spawner_a2ca514152b5179bb66e87784daa42c8f}\label{class_enemy_spawner_a2ca514152b5179bb66e87784daa42c8f} 
 Godot.\+Collections.\+Array$<$ \doxymbox{\hyperlink{class_wave_definition}{Wave\+Definition}} $>$ {\bfseries Waves} = new()
-\begin{DoxyCompactList}\small\item\em Lista fal przypisana w Inspektorze (tablica \doxylink{class_wave_definition}{Wave\+Definition} .tres). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Lista wszystkich fal przeciwników aktywowanych podczas gry. \end{DoxyCompactList}\item 
+\Hypertarget{class_enemy_spawner_a486a1e5a5cecc5c2932b56f915e76272}\label{class_enemy_spawner_a486a1e5a5cecc5c2932b56f915e76272} 
+int {\bfseries Max\+Enemies} = 360
+\begin{DoxyCompactList}\small\item\em Maksymalna liczba aktywnych przeciwników na scenie jednocześnie. \end{DoxyCompactList}\item 
+\Hypertarget{class_enemy_spawner_ac74d0595ddf6441bdc8c755647419521}\label{class_enemy_spawner_ac74d0595ddf6441bdc8c755647419521} 
+int {\bfseries Max\+Xp\+Orbs} = 300
+\begin{DoxyCompactList}\small\item\em Maksymalna liczba orbów doświadczenia na scenie. Po przekroczeniu starsze i najdalsze orby są usuwane. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-Zarządza pojawianiem się przeciwników w grze na podstawie listy fal (\doxylink{class_wave_definition}{Wave\+Definition}). Interwał spawnów i liczba przeciwników w batchu rośnie z czasem gry, co powoduje progresywną trudność. 
+Klasa odpowiedzialna za zarządzanie pojawianiem się przeciwników w grze. Na podstawie zdefiniowanych fal (\doxylink{class_wave_definition}{Wave\+Definition}) aktywuje odpowiednie typy wrogów w określonym czasie rozgrywki. 
+
+System zawiera:\+ 
+\begin{DoxyItemize}
+\item dynamiczne skalowanie trudności wraz z czasem gry, 
+\item limit aktywnych przeciwników na scenie, 
+\item automatyczne usuwanie nadmiarowych orbów doświadczenia, 
+\item buforowanie punktów spawnu w pobliżu gracza. 
+\end{DoxyItemize}
+
+Klasa dziedziczy po Node2D. 
+
+\label{doc-func-members}
+\Hypertarget{class_enemy_spawner_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_enemy_spawner_ae04a5bac81becbbe1617177159068c4e}\index{EnemySpawner@{EnemySpawner}!\_Process@{\_Process}}
+\index{\_Process@{\_Process}!EnemySpawner@{EnemySpawner}}
+\doxysubsubsection{\texorpdfstring{\_Process()}{\_Process()}}
+{\footnotesize\ttfamily \label{class_enemy_spawner_ae04a5bac81becbbe1617177159068c4e} 
+override void Enemy\+Spawner.\+\_\+\+Process (\begin{DoxyParamCaption}\item[{double}]{delta}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Aktualizowana co klatkę metoda kontrolująca:\+ 
+\begin{DoxyItemize}
+\item czas rozgrywki, 
+\item odświeżanie cache punktów spawnu, 
+\item czyszczenie nadmiarowych orbów XP. 
+\end{DoxyItemize}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em delta} & Czas od poprzedniej klatki.\\
+\hline
+\end{DoxyParams}
+
 
 The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
 \item 

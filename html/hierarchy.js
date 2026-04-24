@@ -9,7 +9,11 @@ var hierarchy =
     ] ],
     [ "CanvasLayer", null, [
       [ "KillsUI", "class_kills_u_i.html", null ],
-      [ "LevelUpUI", "class_level_up_u_i.html", null ]
+      [ "LevelUpUI", "class_level_up_u_i.html", null ],
+      [ "PauseMenu", "class_pause_menu.html", null ],
+      [ "PowerUpsUI", "class_power_ups_u_i.html", null ],
+      [ "WeaponSelectUI", "class_weapon_select_u_i.html", null ],
+      [ "WinScreen", "class_win_screen.html", null ]
     ] ],
     [ "CharacterBody2D", null, [
       [ "Enemy", "class_enemy.html", null ],
@@ -18,16 +22,24 @@ var hierarchy =
     [ "CollisionPolygon2D", null, [
       [ "StartButtonHover", "class_start_button_hover.html", null ]
     ] ],
+    [ "Control", null, [
+      [ "MainMenu", "class_main_menu.html", null ]
+    ] ],
     [ "GpuParticles2D", null, [
       [ "Enemybleed", "class_enemybleed.html", null ],
       [ "LightningChain", "class_lightning_chain.html", null ]
     ] ],
     [ "HBoxContainer", null, [
-      [ "MobEntry", "class_mob_entry.html", null ]
+      [ "CreditsUI", "class_credits_u_i.html", null ],
+      [ "EquipmentUI", "class_equipment_u_i.html", null ],
+      [ "MobEntry", "class_mob_entry.html", null ],
+      [ "StatsUI", "class_stats_u_i.html", null ]
     ] ],
     [ "Node", null, [
       [ "KillManager", "class_kill_manager.html", null ],
+      [ "TileMigrator", "class_tile_migrator.html", null ],
       [ "Weapon", "class_weapon.html", [
+        [ "Axe", "class_axe.html", null ],
         [ "FireWand", "class_fire_wand.html", null ],
         [ "Garlic", "class_garlic.html", null ],
         [ "Lightning", "class_lightning.html", null ],
@@ -47,10 +59,14 @@ var hierarchy =
       [ "WaveDefinition", "class_wave_definition.html", null ],
       [ "WeaponStats", "class_weapon_stats.html", null ]
     ] ],
+    [ "SubViewport", null, [
+      [ "MiniMap", "class_mini_map.html", null ]
+    ] ],
     [ "TextureButton", null, [
       [ "KillsButton", "class_kills_button.html", null ],
       [ "PowerUpButton", "class_power_up_button.html", null ],
       [ "StartButton", "class_start_button.html", null ]
     ] ],
-    [ "UpgradeData", "class_upgrade_data.html", null ]
+    [ "UpgradeData", "class_upgrade_data.html", null ],
+    [ "UpgradeLevel", "class_upgrade_level.html", null ]
 ];

@@ -2,7 +2,7 @@
 \hypertarget{class_magnet}{}\label{class_magnet}\index{Magnet@{Magnet}}
 
 
-Klasa reprezentująca broń typu \doxylink{class_magnet}{Magnet}. Zamiast zadawać obrażenia, przyciąga punkty doświadczenia (XP orby) znajdujące się w zasięgu gracza.  
+Klasa reprezentująca broń typu \doxylink{class_magnet}{Magnet} (Magnes). Pasywnie przyciąga orby doświadczenia (XP) w zasięgu gracza każdą klatkę fizyki. Prędkość i zasięg przyciągania skalują się przez mnożniki gracza oraz ulepszenia pasywne. Broń nie posiada aktywnego strzału — metoda \doxylink{class_magnet_aaa77d47afe2b59f278ee89a557596b98}{Fire} jest pusta. Dziedziczy po klasie \doxylink{class_weapon}{Weapon}.  
 
 
 Inheritance diagram for Magnet:\+\begin{figure}[H]
@@ -11,52 +11,89 @@ Inheritance diagram for Magnet:\+\begin{figure}[H]
 \includegraphics[height=3.000000cm]{class_magnet}
 \end{center}
 \end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+override void \doxymbox{\hyperlink{class_magnet_ae044eed0dc2e84f2ec788e62e33894ad}{\+\_\+\+Physics\+Process}} (double delta)
+\begin{DoxyCompactList}\small\item\em Aktualizacja fizyki wywoływana każdą klatką. Dla każdego orba XP w grupie "{}xp"{} oblicza dystans do gracza. Jeśli orb jest w zasięgu, przesuwa go w kierunku gracza z prędkością skalowaną przez bliskość do centrum ({\ttfamily speed\+Factor}). Im bliżej środka, tym orb jest szybciej wciągany. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{class_weapon}{Weapon}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \doxymbox{\hyperlink{class_weapon_a33d626e47c4808639ffd14de099228ed}{Init}} (\doxymbox{\hyperlink{class_player}{Player}} player)
+\begin{DoxyCompactList}\small\item\em Inicjalizuje broń i podłącza timer ataku. Ustawia czas odnowienia na podstawie statystyk i modyfikatorów gracza. \end{DoxyCompactList}\item 
+virtual void {\bfseries Refresh\+Stats} ()
+\begin{DoxyCompactList}\small\item\em Aktualizuje parametry broni po zmianie statystyk lub modyfikatorów gracza. W szczególności odświeża czas odnowienia ataku. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_magnet_a576d0e774b0d40b370b941971303bed4}\label{class_magnet_a576d0e774b0d40b370b941971303bed4} 
+float {\bfseries Pull\+Speed\+Bonus} = 0f
+\begin{DoxyCompactList}\small\item\em Dodatkowy bonus do prędkości przyciągania, dodawany przez ulepszenia pasywne magnesu. Kumuluje się z każdym zakupionym ulepszeniem. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \doxymbox{\hyperlink{class_weapon}{Weapon}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_weapon_stats}{Weapon\+Stats}} {\bfseries Stats}
+\begin{DoxyCompactList}\small\item\em Statystyki broni (obrażenia, cooldown, zasięg, liczba pocisków itd.). \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 \Hypertarget{class_magnet_aaa77d47afe2b59f278ee89a557596b98}\label{class_magnet_aaa77d47afe2b59f278ee89a557596b98} 
 override void {\bfseries Fire} ()
-\begin{DoxyCompactList}\small\item\em Metoda wywoływana przy aktywacji broni (strzale). Wyszukuje wszystkie orb-\/y XP i przyciąga te znajdujące się w zasięgu gracza. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Metoda strzału — celowo pusta, ponieważ \doxylink{class_magnet}{Magnet} działa pasywnie przez \doxylink{class_magnet_ae044eed0dc2e84f2ec788e62e33894ad}{\+\_\+\+Physics\+Process}. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Protected Member Functions inherited from \doxymbox{\hyperlink{class_weapon}{Weapon}}}
 \begin{DoxyCompactItemize}
 \item 
 int {\bfseries Get\+Damage} ()
-\begin{DoxyCompactList}\small\item\em Oblicza aktualne obrażenia z uwzględnieniem mnożnika gracza. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Zwraca aktualne obrażenia broni z uwzględnieniem mnożnika gracza. \end{DoxyCompactList}\item 
 float {\bfseries Get\+Range} ()
-\begin{DoxyCompactList}\small\item\em Oblicza aktualny zasięg z uwzględnieniem mnożnika obszaru gracza. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Zwraca aktualny zasięg broni z uwzględnieniem bonusów gracza. \end{DoxyCompactList}\item 
 float {\bfseries Get\+Speed} ()
-\begin{DoxyCompactList}\small\item\em Oblicza aktualną prędkość pocisków z uwzględnieniem mnożnika. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Zwraca aktualną prędkość pocisków z uwzględnieniem modyfikatorów gracza. \end{DoxyCompactList}\item 
+Vector2 {\bfseries Get\+Aim\+Position} (Node2D target)
+\begin{DoxyCompactList}\small\item\em Zwraca pozycję trafienia dla przeciwnika. Preferuje marker "{}\+Center"{}, jeśli istnieje. \end{DoxyCompactList}\item 
+List$<$ Node2D $>$ \doxymbox{\hyperlink{class_weapon_ae99c6686d911ab38f62ba2c1a582828e}{Get\+Closest\+Enemies}} (float range, int count, Vector2? from\+Position=null)
+\begin{DoxyCompactList}\small\item\em Zwraca listę najbliższych przeciwników w zadanym zasięgu. Wynik jest posortowany według odległości od punktu odniesienia. \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_weapon_aa06741321d4ac42e45542c96de14f1d4}{Get\+Centered\+Offset}} (int index, int total, float step)
+\begin{DoxyCompactList}\small\item\em Oblicza wycentrowane przesunięcie dla rozrzutu pocisków. \end{DoxyCompactList}\item 
 void {\bfseries Fire} ()
-\begin{DoxyCompactList}\small\item\em Metoda abstrakcyjna wywoływana przy każdym strzale. Każda broń powinna nadpisać tę metodę, implementując własną logikę strzału. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Metoda abstrakcyjna wywoływana przy każdym ataku. Każda broń musi implementować własną logikę strzału. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Additional Inherited Members}
-\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{class_weapon}{Weapon}}}
-\begin{DoxyCompactItemize}
-\item 
-virtual void \doxymbox{\hyperlink{class_weapon_a33d626e47c4808639ffd14de099228ed}{Init}} (\doxymbox{\hyperlink{class_player}{Player}} player)
-\begin{DoxyCompactList}\small\item\em Inicjalizuje broń dla danego gracza. Ustawia timer na podstawie czasu odnowienia i mnożnika gracza. \end{DoxyCompactList}\item 
-virtual void {\bfseries Refresh\+Stats} ()
-\begin{DoxyCompactList}\small\item\em Odświeża statystyki broni, aktualizując czas odnowienia w timerze. Powinno być wywoływane po zmianie Stats.\+Cooldown lub \doxylink{class_player_a4ecfa1544f4778a8269e388e48e791ae}{Player.\+Cooldown\+Multiplier}. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsection*{Public Attributes inherited from \doxymbox{\hyperlink{class_weapon}{Weapon}}}
-\begin{DoxyCompactItemize}
-\item 
-\doxymbox{\hyperlink{class_weapon_stats}{Weapon\+Stats}} {\bfseries Stats}
-\begin{DoxyCompactList}\small\item\em Statystyki broni (obrażenia, zasięg, liczba pocisków, czas odnowienia itd.). \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Protected Attributes inherited from \doxymbox{\hyperlink{class_weapon}{Weapon}}}
 \begin{DoxyCompactItemize}
 \item 
 \doxymbox{\hyperlink{class_player}{Player}} {\bfseries Player}
-\begin{DoxyCompactList}\small\item\em Odniesienie do gracza, który używa broni. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Referencja do gracza, który korzysta z broni. \end{DoxyCompactList}\item 
 Timer {\bfseries timer}
-\begin{DoxyCompactList}\small\item\em Timer odpowiadający za wywoływanie strzałów co określony czas. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Timer odpowiedzialny za cykliczne wywoływanie ataku. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Properties inherited from \doxymbox{\hyperlink{class_weapon}{Weapon}}}
 \begin{DoxyCompactItemize}
 \item 
 virtual string {\bfseries Weapon\+Name}\hspace{0.3cm}{\ttfamily  \+[get]\+}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Nazwa broni (domyślnie nazwa klasy). \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-Klasa reprezentująca broń typu \doxylink{class_magnet}{Magnet}. Zamiast zadawać obrażenia, przyciąga punkty doświadczenia (XP orby) znajdujące się w zasięgu gracza. 
+Klasa reprezentująca broń typu \doxylink{class_magnet}{Magnet} (Magnes). Pasywnie przyciąga orby doświadczenia (XP) w zasięgu gracza każdą klatkę fizyki. Prędkość i zasięg przyciągania skalują się przez mnożniki gracza oraz ulepszenia pasywne. Broń nie posiada aktywnego strzału — metoda \doxylink{class_magnet_aaa77d47afe2b59f278ee89a557596b98}{Fire} jest pusta. Dziedziczy po klasie \doxylink{class_weapon}{Weapon}. 
+
+\label{doc-func-members}
+\Hypertarget{class_magnet_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_magnet_ae044eed0dc2e84f2ec788e62e33894ad}\index{Magnet@{Magnet}!\_PhysicsProcess@{\_PhysicsProcess}}
+\index{\_PhysicsProcess@{\_PhysicsProcess}!Magnet@{Magnet}}
+\doxysubsubsection{\texorpdfstring{\_PhysicsProcess()}{\_PhysicsProcess()}}
+{\footnotesize\ttfamily \label{class_magnet_ae044eed0dc2e84f2ec788e62e33894ad} 
+override void Magnet.\+\_\+\+Physics\+Process (\begin{DoxyParamCaption}\item[{double}]{delta}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Aktualizacja fizyki wywoływana każdą klatką. Dla każdego orba XP w grupie "{}xp"{} oblicza dystans do gracza. Jeśli orb jest w zasięgu, przesuwa go w kierunku gracza z prędkością skalowaną przez bliskość do centrum ({\ttfamily speed\+Factor}). Im bliżej środka, tym orb jest szybciej wciągany. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em delta} & Czas od poprzedniej klatki fizyki (sekundy).\\
+\hline
+\end{DoxyParams}
+
 
 The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
 \item 

@@ -62,7 +62,7 @@ $(function() {
   </div>
 </div>
 <script type="text/javascript">
-$(function(){initNavTree('class_game.html','',''); });
+$(function(){initNavTree('class_game.html','','class_game-members'); });
 </script>
 <div id="container">
 <div id="doc-content">
@@ -91,12 +91,63 @@ $(function(){initNavTree('class_game.html','',''); });
   <div class="headertitle"><div class="title">Game Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Główna klasa sceny gry, zarządzająca odliczaniem czasu rundy i warunkiem zwycięstwa. Timer jest uruchamiany automatycznie po załadowaniu sceny i zatrzymywany po pauzie lub śmierci gracza. Po osiągnięciu czasu WinTime wywoływana jest metoda OnWin, która dezaktywuje spawner wrogów i wyświetla ekran wyników (<a class="el" href="class_win_screen.html" title="Ekran końcowy rundy wyświetlany po przetrwaniu 16 minut. Pokazuje podsumowanie rozgrywki,...">WinScreen</a>).  
+ <a href="#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for Game:</div>
 <div class="dyncontent">
  <div class="center">
   <img src="class_game.png" alt=""/>
  </div></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:adb6601522ba9f3043e9a310eeafbdae8" id="r_adb6601522ba9f3043e9a310eeafbdae8"><td class="memItemLeft"><a id="adb6601522ba9f3043e9a310eeafbdae8" name="adb6601522ba9f3043e9a310eeafbdae8"></a>
+override void&#160;</td><td class="memItemRight"><b>_Ready</b> ()</td></tr>
+<tr class="memdesc:adb6601522ba9f3043e9a310eeafbdae8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metoda wywoływana po dodaniu węzła do drzewa sceny. Pobiera etykietę timera, uruchamia odliczanie i tworzy instancję <a class="el" href="class_win_screen.html" title="Ekran końcowy rundy wyświetlany po przetrwaniu 16 minut. Pokazuje podsumowanie rozgrywki,...">WinScreen</a>. <br /></td></tr>
+<tr class="memitem:a9ee65829ed0b2107b10f0e38fb01beea" id="r_a9ee65829ed0b2107b10f0e38fb01beea"><td class="memItemLeft">override void&#160;</td><td class="memItemRight"><a class="el" href="#a9ee65829ed0b2107b10f0e38fb01beea">_Process</a> (double delta)</td></tr>
+<tr class="memdesc:a9ee65829ed0b2107b10f0e38fb01beea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metoda wywoływana każdą klatkę logiki. Aktualizuje licznik czasu i etykietę UI. Jeśli gra jest pauzowana lub zakończona, metoda wraca natychmiast. Po osiągnięciu WinTime wywołuje OnWin.  <br /></td></tr>
+<tr class="memitem:a0c3eeedce8d7f95cee22c24e11572e13" id="r_a0c3eeedce8d7f95cee22c24e11572e13"><td class="memItemLeft"><a id="a0c3eeedce8d7f95cee22c24e11572e13" name="a0c3eeedce8d7f95cee22c24e11572e13"></a>
+void&#160;</td><td class="memItemRight"><b>StopTimer</b> ()</td></tr>
+<tr class="memdesc:a0c3eeedce8d7f95cee22c24e11572e13"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zatrzymuje timer gry. Wywoływana zewnętrznie, np. przez ekran śmierci lub inne systemy kończące rundę. <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Główna klasa sceny gry, zarządzająca odliczaniem czasu rundy i warunkiem zwycięstwa. Timer jest uruchamiany automatycznie po załadowaniu sceny i zatrzymywany po pauzie lub śmierci gracza. Po osiągnięciu czasu WinTime wywoływana jest metoda OnWin, która dezaktywuje spawner wrogów i wyświetla ekran wyników (<a class="el" href="class_win_screen.html" title="Ekran końcowy rundy wyświetlany po przetrwaniu 16 minut. Pokazuje podsumowanie rozgrywki,...">WinScreen</a>). </p>
+</div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="a9ee65829ed0b2107b10f0e38fb01beea" name="a9ee65829ed0b2107b10f0e38fb01beea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9ee65829ed0b2107b10f0e38fb01beea">&#9670;&#160;</a></span>_Process()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">override void Game._Process </td>
+          <td>(</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>delta</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Metoda wywoływana każdą klatkę logiki. Aktualizuje licznik czasu i etykietę UI. Jeśli gra jest pauzowana lub zakończona, metoda wraca natychmiast. Po osiągnięciu WinTime wywołuje OnWin. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">delta</td><td>Czas od poprzedniej klatki (sekundy).</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>Scripts/<b>Game.cs</b></li>
 </ul>

@@ -92,7 +92,7 @@ $(function(){initNavTree('class_kills_u_i.html','','class_kills_u_i-members'); }
 </div><!--header-->
 <div class="contents">
 
-<p>Interfejs użytkownika wyświetlający statystyki zabójstw przeciwników. Pobiera dane z <a class="el" href="class_kill_manager.html" title="Menedżer odpowiedzialny za zliczanie zabójstw przeciwników. Implementuje wzorzec singleton i zapisuje...">KillManager</a> i wyświetla je w formie listy.  
+<p>Interfejs użytkownika wyświetlający statystyki zabitych przeciwników.  
  <a href="#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for KillsUI:</div>
@@ -105,41 +105,51 @@ Inheritance diagram for KillsUI:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ab2a11e6c848f5f31445fe79b18d06532" id="r_ab2a11e6c848f5f31445fe79b18d06532"><td class="memItemLeft"><a id="ab2a11e6c848f5f31445fe79b18d06532" name="ab2a11e6c848f5f31445fe79b18d06532"></a>
 override void&#160;</td><td class="memItemRight"><b>_Ready</b> ()</td></tr>
-<tr class="memdesc:ab2a11e6c848f5f31445fe79b18d06532"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metoda wywoływana po dodaniu węzła do drzewa sceny. Inicjalizuje widoczność UI i subskrybuje sygnały <a class="el" href="class_kill_manager.html" title="Menedżer odpowiedzialny za zliczanie zabójstw przeciwników. Implementuje wzorzec singleton i zapisuje...">KillManager</a>. <br /></td></tr>
+<tr class="memdesc:ab2a11e6c848f5f31445fe79b18d06532"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inicjalizuje interfejs po dodaniu do drzewa sceny. Ustawia początkową niewidoczność panelu oraz subskrybuje zdarzenie aktualizacji zabójstw. <br /></td></tr>
 <tr class="memitem:ac37f620590e44ea580e08b7f52cebe71" id="r_ac37f620590e44ea580e08b7f52cebe71"><td class="memItemLeft"><a id="ac37f620590e44ea580e08b7f52cebe71" name="ac37f620590e44ea580e08b7f52cebe71"></a>
 void&#160;</td><td class="memItemRight"><b>ShowKills</b> ()</td></tr>
-<tr class="memdesc:ac37f620590e44ea580e08b7f52cebe71"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wyświetla UI ze wszystkimi zabójstwami. Tworzy wpisy dla każdego przeciwnika i pauzuje grę. <br /></td></tr>
-<tr class="memitem:a118364b7f679b9563818f443cbe6bf2c" id="r_a118364b7f679b9563818f443cbe6bf2c"><td class="memItemLeft">override void&#160;</td><td class="memItemRight"><a class="el" href="#a118364b7f679b9563818f443cbe6bf2c">_Process</a> (double delta)</td></tr>
-<tr class="memdesc:a118364b7f679b9563818f443cbe6bf2c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metoda wywoływana co klatkę.  <br /></td></tr>
+<tr class="memdesc:ac37f620590e44ea580e08b7f52cebe71"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wyświetla panel statystyk zabójstw. Czyści poprzednią zawartość, tworzy nowe wpisy i zatrzymuje rozgrywkę do momentu zamknięcia panelu. <br /></td></tr>
+<tr class="memitem:a70f6660c72ba8c09a32e06c26bf39198" id="r_a70f6660c72ba8c09a32e06c26bf39198"><td class="memItemLeft">override void&#160;</td><td class="memItemRight"><a class="el" href="#a70f6660c72ba8c09a32e06c26bf39198">_UnhandledInput</a> (InputEvent @event)</td></tr>
+<tr class="memdesc:a70f6660c72ba8c09a32e06c26bf39198"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obsługuje globalne wejście użytkownika, umożliwiając zamknięcie panelu klawiszem anulowania.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:aae6b9f88b7c9e0717dd907cf26ca3fc6" id="r_aae6b9f88b7c9e0717dd907cf26ca3fc6"><td class="memItemLeft"><a id="aae6b9f88b7c9e0717dd907cf26ca3fc6" name="aae6b9f88b7c9e0717dd907cf26ca3fc6"></a>
 PackedScene&#160;</td><td class="memItemRight"><b>MobEntryScene</b></td></tr>
-<tr class="memdesc:aae6b9f88b7c9e0717dd907cf26ca3fc6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scena używana do tworzenia pojedynczego wpisu przeciwnika (<a class="el" href="class_mob_entry.html" title="Klasa reprezentująca pojedynczy wpis przeciwnika w interfejsie użytkownika. Wyświetla nazwę przeciwni...">MobEntry</a>). <br /></td></tr>
+<tr class="memdesc:aae6b9f88b7c9e0717dd907cf26ca3fc6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scena używana do tworzenia pojedynczego wpisu przeciwnika. <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Interfejs użytkownika wyświetlający statystyki zabójstw przeciwników. Pobiera dane z <a class="el" href="class_kill_manager.html" title="Menedżer odpowiedzialny za zliczanie zabójstw przeciwników. Implementuje wzorzec singleton i zapisuje...">KillManager</a> i wyświetla je w formie listy. </p>
+<div class="textblock"><p>Interfejs użytkownika wyświetlający statystyki zabitych przeciwników. </p>
+<p>Dane pobierane są z <a class="el" href="class_kill_manager.html" title="Menedżer odpowiedzialny za zliczanie zabójstw przeciwników. Implementuje wzorzec Singleton i zapisuje...">KillManager</a>, a następnie prezentowane w formie przewijanej listy wpisów. Każdy wpis reprezentowany jest przez scenę <a class="el" href="class_mob_entry.html" title="Klasa reprezentująca pojedynczy wpis przeciwnika w interfejsie użytkownika. Wyświetla nazwę przeciwni...">MobEntry</a>.</p>
+<p>Klasa dziedziczy po CanvasLayer. </p>
 </div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
-<a id="a118364b7f679b9563818f443cbe6bf2c" name="a118364b7f679b9563818f443cbe6bf2c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a118364b7f679b9563818f443cbe6bf2c">&#9670;&#160;</a></span>_Process()</h2>
+<a id="a70f6660c72ba8c09a32e06c26bf39198" name="a70f6660c72ba8c09a32e06c26bf39198"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a70f6660c72ba8c09a32e06c26bf39198">&#9670;&#160;</a></span>_UnhandledInput()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">override void KillsUI._Process </td>
+          <td class="memname">override void KillsUI._UnhandledInput </td>
           <td>(</td>
-          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>delta</em></span></td><td>)</td>
+          <td class="paramtype">InputEvent @</td>          <td class="paramname"><span class="paramname"><em>event</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p>Metoda wywoływana co klatkę. </p>
+<p>Obsługuje globalne wejście użytkownika, umożliwiając zamknięcie panelu klawiszem anulowania. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">delta</td><td>Czas od poprzedniej klatki.</td></tr>
+    <tr><td class="paramname">event</td><td>Zdarzenie wejściowe.</td></tr>
   </table>
   </dd>
 </dl>

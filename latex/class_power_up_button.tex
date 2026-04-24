@@ -2,7 +2,7 @@
 \hypertarget{class_power_up_button}{}\label{class_power_up_button}\index{PowerUpButton@{PowerUpButton}}
 
 
-Klasa reprezentujaca przycisk odpowiedzialny za wyswietlanie power-\/upow. Docelowo bedzie zmieniac scene lub otwierac interfejs ulepszen.  
+Przycisk interfejsu użytkownika odpowiedzialny za otwieranie panelu dostępnych ulepszeń.  
 
 
 Inheritance diagram for Power\+Up\+Button:\+\begin{figure}[H]
@@ -11,38 +11,14 @@ Inheritance diagram for Power\+Up\+Button:\+\begin{figure}[H]
 \includegraphics[height=2.000000cm]{class_power_up_button}
 \end{center}
 \end{figure}
-\doxysubsubsection*{Public Member Functions}
-\begin{DoxyCompactItemize}
-\item 
-\Hypertarget{class_power_up_button_acdfa7da5eb647f20b4c1812310d1c862}\label{class_power_up_button_acdfa7da5eb647f20b4c1812310d1c862} 
-override void {\bfseries \+\_\+\+Ready} ()
-\begin{DoxyCompactList}\small\item\em Metoda wywolywana po dodaniu wezla do drzewa sceny. \end{DoxyCompactList}\item 
-override void \doxymbox{\hyperlink{class_power_up_button_a81ffb87c8b349d37a3b52caac7b91742}{\+\_\+\+Process}} (double delta)
-\begin{DoxyCompactList}\small\item\em Metoda wywolywana co klatke. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-Klasa reprezentujaca przycisk odpowiedzialny za wyswietlanie power-\/upow. Docelowo bedzie zmieniac scene lub otwierac interfejs ulepszen. 
+Przycisk interfejsu użytkownika odpowiedzialny za otwieranie panelu dostępnych ulepszeń. 
 
-\label{doc-func-members}
-\Hypertarget{class_power_up_button_doc-func-members}
-\doxysubsection{Member Function Documentation}
-\Hypertarget{class_power_up_button_a81ffb87c8b349d37a3b52caac7b91742}\index{PowerUpButton@{PowerUpButton}!\_Process@{\_Process}}
-\index{\_Process@{\_Process}!PowerUpButton@{PowerUpButton}}
-\doxysubsubsection{\texorpdfstring{\_Process()}{\_Process()}}
-{\footnotesize\ttfamily \label{class_power_up_button_a81ffb87c8b349d37a3b52caac7b91742} 
-override void Power\+Up\+Button.\+\_\+\+Process (\begin{DoxyParamCaption}\item[{double}]{delta}{}\end{DoxyParamCaption})}
+Po kliknięciu wyszukuje obiekt \doxylink{class_power_ups_u_i}{Power\+Ups\+UI} w aktualnej scenie i wyświetla jego zawartość.
 
-
-
-Metoda wywolywana co klatke. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em delta} & Czas, jaki uplynal od poprzedniej klatki.\\
-\hline
-\end{DoxyParams}
-
+Klasa dziedziczy po Texture\+Button. 
 
 The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
 \item 

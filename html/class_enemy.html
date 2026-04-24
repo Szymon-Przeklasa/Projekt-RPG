@@ -92,7 +92,7 @@ $(function(){initNavTree('class_enemy.html','','class_enemy-members'); });
 </div><!--header-->
 <div class="contents">
 
-<p>Klasa reprezentująca przeciwnika (<a class="el" href="class_enemy.html" title="Klasa reprezentująca przeciwnika (Enemy) w grze. Obsługuje ruch w kierunku gracza,...">Enemy</a>) w grze. Obsługuje ruch w kierunku gracza, otrzymywanie obrażeń, śmierć i drop doświadczenia. Dziedziczy po CharacterBody2D.  
+<p>Klasa bazowa wszystkich przeciwników w grze. Zarządza ruchem w kierunku gracza, zadawaniem obrażeń kontaktowych, otrzymywaniem obrażeń, efektami wizualnymi trafień oraz śmiercią i dropem XP. Przeciwnicy NIE kolidują fizycznie z graczem (nie blokują ruchu); obrażenia kontaktowe są sprawdzane przez odległość w HandleContactDamage.  
  <a href="#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for Enemy:</div>
@@ -105,45 +105,95 @@ Inheritance diagram for Enemy:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a637bd267c02af30ad5af52c55dbf1439" id="r_a637bd267c02af30ad5af52c55dbf1439"><td class="memItemLeft"><a id="a637bd267c02af30ad5af52c55dbf1439" name="a637bd267c02af30ad5af52c55dbf1439"></a>
 override void&#160;</td><td class="memItemRight"><b>_Ready</b> ()</td></tr>
-<tr class="memdesc:a637bd267c02af30ad5af52c55dbf1439"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metoda wywoływana po dodaniu wroga do sceny. Inicjalizuje statystyki, zdrowie i skalę wroga. <br /></td></tr>
+<tr class="memdesc:a637bd267c02af30ad5af52c55dbf1439"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inicjalizacja po dodaniu do sceny. Kopiuje statystyki z <a class="el" href="#ae0eff91f1a58c639486eec142f2a45e0" title="Statystyki przeciwnika ładowane z zasobu EnemyStats.">Stats</a> (jeśli przypisane), stosuje modyfikatory rangi i ustawia bazowe HP. <br /></td></tr>
 <tr class="memitem:ad2dc81da9768c7b919c9ed2a588e2031" id="r_ad2dc81da9768c7b919c9ed2a588e2031"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ad2dc81da9768c7b919c9ed2a588e2031">TakeDamage</a> (int damage, Vector2 knockback, string weaponName=&quot;unknown&quot;)</td></tr>
-<tr class="memdesc:ad2dc81da9768c7b919c9ed2a588e2031"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zadaje obrażenia wrogowi. Tworzy efekt trafienia i wyświetla etykietę obrażeń.  <br /></td></tr>
-<tr class="memitem:aa1df6763ae3a612f36447340577dcb8e" id="r_aa1df6763ae3a612f36447340577dcb8e"><td class="memItemLeft"><a id="aa1df6763ae3a612f36447340577dcb8e" name="aa1df6763ae3a612f36447340577dcb8e"></a>
-override void&#160;</td><td class="memItemRight"><b>_PhysicsProcess</b> (double delta)</td></tr>
-<tr class="memdesc:aa1df6763ae3a612f36447340577dcb8e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metoda fizyczna wywoływana co klatkę. Obsługuje ruch w kierunku gracza i zadawanie obrażeń kontaktowych. <br /></td></tr>
+<tr class="memdesc:ad2dc81da9768c7b919c9ed2a588e2031"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zadaje obrażenia przeciwnikowi, stosuje odrzut, odtwarza dźwięk trafienia, tworzy efekt cząsteczkowy i pływającą etykietę obrażeń. Jeśli HP spadnie do zera lub poniżej, wywołuje Die.  <br /></td></tr>
+<tr class="memitem:aa1df6763ae3a612f36447340577dcb8e" id="r_aa1df6763ae3a612f36447340577dcb8e"><td class="memItemLeft">override void&#160;</td><td class="memItemRight"><a class="el" href="#aa1df6763ae3a612f36447340577dcb8e">_PhysicsProcess</a> (double delta)</td></tr>
+<tr class="memdesc:aa1df6763ae3a612f36447340577dcb8e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Aktualizacja fizyki wywoływana każdą klatką. Pobiera referencję do gracza (jeśli brak), oblicza kierunek ruchu, spowalnia przeciwnika gdy nachodził na gracza (zapobiega "przyklejaniu"), absorbuje nadmiarowy odrzut i wywołuje CharacterBody2D.MoveAndSlide. Na końcu sprawdza obrażenia kontaktowe z graczem.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:ae0eff91f1a58c639486eec142f2a45e0" id="r_ae0eff91f1a58c639486eec142f2a45e0"><td class="memItemLeft"><a id="ae0eff91f1a58c639486eec142f2a45e0" name="ae0eff91f1a58c639486eec142f2a45e0"></a>
 <a class="el" href="class_enemy_stats.html">EnemyStats</a>&#160;</td><td class="memItemRight"><b>Stats</b></td></tr>
-<tr class="memdesc:ae0eff91f1a58c639486eec142f2a45e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Statystyki wroga przechowywane w <a class="el" href="class_enemy_stats.html" title="Klasa reprezentująca dane konfiguracyjne przeciwnika. Dziedziczy po Resource, dzięki czemu można twor...">EnemyStats</a>. <br /></td></tr>
+<tr class="memdesc:ae0eff91f1a58c639486eec142f2a45e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Statystyki przeciwnika ładowane z zasobu <a class="el" href="class_enemy_stats.html" title="Klasa reprezentująca dane konfiguracyjne przeciwnika. Dziedziczy po Resource, dzięki czemu można twor...">EnemyStats</a>. <br /></td></tr>
 <tr class="memitem:aee332cdb5ee5923ac80e56ac28d5229e" id="r_aee332cdb5ee5923ac80e56ac28d5229e"><td class="memItemLeft"><a id="aee332cdb5ee5923ac80e56ac28d5229e" name="aee332cdb5ee5923ac80e56ac28d5229e"></a>
 PackedScene&#160;</td><td class="memItemRight"><b>XpOrbScene</b></td></tr>
-<tr class="memdesc:aee332cdb5ee5923ac80e56ac28d5229e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scena orb-u XP, który zostaje upuszczony po śmierci wroga. <br /></td></tr>
+<tr class="memdesc:aee332cdb5ee5923ac80e56ac28d5229e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scena orb XP (<a class="el" href="class_xp_orb.html" title="Klasa reprezentująca orb doświadczenia (XP) w grze. Po kontakcie z graczem przyznaje mu określoną lic...">XpOrb</a>) dropowana po śmierci. <br /></td></tr>
 <tr class="memitem:a1bd5557ad866dea773b349fb66178260" id="r_a1bd5557ad866dea773b349fb66178260"><td class="memItemLeft"><a id="a1bd5557ad866dea773b349fb66178260" name="a1bd5557ad866dea773b349fb66178260"></a>
 PackedScene&#160;</td><td class="memItemRight"><b>HitParticle</b></td></tr>
-<tr class="memdesc:a1bd5557ad866dea773b349fb66178260"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scena cząsteczek przy trafieniu wroga. <br /></td></tr>
+<tr class="memdesc:a1bd5557ad866dea773b349fb66178260"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scena efektu cząsteczkowego trafienia (<a class="el" href="class_enemybleed.html" title="Klasa reprezentująca efekt cząsteczkowy przy trafieniu wroga. Dziedziczy po GpuParticles2D i automaty...">Enemybleed</a>). <br /></td></tr>
 <tr class="memitem:afd0a97a8f0772bd9f598c8e273bdad47" id="r_afd0a97a8f0772bd9f598c8e273bdad47"><td class="memItemLeft"><a id="afd0a97a8f0772bd9f598c8e273bdad47" name="afd0a97a8f0772bd9f598c8e273bdad47"></a>
 float&#160;</td><td class="memItemRight"><b>Speed</b> = 140f</td></tr>
-<tr class="memdesc:afd0a97a8f0772bd9f598c8e273bdad47"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prędkość wroga, może być nadpisana przez Stats. <br /></td></tr>
+<tr class="memdesc:afd0a97a8f0772bd9f598c8e273bdad47"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prędkość ruchu przeciwnika (jednostki/s). Nadpisywana przez <a class="el" href="#ae0eff91f1a58c639486eec142f2a45e0" title="Statystyki przeciwnika ładowane z zasobu EnemyStats.">Stats</a>. <br /></td></tr>
 <tr class="memitem:a20628488c5d12840d152e484b16682c9" id="r_a20628488c5d12840d152e484b16682c9"><td class="memItemLeft"><a id="a20628488c5d12840d152e484b16682c9" name="a20628488c5d12840d152e484b16682c9"></a>
 int&#160;</td><td class="memItemRight"><b>MaxHealth</b> = 100</td></tr>
-<tr class="memdesc:a20628488c5d12840d152e484b16682c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maksymalne zdrowie wroga, nadpisywane przez Stats. <br /></td></tr>
+<tr class="memdesc:a20628488c5d12840d152e484b16682c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maksymalne punkty życia. Nadpisywane przez <a class="el" href="#ae0eff91f1a58c639486eec142f2a45e0" title="Statystyki przeciwnika ładowane z zasobu EnemyStats.">Stats</a> i rangę. <br /></td></tr>
 <tr class="memitem:ac3a29dd57db6581f594c85257e1cbd25" id="r_ac3a29dd57db6581f594c85257e1cbd25"><td class="memItemLeft"><a id="ac3a29dd57db6581f594c85257e1cbd25" name="ac3a29dd57db6581f594c85257e1cbd25"></a>
 int&#160;</td><td class="memItemRight"><b>XpDrop</b> = 1</td></tr>
-<tr class="memdesc:ac3a29dd57db6581f594c85257e1cbd25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ilość doświadczenia przyznawana po zabiciu wroga. <br /></td></tr>
-<tr class="memitem:a8f6bd48a3cd79c56bf7b8a2a72eb4723" id="r_a8f6bd48a3cd79c56bf7b8a2a72eb4723"><td class="memItemLeft"><a id="a8f6bd48a3cd79c56bf7b8a2a72eb4723" name="a8f6bd48a3cd79c56bf7b8a2a72eb4723"></a>
-string&#160;</td><td class="memItemRight"><b>MobID</b> = &quot;enemy&quot;</td></tr>
-<tr class="memdesc:a8f6bd48a3cd79c56bf7b8a2a72eb4723"><td class="mdescLeft">&#160;</td><td class="mdescRight">ID wroga, np. "goblin", "skeleton". <br /></td></tr>
+<tr class="memdesc:ac3a29dd57db6581f594c85257e1cbd25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Liczba XP dropowana po śmierci. Skaluje się z rangą i czasem rozgrywki. <br /></td></tr>
+<tr class="memitem:ad2fbd9e25ee93eaa545612a3cd9ecd60" id="r_ad2fbd9e25ee93eaa545612a3cd9ecd60"><td class="memItemLeft"><a id="ad2fbd9e25ee93eaa545612a3cd9ecd60" name="ad2fbd9e25ee93eaa545612a3cd9ecd60"></a>
+string&#160;</td><td class="memItemRight"><b>MobId</b> = &quot;enemy&quot;</td></tr>
+<tr class="memdesc:ad2fbd9e25ee93eaa545612a3cd9ecd60"><td class="mdescLeft">&#160;</td><td class="mdescRight">Identyfikator typu wroga zgodny z <a class="el" href="class_enemy_stats.html#a959cb816fce08121e67a5b975fa42a15" title="Unikalny identyfikator typu wroga (np. &quot;slime&quot;).">EnemyStats.MobID</a> (np. "slime"). <br /></td></tr>
+<tr class="memitem:adf5e23492cff2897cf50f95e16499f5c" id="r_adf5e23492cff2897cf50f95e16499f5c"><td class="memItemLeft"><a id="adf5e23492cff2897cf50f95e16499f5c" name="adf5e23492cff2897cf50f95e16499f5c"></a>
+EliteRank&#160;</td><td class="memItemRight"><b>Rank</b> = EliteRank.Normal</td></tr>
+<tr class="memdesc:adf5e23492cff2897cf50f95e16499f5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ranga elitarności ustawiana przez <a class="el" href="class_enemy_spawner.html" title="Klasa odpowiedzialna za zarządzanie pojawianiem się przeciwników w grze. Na podstawie zdefiniowanych ...">EnemySpawner</a> przed <a class="el" href="#a637bd267c02af30ad5af52c55dbf1439" title="Inicjalizacja po dodaniu do sceny. Kopiuje statystyki z Stats (jeśli przypisane), stosuje modyfikator...">_Ready</a>. Wpływa na statystyki, rozmiar i efekt wizualny obrysu. <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-attribs" class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr class="memitem:a825854569f1a553d6c566fe9d5d8c1b7" id="r_a825854569f1a553d6c566fe9d5d8c1b7"><td class="memItemLeft"><a id="a825854569f1a553d6c566fe9d5d8c1b7" name="a825854569f1a553d6c566fe9d5d8c1b7"></a>
+int&#160;</td><td class="memItemRight"><b>_health</b></td></tr>
+<tr class="memdesc:a825854569f1a553d6c566fe9d5d8c1b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Aktualna liczba punktów życia przeciwnika. <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-properties" class="groupheader"><a id="properties" name="properties"></a>
+Properties</h2></td></tr>
+<tr class="memitem:ae8245b7e0ea8d7a8f7df7f6b7f0e210f" id="r_ae8245b7e0ea8d7a8f7df7f6b7f0e210f"><td class="memItemLeft"><a id="ae8245b7e0ea8d7a8f7df7f6b7f0e210f" name="ae8245b7e0ea8d7a8f7df7f6b7f0e210f"></a>
+bool&#160;</td><td class="memItemRight"><b>IsElite</b><code> [get, set]</code></td></tr>
+<tr class="memdesc:ae8245b7e0ea8d7a8f7df7f6b7f0e210f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kompatybilny eksport bool dla starszych scen. Odczytanie zwraca <code>true</code> jeśli ranga to Elite lub Legendary. Ustawienie na <code>true</code> promuje rangę Normal → Elite (nie wpływa na Legendary). <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Klasa reprezentująca przeciwnika (<a class="el" href="class_enemy.html" title="Klasa reprezentująca przeciwnika (Enemy) w grze. Obsługuje ruch w kierunku gracza,...">Enemy</a>) w grze. Obsługuje ruch w kierunku gracza, otrzymywanie obrażeń, śmierć i drop doświadczenia. Dziedziczy po CharacterBody2D. </p>
+<div class="textblock"><p>Klasa bazowa wszystkich przeciwników w grze. Zarządza ruchem w kierunku gracza, zadawaniem obrażeń kontaktowych, otrzymywaniem obrażeń, efektami wizualnymi trafień oraz śmiercią i dropem XP. Przeciwnicy NIE kolidują fizycznie z graczem (nie blokują ruchu); obrażenia kontaktowe są sprawdzane przez odległość w HandleContactDamage. </p>
 </div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="aa1df6763ae3a612f36447340577dcb8e" name="aa1df6763ae3a612f36447340577dcb8e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa1df6763ae3a612f36447340577dcb8e">&#9670;&#160;</a></span>_PhysicsProcess()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">override void Enemy._PhysicsProcess </td>
+          <td>(</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>delta</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Aktualizacja fizyki wywoływana każdą klatką. Pobiera referencję do gracza (jeśli brak), oblicza kierunek ruchu, spowalnia przeciwnika gdy nachodził na gracza (zapobiega "przyklejaniu"), absorbuje nadmiarowy odrzut i wywołuje CharacterBody2D.MoveAndSlide. Na końcu sprawdza obrażenia kontaktowe z graczem. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">delta</td><td>Czas od poprzedniej klatki fizyki (sekundy).</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="ad2dc81da9768c7b919c9ed2a588e2031" name="ad2dc81da9768c7b919c9ed2a588e2031"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad2dc81da9768c7b919c9ed2a588e2031">&#9670;&#160;</a></span>TakeDamage()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void Enemy.TakeDamage </td>
@@ -161,14 +211,19 @@ string&#160;</td><td class="memItemRight"><b>MobID</b> = &quot;enemy&quot;</td><
           <td class="paramtype">string</td>          <td class="paramname"><span class="paramname"><em>weaponName</em></span><span class="paramdefsep"> = </span><span class="paramdefval">&quot;unknown&quot;</span>&#160;)</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p>Zadaje obrażenia wrogowi. Tworzy efekt trafienia i wyświetla etykietę obrażeń. </p>
+<p>Zadaje obrażenia przeciwnikowi, stosuje odrzut, odtwarza dźwięk trafienia, tworzy efekt cząsteczkowy i pływającą etykietę obrażeń. Jeśli HP spadnie do zera lub poniżej, wywołuje Die. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">damage</td><td>Ilość obrażeń.</td></tr>
-    <tr><td class="paramname">knockback</td><td>Wektor odrzutu.</td></tr>
-    <tr><td class="paramname">weaponName</td><td>Nazwa źródła obrażeń.</td></tr>
+    <tr><td class="paramname">damage</td><td>Liczba obrażeń do odjęcia od HP.</td></tr>
+    <tr><td class="paramname">knockback</td><td>Wektor odrzutu dodawany do prędkości przeciwnika.</td></tr>
+    <tr><td class="paramname">weaponName</td><td>Nazwa broni źródłowej (do logowania).</td></tr>
   </table>
   </dd>
 </dl>

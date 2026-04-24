@@ -2,7 +2,7 @@
 \hypertarget{class_mob_entry}{}\label{class_mob_entry}\index{MobEntry@{MobEntry}}
 
 
-Klasa reprezentująca pojedynczy wpis przeciwnika w interfejsie użytkownika. Wyświetla nazwę przeciwnika, liczbę zabójstw oraz pasek postępu.  
+Klasa reprezentująca pojedynczy wpis przeciwnika w interfejsie użytkownika. Wyświetla nazwę przeciwnika, ikonę, rangę (tier), liczbę zabójstw oraz pasek postępu do kolejnego poziomu.  
 
 
 Inheritance diagram for Mob\+Entry:\+\begin{figure}[H]
@@ -15,11 +15,11 @@ Inheritance diagram for Mob\+Entry:\+\begin{figure}[H]
 \begin{DoxyCompactItemize}
 \item 
 void \doxymbox{\hyperlink{class_mob_entry_aab8ef8ae5f444d47538880ffbbf1137f}{Set\+Data}} (string mob\+ID, int kills)
-\begin{DoxyCompactList}\small\item\em Ustawia dane dla wpisu przeciwnika w UI. Aktualizuje nazwę, licznik zabójstw oraz pasek postępu. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Ustawia dane dla wpisu przeciwnika w UI. Pobiera teksturę ze sceny przeciwnika i aktualizuje statystyki oraz rangę rzymską. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-Klasa reprezentująca pojedynczy wpis przeciwnika w interfejsie użytkownika. Wyświetla nazwę przeciwnika, liczbę zabójstw oraz pasek postępu. 
+Klasa reprezentująca pojedynczy wpis przeciwnika w interfejsie użytkownika. Wyświetla nazwę przeciwnika, ikonę, rangę (tier), liczbę zabójstw oraz pasek postępu do kolejnego poziomu. 
 
 \label{doc-func-members}
 \Hypertarget{class_mob_entry_doc-func-members}
@@ -28,15 +28,15 @@ Klasa reprezentująca pojedynczy wpis przeciwnika w interfejsie użytkownika. Wy
 \index{SetData@{SetData}!MobEntry@{MobEntry}}
 \doxysubsubsection{\texorpdfstring{SetData()}{SetData()}}
 {\footnotesize\ttfamily \label{class_mob_entry_aab8ef8ae5f444d47538880ffbbf1137f} 
-void Mob\+Entry.\+Set\+Data (\begin{DoxyParamCaption}\item[{string}]{mob\+ID}{, }\item[{int}]{kills}{}\end{DoxyParamCaption})}
+void Mob\+Entry.\+Set\+Data (\begin{DoxyParamCaption}\item[{string}]{mob\+ID}{, }\item[{int}]{kills}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
-Ustawia dane dla wpisu przeciwnika w UI. Aktualizuje nazwę, licznik zabójstw oraz pasek postępu. 
+Ustawia dane dla wpisu przeciwnika w UI. Pobiera teksturę ze sceny przeciwnika i aktualizuje statystyki oraz rangę rzymską. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em mob\+ID} & Identyfikator przeciwnika (nazwa).\\
+{\em mob\+ID} & Identyfikator przeciwnika (nazwa sceny).\\
 \hline
 {\em kills} & Liczba zabójstw danego przeciwnika.\\
 \hline

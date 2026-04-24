@@ -92,7 +92,7 @@ $(function(){initNavTree('class_weapon_stats.html','','class_weapon_stats-member
 </div><!--header-->
 <div class="contents">
 
-<p>Klasa reprezentująca statystyki broni. Zawiera wszystkie parametry potrzebne do konfiguracji działania broni, takie jak obrażenia, zasięg czy liczba pocisków. Dziedziczy po Resource, dzięki czemu można ją eksportować i edytować w Godot.  
+<p>Klasa przechowująca statystyki broni. Definiuje wszystkie parametry wpływające na zachowanie broni, takie jak obrażenia, cooldown, zasięg czy liczba pocisków.  
  <a href="#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for WeaponStats:</div>
@@ -105,34 +105,35 @@ Inheritance diagram for WeaponStats:</div>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a1337f7b758e734cd2bbdd34adfa75361" id="r_a1337f7b758e734cd2bbdd34adfa75361"><td class="memItemLeft"><a id="a1337f7b758e734cd2bbdd34adfa75361" name="a1337f7b758e734cd2bbdd34adfa75361"></a>
 int&#160;</td><td class="memItemRight"><b>BaseDamage</b> = 5</td></tr>
-<tr class="memdesc:a1337f7b758e734cd2bbdd34adfa75361"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bazowe obrażenia przed mnożnikami. Używane do obliczeń skalowania. <br /></td></tr>
+<tr class="memdesc:a1337f7b758e734cd2bbdd34adfa75361"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bazowe obrażenia broni przed zastosowaniem modyfikatorów. Wykorzystywane jako punkt wyjściowy do skalowania obrażeń. <br /></td></tr>
 <tr class="memitem:a17365bccc1b05e523dd95d97fe8dd1d4" id="r_a17365bccc1b05e523dd95d97fe8dd1d4"><td class="memItemLeft"><a id="a17365bccc1b05e523dd95d97fe8dd1d4" name="a17365bccc1b05e523dd95d97fe8dd1d4"></a>
 float&#160;</td><td class="memItemRight"><b>Cooldown</b> = 1f</td></tr>
-<tr class="memdesc:a17365bccc1b05e523dd95d97fe8dd1d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Czas odnowienia broni (w sekundach) między kolejnymi strzałami. <br /></td></tr>
+<tr class="memdesc:a17365bccc1b05e523dd95d97fe8dd1d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Czas odnowienia broni (w sekundach). Określa odstęp między kolejnymi atakami. <br /></td></tr>
 <tr class="memitem:aad765447589b2b9747837024817f4963" id="r_aad765447589b2b9747837024817f4963"><td class="memItemLeft"><a id="aad765447589b2b9747837024817f4963" name="aad765447589b2b9747837024817f4963"></a>
 int&#160;</td><td class="memItemRight"><b>Damage</b> = 5</td></tr>
-<tr class="memdesc:aad765447589b2b9747837024817f4963"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obrażenia zadawane przez pojedynczy pocisk lub trafienie. <br /></td></tr>
+<tr class="memdesc:aad765447589b2b9747837024817f4963"><td class="mdescLeft">&#160;</td><td class="mdescRight">Końcowe obrażenia zadawane przez broń lub pocisk. <br /></td></tr>
 <tr class="memitem:a61e3b38f8b32e39cc396cf3fe7a95501" id="r_a61e3b38f8b32e39cc396cf3fe7a95501"><td class="memItemLeft"><a id="a61e3b38f8b32e39cc396cf3fe7a95501" name="a61e3b38f8b32e39cc396cf3fe7a95501"></a>
 float&#160;</td><td class="memItemRight"><b>Speed</b> = 600f</td></tr>
-<tr class="memdesc:a61e3b38f8b32e39cc396cf3fe7a95501"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prędkość pocisku lub efektu broni. <br /></td></tr>
+<tr class="memdesc:a61e3b38f8b32e39cc396cf3fe7a95501"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prędkość poruszania się pocisku lub efektu broni. <br /></td></tr>
 <tr class="memitem:a9bd555ab3c17fcd312bb25b4248ab3d1" id="r_a9bd555ab3c17fcd312bb25b4248ab3d1"><td class="memItemLeft"><a id="a9bd555ab3c17fcd312bb25b4248ab3d1" name="a9bd555ab3c17fcd312bb25b4248ab3d1"></a>
 int&#160;</td><td class="memItemRight"><b>ProjectileCount</b> = 1</td></tr>
-<tr class="memdesc:a9bd555ab3c17fcd312bb25b4248ab3d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Liczba pocisków wystrzeliwanych przy jednym strzale. <br /></td></tr>
+<tr class="memdesc:a9bd555ab3c17fcd312bb25b4248ab3d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Liczba pocisków wystrzeliwanych jednocześnie przy ataku. <br /></td></tr>
 <tr class="memitem:ae7fbc7afca7d696ef578ccb3baf5f86b" id="r_ae7fbc7afca7d696ef578ccb3baf5f86b"><td class="memItemLeft"><a id="ae7fbc7afca7d696ef578ccb3baf5f86b" name="ae7fbc7afca7d696ef578ccb3baf5f86b"></a>
 int&#160;</td><td class="memItemRight"><b>Pierce</b> = 1</td></tr>
-<tr class="memdesc:ae7fbc7afca7d696ef578ccb3baf5f86b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Liczba wrogów, przez których pocisk może przejść (przebicie). <br /></td></tr>
+<tr class="memdesc:ae7fbc7afca7d696ef578ccb3baf5f86b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Liczba przeciwników, przez których pocisk może przelecieć (przebicie). <br /></td></tr>
 <tr class="memitem:a1e68670f351638c1e19b3390ea5cd761" id="r_a1e68670f351638c1e19b3390ea5cd761"><td class="memItemLeft"><a id="a1e68670f351638c1e19b3390ea5cd761" name="a1e68670f351638c1e19b3390ea5cd761"></a>
 float&#160;</td><td class="memItemRight"><b>Knockback</b> = 200f</td></tr>
-<tr class="memdesc:a1e68670f351638c1e19b3390ea5cd761"><td class="mdescLeft">&#160;</td><td class="mdescRight">Siła odrzutu wywołanego przez pocisk. <br /></td></tr>
+<tr class="memdesc:a1e68670f351638c1e19b3390ea5cd761"><td class="mdescLeft">&#160;</td><td class="mdescRight">Siła odrzutu (knockback) nakładana na trafionych przeciwników. <br /></td></tr>
 <tr class="memitem:aaf6dcd6a85de75ea54b80feaca4b8b10" id="r_aaf6dcd6a85de75ea54b80feaca4b8b10"><td class="memItemLeft"><a id="aaf6dcd6a85de75ea54b80feaca4b8b10" name="aaf6dcd6a85de75ea54b80feaca4b8b10"></a>
 float&#160;</td><td class="memItemRight"><b>SpreadAngle</b> = 15f</td></tr>
-<tr class="memdesc:aaf6dcd6a85de75ea54b80feaca4b8b10"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maksymalny kąt rozrzutu pocisków (w stopniach). <br /></td></tr>
+<tr class="memdesc:aaf6dcd6a85de75ea54b80feaca4b8b10"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maksymalny kąt rozrzutu pocisków (w stopniach). Określa losowe odchylenie trajektorii. <br /></td></tr>
 <tr class="memitem:a940e4c47b9a90a3fa9e7e8f6b4304b3e" id="r_a940e4c47b9a90a3fa9e7e8f6b4304b3e"><td class="memItemLeft"><a id="a940e4c47b9a90a3fa9e7e8f6b4304b3e" name="a940e4c47b9a90a3fa9e7e8f6b4304b3e"></a>
 float&#160;</td><td class="memItemRight"><b>Range</b> = 500f</td></tr>
-<tr class="memdesc:a940e4c47b9a90a3fa9e7e8f6b4304b3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zasięg broni w jednostkach sceny Godot. <br /></td></tr>
+<tr class="memdesc:a940e4c47b9a90a3fa9e7e8f6b4304b3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zasięg działania broni w jednostkach świata gry. <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Klasa reprezentująca statystyki broni. Zawiera wszystkie parametry potrzebne do konfiguracji działania broni, takie jak obrażenia, zasięg czy liczba pocisków. Dziedziczy po Resource, dzięki czemu można ją eksportować i edytować w Godot. </p>
+<div class="textblock"><p>Klasa przechowująca statystyki broni. Definiuje wszystkie parametry wpływające na zachowanie broni, takie jak obrażenia, cooldown, zasięg czy liczba pocisków. </p>
+<p>Dziedziczy po Resource, dzięki czemu może być edytowana w Inspectorze Godot i wielokrotnie używana jako asset. </p>
 </div><hr/>The documentation for this class was generated from the following file:<ul>
 <li>Weapons/<b>WeaponStats.cs</b></li>
 </ul>

@@ -1,0 +1,65 @@
+\doxysection{Win\+Screen Class Reference}
+\hypertarget{class_win_screen}{}\label{class_win_screen}\index{WinScreen@{WinScreen}}
+
+
+Ekran końcowy rundy wyświetlany po przetrwaniu 16 minut. Pokazuje podsumowanie rozgrywki, w tym:\+ 
+\begin{DoxyItemize}
+\item czas przetrwania, 
+\item poziom gracza, 
+\item łączną liczbę zabójstw, 
+\item rozkład zabójstw według przeciwników. 
+\end{DoxyItemize}.  
+
+
+Inheritance diagram for Win\+Screen:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_win_screen}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_win_screen_a1fbc17aab2fe6ecb8197679376931d6d}\label{class_win_screen_a1fbc17aab2fe6ecb8197679376931d6d} 
+override void {\bfseries \+\_\+\+Ready} ()
+\begin{DoxyCompactList}\small\item\em Inicjalizuje ekran końcowy po dodaniu do drzewa sceny. Ustawia tryb procesowania, ukrywa UI i buduje layout interfejsu. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_win_screen_a92cd7c21c320ca908307dee3f6d4a603}{Show\+Results}} (int player\+Level, double elapsed\+Seconds)
+\begin{DoxyCompactList}\small\item\em Wyświetla ekran wyników końcowych gry. Pobiera statystyki z \doxylink{class_kill_manager}{Kill\+Manager} i blokuje rozgrywkę. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Ekran końcowy rundy wyświetlany po przetrwaniu 16 minut. Pokazuje podsumowanie rozgrywki, w tym:\+ 
+\begin{DoxyItemize}
+\item czas przetrwania, 
+\item poziom gracza, 
+\item łączną liczbę zabójstw, 
+\item rozkład zabójstw według przeciwników. 
+\end{DoxyItemize}. 
+
+Interfejs jest tworzony w całości w kodzie (bez pliku .tscn). Klasa dziedziczy po Canvas\+Layer. 
+
+\label{doc-func-members}
+\Hypertarget{class_win_screen_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_win_screen_a92cd7c21c320ca908307dee3f6d4a603}\index{WinScreen@{WinScreen}!ShowResults@{ShowResults}}
+\index{ShowResults@{ShowResults}!WinScreen@{WinScreen}}
+\doxysubsubsection{\texorpdfstring{ShowResults()}{ShowResults()}}
+{\footnotesize\ttfamily \label{class_win_screen_a92cd7c21c320ca908307dee3f6d4a603} 
+void Win\+Screen.\+Show\+Results (\begin{DoxyParamCaption}\item[{int}]{player\+Level}{, }\item[{double}]{elapsed\+Seconds}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Wyświetla ekran wyników końcowych gry. Pobiera statystyki z \doxylink{class_kill_manager}{Kill\+Manager} i blokuje rozgrywkę. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player\+Level} & Poziom gracza na koniec rundy.\\
+\hline
+{\em elapsed\+Seconds} & Czas trwania rundy w sekundach.\\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+Scripts/\+\+UI/\+Win\+Screen.\+cs\end{DoxyCompactItemize}

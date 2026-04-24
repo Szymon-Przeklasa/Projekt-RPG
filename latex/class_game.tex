@@ -1,11 +1,50 @@
 \doxysection{Game Class Reference}
 \hypertarget{class_game}{}\label{class_game}\index{Game@{Game}}
+
+
+Główna klasa sceny gry, zarządzająca odliczaniem czasu rundy i warunkiem zwycięstwa. Timer jest uruchamiany automatycznie po załadowaniu sceny i zatrzymywany po pauzie lub śmierci gracza. Po osiągnięciu czasu Win\+Time wywoływana jest metoda On\+Win, która dezaktywuje spawner wrogów i wyświetla ekran wyników (\doxylink{class_win_screen}{Win\+Screen}).  
+
+
 Inheritance diagram for Game:\+\begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[height=2.000000cm]{class_game}
 \end{center}
 \end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_game_adb6601522ba9f3043e9a310eeafbdae8}\label{class_game_adb6601522ba9f3043e9a310eeafbdae8} 
+override void {\bfseries \+\_\+\+Ready} ()
+\begin{DoxyCompactList}\small\item\em Metoda wywoływana po dodaniu węzła do drzewa sceny. Pobiera etykietę timera, uruchamia odliczanie i tworzy instancję \doxylink{class_win_screen}{Win\+Screen}. \end{DoxyCompactList}\item 
+override void \doxymbox{\hyperlink{class_game_a9ee65829ed0b2107b10f0e38fb01beea}{\+\_\+\+Process}} (double delta)
+\begin{DoxyCompactList}\small\item\em Metoda wywoływana każdą klatkę logiki. Aktualizuje licznik czasu i etykietę UI. Jeśli gra jest pauzowana lub zakończona, metoda wraca natychmiast. Po osiągnięciu Win\+Time wywołuje On\+Win. \end{DoxyCompactList}\item 
+\Hypertarget{class_game_a0c3eeedce8d7f95cee22c24e11572e13}\label{class_game_a0c3eeedce8d7f95cee22c24e11572e13} 
+void {\bfseries Stop\+Timer} ()
+\begin{DoxyCompactList}\small\item\em Zatrzymuje timer gry. Wywoływana zewnętrznie, np. przez ekran śmierci lub inne systemy kończące rundę. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Główna klasa sceny gry, zarządzająca odliczaniem czasu rundy i warunkiem zwycięstwa. Timer jest uruchamiany automatycznie po załadowaniu sceny i zatrzymywany po pauzie lub śmierci gracza. Po osiągnięciu czasu Win\+Time wywoływana jest metoda On\+Win, która dezaktywuje spawner wrogów i wyświetla ekran wyników (\doxylink{class_win_screen}{Win\+Screen}). 
+
+\label{doc-func-members}
+\Hypertarget{class_game_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_game_a9ee65829ed0b2107b10f0e38fb01beea}\index{Game@{Game}!\_Process@{\_Process}}
+\index{\_Process@{\_Process}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{\_Process()}{\_Process()}}
+{\footnotesize\ttfamily \label{class_game_a9ee65829ed0b2107b10f0e38fb01beea} 
+override void Game.\+\_\+\+Process (\begin{DoxyParamCaption}\item[{double}]{delta}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Metoda wywoływana każdą klatkę logiki. Aktualizuje licznik czasu i etykietę UI. Jeśli gra jest pauzowana lub zakończona, metoda wraca natychmiast. Po osiągnięciu Win\+Time wywołuje On\+Win. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em delta} & Czas od poprzedniej klatki (sekundy).\\
+\hline
+\end{DoxyParams}
 
 
 The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}

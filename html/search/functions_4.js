@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['init_0',['Init',['../class_weapon.html#a33d626e47c4808639ffd14de099228ed',1,'Weapon']]]
+  ['heal_0',['Heal',['../class_player.html#af7afcea2d9b372abfd6486a008738526',1,'Player']]]
 ];

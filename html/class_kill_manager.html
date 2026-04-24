@@ -92,7 +92,7 @@ $(function(){initNavTree('class_kill_manager.html','','class_kill_manager-member
 </div><!--header-->
 <div class="contents">
 
-<p>Menedżer odpowiedzialny za zliczanie zabójstw przeciwników. Implementuje wzorzec singleton i zapisuje dane do pliku.  
+<p>Menedżer odpowiedzialny za zliczanie zabójstw przeciwników. Implementuje wzorzec Singleton i zapisuje dane do pliku.  
  <a href="#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for KillManager:</div>
@@ -104,51 +104,47 @@ Inheritance diagram for KillManager:</div>
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a71acac214f8b52426a8d19e66140e1a3" id="r_a71acac214f8b52426a8d19e66140e1a3"><td class="memItemLeft">delegate void&#160;</td><td class="memItemRight"><a class="el" href="#a71acac214f8b52426a8d19e66140e1a3">KillUpdatedEventHandler</a> (string mobID, int kills)</td></tr>
-<tr class="memdesc:a71acac214f8b52426a8d19e66140e1a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sygnał emitowany po zaktualizowaniu liczby zabójstw.  <br /></td></tr>
+<tr class="memdesc:a71acac214f8b52426a8d19e66140e1a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sygnał wywoływany po zarejestrowaniu zabójstwa.  <br /></td></tr>
 <tr class="memitem:af68be7d94cf971a3dae03e02db331ae2" id="r_af68be7d94cf971a3dae03e02db331ae2"><td class="memItemLeft"><a id="af68be7d94cf971a3dae03e02db331ae2" name="af68be7d94cf971a3dae03e02db331ae2"></a>
 override void&#160;</td><td class="memItemRight"><b>_Ready</b> ()</td></tr>
-<tr class="memdesc:af68be7d94cf971a3dae03e02db331ae2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metoda wywoływana po inicjalizacji węzła. Ustawia instancję singletona oraz wczytuje zapisane dane. <br /></td></tr>
+<tr class="memdesc:af68be7d94cf971a3dae03e02db331ae2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inicjalizuje singleton i ładuje zapisane dane z dysku. <br /></td></tr>
 <tr class="memitem:a72e2ecaa626b1cc025df558fac7c4230" id="r_a72e2ecaa626b1cc025df558fac7c4230"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a72e2ecaa626b1cc025df558fac7c4230">RegisterKill</a> (string mobID)</td></tr>
-<tr class="memdesc:a72e2ecaa626b1cc025df558fac7c4230"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rejestruje zabójstwo przeciwnika o podanym identyfikatorze. Aktualizuje licznik, emituje sygnał oraz zapisuje dane do pliku.  <br /></td></tr>
+<tr class="memdesc:a72e2ecaa626b1cc025df558fac7c4230"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rejestruje zabójstwo przeciwnika. Aktualizuje zarówno dane sesyjne, jak i globalne, a następnie zapisuje dane do pliku.  <br /></td></tr>
 <tr class="memitem:abbbb8879e05292d8c8bedbc37c16c03f" id="r_abbbb8879e05292d8c8bedbc37c16c03f"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#abbbb8879e05292d8c8bedbc37c16c03f">GetKills</a> (string mobID)</td></tr>
-<tr class="memdesc:abbbb8879e05292d8c8bedbc37c16c03f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zwraca liczbę zabójstw dla danego przeciwnika.  <br /></td></tr>
-<tr class="memitem:afe50e12f01d171f98f2624966a5dfda2" id="r_afe50e12f01d171f98f2624966a5dfda2"><td class="memItemLeft">Dictionary&lt; string, int &gt;&#160;</td><td class="memItemRight"><a class="el" href="#afe50e12f01d171f98f2624966a5dfda2">GetAllKills</a> ()</td></tr>
-<tr class="memdesc:afe50e12f01d171f98f2624966a5dfda2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zwraca wszystkie zapisane statystyki zabójstw.  <br /></td></tr>
+<tr class="memdesc:abbbb8879e05292d8c8bedbc37c16c03f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zwraca całkowitą liczbę zabójstw danego przeciwnika.  <br /></td></tr>
+<tr class="memitem:afe50e12f01d171f98f2624966a5dfda2" id="r_afe50e12f01d171f98f2624966a5dfda2"><td class="memItemLeft"><a id="afe50e12f01d171f98f2624966a5dfda2" name="afe50e12f01d171f98f2624966a5dfda2"></a>
+Dictionary&lt; string, int &gt;&#160;</td><td class="memItemRight"><b>GetAllKills</b> ()</td></tr>
+<tr class="memdesc:afe50e12f01d171f98f2624966a5dfda2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zwraca wszystkie zapisane zabójstwa (globalne). <br /></td></tr>
+<tr class="memitem:abf69783b34fc0809653434fad5a3f97a" id="r_abf69783b34fc0809653434fad5a3f97a"><td class="memItemLeft"><a id="abf69783b34fc0809653434fad5a3f97a" name="abf69783b34fc0809653434fad5a3f97a"></a>
+Dictionary&lt; string, int &gt;&#160;</td><td class="memItemRight"><b>GetSessionKills</b> ()</td></tr>
+<tr class="memdesc:abf69783b34fc0809653434fad5a3f97a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zwraca zabójstwa tylko z bieżącej sesji gry. <br /></td></tr>
+<tr class="memitem:ae9219f8ba1e492e83bc348ee3c5ad051" id="r_ae9219f8ba1e492e83bc348ee3c5ad051"><td class="memItemLeft"><a id="ae9219f8ba1e492e83bc348ee3c5ad051" name="ae9219f8ba1e492e83bc348ee3c5ad051"></a>
+int&#160;</td><td class="memItemRight"><b>GetSessionTotalKills</b> ()</td></tr>
+<tr class="memdesc:ae9219f8ba1e492e83bc348ee3c5ad051"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zwraca łączną liczbę zabójstw z bieżącej sesji. <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-static-attribs" class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
 <tr class="memitem:a09d25178c95d313dffb90d62a4bdf597" id="r_a09d25178c95d313dffb90d62a4bdf597"><td class="memItemLeft"><a id="a09d25178c95d313dffb90d62a4bdf597" name="a09d25178c95d313dffb90d62a4bdf597"></a>
 static <a class="el" href="class_kill_manager.html">KillManager</a>&#160;</td><td class="memItemRight"><b>Instance</b></td></tr>
-<tr class="memdesc:a09d25178c95d313dffb90d62a4bdf597"><td class="mdescLeft">&#160;</td><td class="mdescRight">Statyczna instancja singletona. <br /></td></tr>
+<tr class="memdesc:a09d25178c95d313dffb90d62a4bdf597"><td class="mdescLeft">&#160;</td><td class="mdescRight">Globalna instancja singletona. <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Menedżer odpowiedzialny za zliczanie zabójstw przeciwników. Implementuje wzorzec singleton i zapisuje dane do pliku. </p>
+<div class="textblock"><p>Menedżer odpowiedzialny za zliczanie zabójstw przeciwników. Implementuje wzorzec Singleton i zapisuje dane do pliku. </p>
+<p>Przechowuje dwa typy danych: </p><ul>
+<li>
+<b>kills</b> — całkowita liczba zabójstw (zapisywana między sesjami), </li>
+<li>
+<b>sessionKills</b> — zabójstwa tylko z bieżącej rozgrywki. </li>
+</ul>
 </div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
-<a id="afe50e12f01d171f98f2624966a5dfda2" name="afe50e12f01d171f98f2624966a5dfda2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afe50e12f01d171f98f2624966a5dfda2">&#9670;&#160;</a></span>GetAllKills()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Dictionary&lt; string, int &gt; KillManager.GetAllKills </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Zwraca wszystkie zapisane statystyki zabójstw. </p>
-<dl class="section return"><dt>Returns</dt><dd>Słownik zawierający liczbę zabójstw dla każdego przeciwnika.</dd></dl>
-
-</div>
-</div>
 <a id="abbbb8879e05292d8c8bedbc37c16c03f" name="abbbb8879e05292d8c8bedbc37c16c03f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#abbbb8879e05292d8c8bedbc37c16c03f">&#9670;&#160;</a></span>GetKills()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">int KillManager.GetKills </td>
@@ -157,16 +153,21 @@ static <a class="el" href="class_kill_manager.html">KillManager</a>&#160;</td><t
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p>Zwraca liczbę zabójstw dla danego przeciwnika. </p>
+<p>Zwraca całkowitą liczbę zabójstw danego przeciwnika. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">mobID</td><td>Identyfikator przeciwnika.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Liczba zabójstw lub 0, jeśli brak wpisu.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Liczba zabójstw lub 0 jeśli brak danych.</dd></dl>
 
 </div>
 </div>
@@ -189,11 +190,11 @@ static <a class="el" href="class_kill_manager.html">KillManager</a>&#160;</td><t
       </table>
 </div><div class="memdoc">
 
-<p>Sygnał emitowany po zaktualizowaniu liczby zabójstw. </p>
+<p>Sygnał wywoływany po zarejestrowaniu zabójstwa. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">mobID</td><td>Identyfikator przeciwnika.</td></tr>
-    <tr><td class="paramname">kills</td><td>Aktualna liczba zabójstw dla danego przeciwnika.</td></tr>
+    <tr><td class="paramname">kills</td><td>Nowa całkowita liczba zabójstw tego przeciwnika.</td></tr>
   </table>
   </dd>
 </dl>
@@ -205,6 +206,9 @@ static <a class="el" href="class_kill_manager.html">KillManager</a>&#160;</td><t
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void KillManager.RegisterKill </td>
@@ -213,9 +217,14 @@ static <a class="el" href="class_kill_manager.html">KillManager</a>&#160;</td><t
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p>Rejestruje zabójstwo przeciwnika o podanym identyfikatorze. Aktualizuje licznik, emituje sygnał oraz zapisuje dane do pliku. </p>
+<p>Rejestruje zabójstwo przeciwnika. Aktualizuje zarówno dane sesyjne, jak i globalne, a następnie zapisuje dane do pliku. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">mobID</td><td>Identyfikator przeciwnika.</td></tr>

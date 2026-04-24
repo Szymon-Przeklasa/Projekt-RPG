@@ -92,7 +92,7 @@ $(function(){initNavTree('class_mob_entry.html','','class_mob_entry-members'); }
 </div><!--header-->
 <div class="contents">
 
-<p>Klasa reprezentująca pojedynczy wpis przeciwnika w interfejsie użytkownika. Wyświetla nazwę przeciwnika, liczbę zabójstw oraz pasek postępu.  
+<p>Klasa reprezentująca pojedynczy wpis przeciwnika w interfejsie użytkownika. Wyświetla nazwę przeciwnika, ikonę, rangę (tier), liczbę zabójstw oraz pasek postępu do kolejnego poziomu.  
  <a href="#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for MobEntry:</div>
@@ -104,16 +104,19 @@ Inheritance diagram for MobEntry:</div>
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:aab8ef8ae5f444d47538880ffbbf1137f" id="r_aab8ef8ae5f444d47538880ffbbf1137f"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#aab8ef8ae5f444d47538880ffbbf1137f">SetData</a> (string mobID, int kills)</td></tr>
-<tr class="memdesc:aab8ef8ae5f444d47538880ffbbf1137f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ustawia dane dla wpisu przeciwnika w UI. Aktualizuje nazwę, licznik zabójstw oraz pasek postępu.  <br /></td></tr>
+<tr class="memdesc:aab8ef8ae5f444d47538880ffbbf1137f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ustawia dane dla wpisu przeciwnika w UI. Pobiera teksturę ze sceny przeciwnika i aktualizuje statystyki oraz rangę rzymską.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Klasa reprezentująca pojedynczy wpis przeciwnika w interfejsie użytkownika. Wyświetla nazwę przeciwnika, liczbę zabójstw oraz pasek postępu. </p>
+<div class="textblock"><p>Klasa reprezentująca pojedynczy wpis przeciwnika w interfejsie użytkownika. Wyświetla nazwę przeciwnika, ikonę, rangę (tier), liczbę zabójstw oraz pasek postępu do kolejnego poziomu. </p>
 </div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
 <a id="aab8ef8ae5f444d47538880ffbbf1137f" name="aab8ef8ae5f444d47538880ffbbf1137f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aab8ef8ae5f444d47538880ffbbf1137f">&#9670;&#160;</a></span>SetData()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void MobEntry.SetData </td>
@@ -126,12 +129,17 @@ Public Member Functions</h2></td></tr>
           <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>kills</em></span>&#160;)</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p>Ustawia dane dla wpisu przeciwnika w UI. Aktualizuje nazwę, licznik zabójstw oraz pasek postępu. </p>
+<p>Ustawia dane dla wpisu przeciwnika w UI. Pobiera teksturę ze sceny przeciwnika i aktualizuje statystyki oraz rangę rzymską. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">mobID</td><td>Identyfikator przeciwnika (nazwa).</td></tr>
+    <tr><td class="paramname">mobID</td><td>Identyfikator przeciwnika (nazwa sceny).</td></tr>
     <tr><td class="paramname">kills</td><td>Liczba zabójstw danego przeciwnika.</td></tr>
   </table>
   </dd>

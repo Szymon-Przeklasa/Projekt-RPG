@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['xptolevel_0',['XpToLevel',['../class_player.html#a246df04ece36765ef096d281c2062f4a',1,'Player']]]
+  ['health_0',['Health',['../class_player.html#a129d77184feb05c2743ef38726dc23da',1,'Player']]]
 ];

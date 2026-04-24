@@ -1,0 +1,59 @@
+\doxysection{Stats\+UI Class Reference}
+\hypertarget{class_stats_u_i}{}\label{class_stats_u_i}\index{StatsUI@{StatsUI}}
+
+
+Panel statystyk wyświetlany w menu pauzy. Pokazuje poziom gracza, doświadczenie oraz rozwój:\+ 
+\begin{DoxyItemize}
+\item broni (Weapons), 
+\item pasywek (Passives). 
+\end{DoxyItemize}.  
+
+
+Inheritance diagram for Stats\+UI:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_stats_u_i}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_stats_u_i_a5f33560d6f8924b6bad0b5e27f5c07a3}\label{class_stats_u_i_a5f33560d6f8924b6bad0b5e27f5c07a3} 
+override void {\bfseries \+\_\+\+Ready} ()
+\begin{DoxyCompactList}\small\item\em Inicjalizuje panel statystyk po dodaniu do sceny. Pobiera referencje do UI oraz buduje kolumny broni i pasywek. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_stats_u_i_a2124c876df877096e95467145f86e6af}{Refresh}} (\doxymbox{\hyperlink{class_player}{Player}} player)
+\begin{DoxyCompactList}\small\item\em Odświeża panel statystyk na podstawie danych gracza. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Panel statystyk wyświetlany w menu pauzy. Pokazuje poziom gracza, doświadczenie oraz rozwój:\+ 
+\begin{DoxyItemize}
+\item broni (Weapons), 
+\item pasywek (Passives). 
+\end{DoxyItemize}. 
+
+Każdy element prezentowany jest w formie graficznej (● /\+ ○), gdzie wypełnione pola oznaczają zdobyte poziomy. 
+
+\label{doc-func-members}
+\Hypertarget{class_stats_u_i_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_stats_u_i_a2124c876df877096e95467145f86e6af}\index{StatsUI@{StatsUI}!Refresh@{Refresh}}
+\index{Refresh@{Refresh}!StatsUI@{StatsUI}}
+\doxysubsubsection{\texorpdfstring{Refresh()}{Refresh()}}
+{\footnotesize\ttfamily \label{class_stats_u_i_a2124c876df877096e95467145f86e6af} 
+void Stats\+UI.\+Refresh (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_player}{Player}}}]{player}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Odświeża panel statystyk na podstawie danych gracza. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & Obiekt gracza.\\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+Scripts/\+\+UI/\+Stats\+UI.\+cs\end{DoxyCompactItemize}

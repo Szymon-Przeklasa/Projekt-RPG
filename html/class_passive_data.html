@@ -92,7 +92,7 @@ $(function(){initNavTree('class_passive_data.html','','class_passive_data-member
 </div><!--header-->
 <div class="contents">
 
-<p>Klasa reprezentująca dane pasywnego ulepszenia. Dziedziczy po Resource, dzięki czemu może być łatwo edytowana w edytorze Godot. Zawiera informacje o nazwie, opisie, typie oraz skalowaniu efektu.  
+<p>Klasa przechowująca dane pasywnego ulepszenia. Dziedziczy po Resource, dzięki czemu może być edytowana w edytorze Godot. Definiuje nazwę, opis, typ oraz sposób skalowania efektu.  
  <a href="#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for PassiveData:</div>
@@ -104,43 +104,46 @@ Inheritance diagram for PassiveData:</div>
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a2cd221364514ea4ce925bcac449e0378" id="r_a2cd221364514ea4ce925bcac449e0378"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a2cd221364514ea4ce925bcac449e0378">Apply</a> (<a class="el" href="class_player.html">Player</a> player)</td></tr>
-<tr class="memdesc:a2cd221364514ea4ce925bcac449e0378"><td class="mdescLeft">&#160;</td><td class="mdescRight">Aplikuje efekt pasywny na gracza oraz zwiększa poziom pasywki. Modyfikuje odpowiednie mnożniki statystyk w zależności od typu pasywki, a następnie odświeża wszystkie bronie gracza.  <br /></td></tr>
+<tr class="memdesc:a2cd221364514ea4ce925bcac449e0378"><td class="mdescLeft">&#160;</td><td class="mdescRight">Aplikuje efekt pasywki na gracza i zwiększa jej poziom. Modyfikuje odpowiednie mnożniki statystyk w zależności od typu oraz odświeża bronie gracza.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:ac2f6bd9c11a9655b90ed5c37aaf9d064" id="r_ac2f6bd9c11a9655b90ed5c37aaf9d064"><td class="memItemLeft"><a id="ac2f6bd9c11a9655b90ed5c37aaf9d064" name="ac2f6bd9c11a9655b90ed5c37aaf9d064"></a>
 string&#160;</td><td class="memItemRight"><b>Name</b> = &quot;&quot;</td></tr>
-<tr class="memdesc:ac2f6bd9c11a9655b90ed5c37aaf9d064"><td class="mdescLeft">&#160;</td><td class="mdescRight">Nazwa pasywki wyświetlana w grze. <br /></td></tr>
+<tr class="memdesc:ac2f6bd9c11a9655b90ed5c37aaf9d064"><td class="mdescLeft">&#160;</td><td class="mdescRight">Nazwa pasywki wyświetlana w UI (np. "Spinach"). <br /></td></tr>
 <tr class="memitem:a94859c824a045da7b9005c648c6840af" id="r_a94859c824a045da7b9005c648c6840af"><td class="memItemLeft"><a id="a94859c824a045da7b9005c648c6840af" name="a94859c824a045da7b9005c648c6840af"></a>
 string&#160;</td><td class="memItemRight"><b>Description</b> = &quot;&quot;</td></tr>
-<tr class="memdesc:a94859c824a045da7b9005c648c6840af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Opis działania pasywki (np. w UI lub tooltipie). <br /></td></tr>
+<tr class="memdesc:a94859c824a045da7b9005c648c6840af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Opis działania pasywki wyświetlany w UI lub tooltipach. <br /></td></tr>
 <tr class="memitem:a126797db727eab65f2634247a3e63b84" id="r_a126797db727eab65f2634247a3e63b84"><td class="memItemLeft"><a id="a126797db727eab65f2634247a3e63b84" name="a126797db727eab65f2634247a3e63b84"></a>
 PassiveType&#160;</td><td class="memItemRight"><b>Type</b></td></tr>
-<tr class="memdesc:a126797db727eab65f2634247a3e63b84"><td class="mdescLeft">&#160;</td><td class="mdescRight">Typ pasywki określający, jaką statystykę modyfikuje. <br /></td></tr>
+<tr class="memdesc:a126797db727eab65f2634247a3e63b84"><td class="mdescLeft">&#160;</td><td class="mdescRight">Typ pasywki określający, którą statystykę gracza modyfikuje. <br /></td></tr>
 <tr class="memitem:aa6543dfa0e2111f6c65ccd9fb23945fb" id="r_aa6543dfa0e2111f6c65ccd9fb23945fb"><td class="memItemLeft"><a id="aa6543dfa0e2111f6c65ccd9fb23945fb" name="aa6543dfa0e2111f6c65ccd9fb23945fb"></a>
 int&#160;</td><td class="memItemRight"><b>MaxLevel</b> = 5</td></tr>
 <tr class="memdesc:aa6543dfa0e2111f6c65ccd9fb23945fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maksymalny poziom ulepszenia pasywki. <br /></td></tr>
 <tr class="memitem:aae5f7f9b935434aff95c4979a3296085" id="r_aae5f7f9b935434aff95c4979a3296085"><td class="memItemLeft"><a id="aae5f7f9b935434aff95c4979a3296085" name="aae5f7f9b935434aff95c4979a3296085"></a>
 float&#160;</td><td class="memItemRight"><b>BonusPerLevel</b> = 0.1f</td></tr>
-<tr class="memdesc:aae5f7f9b935434aff95c4979a3296085"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wartość bonusu dodawanego na każdy poziom (np. 0.1 = +10%). <br /></td></tr>
+<tr class="memdesc:aae5f7f9b935434aff95c4979a3296085"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bonus dodawany na każdy poziom (np. 0.1 = +10%). <br /></td></tr>
 <tr class="memitem:ae613301f8a45fd2ccfe2a131f12c84f8" id="r_ae613301f8a45fd2ccfe2a131f12c84f8"><td class="memItemLeft"><a id="ae613301f8a45fd2ccfe2a131f12c84f8" name="ae613301f8a45fd2ccfe2a131f12c84f8"></a>
 int&#160;</td><td class="memItemRight"><b>CurrentLevel</b> = 0</td></tr>
-<tr class="memdesc:ae613301f8a45fd2ccfe2a131f12c84f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Aktualny poziom pasywki. <br /></td></tr>
+<tr class="memdesc:ae613301f8a45fd2ccfe2a131f12c84f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Aktualny poziom pasywki (0 = brak ulepszenia). <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-properties" class="groupheader"><a id="properties" name="properties"></a>
 Properties</h2></td></tr>
 <tr class="memitem:ae6a1ce0eeb3b68a3bef4ad72aec2e799" id="r_ae6a1ce0eeb3b68a3bef4ad72aec2e799"><td class="memItemLeft"><a id="ae6a1ce0eeb3b68a3bef4ad72aec2e799" name="ae6a1ce0eeb3b68a3bef4ad72aec2e799"></a>
 bool&#160;</td><td class="memItemRight"><b>CanUpgrade</b><code> [get]</code></td></tr>
-<tr class="memdesc:ae6a1ce0eeb3b68a3bef4ad72aec2e799"><td class="mdescLeft">&#160;</td><td class="mdescRight">Określa, czy pasywka może zostać jeszcze ulepszona. <br /></td></tr>
+<tr class="memdesc:ae6a1ce0eeb3b68a3bef4ad72aec2e799"><td class="mdescLeft">&#160;</td><td class="mdescRight">Informacja czy pasywka może być jeszcze ulepszana. <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Klasa reprezentująca dane pasywnego ulepszenia. Dziedziczy po Resource, dzięki czemu może być łatwo edytowana w edytorze Godot. Zawiera informacje o nazwie, opisie, typie oraz skalowaniu efektu. </p>
+<div class="textblock"><p>Klasa przechowująca dane pasywnego ulepszenia. Dziedziczy po Resource, dzięki czemu może być edytowana w edytorze Godot. Definiuje nazwę, opis, typ oraz sposób skalowania efektu. </p>
 </div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
 <a id="a2cd221364514ea4ce925bcac449e0378" name="a2cd221364514ea4ce925bcac449e0378"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2cd221364514ea4ce925bcac449e0378">&#9670;&#160;</a></span>Apply()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void PassiveData.Apply </td>
@@ -149,12 +152,17 @@ bool&#160;</td><td class="memItemRight"><b>CanUpgrade</b><code> [get]</code></td
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p>Aplikuje efekt pasywny na gracza oraz zwiększa poziom pasywki. Modyfikuje odpowiednie mnożniki statystyk w zależności od typu pasywki, a następnie odświeża wszystkie bronie gracza. </p>
+<p>Aplikuje efekt pasywki na gracza i zwiększa jej poziom. Modyfikuje odpowiednie mnożniki statystyk w zależności od typu oraz odświeża bronie gracza. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">player</td><td>Obiekt gracza, na którym zostanie zastosowany efekt.</td></tr>
+    <tr><td class="paramname">player</td><td>Gracz, na którym stosowany jest efekt.</td></tr>
   </table>
   </dd>
 </dl>

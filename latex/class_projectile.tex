@@ -2,7 +2,7 @@
 \hypertarget{class_projectile}{}\label{class_projectile}\index{Projectile@{Projectile}}
 
 
-Klasa bazowa pocisku w grze. Odpowiada za ruch, kolizję oraz zadawanie obrażeń przeciwnikom.  
+Klasa bazowa pocisku w grze. Odpowiada za ruch liniowy, wykrywanie kolizji z wrogami oraz zadawanie obrażeń. Pocisk usuwa się automatycznie po przebyciu odległości równej \doxylink{class_projectile_ab275d685aaf5c4795e2ef518fb7ae3c9}{Max\+Travel\+Distance} lub po wyczerpaniu \doxylink{class_projectile_af9e81cb0e0caf1dc4e948bbaf513169a}{Pierce\+Left} trafień. Klasy pochodne (np. \doxylink{class_magic_missile_projectile}{Magic\+Missile\+Projectile}, \doxylink{class_axe_projectile}{Axe\+Projectile}) mogą nadpisać \doxylink{class_projectile_a161180282124b67b393d1a3280988235}{\+\_\+\+Physics\+Process} w celu implementacji niestandardowej trajektorii.  
 
 
 Inheritance diagram for Projectile:\+\begin{figure}[H]
@@ -15,91 +15,130 @@ Inheritance diagram for Projectile:\+\begin{figure}[H]
 \begin{DoxyCompactItemize}
 \item 
 void \doxymbox{\hyperlink{class_projectile_afe18a73081ae164186fd3bdfcbe62055}{Setup}} (Vector2 dir, \doxymbox{\hyperlink{class_weapon_stats}{Weapon\+Stats}} stats, int damage=-\/1, float speed=-\/1, string weapon\+Name="{}Projectile"{})
-\begin{DoxyCompactList}\small\item\em Inicjalizuje pocisk. Pozwala nadpisać obrażenia i prędkość (np. po uwzględnieniu mnożników gracza). \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Inicjalizuje pocisk z podanymi parametrami. Powinno być wywoływane bezpośrednio po zainstancjonowaniu, przed dodaniem do sceny. Umożliwia nadpisanie obrażeń i prędkości (np. po zastosowaniu mnożników gracza). \end{DoxyCompactList}\item 
 \Hypertarget{class_projectile_aa76ea7837cff1014bad0d4cb94016f26}\label{class_projectile_aa76ea7837cff1014bad0d4cb94016f26} 
 override void {\bfseries \+\_\+\+Ready} ()
-\begin{DoxyCompactList}\small\item\em Rejestruje zdarzenie kolizji po utworzeniu pocisku. \end{DoxyCompactList}\item 
-\Hypertarget{class_projectile_a161180282124b67b393d1a3280988235}\label{class_projectile_a161180282124b67b393d1a3280988235} 
-override void {\bfseries \+\_\+\+Physics\+Process} (double delta)
-\begin{DoxyCompactList}\small\item\em Aktualizuje pozycję pocisku w każdej klatce fizyki. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Wywoływana po dodaniu węzła do drzewa sceny. Subskrybuje sygnał {\ttfamily Body\+Entered}, aby reagować na kolizje z wrogami. \end{DoxyCompactList}\item 
+override void \doxymbox{\hyperlink{class_projectile_a161180282124b67b393d1a3280988235}{\+\_\+\+Physics\+Process}} (double delta)
+\begin{DoxyCompactList}\small\item\em Aktualizacja fizyki wywoływana każdą klatką. Przesuwa pocisk liniowo w kierunku \doxylink{class_projectile_a117a5b2f9a9e05cd541a949d47f8d83c}{Direction} z prędkością \doxylink{class_projectile_a751224ba507867b5593a35ea08efa250}{Runtime\+Speed}. Klasy pochodne mogą nadpisać tę metodę, aby implementować niestandardową trajektorię. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+bool \doxymbox{\hyperlink{class_projectile_a9a507a31486b1418205e7c271442e157}{Advance}} (Vector2 movement)
+\begin{DoxyCompactList}\small\item\em Przesuwa pocisk o podany wektor i aktualizuje przebyty dystans. Jeśli dystans przekroczy \doxylink{class_projectile_ab275d685aaf5c4795e2ef518fb7ae3c9}{Max\+Travel\+Distance}, pocisk się usuwa. \end{DoxyCompactList}\item 
 virtual void \doxymbox{\hyperlink{class_projectile_a855a6909fb83e7cc586c64d9ceb5c454}{On\+Hit}} (Node body)
-\begin{DoxyCompactList}\small\item\em Obsługuje trafienie w obiekt. Jeśli trafiony obiekt to przeciwnik:\+ \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Obsługuje kolizję pocisku z innym ciałem. Jeśli trafiony obiekt to \doxylink{class_enemy}{Enemy}:\+ 
+\begin{DoxyItemize}
+\item Zadaje obrażenia (\doxylink{class_projectile_a35ef499c35e995e5fcae33aeac9882de}{Runtime\+Damage}) z odrzutem w kierunku lotu. 
+\item Zmniejsza \doxylink{class_projectile_af9e81cb0e0caf1dc4e948bbaf513169a}{Pierce\+Left} o 1. 
+\item Usuwa pocisk, gdy \doxylink{class_projectile_af9e81cb0e0caf1dc4e948bbaf513169a}{Pierce\+Left} osiągnie 0. 
+\end{DoxyItemize}Klasy pochodne mogą nadpisać tę metodę, aby dodać specjalne efekty przy trafieniu. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
 \Hypertarget{class_projectile_a117a5b2f9a9e05cd541a949d47f8d83c}\label{class_projectile_a117a5b2f9a9e05cd541a949d47f8d83c} 
 Vector2 {\bfseries Direction}
-\begin{DoxyCompactList}\small\item\em Kierunek ruchu pocisku (znormalizowany wektor). \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Znormalizowany kierunek ruchu pocisku. Może być modyfikowany przez klasy pochodne (np. naprowadzanie). \end{DoxyCompactList}\item 
 \Hypertarget{class_projectile_a2791c8f20931d7bc909f3591d381f9b6}\label{class_projectile_a2791c8f20931d7bc909f3591d381f9b6} 
 \doxymbox{\hyperlink{class_weapon_stats}{Weapon\+Stats}} {\bfseries Stats}
-\begin{DoxyCompactList}\small\item\em Referencja do statystyk broni, z której pochodzi pocisk. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Referencja do statystyk broni, z której pochodzi pocisk. Używana do odczytu siły odrzutu (\doxylink{class_weapon_stats_a1e68670f351638c1e19b3390ea5cd761}{Weapon\+Stats.\+Knockback}) i zasięgu (\doxylink{class_weapon_stats_a940e4c47b9a90a3fa9e7e8f6b4304b3e}{Weapon\+Stats.\+Range}). \end{DoxyCompactList}\item 
 \Hypertarget{class_projectile_af9e81cb0e0caf1dc4e948bbaf513169a}\label{class_projectile_af9e81cb0e0caf1dc4e948bbaf513169a} 
 int {\bfseries Pierce\+Left}
-\begin{DoxyCompactList}\small\item\em Liczba przeciwników, przez których pocisk może jeszcze przejść. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Pozostała liczba wrogów, przez których pocisk może jeszcze przejść (przebicie). Zmniejszana przy każdym trafieniu; po osiągnięciu 0 pocisk się usuwa. \end{DoxyCompactList}\item 
 \Hypertarget{class_projectile_a35ef499c35e995e5fcae33aeac9882de}\label{class_projectile_a35ef499c35e995e5fcae33aeac9882de} 
 int {\bfseries Runtime\+Damage}
-\begin{DoxyCompactList}\small\item\em Obrażenia obliczone w momencie wystrzału (runtime). \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Obrażenia obliczone w momencie wystrzału z uwzględnieniem mnożników gracza. Przekazywane do \doxylink{class_enemy_ad2dc81da9768c7b919c9ed2a588e2031}{Enemy.\+Take\+Damage} przy każdym trafieniu. \end{DoxyCompactList}\item 
 \Hypertarget{class_projectile_a751224ba507867b5593a35ea08efa250}\label{class_projectile_a751224ba507867b5593a35ea08efa250} 
 float {\bfseries Runtime\+Speed}
-\begin{DoxyCompactList}\small\item\em Prędkość pocisku obliczona w momencie wystrzału (runtime). \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Prędkość pocisku obliczona w momencie wystrzału z uwzględnieniem mnożników gracza (piksele/\+s). \end{DoxyCompactList}\item 
 \Hypertarget{class_projectile_aa39a23a2201e9a06be9787bb2eb6b608}\label{class_projectile_aa39a23a2201e9a06be9787bb2eb6b608} 
 string {\bfseries Source\+Weapon} = "{}Projectile"{}
-\begin{DoxyCompactList}\small\item\em Nazwa broni, która wystrzeliła pocisk (do debugowania /\+ logów). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Nazwa broni, która wystrzeliła pocisk. Przekazywana do \doxylink{class_enemy_ad2dc81da9768c7b919c9ed2a588e2031}{Enemy.\+Take\+Damage} w celach logowania i debugowania. \end{DoxyCompactList}\item 
+\Hypertarget{class_projectile_ab275d685aaf5c4795e2ef518fb7ae3c9}\label{class_projectile_ab275d685aaf5c4795e2ef518fb7ae3c9} 
+float {\bfseries Max\+Travel\+Distance}
+\begin{DoxyCompactList}\small\item\em Maksymalna odległość (w jednostkach świata), jaką pocisk może przebyć przed usunięciem. Wyznaczana na podstawie \doxylink{class_weapon_stats_a940e4c47b9a90a3fa9e7e8f6b4304b3e}{Weapon\+Stats.\+Range} przy wywołaniu \doxylink{class_projectile_afe18a73081ae164186fd3bdfcbe62055}{Setup}. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-Klasa bazowa pocisku w grze. Odpowiada za ruch, kolizję oraz zadawanie obrażeń przeciwnikom. 
+Klasa bazowa pocisku w grze. Odpowiada za ruch liniowy, wykrywanie kolizji z wrogami oraz zadawanie obrażeń. Pocisk usuwa się automatycznie po przebyciu odległości równej \doxylink{class_projectile_ab275d685aaf5c4795e2ef518fb7ae3c9}{Max\+Travel\+Distance} lub po wyczerpaniu \doxylink{class_projectile_af9e81cb0e0caf1dc4e948bbaf513169a}{Pierce\+Left} trafień. Klasy pochodne (np. \doxylink{class_magic_missile_projectile}{Magic\+Missile\+Projectile}, \doxylink{class_axe_projectile}{Axe\+Projectile}) mogą nadpisać \doxylink{class_projectile_a161180282124b67b393d1a3280988235}{\+\_\+\+Physics\+Process} w celu implementacji niestandardowej trajektorii. 
 
 \label{doc-func-members}
 \Hypertarget{class_projectile_doc-func-members}
 \doxysubsection{Member Function Documentation}
+\Hypertarget{class_projectile_a161180282124b67b393d1a3280988235}\index{Projectile@{Projectile}!\_PhysicsProcess@{\_PhysicsProcess}}
+\index{\_PhysicsProcess@{\_PhysicsProcess}!Projectile@{Projectile}}
+\doxysubsubsection{\texorpdfstring{\_PhysicsProcess()}{\_PhysicsProcess()}}
+{\footnotesize\ttfamily \label{class_projectile_a161180282124b67b393d1a3280988235} 
+override void Projectile.\+\_\+\+Physics\+Process (\begin{DoxyParamCaption}\item[{double}]{delta}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Aktualizacja fizyki wywoływana każdą klatką. Przesuwa pocisk liniowo w kierunku \doxylink{class_projectile_a117a5b2f9a9e05cd541a949d47f8d83c}{Direction} z prędkością \doxylink{class_projectile_a751224ba507867b5593a35ea08efa250}{Runtime\+Speed}. Klasy pochodne mogą nadpisać tę metodę, aby implementować niestandardową trajektorię. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em delta} & Czas od poprzedniej klatki fizyki (sekundy).\\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_projectile_a9a507a31486b1418205e7c271442e157}\index{Projectile@{Projectile}!Advance@{Advance}}
+\index{Advance@{Advance}!Projectile@{Projectile}}
+\doxysubsubsection{\texorpdfstring{Advance()}{Advance()}}
+{\footnotesize\ttfamily \label{class_projectile_a9a507a31486b1418205e7c271442e157} 
+bool Projectile.\+Advance (\begin{DoxyParamCaption}\item[{Vector2}]{movement}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+
+
+Przesuwa pocisk o podany wektor i aktualizuje przebyty dystans. Jeśli dystans przekroczy \doxylink{class_projectile_ab275d685aaf5c4795e2ef518fb7ae3c9}{Max\+Travel\+Distance}, pocisk się usuwa. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em movement} & Wektor przemieszczenia do zastosowania w bieżącej klatce.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} jeśli pocisk nadal istnieje; {\ttfamily false} jeśli został usunięty.
+\end{DoxyReturn}
 \Hypertarget{class_projectile_a855a6909fb83e7cc586c64d9ceb5c454}\index{Projectile@{Projectile}!OnHit@{OnHit}}
 \index{OnHit@{OnHit}!Projectile@{Projectile}}
 \doxysubsubsection{\texorpdfstring{OnHit()}{OnHit()}}
 {\footnotesize\ttfamily \label{class_projectile_a855a6909fb83e7cc586c64d9ceb5c454} 
-virtual void Projectile.\+On\+Hit (\begin{DoxyParamCaption}\item[{Node}]{body}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+virtual void Projectile.\+On\+Hit (\begin{DoxyParamCaption}\item[{Node}]{body}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
 
 
 
-Obsługuje trafienie w obiekt. Jeśli trafiony obiekt to przeciwnik:\+ 
-
-
+Obsługuje kolizję pocisku z innym ciałem. Jeśli trafiony obiekt to \doxylink{class_enemy}{Enemy}:\+ 
 \begin{DoxyItemize}
-\item zadaje obrażenia,
-\item aplikuje knockback,
-\item zmniejsza liczbę przebić (pierce),
-\item usuwa pocisk, jeśli nie ma już przebić.
-\end{DoxyItemize}
+\item Zadaje obrażenia (\doxylink{class_projectile_a35ef499c35e995e5fcae33aeac9882de}{Runtime\+Damage}) z odrzutem w kierunku lotu. 
+\item Zmniejsza \doxylink{class_projectile_af9e81cb0e0caf1dc4e948bbaf513169a}{Pierce\+Left} o 1. 
+\item Usuwa pocisk, gdy \doxylink{class_projectile_af9e81cb0e0caf1dc4e948bbaf513169a}{Pierce\+Left} osiągnie 0. 
+\end{DoxyItemize}Klasy pochodne mogą nadpisać tę metodę, aby dodać specjalne efekty przy trafieniu. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em body} & Obiekt, z którym nastąpiła kolizja.\\
+{\em body} & Węzeł, z którym nastąpiła kolizja fizyczna.\\
 \hline
 \end{DoxyParams}
 \Hypertarget{class_projectile_afe18a73081ae164186fd3bdfcbe62055}\index{Projectile@{Projectile}!Setup@{Setup}}
 \index{Setup@{Setup}!Projectile@{Projectile}}
 \doxysubsubsection{\texorpdfstring{Setup()}{Setup()}}
 {\footnotesize\ttfamily \label{class_projectile_afe18a73081ae164186fd3bdfcbe62055} 
-void Projectile.\+Setup (\begin{DoxyParamCaption}\item[{Vector2}]{dir}{, }\item[{\doxymbox{\hyperlink{class_weapon_stats}{Weapon\+Stats}}}]{stats}{, }\item[{int}]{damage}{ = {\ttfamily -\/1}, }\item[{float}]{speed}{ = {\ttfamily -\/1}, }\item[{string}]{weapon\+Name}{ = {\ttfamily "{}Projectile"{}}}\end{DoxyParamCaption})}
+void Projectile.\+Setup (\begin{DoxyParamCaption}\item[{Vector2}]{dir}{, }\item[{\doxymbox{\hyperlink{class_weapon_stats}{Weapon\+Stats}}}]{stats}{, }\item[{int}]{damage}{ = {\ttfamily -\/1}, }\item[{float}]{speed}{ = {\ttfamily -\/1}, }\item[{string}]{weapon\+Name}{ = {\ttfamily "{}Projectile"{}}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
-Inicjalizuje pocisk. Pozwala nadpisać obrażenia i prędkość (np. po uwzględnieniu mnożników gracza). 
+Inicjalizuje pocisk z podanymi parametrami. Powinno być wywoływane bezpośrednio po zainstancjonowaniu, przed dodaniem do sceny. Umożliwia nadpisanie obrażeń i prędkości (np. po zastosowaniu mnożników gracza). 
 
 
 \begin{DoxyParams}{Parameters}
-{\em dir} & Kierunek ruchu pocisku.\\
+{\em dir} & Znormalizowany kierunek początkowy ruchu pocisku.\\
 \hline
-{\em stats} & Statystyki broni.\\
+{\em stats} & Statystyki broni zawierające bazowe parametry pocisku.\\
 \hline
-{\em damage} & Opcjonalne obrażenia (jeśli -\/1 → użyj bazowych).\\
+{\em damage} & Obrażenia do użycia; jeśli -\/1, używane są \doxylink{class_weapon_stats_aad765447589b2b9747837024817f4963}{Weapon\+Stats.\+Damage}.\\
 \hline
-{\em speed} & Opcjonalna prędkość (jeśli -\/1 → użyj bazowej).\\
+{\em speed} & Prędkość do użycia; jeśli -\/1, używana jest \doxylink{class_weapon_stats_a61e3b38f8b32e39cc396cf3fe7a95501}{Weapon\+Stats.\+Speed}.\\
 \hline
-{\em weapon\+Name} & Nazwa źródłowej broni.\\
+{\em weapon\+Name} & Nazwa broni źródłowej (do logów i identyfikacji).\\
 \hline
 \end{DoxyParams}
 
