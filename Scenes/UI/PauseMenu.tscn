@@ -5,11 +5,20 @@
 [ext_resource type="FontFile" uid="uid://cbbw74cjsiq82" path="res://Textures/Jersey15-Regular.ttf" id="3_238ko"]
 [ext_resource type="PackedScene" uid="uid://bv7yb854mjgat" path="res://Scenes/UI/StatsUI.tscn" id="4_2bpff"]
 [ext_resource type="Theme" uid="uid://cntsnfagiqg8m" path="res://Textures/NewButtonOpened.tres" id="4_gdh0q"]
+[ext_resource type="Texture2D" uid="uid://c3nfr6o4so7bw" path="res://Textures/c1_image_1.png" id="5_djuuc"]
 [ext_resource type="PackedScene" uid="uid://b708qd2l7igbo" path="res://Scenes/UI/CreditsUI.tscn" id="6_djuuc"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_2bpff"]
 font = ExtResource("3_238ko")
 font_size = 25
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_85qas"]
+texture = ExtResource("5_djuuc")
+texture_margin_left = 15.0
+texture_margin_top = 5.0
+texture_margin_right = 15.0
+texture_margin_bottom = 5.0
+region_rect = Rect2(1492, 52, 74, 18)
 
 [node name="PauseMenu" type="CanvasLayer" unique_id=1585551123]
 process_mode = 3
@@ -67,6 +76,7 @@ custom_minimum_size = Vector2(104, 0)
 layout_mode = 2
 size_flags_horizontal = 2
 theme = ExtResource("4_gdh0q")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_85qas")
 text = "Stats"
 
 [node name="CreditsButton" type="Button" parent="Panel/VBoxContainer/HBoxContainer2" unique_id=1184878475]
@@ -75,6 +85,7 @@ custom_minimum_size = Vector2(104, 0)
 layout_mode = 2
 size_flags_horizontal = 6
 theme = ExtResource("2_n4i8v")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_85qas")
 text = "Credits"
 
 [node name="QuitButton" type="Button" parent="Panel/VBoxContainer/HBoxContainer2" unique_id=1345791380]
@@ -83,6 +94,7 @@ custom_minimum_size = Vector2(104, 0)
 layout_mode = 2
 size_flags_horizontal = 10
 theme = ExtResource("2_n4i8v")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_85qas")
 text = "Exit"
 
 [node name="StatsUI" parent="Panel/VBoxContainer" unique_id=241495070 instance=ExtResource("4_2bpff")]

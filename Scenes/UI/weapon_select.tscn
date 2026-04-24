@@ -4,6 +4,8 @@
 [ext_resource type="FontFile" uid="uid://cbbw74cjsiq82" path="res://Textures/Jersey15-Regular.ttf" id="2_hmnkp"]
 [ext_resource type="Theme" uid="uid://deq3ryoa0hph4" path="res://Textures/NewButtonWeaponSelect.tres" id="3_hmnkp"]
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hmnkp"]
+
 [node name="WeaponSelect" type="CanvasLayer" unique_id=111111111]
 process_mode = 3
 script = ExtResource("1_wselect")
@@ -52,6 +54,7 @@ custom_minimum_size = Vector2(400, 55)
 layout_mode = 2
 theme = ExtResource("3_hmnkp")
 theme_override_font_sizes/font_size = 18
+theme_override_styles/focus = SubResource("StyleBoxTexture_hmnkp")
 text = "🔥  Fire Wand"
 
 [node name="LightningButton" type="Button" parent="CenterContainer" unique_id=1337479623]
@@ -60,6 +63,7 @@ custom_minimum_size = Vector2(400, 55)
 layout_mode = 2
 theme = ExtResource("3_hmnkp")
 theme_override_font_sizes/font_size = 18
+theme_override_styles/focus = SubResource("StyleBoxTexture_hmnkp")
 text = "⚡  Lightning"
 
 [node name="GarlicButton" type="Button" parent="CenterContainer" unique_id=811784098]
@@ -68,6 +72,7 @@ custom_minimum_size = Vector2(400, 55)
 layout_mode = 2
 theme = ExtResource("3_hmnkp")
 theme_override_font_sizes/font_size = 18
+theme_override_styles/focus = SubResource("StyleBoxTexture_hmnkp")
 text = "🧄  Garlic"
 
 [node name="MagicMissileButton" type="Button" parent="CenterContainer" unique_id=87535555]
@@ -76,6 +81,7 @@ custom_minimum_size = Vector2(400, 55)
 layout_mode = 2
 theme = ExtResource("3_hmnkp")
 theme_override_font_sizes/font_size = 18
+theme_override_styles/focus = SubResource("StyleBoxTexture_hmnkp")
 text = "✨  Magic Missile"
 
 [node name="AxeButton" type="Button" parent="CenterContainer" unique_id=2100261635]
@@ -84,6 +90,7 @@ custom_minimum_size = Vector2(400, 55)
 layout_mode = 2
 theme = ExtResource("3_hmnkp")
 theme_override_font_sizes/font_size = 18
+theme_override_styles/focus = SubResource("StyleBoxTexture_hmnkp")
 text = "🪓  Axe"
 
 [node name="Spacer2" type="Control" parent="CenterContainer" unique_id=751973593]
@@ -115,6 +122,7 @@ layout_mode = 2
 theme = ExtResource("3_hmnkp")
 theme_override_colors/font_color = Color(0.2, 1, 0.4, 1)
 theme_override_font_sizes/font_size = 22
+theme_override_styles/focus = SubResource("StyleBoxTexture_hmnkp")
 text = "▶  START"
 
 [node name="BackButton" type="Button" parent="CenterContainer" unique_id=196081034]
@@ -124,4 +132,5 @@ layout_mode = 2
 theme = ExtResource("3_hmnkp")
 theme_override_colors/font_color = Color(0.9, 0.9, 0.9, 1)
 theme_override_font_sizes/font_size = 18
+theme_override_styles/focus = SubResource("StyleBoxTexture_hmnkp")
 text = "◀  BACK"
