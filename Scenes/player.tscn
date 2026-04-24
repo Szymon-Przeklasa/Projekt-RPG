@@ -59,6 +59,7 @@ collision_mask = 2
 motion_mode = 1
 script = ExtResource("1_4flbx")
 ProjectileScene = ExtResource("2_onrkg")
+LightningBeamScene = ExtResource("7_tx1dd")
 MagicMissileProjectileScene = ExtResource("6_r0f3n")
 AxeProjectileScene = ExtResource("8_a1k7h")
 Speed = 210

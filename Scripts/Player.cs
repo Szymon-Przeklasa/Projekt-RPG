@@ -148,11 +148,11 @@ public partial class Player : CharacterBody2D
 		switch (SelectedStartWeaponIndex)
 		{
 			case 0:
-				AddWeaponOfType<FireWand>(new WeaponStats { Damage = 12, Cooldown = 0.85f, Speed = 240f, Knockback = 260f, SpreadAngle = 6f, Range = 185f, Pierce = 1 });
+				AddWeaponOfType<FireWand>(new WeaponStats { Damage = 14, Cooldown = 0.80f, Speed = 240f, Knockback = 260f, SpreadAngle = 6f, Range = 185f, Pierce = 2 });
 				MarkWeaponUnlocked("Fire Wand");
 				break;
 			case 1:
-				AddWeaponOfType<Lightning>(new WeaponStats { Cooldown = 1.7f, Damage = 16, Knockback = 120f, Range = 125f, ProjectileCount = 2 });
+				AddWeaponOfType<Lightning>(new WeaponStats { Cooldown = 1.4f, Damage = 18, Knockback = 120f, Range = 145f, ProjectileCount = 3 });
 				MarkWeaponUnlocked("Lightning");
 				break;
 			case 2:
@@ -160,11 +160,11 @@ public partial class Player : CharacterBody2D
 				MarkWeaponUnlocked("Garlic");
 				break;
 			case 3:
-				AddWeaponOfType<MagicMissile>(new WeaponStats { Cooldown = 1.0f, Damage = 11, Speed = 320f, Range = 235f, ProjectileCount = 1 });
+				AddWeaponOfType<MagicMissile>(new WeaponStats { Cooldown = 0.85f, Damage = 13, Speed = 320f, Range = 235f, ProjectileCount = 2 });
 				MarkWeaponUnlocked("Magic Missile");
 				break;
 			case 4:
-				AddWeaponOfType<Axe>(new WeaponStats { Cooldown = 1.35f, Damage = 20, Speed = 320f, Knockback = 260f, Range = 240f, ProjectileCount = 1, Pierce = 2, SpreadAngle = 18f });
+				AddWeaponOfType<Axe>(new WeaponStats { Cooldown = 1.15f, Damage = 24, Speed = 320f, Knockback = 260f, Range = 240f, ProjectileCount = 1, Pierce = 3, SpreadAngle = 18f });
 				MarkWeaponUnlocked("Axe");
 				break;
 			default:

@@ -24,7 +24,7 @@ public partial class SoundManager : Node
     /// Głośność SFX w dB. -14 dB ≈ -80% odczuwalnej głośności.
     /// Zmień tę wartość żeby dostosować globalną głośność efektów.
     /// </summary>
-    private const float SfxVolumeDb = -14f;
+    private const float SfxVolumeDb = -20f;
 
     public override void _Ready()
     {

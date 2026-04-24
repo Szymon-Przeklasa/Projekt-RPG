@@ -14,6 +14,7 @@ collision_layer = 2
 script = ExtResource("1_ybaui")
 XpOrbScene = ExtResource("2_3uotw")
 HitParticle = ExtResource("3_x28lc")
+MaxHealth = 500
 metadata/grkh = false
 
 [node name="Golem" parent="." unique_id=957478779 instance=ExtResource("4_ybaui")]

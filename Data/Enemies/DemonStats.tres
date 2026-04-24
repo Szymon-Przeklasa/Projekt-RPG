@@ -7,7 +7,7 @@
 script = ExtResource("1_qk78a")
 MobID = "demon"
 DisplayName = "Demon"
-Speed = 160.0
+Speed = 138.0
 MaxHealth = 130
 XpDrop = 6
 ContactDamage = 3

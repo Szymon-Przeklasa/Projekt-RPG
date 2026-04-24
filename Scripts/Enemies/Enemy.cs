@@ -103,7 +103,13 @@ public partial class Enemy : CharacterBody2D
 		if (_player != null)
 		{
 			Vector2 dir = (_player.GlobalPosition - GlobalPosition).Normalized();
-			Velocity = dir * Speed;
+
+			// Slow enemy when overlapping player — punishes contact instead of letting it stick
+			float dist = GlobalPosition.DistanceTo(_player.GlobalPosition);
+			float contactRange = 28f * (Stats?.Scale ?? 1f);
+			float speedFactor = dist < contactRange ? 0.25f : 1f;
+
+			Velocity = dir * Speed * speedFactor;
 		}
 
 		// Amortyzuj knockback powyżej normalnej prędkości

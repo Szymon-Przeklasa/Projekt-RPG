@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_81t7e")
-Speed = 115.0
+Speed = 100.0
 MaxHealth = 24
 XpDrop = 2
 ContactDamage = 1
